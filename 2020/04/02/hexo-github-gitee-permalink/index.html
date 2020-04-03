@@ -205,9 +205,7 @@
 <p>简单来说整个搭建过程可以理解成，将GitHub当成个人Blog的服务器，而Hexo就是一个博客框架，我们可以更换Hexo的主题，使博客个性化。</p>
 <h2 id="1-关于GitHub-Pages"><a href="#1-关于GitHub-Pages" class="headerlink" title="1 关于GitHub Pages"></a>1 关于GitHub Pages</h2><blockquote>
 <p>Github Pages 是 Github 免费给开发者提供的一款<strong>托管个人网站</strong>的产品, 可托管<strong>静态内容</strong>, 非常适合用来搭博客。</p>
-</blockquote>
-<h2 id="2-关于Hexo"><a href="#2-关于Hexo" class="headerlink" title="2 关于Hexo"></a>2 关于Hexo</h2><blockquote>
-<p>Hexo 是一个快速、简洁且高效的<strong>博客框架</strong>。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
+<h2 id="2-关于Hexo"><a href="#2-关于Hexo" class="headerlink" title="2 关于Hexo"></a>2 关于Hexo</h2><p>Hexo 是一个快速、简洁且高效的<strong>博客框架</strong>。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
 </blockquote>
 <p><strong>1.Hexo官网</strong>：<strong><a href="https://hexo.io/" target="_blank" rel="noopener">https://hexo.io/</a></strong>（官网右上角可选择切换中文，方便阅读）</p>
 <p><strong>2.Hexo的安装</strong>：使用 Node.js 中的 npm 库安装Hexo。</p>
@@ -248,7 +246,6 @@
 <li>部署至本地服务器：</li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>运行生成、部署命令：</li>
 </ul>
@@ -276,7 +273,6 @@
 <li>修改<strong>本地Hexo根目录下</strong>的 <strong>_config.yml</strong> 文件，将<strong>Deployment</strong>及<strong>URL</strong>更改为相应的gitee链接</li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># URL</span><br><span class="line">## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'</span><br><span class="line">url: http:<span class="comment">//yourname.gitee.io/</span></span><br><span class="line">root: /</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https:<span class="comment">//hexo.io/docs/deployment.html</span></span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https:<span class="comment">//gitee.com/yourname/yourname.git</span></span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
 <ul>
 <li>不需要将代码上传到Gitee的仓库中，使用 <strong>hexo d -g</strong> 指令在本地部署上传即可。</li>
