@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="LL Leung">
+
+
+
+
+
+<title>【洛谷 1045 &amp; 蓝桥杯 算法训练 ALGO-26】麦森数（二分 + 高精度） | 一塔湖图&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/1.jpg">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">一塔湖图 &#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">归档</a>
+                
+                    <a class="menu-item" href="/category">分类</a>
+                
+                    <a class="menu-item" href="/tag">标签</a>
+                
+                    <a class="menu-item" href="/about">关于</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">一塔湖图 &#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">归档</a>
+                
+                    <a class="menu-item" href="/category">分类</a>
+                
+                    <a class="menu-item" href="/tag">标签</a>
+                
+                    <a class="menu-item" href="/about">关于</a>
+                
+            </div>
+        </div>
+    </nav>
+
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?15996f0061886ef8292c939a628bb618";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+    
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">【洛谷 1045 &amp; 蓝桥杯 算法训练 ALGO-26】麦森数（二分 + 高精度）</h1>
+            
+                <div class="post-meta">
+                    
+                        作者 : <a itemprop="author" rel="author" href="/">LL Leung</a>
+                    
+
+                    
+                        <span class="post-time">
+                        &nbsp&nbsp发表于 : <a href="#">April 2, 2020&nbsp;&nbsp;22:24:37</a>
+                        </span>
+                    
+
+                    
+                        <span class="post-category">
+                        &nbsp&nbsp分类于 : 
+                            
+                                <a href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="1-题目"><a href="#1-题目" class="headerlink" title="1 题目"></a>1 题目</h2><h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><blockquote>
+<p>形如$2 ^ {P}-1$的素数称为麦森数，这时$P$一定也是个素数。但反过来不一定，即如果$P$是个素数， $2 ^ {P}-1$ 不一定也是素数。到1998年底，人们已找到了37个麦森数。最大的一个是$P=3021377$，它有$909526$位。麦森数有许多重要应用，它与完全数密切相关。<br>任务：从文件中输入 $P（1000&lt;P&lt;3100000）$，计算 $2 ^ {P}-1$ 的位数和最后 $500$ 位数字（用十进制高精度数表示）</p>
+<h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>文件中只包含一个整数 $P$（1000&lt;P&lt;3100000）</p>
+</blockquote>
+<h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><blockquote>
+<p>第一行：十进制高精度数 $2 ^ {P}-1$ 的位数。<br>第2-11行：十进制高精度数 $2 ^ {P}-1$ 的最后500位数字.（每行输出50位，共输出10行，不足500位时高位补0）<br>不必验证 $2 ^ {P}-1$ 与 $P$ 是否为素数。</p>
+</blockquote>
+<h4 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h4><blockquote>
+<p>1279</p>
+</blockquote>
+<h4 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h4><blockquote>
+<p>386<br>00000000000000000000000000000000000000000000000000<br>00000000000000000000000000000000000000000000000000<br>00000000000000104079321946643990819252403273640855<br>38615262247266704805319112350403608059673360298012<br>23944173232418484242161395428100779138356624832346<br>49081399066056773207629241295093892203457731833496<br>61583550472959420547689811211693677147548478866962<br>50138443826029173234888531116082853841658502825560<br>46662248318909188018470682222031405210266984354887<br>32958028878050869736186900714720710555703168729087</p>
+</blockquote>
+<h2 id="2-题目分析"><a href="#2-题目分析" class="headerlink" title="2 题目分析"></a>2 题目分析</h2><p><strong>1.题目难点：</strong></p>
+<ul>
+<li>求 $2 ^ {P}-1$  的位数</li>
+<li>高精度算法</li>
+<li>二分快速幂实现</li>
+</ul>
+<p><strong>2.求 $2 ^ {P}-1$  的位数</strong></p>
+<ul>
+<li>首先要知道的是 $2 ^ {P}-1$ 与 $2 ^ {P}$ 有相同的位数，因此接下来我们直接求 $2 ^ {P}$ 的位数</li>
+<li>不妨设 $k\ =\ 2^{p}$</li>
+<li>我们知道， $10^{n}$ 的位数为 $n+1$，而根据对数运算规则，$10^{\lg 2}\ =\ 2$</li>
+<li>因此将 $10^{\lg 2}\ =\ 2$ 代入$k\ =\ 2^{p}$ 得 $k = 10^{\lg 2<em> p}$ ，所以 $2 ^ {P}$ 的位数为 $p</em>{\lg 2} +1$</li>
+<li>另外，C++ 的 cmath 库中<strong>自带 log10() 函数</strong>。也有直接计算位数的函数：<strong>ceil(n次方*log10(底数))</strong></li>
+</ul>
+<p><strong>3.高精度算法</strong></p>
+<ul>
+<li><p>在 C/C++ 中，$int$ 类型有<strong>10位</strong>，取值范围为：$-2147483648\sim2147483647$；$long\,long$ 类型有<strong>19位</strong>，取值范围为：$-9223372036854775808\sim9223372036854775807$</p>
+</li>
+<li><p>如果有两个30位的数字相乘，应该如何用计算机实现？</p>
+</li>
+<li><p>这就是高精度乘法的应用，以高精度加法举例，就是用数组存储数字每一位的数字，逐个运算，具体的算法可参考博客：<strong><a href="https://blog.csdn.net/fanyun_01/article/details/79967170" target="_blank" rel="noopener">高精度加、减、乘、除算法实现详解</a></strong></p>
+</li>
+<li>在本题中，就是运用<strong>高精度乘法</strong>的原理实现<strong>二分快速幂</strong>过程。</li>
+</ul>
+<p><strong>4.二分快速幂实现</strong></p>
+<ul>
+<li>快速幂原理：<strong><a href="https://blog.csdn.net/liangllhahaha/article/details/82119378" target="_blank" rel="noopener">https://blog.csdn.net/liangllhahaha/article/details/82119378</a></strong></li>
+<li>在本题中，用两个函数实现快速幂中 <strong>ans *= base</strong> 与 <strong>base *= base</strong> 的功能，其中 $p$ 则为幂方 $b$ ，数组 b[maxn] 为基数 $base$</li>
+</ul>
+<h2 id="3-题解"><a href="#3-题解" class="headerlink" title="3 题解"></a>3 题解</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="comment">//乘法开2倍长度</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1001</span>;</span><br><span class="line"><span class="keyword">int</span> ans[maxn], b[maxn], carry[maxn], p;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun1</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(carry, <span class="number">0</span>, <span class="keyword">sizeof</span>(carry));</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= <span class="number">500</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>;j &lt;= <span class="number">500</span>;j++)&#123;</span><br><span class="line">            carry[i + j - <span class="number">1</span>] += ans[i] * b[j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= <span class="number">500</span>;i++)&#123;</span><br><span class="line">        carry[i + <span class="number">1</span>] += carry[i] / <span class="number">10</span>;</span><br><span class="line">        carry[i] = carry[i] % <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">memcpy</span>(ans, carry, <span class="keyword">sizeof</span>(ans));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun2</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(carry, <span class="number">0</span>, <span class="keyword">sizeof</span>(carry));</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= <span class="number">500</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>;j &lt;= <span class="number">500</span>;j++)&#123;</span><br><span class="line">            carry[i + j - <span class="number">1</span>] += b[i] * b[j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= <span class="number">500</span>;i++)&#123;</span><br><span class="line">        carry[i + <span class="number">1</span>] += carry[i] / <span class="number">10</span>;</span><br><span class="line">        carry[i] = carry[i] % <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">memcpy</span>(b, carry, <span class="keyword">sizeof</span>(b));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> p;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; p;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, (<span class="keyword">int</span>)( p * <span class="built_in">log10</span>(<span class="number">2</span>) ) + <span class="number">1</span>);</span><br><span class="line">    <span class="comment">//赋初值 </span></span><br><span class="line">    ans[<span class="number">1</span>] = <span class="number">1</span>, b[<span class="number">1</span>] = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">while</span>(p)&#123;</span><br><span class="line">        <span class="keyword">if</span>(p % <span class="number">2</span>)&#123;</span><br><span class="line">            fun1();</span><br><span class="line">        &#125;</span><br><span class="line">        fun2();</span><br><span class="line">        p /= <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//题目要计算的是2 ^ &#123;P&#125; - 1</span></span><br><span class="line">    ans[<span class="number">1</span>] -= <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">500</span>;i &gt; <span class="number">0</span>;i--)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i != <span class="number">500</span> &amp;&amp; i % <span class="number">50</span> == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"\n%d"</span>, ans[i]);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%d"</span>, ans[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                <!-- 
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>LL Leung</span>
+                    </p>
+                 -->
+                
+                    <p class="copyright-item">
+                        <span style="font-size:17px"><strong>博文链接 : </span>
+                        <span><a href="https://lianglilihahaha.github.io/2020/04/02/maisenshu-permalink/">https://lianglilihahaha.github.io/2020/04/02/maisenshu-permalink/</a></span></strong>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span style="font-size:17px"><strong>版权声明 : </strong>本博客所有文章除特別声明外，均采用
+                        <strong><span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span></strong>
+                        许可协议。转载请注明来源
+                        <strong><a href="/">LL Leung</a></strong></strong> ！
+                    </p>
+                    <p></p>
+                
+                <!-- 
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                 -->
+                </section>
+        
+        <p></p>
+        <span style="font-size:20px"><strong>添加新评论</strong></span>
+        
+        <p></p>
+        <div id="vcomments" style="font-size:16px"></div>
+        <script>
+            new Valine({
+                el: '#vcomments',
+                appId: 'addRaUPaIYkQW4qXNOpRi99T-gzGzoHsz',
+                appKey: 'q82rU56Rz2oPbCQEtToDoVfj',
+                placeholder: '您可以选择匿名评论，即“昵称”,“邮箱”,“网址”均为非必填项。当然，也欢迎实名，且您的邮箱与网址将得到保密…',
+                visitor: true,
+                recordIP: true
+            })
+        </script>
+
+        <section class="post-tags">
+            <div>
+                <strong><span>文章标签 : </span></strong>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/C-C/"># C/C++</a>
+                    
+                        <a href="/tags/%E5%BF%AB%E9%80%9F%E5%B9%82/"># 快速幂</a>
+                    
+                        <a href="/tags/%E4%BA%8C%E5%88%86%E5%BF%AB%E9%80%9F%E5%B9%82/"># 二分快速幂</a>
+                    
+                        <a href="/tags/%E9%AB%98%E7%B2%BE%E5%BA%A6/"># 高精度</a>
+                    
+                        <a href="/tags/%E6%B1%82%E4%BD%8D%E6%95%B0/"># 求位数</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <strong><a href="javascript:window.history.back();">返回上一页</a></strong>
+                <span><strong> · </strong></span>
+                <strong><a href="/">回到主页</a></strong>
+            </div>
+        </section>
+        
+        <section class="post-nav">
+            
+                <a class="next" rel="next" href="/2020/04/02/hexo-github-gitee-permalink/">基于Hexo + Github & Gitee 搭建个人Blog</a>
+            
+            
+        </section>
+        
+    </article>
+    
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>Copyright © 2019 - 2020 
+            <strong>
+                <a href="/">LL Leung</a></strong> | Powered by 
+            <strong>
+                <a href="https://hexo.io" target="_blank">Hexo</a>
+            </strong>
+                 | Theme <strong><a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a>
+            </strong>
+        </span>
+        <span id="sitetime"></span>
+        <script language=javascript>
+            function siteTime(){
+                window.setTimeout("siteTime()", 1000);
+                var seconds = 1000;
+                var minutes = seconds * 60;
+                var hours = minutes * 60;
+                var days = hours * 24;
+                var years = days * 365;
+                var today = new Date();
+                var todayYear = today.getFullYear();
+                var todayMonth = today.getMonth()+1;
+                var todayDate = today.getDate();
+                var todayHour = today.getHours();
+                var todayMinute = today.getMinutes();
+                var todaySecond = today.getSeconds();
+                /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+                year - 作为date对象的年份，为4位年份值
+                month - 0-11之间的整数，做为date对象的月份
+                day - 1-31之间的整数，做为date对象的天数
+                hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+                minutes - 0-59之间的整数，做为date对象的分钟数
+                seconds - 0-59之间的整数，做为date对象的秒数
+                microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+                var t1 = Date.UTC(2019,06,02,15,03,00); //建站时间
+                var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+                var diff = t2-t1;
+                var diffYears = Math.floor(diff/years);
+                var diffDays = Math.floor((diff/days)-diffYears*365);
+                var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+                var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+                var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+                document.getElementById("sitetime").innerHTML="&nbsp;&nbsp;&nbsp;本站已安全运行 "+ diffYears + " 年 " + diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+            }
+            siteTime();
+        </script>
+        <!-- {% if theme.baidu_analytics %} -->
+        <span style="display:none">
+            <script>
+                var _hmt = _hmt || [];
+                (function() {
+                  var hm = document.createElement("script");
+                  hm.src = "https://hm.baidu.com/hm.js?15996f0061886ef8292c939a628bb618";
+                  var s = document.getElementsByTagName("script")[0]; 
+                  s.parentNode.insertBefore(hm, s);
+                })();
+                </script>                
+        </span>
+        <!-- {% endif %} -->
+    </div>
+</footer>
+    
+
+    </div>
+</body>
+</html>
