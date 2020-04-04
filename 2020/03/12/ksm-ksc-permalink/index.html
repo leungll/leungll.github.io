@@ -251,8 +251,9 @@
         <div class="post-content">
             <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><blockquote>
 <p>在RSA密码中，当收到密文C时，可使用私钥解开，计算公式为</p>
-<script type="math/tex; mode=display">X\ =\ C^{e}\ mod\ n$$如果想让你计算</script><p>20190324^{823816093931522017}\ mod\ 1001733993063167141</p>
-<p>$$应该如何用代码实现？我们知道，在Java里有大数类，Python依靠其强大的计算性能有些数据甚至可以直接计算。那么在C/C++中应该如何处理？单独用快速幂也会爆long long，我们可以采取快速幂调用快速乘进行取模的方法得到结果。</p>
+<script type="math/tex; mode=display">X\ =\ C^{e}\ mod\ n</script><p>如果想让你计算 </p>
+<script type="math/tex; mode=display">
+20190324^{823816093931522017}\ mod\ 1001733993063167141</script><p>应该如何用代码实现？我们知道，在Java里有大数类，Python依靠其强大的计算性能有些数据甚至可以直接计算。那么在C/C++中应该如何处理？单独用快速幂也会爆long long，我们可以采取快速幂调用快速乘进行取模的方法得到结果。</p>
 </blockquote>
 <p>关于快速幂与快速乘的具体原理，可在此博客了解：<a href="https://blog.csdn.net/liangllhahaha/article/details/82119378" target="_blank" rel="noopener">快速幂 &amp; 快速乘原理讲解（模板）</a></p>
 <h2 id="1-原因分析"><a href="#1-原因分析" class="headerlink" title="1 原因分析"></a>1 原因分析</h2><p>首先我们直接用快速幂计算引言中提到的公式：</p>
