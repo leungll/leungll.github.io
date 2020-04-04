@@ -137,6 +137,7 @@
     })();
     </script>
     
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 </header>
 <script>
     var mobileBtn = function f() {
@@ -285,6 +286,7 @@
                         <span><strong>License : </strong></span>
                         <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
                     </p>
+                    <p></p>
                 
                 <!-- 
                      <p class="copyright-item">
@@ -294,7 +296,17 @@
                  -->
 
             </section>
+            
         
+        
+        <div id="vcomments"></div>
+        <script>
+            new Valine({
+                el: '#vcomments',
+                appId: 'addRaUPaIYkQW4qXNOpRi99T-gzGzoHsz',
+                appKey: 'q82rU56Rz2oPbCQEtToDoVfj'
+            })
+        </script>
         <section class="post-tags">
             <div>
                 <strong><span>文章标签 : </span></strong>
@@ -318,6 +330,7 @@
                 <strong><a href="/">回到主页</a></strong>
             </div>
         </section>
+        
         <section class="post-nav">
             
                 <a class="prev" rel="prev" href="/2020/04/02/index/">Hello World</a>
@@ -326,7 +339,9 @@
             <a class="next" rel="next" href="/2020/03/11/ex_gcd-permalink/">数论之扩展欧几里得，费马小定理，欧拉定理 + 求最小乘法逆元</a>
             
         </section>
+        
     </article>
+    
 </div>
 
         </div>
@@ -377,7 +392,7 @@
             }
             siteTime();
         </script>
-        {% if theme.baidu_analytics %}
+        <!-- {% if theme.baidu_analytics %} -->
         <span style="display:none">
             <script>
                 var _hmt = _hmt || [];
@@ -389,7 +404,7 @@
                 })();
                 </script>                
         </span>
-        {% endif %}
+        <!-- {% endif %} -->
     </div>
 </footer>
     
