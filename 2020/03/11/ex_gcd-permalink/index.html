@@ -127,6 +127,7 @@
             </div>
         </div>
     </nav>
+
     <script>
     var _hmt = _hmt || [];
     (function() {
@@ -138,6 +139,7 @@
     </script>
     
     <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+    
 </header>
 <script>
     var mobileBtn = function f() {
@@ -390,13 +392,13 @@ d * e\equiv1(mod\,\,(p - 1) * (q - 1)\,)</script></li>
                  -->
                 
                     <p class="copyright-item">
-                        <span><strong>博文链接 : </strong></span>
+                        <span style="font-size:17px"><strong>博文链接 : </strong></span>
                         <span><a href="http://ll_leung.gitee.io/2020/03/11/ex_gcd-permalink/">http://ll_leung.gitee.io/2020/03/11/ex_gcd-permalink/</a></span>
                     </p>
                 
                 
                     <p class="copyright-item">
-                        <span><strong>License : </strong></span>
+                        <span style="font-size:17px"><strong>License : </strong></span>
                         <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
                     </p>
                     <p></p>
@@ -407,19 +409,24 @@ d * e\equiv1(mod\,\,(p - 1) * (q - 1)\,)</script></li>
                          <span>Do you believe in <strong>DESTINY</strong>?</span>
                      </p>
                  -->
-
-            </section>
-            
+                </section>
         
+        <p></p>
+        <span style="font-size:20px"><strong>添加新评论</strong></span>
         
-        <div id="vcomments"></div>
+        <p></p>
+        <div id="vcomments" style="font-size:16px"></div>
         <script>
             new Valine({
                 el: '#vcomments',
                 appId: 'addRaUPaIYkQW4qXNOpRi99T-gzGzoHsz',
-                appKey: 'q82rU56Rz2oPbCQEtToDoVfj'
+                appKey: 'q82rU56Rz2oPbCQEtToDoVfj',
+                placeholder: '在这里输入你的评论...',
+                visitor: true,
+                recordIP: true
             })
         </script>
+
         <section class="post-tags">
             <div>
                 <strong><span>文章标签 : </span></strong>
