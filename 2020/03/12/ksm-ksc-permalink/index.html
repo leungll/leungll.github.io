@@ -12,7 +12,7 @@
 
 
 
-<title>基于Hexo + Github &amp; Gitee 搭建个人Blog | 一塔湖图&#39;s Blog</title>
+<title>快速幂 &amp; 快速乘取模（模拟大数模幂运算，解决乘法爆long long问题） | 一塔湖图&#39;s Blog</title>
 
 
 
@@ -39,6 +39,45 @@
 
     
     
+        
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
         
     
 
@@ -184,7 +223,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">基于Hexo + Github &amp; Gitee 搭建个人Blog</h1>
+            <h1 class="post-title">快速幂 &amp; 快速乘取模（模拟大数模幂运算，解决乘法爆long long问题）</h1>
             
                 <div class="post-meta">
                     <!-- 
@@ -193,7 +232,7 @@
 
                     
                         <span class="post-time">
-                        发表于 : <a href="#">April 2, 2020&nbsp;&nbsp;20:15:19</a>
+                        发表于 : <a href="#">March 12, 2020&nbsp;&nbsp;9:59:10</a>
                         </span>
                     
 
@@ -201,7 +240,7 @@
                         <span class="post-category">
                         &nbsp&nbsp分类于 : 
                             
-                                <a href="/categories/Hexo/">Hexo</a>
+                                <a href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
                             
                         </span>
                     
@@ -210,7 +249,7 @@
                         <span class="post-meta-item-text">  
                             &nbsp&nbsp文章字数 : 
                             <a href="#">
-                                1.3k
+                                512
                             </a>
                             字
                         </span>
@@ -218,7 +257,7 @@
                         <span class="post-meta-item-text">  
                             &nbsp&nbsp阅读时长 : 
                             <a href="#">
-                                4
+                                2
                             </a>
                             分钟
                         </span>
@@ -228,88 +267,23 @@
         </header>
 
         <div class="post-content">
-            <blockquote>
-<p>一年前使用Hexo + Github搭过一个博客，但是当时事情多，搭好之后也没有后续维护，导致就不了了之了。现在闲下来，重新打开当时搭的博客，发现实在是太花哨了，因此决定重新搭一个，并记录一下采坑的过程，以便后续更新。</p>
+            <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><blockquote>
+<p>在RSA密码中，当收到密文C时，可使用私钥解开，计算公式为</p>
+<script type="math/tex; mode=display">X\ =\ C^{e}\ mod\ n</script><p>如果想让你计算 </p>
+<script type="math/tex; mode=display">
+20190324^{823816093931522017}\ mod\ 1001733993063167141</script><p>应该如何用代码实现？我们知道，在Java里有大数类，Python依靠其强大的计算性能有些数据甚至可以直接计算。那么在C/C++中应该如何处理？单独用快速幂也会爆long long，我们可以采取快速幂调用快速乘进行取模的方法得到结果。</p>
 </blockquote>
-<p>简单来说整个搭建过程可以理解成，将GitHub当成个人Blog的服务器，而Hexo就是一个博客框架，我们可以更换Hexo的主题，使博客个性化。</p>
-<h2 id="1-关于GitHub-Pages"><a href="#1-关于GitHub-Pages" class="headerlink" title="1 关于GitHub Pages"></a>1 关于GitHub Pages</h2><blockquote>
-<p>Github Pages 是 Github 免费给开发者提供的一款<strong>托管个人网站</strong>的产品, 可托管<strong>静态内容</strong>, 非常适合用来搭博客。</p>
-</blockquote>
-<h2 id="2-关于Hexo"><a href="#2-关于Hexo" class="headerlink" title="2 关于Hexo"></a>2 关于Hexo</h2><blockquote>
-<p>Hexo 是一个快速、简洁且高效的<strong>博客框架</strong>。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
-</blockquote>
-<p><strong>1.Hexo官网</strong>：<strong><a href="https://hexo.io/" target="_blank" rel="noopener">https://hexo.io/</a></strong>（官网右上角可选择切换中文，方便阅读）</p>
-<p><strong>2.Hexo的安装</strong>：使用 Node.js 中的 npm 库安装Hexo。</p>
-<h2 id="3-Hexo环境搭建"><a href="#3-Hexo环境搭建" class="headerlink" title="3 Hexo环境搭建"></a>3 Hexo环境搭建</h2><p><strong>1.前期需要准备的环境如下</strong>：</p>
-<ul>
-<li>Git 的安装</li>
-<li>Github 账户的配置</li>
-<li>Node.js（npm）安装配置</li>
-</ul>
-<p><strong>2.整个搭建过程为</strong>：搭建Node.js环境 → 利用npm库安装Hexo → 配置Github账户（启动GitHubPages）→ 初始化Hexo → 更换你喜欢的Hexo主题 → 写博客发文章。</p>
-<p><strong>3.接下来可以参考一个博主写的搭建博文，但是有一些事项需要注意</strong>：</p>
-<ul>
-<li>博主文章中给的Node.js版本过低，安装时会<strong>WARN</strong>甚至会报错，因此最好到Node.js官网安装<strong>长期支持版本（LTS）</strong>，Node.js官网：<strong><a href="https://nodejs.org/zh-cn/" target="_blank" rel="noopener">https://nodejs.org/zh-cn/</a></strong></li>
-<li>在Hexo连接Github之前务必配置SSH，SSH配置（参考博客的第4点）：<strong><a href="https://blog.csdn.net/liangllhahaha/article/details/89565779" target="_blank" rel="noopener">https://blog.csdn.net/liangllhahaha/article/details/89565779</a></strong></li>
-<li>注意你的仓库名称一定是：<strong>yourname.github.io</strong>，其中<strong>yourname</strong>为你的Github用户名</li>
-</ul>
-<p><strong>4.好了，啰嗦那么多，开始搭建吧</strong>：</p>
-<blockquote>
-<p><strong>安装传送门：</strong><a href="https://blog.csdn.net/gdutxiaoxu/article/details/53576018" target="_blank" rel="noopener">手把手教你用Hexo+Github 搭建属于自己的博客</a></p>
-</blockquote>
-<h2 id="4-Hexo主题更换"><a href="#4-Hexo主题更换" class="headerlink" title="4 Hexo主题更换"></a>4 Hexo主题更换</h2><p><strong>1.如果你不喜欢Hexo的默认主题</strong>：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200402183008615.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpYW5nbGxoYWhhaGE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>可到Hexo官网或者知乎上选择更换：</p>
-<ul>
-<li>官网：<strong><a href="https://hexo.io/themes/" target="_blank" rel="noopener">https://hexo.io/themes/</a></strong></li>
-<li>知乎：<strong><a href="https://www.zhihu.com/question/24422335" target="_blank" rel="noopener">https://www.zhihu.com/question/24422335</a></strong></li>
-</ul>
-<p><strong>2.关于如何更换的问题</strong>：可参考开发者提供的Readme文档，如果你是小白，建议你选择对应Readme文档写得详尽的主题，这样方便你安装。</p>
-<p><strong>3.悄悄地炫耀一下我的博客主题</strong>（<del>不要脸</del> ）：<br>高亮模式：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200402183617548.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpYW5nbGxoYWhhaGE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>暗黑模式：</p>
-<p><img src="https://img-blog.csdnimg.cn/2020040218363684.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpYW5nbGxoYWhhaGE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="5-Hexo常用命令"><a href="#5-Hexo常用命令" class="headerlink" title="5 Hexo常用命令"></a>5 Hexo常用命令</h2><p><strong>1.首先推荐Hexo的官方说明文档</strong>：<strong><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/</a></strong></p>
-<p><strong>2.常用命令</strong>：</p>
-<ul>
-<li>新建一篇博客：</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="keyword">new</span> post <span class="string">"article title"</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>部署至本地服务器：</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-<ul>
-<li>运行生成、部署命令：</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g   <span class="comment">// 生成</span></span><br><span class="line">hexo d   <span class="comment">// 部署</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>在部署前生成:</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d -g</span><br></pre></td></tr></table></figure>
-<h2 id="6-解决Github博客访问过慢问题的方案"><a href="#6-解决Github博客访问过慢问题的方案" class="headerlink" title="6 解决Github博客访问过慢问题的方案"></a>6 解决Github博客访问过慢问题的方案</h2><p>经常使用Github的朋友都知道，因为Github服务器在外网，访问Github时经常会出现<strong>延时</strong>甚至<strong>拒绝访问</strong>的情况。那么我们基于Github服务器搭建的博客也不例外，有没有好的解决方案？</p>
-<ul>
-<li>开<strong>代理服务器</strong>（我穷怎么办？）</li>
-<li>修改<strong>本机Hosts文件</strong>，绕过国内DNS解析，加快访问速度。（过时的方式，现在来看，效果已经不明显）</li>
-<li>做一些其他的<strong>速度优化</strong>处理，可参考网上资料。</li>
-<li>因此我们可以考虑将Hexo博客同时部署到国内的<strong>Gitee</strong>上，如果以后Github真被墙了（参考伊朗），我们也可以有一个备份。（顺便提一句，Gitee也是目前为止，解决Github下载速度慢问题<strong>最新且最优</strong>的办法）</li>
-</ul>
-<h2 id="7-关于Gitee"><a href="#7-关于Gitee" class="headerlink" title="7 关于Gitee"></a>7 关于Gitee</h2><blockquote>
-<p>码云 Gitee ：是由开源中国（OSChina）出品，旨在树立国内代码托管和协作开发的行业标杆，灵活便捷地支撑个人、团队、企业的开发需求的产品。</p>
-</blockquote>
-<p>1.Gitee可以理解为就是国内的Github，也使用 git 内核，我们可以将Hexo博文同时同步到 Github 和 Gitee上，国外访问你的博客用Github（<del>谁看啊</del> ），国内用户使用Gitee。</p>
-<p>2.Gitee官网：<strong><a href="https://gitee.com/" target="_blank" rel="noopener">https://gitee.com/</a></strong></p>
-<p>3.可参考的博客：<strong><a href="https://www.cnblogs.com/somata/p/11255547.html" target="_blank" rel="noopener">通过gitee和hexo搭建个人博客</a></strong></p>
-<p>4.关于将博客部署到Gittee服务器上，操作与Github原理一致，只是服务器由Github更改到Gitee上，更改只需要做两点：</p>
-<ul>
-<li>创建Gitee用户以及个人仓库（博客后缀名由 <strong>yourname.github.io</strong> 变成了 <strong>yourname.gitee.io</strong>）</li>
-<li>修改<strong>本地Hexo根目录下</strong>的 <strong>_config.yml</strong> 文件，将<strong>Deployment</strong>及<strong>URL</strong>更改为相应的gitee链接</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># URL</span><br><span class="line">## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'</span><br><span class="line">url: http:<span class="comment">//yourname.gitee.io/</span></span><br><span class="line">root: /</span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https:<span class="comment">//hexo.io/docs/deployment.html</span></span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@gitee.com:yourname/yourname.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-<ul>
-<li>不需要将代码上传到Gitee的仓库中，使用 <strong>hexo d -g</strong> 指令在本地部署上传即可。</li>
-<li>需要注意的是，gitee普通版不支持自动更新，即你用Hexo部署到服务器后，需要到Gitee Pages服务<strong>手动更新</strong>，更新的博文才会生效。</li>
-</ul>
-<p><img src="https://img-blog.csdnimg.cn/20200402200359104.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpYW5nbGxoYWhhaGE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>以上。欢迎留言一起讨论！</p>
+<p>关于快速幂与快速乘的具体原理，可在此博客了解：<a href="https://blog.csdn.net/liangllhahaha/article/details/82119378" target="_blank" rel="noopener">快速幂 &amp; 快速乘原理讲解（模板）</a></p>
+<h2 id="1-原因分析"><a href="#1-原因分析" class="headerlink" title="1 原因分析"></a>1 原因分析</h2><p>首先我们直接用快速幂计算引言中提到的公式：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200311153143206.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpYW5nbGxoYWhhaGE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>不出意料，结果直接溢出。</p>
+<h2 id="2-快速幂取模（大数模幂模拟）"><a href="#2-快速幂取模（大数模幂模拟）" class="headerlink" title="2 快速幂取模（大数模幂模拟）"></a>2 快速幂取模（大数模幂模拟）</h2><p>因为数据实在是太大了，取模和开long long也没办法解决问题，于是可以对快速幂中的乘法运算</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ans = (ans * base) % mod;</span><br><span class="line">base = (base * base) % mod;</span><br></pre></td></tr></table></figure>
+<p>进行优化，改为<strong>快速乘求结果</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ll <span class="title">ksc</span><span class="params">(ll a, ll b, ll mod)</span> </span>&#123;</span><br><span class="line">    ll ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(b) &#123;</span><br><span class="line">	<span class="keyword">if</span>(b &amp; <span class="number">1</span>) &#123;</span><br><span class="line">		ans = (ans + a) % mod;</span><br><span class="line">	&#125;</span><br><span class="line">	a = (a + a) % mod;</span><br><span class="line">	b &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">ksm</span><span class="params">(ll a, ll b, ll mod)</span> </span>&#123;</span><br><span class="line">    ll ans = <span class="number">1</span>, base = a;</span><br><span class="line">    <span class="keyword">while</span>(b) &#123;</span><br><span class="line">	<span class="keyword">if</span>(b &amp; <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="comment">//优化1</span></span><br><span class="line">		ans = ksc(ans, base, mod) % mod;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//优化2</span></span><br><span class="line">	base = ksc(base, base, mod) % mod;</span><br><span class="line">	b &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-验证"><a href="#3-验证" class="headerlink" title="3 验证"></a>3 验证</h2><p>完整代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> ll mod = <span class="number">1001733993063167141</span>;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">ksc</span><span class="params">(ll a, ll b, ll mod)</span> </span>&#123;</span><br><span class="line">    ll ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(b) &#123;</span><br><span class="line">	<span class="keyword">if</span>(b &amp; <span class="number">1</span>) &#123;</span><br><span class="line">		ans = (ans + a) % mod;</span><br><span class="line">	&#125;</span><br><span class="line">	a = (a + a) % mod;</span><br><span class="line">	b &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">ksm</span><span class="params">(ll a, ll b, ll mod)</span> </span>&#123;</span><br><span class="line">    ll ans = <span class="number">1</span>, base = a;</span><br><span class="line">    <span class="keyword">while</span>(b) &#123;</span><br><span class="line">	<span class="keyword">if</span>(b &amp; <span class="number">1</span>) &#123;</span><br><span class="line">		ans = ksc(ans, base, mod) % mod;</span><br><span class="line">	&#125;</span><br><span class="line">	base = ksc(base, base, mod) % mod;</span><br><span class="line">	b &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"20190324 ^ 823816093931522017 = "</span> &lt;&lt; ksm(<span class="number">20190324</span>, <span class="number">823816093931522017</span>, mod) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200311154134466.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpYW5nbGxoYWhhaGE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>可以看到数据溢出的问题得到解决，达到了大数模拟的效果。</p>
 
         </div>
 
@@ -324,7 +298,7 @@
                 
                     <p class="copyright-item">
                         <span style="font-size:17px"><strong>博文链接 : </span></strong>
-                        <strong><span><a href="http://ll_leung.gitee.io/2020/04/02/hexo_github_gitee_permalink/">http://ll_leung.gitee.io/2020/04/02/hexo_github_gitee_permalink/</a></span></strong>
+                        <strong><span><a href="http://ll_leung.gitee.io/2020/03/12/ksm-ksc-permalink/">http://ll_leung.gitee.io/2020/03/12/ksm-ksc-permalink/</a></span></strong>
                     </p>
                 
                 
@@ -367,11 +341,13 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/Hexo/"># Hexo</a>
+                        <a href="/tags/C-C/"># C/C++</a>
                     
-                        <a href="/tags/Gitee/"># Gitee</a>
+                        <a href="/tags/%E5%BF%AB%E9%80%9F%E5%B9%82/"># 快速幂</a>
                     
-                        <a href="/tags/Github/"># Github</a>
+                        <a href="/tags/%E5%BF%AB%E9%80%9F%E4%B9%98/"># 快速乘</a>
+                    
+                        <a href="/tags/%E5%A4%A7%E6%95%B0%E6%A8%A1%E5%B9%82%E8%BF%90%E7%AE%97/"># 大数模幂运算</a>
                     
                         
                 </span>
@@ -385,10 +361,10 @@
         
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2020/04/02/Mersenne_Number_Permalink/">【洛谷 1045 & 蓝桥杯 算法训练 ALGO-26】麦森数（二分 + 高精度）</a>
+                <a class="prev" rel="prev" href="/2020/04/02/hexo-github-gitee-permalink/">基于Hexo + Github & Gitee 搭建个人Blog</a>
             
             
-                <a class="next" rel="next" href="/2020/03/12/ksm_ksc_permalink/">快速幂 & 快速乘取模（模拟大数模幂运算，解决乘法爆long long问题）</a>
+                <a class="next" rel="next" href="/2020/03/11/ex-gcd-permalink/">数论之扩展欧几里得，费马小定理，欧拉定理 + 求最小乘法逆元</a>
             
         </section>
         
