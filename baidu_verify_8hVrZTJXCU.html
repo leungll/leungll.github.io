@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="LL Leung">
+
+
+
+
+
+<title>一塔湖图&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/1.jpg">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">一塔湖图 &#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">归档</a>
+                
+                    <a class="menu-item" href="/category">分类</a>
+                
+                    <a class="menu-item" href="/tag">标签</a>
+                
+                    <a class="menu-item" href="/about">关于</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">一塔湖图 &#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">归档</a>
+                
+                    <a class="menu-item" href="/category">分类</a>
+                
+                    <a class="menu-item" href="/tag">标签</a>
+                
+                    <a class="menu-item" href="/about">关于</a>
+                
+            </div>
+        </div>
+    </nav>
+
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?15996f0061886ef8292c939a628bb618";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+    
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    <article class="post-wrap page">
+        
+        <h2 class="post-title"></h2>
+        
+        <section class="post-content">
+            8hVrZTJXCU
+        </section>
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>Copyright © 2019 - 2020 
+            <strong>
+                <a href="/">LL Leung</a></strong> | Powered by 
+            <strong>
+                <a href="https://hexo.io" target="_blank">Hexo</a>
+            </strong>
+                 | Theme <strong><a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a>
+            </strong>
+        </span>
+        <span id="sitetime"></span>
+        <script language=javascript>
+            function siteTime(){
+                window.setTimeout("siteTime()", 1000);
+                var seconds = 1000;
+                var minutes = seconds * 60;
+                var hours = minutes * 60;
+                var days = hours * 24;
+                var years = days * 365;
+                var today = new Date();
+                var todayYear = today.getFullYear();
+                var todayMonth = today.getMonth()+1;
+                var todayDate = today.getDate();
+                var todayHour = today.getHours();
+                var todayMinute = today.getMinutes();
+                var todaySecond = today.getSeconds();
+                /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+                year - 作为date对象的年份，为4位年份值
+                month - 0-11之间的整数，做为date对象的月份
+                day - 1-31之间的整数，做为date对象的天数
+                hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+                minutes - 0-59之间的整数，做为date对象的分钟数
+                seconds - 0-59之间的整数，做为date对象的秒数
+                microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+                var t1 = Date.UTC(2019,06,02,15,03,00); //建站时间
+                var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+                var diff = t2-t1;
+                var diffYears = Math.floor(diff/years);
+                var diffDays = Math.floor((diff/days)-diffYears*365);
+                var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+                var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+                var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+                document.getElementById("sitetime").innerHTML="&nbsp;&nbsp;&nbsp;本站已安全运行 "+ diffYears + " 年 " + diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+            }
+            siteTime();
+        </script>
+        <!-- {% if theme.baidu_analytics %} -->
+        <span style="display:none">
+            <script>
+                var _hmt = _hmt || [];
+                (function() {
+                  var hm = document.createElement("script");
+                  hm.src = "https://hm.baidu.com/hm.js?15996f0061886ef8292c939a628bb618";
+                  var s = document.getElementsByTagName("script")[0]; 
+                  s.parentNode.insertBefore(hm, s);
+                })();
+                </script>                
+        </span>
+        <!-- {% endif %} -->
+    </div>
+</footer>
+    
+
+    </div>
+</body>
+</html>
