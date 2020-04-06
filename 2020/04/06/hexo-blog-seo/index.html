@@ -371,11 +371,48 @@
 <p><strong>查看推送反馈：</strong></p>
 <ul>
 <li>你可以通过推送后返回的状态码和字段来判断数据是否推送成功。</li>
-<li><p>状态码为200，表示推送成功，可能返回以下字段：</p>
-<p> | 字段 | 是否必选 | 参数类型 |说明 |<br> | ——— | ——— | ——— | ——— |<br> | success | 是 |int|成功推送的url条数 |<br> | remain |是 | int |当天剩余的可推送url条数 |<br> | not_same_site | 否 | array |由于不是本站url而未处理的url列表 |<br> | not_valid | 否 | array |不合法的url列表 |</p>
-</li>
-<li><p>成功返回示例：</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   <span class="string">"remain"</span>:4999998,</span><br><span class="line">   <span class="string">"success"</span>:2,</span><br><span class="line">   <span class="string">"not_same_site"</span>:[],</span><br><span class="line">   <span class="string">"not_valid"</span>:[]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>状态码为200，表示推送成功，可能返回以下字段：</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>是否必选</th>
+<th>参数类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>success</td>
+<td>是</td>
+<td>int</td>
+<td>成功推送的url条数</td>
+</tr>
+<tr>
+<td>remain</td>
+<td>是</td>
+<td>int</td>
+<td>当天剩余的可推送url条数</td>
+</tr>
+<tr>
+<td>not_same_site</td>
+<td>否</td>
+<td>array</td>
+<td>由于不是本站url而未处理的url列表</td>
+</tr>
+<tr>
+<td>not_valid</td>
+<td>否</td>
+<td>array</td>
+<td>不合法的url列表</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>成功返回示例： <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   <span class="string">"remain"</span>:4999998,</span><br><span class="line">   <span class="string">"success"</span>:2,</span><br><span class="line">   <span class="string">"not_same_site"</span>:[],</span><br><span class="line">   <span class="string">"not_valid"</span>:[]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p><strong>5.同时在<code>hexo\.deploy_git\</code>路径下会生成一个<code>baidu_urls.txt</code>文件，其中包含了你站点中的URL链接：</strong><br><img src="https://img-blog.csdnimg.cn/20200406184410829.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpYW5nbGxoYWhhaGE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
