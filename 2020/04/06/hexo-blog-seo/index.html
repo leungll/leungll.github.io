@@ -227,7 +227,7 @@
                         <span class="post-meta-item-text">  
                             &nbsp&nbsp文章字数 : 
                             <a href="#">
-                                2.4k
+                                2.9k
                             </a>
                             字
                         </span>
@@ -235,7 +235,7 @@
                         <span class="post-meta-item-text">  
                             &nbsp&nbsp阅读时长 : 
                             <a href="#">
-                                9
+                                10
                             </a>
                             分钟
                         </span>
@@ -269,13 +269,16 @@
 <p>站长平台推荐站长添加主站（您网站的链接也许会使用 www 和非 www 两种网址，建议添加用户能够真实访问到的网址），添加并验证后，可证明您是该域名的拥有者，可以快捷批量添加子站点，查看所有子站数据，无需再一 一验证您的子站点。</p>
 </blockquote>
 <h3 id="3-2-如何验证站点"><a href="#3-2-如何验证站点" class="headerlink" title="3.2 如何验证站点"></a>3.2 如何验证站点</h3><blockquote>
-<p>可能会出现使用<strong>HTTPS协议</strong>无法认证的情况，这时可以改用<strong>HTTP协议</strong>。</p>
+<p>关于选择验证站点选择的协议上，有两点要说明：</p>
+<ul>
+<li><strong>如果你的站点购买了域名：</strong> 建议你先将站点实现<strong>全站HTTPS</strong>，再在百度站长平台中选择<strong>HTTPS协议</strong>认证。如若HTTPS认证始终没能通过，再选择认证HTTP协议。</li>
+<li><strong>如果你的站点是部署在 Github/Gitee 并没有购买域名：</strong> 因为 Github/Gitee 实现了<strong>强制HTTPS协议</strong>，你可能必须要在百度站长平台中选择<strong>HTTPS协议</strong>认证。如果选择的是<strong>HTTP协议</strong>认证，会出现<strong>验证失败</strong>的情况，并提示你将 http 的 url 301到 https 的url。关于这一点，我会在后面详细说明。</li>
+</ul>
 </blockquote>
+<p>下文将以选择<strong>HTTP协议</strong>认证为例：</p>
 <p> <strong>1.进入官网：</strong><a href="https://ziyuan.baidu.com/" target="_blank" rel="noopener">百度搜索资源平台官网</a></p>
-<p> <strong>2.点击 </strong>“用户中心”<strong> → </strong>“站点管理”<strong>：</strong></p>
-<p><img src="https://img-blog.csdnimg.cn/20200406145519853.png" alt="在这里插入图片描述"></p>
-<p> <strong>3.输入域名网址：</strong></p>
-<p><img src="https://img-blog.csdnimg.cn/20200406164710728.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpYW5nbGxoYWhhaGE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p> <strong>2.点击 </strong>“用户中心”<strong> → </strong>“站点管理”<strong>：</strong><br><img src="https://img-blog.csdnimg.cn/20200406145519853.png" alt="在这里插入图片描述"><br> <strong>3.输入域名网址：</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/20200407102313311.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpYW5nbGxoYWhhaGE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <p> <strong>4.设置站点领域：</strong></p>
 <p><img src="https://img-blog.csdnimg.cn/20200406150334418.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpYW5nbGxoYWhhaGE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <p> <strong>5.选择验证方式：</strong></p>
@@ -284,13 +287,30 @@
 <li><strong>HTML 标签验证</strong>：给一个<code>meta</code>标签，放到首页<code>&lt;head&gt;</code>与 <code>&lt;/head&gt;</code>标签之间即可完成验证</li>
 <li><strong>CNAME 验证</strong>：需要登录域名提供商或托管服务提供商的网站，添加新的DNS记录。如果你购买了域名，这种方式最简单，只需去域名 DNS 添加一个<code>CNAME</code>记录即可完成验证</li>
 </ul>
-<p>刚开始我选择的是<strong>文件验证</strong>方式，但一直没有通过，因此选择了<strong>HTML标签验证</strong>：</p>
+<p>刚开始我选择的是<strong>文件验证</strong>方式，但一直提示验证文件内容不符，因此选择了<strong>HTML标签验证</strong>：</p>
 <p><img src="https://img-blog.csdnimg.cn/20200406165152526.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpYW5nbGxoYWhhaGE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <p>将标签放在Hexo文件主题目录下<code>\themes\Chic\layout\_partial</code>的<code>header.ejs</code>的<code>&lt;head&gt;</code>与 <code>&lt;/head&gt;</code>标签之间（文件路径供参考）</p>
-<p>代码：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name="baidu-site-verification" content="XXXXXXXXXX" /&gt;</span><br></pre></td></tr></table></figure>
-<p><strong>6.等待审核：</strong></p>
-<p><img src="https://img-blog.csdnimg.cn/2020040618035173.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpYW5nbGxoYWhhaGE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><strong>6.点击完成验证，并等待审核：</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/2020040618035173.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpYW5nbGxoYWhhaGE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">几小时过后，站长平台会提示你审核结果：</p>
+<p><img src="https://img-blog.csdnimg.cn/2020040710261564.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpYW5nbGxoYWhhaGE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="3-3-关于认证HTTP协议的说明"><a href="#3-3-关于认证HTTP协议的说明" class="headerlink" title="3.3 关于认证HTTP协议的说明"></a>3.3 关于认证HTTP协议的说明</h3><blockquote>
+<p>以我的站点为例，站点是双线部署在<strong>Github/Gitee</strong>上的，并没有购买域名。即我的域名还是原始域名：<strong><a href="https://yourname.github.io/" target="_blank" rel="noopener">https://yourname.github.io/</a> &amp; <a href="https://yourname.gitee.io/" target="_blank" rel="noopener">https://yourname.gitee.io/</a></strong>，可以看到 Github与Gitee 都已经将你的网站强制部署在 https 安全域名下。</p>
+</blockquote>
+<p>因此当我在百度站长平台中选择认证<strong>HTTP协议</strong>时：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200407103513474.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpYW5nbGxoYWhhaGE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><strong>我的验证是失败的：</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/20200407103625734.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpYW5nbGxoYWhhaGE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><strong>并提示你将 http 的 url 301到 https 的url：</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/20200407103759965.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpYW5nbGxoYWhhaGE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>关于301，大多数玩SEO的朋友都了解，在这里我们不再多说，但贴下百度站长平台的解释：</p>
+<blockquote>
+<ul>
+<li>HTTPS协议的站点信息更加安全，同时可降低网站被劫持的风险，如网站同时存在HTTP和HTTPS站点，可使用本工具进行认证，便于百度搜索识别网站。HTTP与HTTPS之间的对应关系，识别成功后，搜索端将及时展示网站HTTPS资源</li>
+<li>使用HTTPS认证，需要保证全站所有链接都支持HTTPS访问</li>
+<li>每个站点每天最多可使用3次认证功能</li>
+</ul>
+</blockquote>
 <h2 id="4-提交百度搜索"><a href="#4-提交百度搜索" class="headerlink" title="4 提交百度搜索"></a>4 提交百度搜索</h2><blockquote>
 <p>进入链接：<strong>资源提交 → 链接提交</strong></p>
 </blockquote>
@@ -362,7 +382,10 @@
 <li><strong>及时发现</strong>：可以缩短百度爬虫发现您站点新链接的时间，使新发布的页面可以在第一时间被百度收录</li>
 <li><strong>保护原创</strong>：对于网站的最新原创内容，使用主动推送功能可以快速通知到百度，使内容可以在转发之前被百度发现</li>
 </ul>
-<p><strong>2.在博客根目录安装插件 <code>npm install hexo-baidu-url-submit --save</code>，然后在根目录 <code>_config.yml</code> 文件里写入以下配置：</strong><br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">baidu_url_submit:</span></span><br><span class="line">  <span class="attr">count:</span> <span class="number">10</span>                           <span class="comment"># 提交最新的多少个链接</span></span><br><span class="line">  <span class="attr">host:</span> <span class="string">https://yourname.gitee.io/</span>    <span class="comment"># 在百度站长平台中添加的域名</span></span><br><span class="line">  <span class="attr">token:</span> <span class="string">your_token</span>                   <span class="comment"># 秘钥</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">baidu_urls.txt</span>                <span class="comment"># 文本文档的地址,新链接会保存在此文本文档里</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>2.在博客根目录安装插件 ：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-baidu-url-submit --save</span><br></pre></td></tr></table></figure>
+<p>然后在根目录 <code>_config.yml</code> 文件里写入以下配置：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">baidu_url_submit:</span></span><br><span class="line">  <span class="attr">count:</span> <span class="number">10</span>                           <span class="comment"># 提交最新的多少个链接</span></span><br><span class="line">  <span class="attr">host:</span> <span class="string">https://yourname.gitee.io/</span>    <span class="comment"># 在百度站长平台中添加的域名</span></span><br><span class="line">  <span class="attr">token:</span> <span class="string">your_token</span>             	  <span class="comment"># 秘钥</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">baidu_urls.txt</span>                <span class="comment"># 文本文档的地址,新链接会保存在此文本文档里</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>记得查看Hexo根目录<code>_config.yml</code>文件中<code>url</code>的值，必须包含是百度站长平台注册的域名， 比如:  <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">https://yourname.gitee.io/</span></span><br><span class="line"><span class="attr">root:</span> <span class="string">/</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">:year/:month/:day/:urlname/</span></span><br></pre></td></tr></table></figure></li>
 <li><p><code>token</code> 可以在<strong>链接提交</strong>  →  <strong>自动提交</strong>  →  <strong>主动推送</strong>下面看到，接口调用地址最后面 <code>token=xxxxx</code> 即为你的 <code>token</code>：</p>
