@@ -227,7 +227,7 @@
                         <span class="post-meta-item-text">  
                             &nbsp&nbsp文章字数 : 
                             <a href="#">
-                                2.9k
+                                2.8k
                             </a>
                             字
                         </span>
@@ -305,7 +305,7 @@
 <p><img src="https://img-blog.csdnimg.cn/20200407103625734.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpYW5nbGxoYWhhaGE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <p><strong>并提示你将 http 的 url 301到 https 的url：</strong></p>
 <p><img src="https://img-blog.csdnimg.cn/20200407103759965.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpYW5nbGxoYWhhaGE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p>关于301，大多数玩SEO的朋友都了解，在这里我们不再多说，但贴下百度站长平台的解释：</p>
+<p>关于301，大多数玩SEO的朋友都了解，在这里我们不再多说，但贴上百度站长平台的解释：</p>
 <blockquote>
 <ul>
 <li>HTTPS协议的站点信息更加安全，同时可降低网站被劫持的风险，如网站同时存在HTTP和HTTPS站点，可使用本工具进行认证，便于百度搜索识别网站。HTTP与HTTPS之间的对应关系，识别成功后，搜索端将及时展示网站HTTPS资源</li>
@@ -378,7 +378,6 @@
 </tbody>
 </table>
 </div>
-<p>个人推荐：同时使用<strong>主动推送</strong>与 <strong>sitemap</strong> 两种方式</p>
 <h3 id="4-2-主动推送"><a href="#4-2-主动推送" class="headerlink" title="4.2 主动推送"></a>4.2 主动推送</h3><p><strong>1.使用主动推送功能会达到怎样效果：</strong></p>
 <ul>
 <li><strong>及时发现</strong>：可以缩短百度爬虫发现您站点新链接的时间，使新发布的页面可以在第一时间被百度收录</li>
@@ -387,7 +386,7 @@
 <p><strong>2.在博客根目录安装插件 ：</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-baidu-url-submit --save</span><br></pre></td></tr></table></figure>
 <p>然后在根目录 <code>_config.yml</code> 文件里写入以下配置：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">baidu_url_submit:</span></span><br><span class="line">  <span class="attr">count:</span> <span class="number">10</span>                           <span class="comment"># 提交最新的多少个链接</span></span><br><span class="line">  <span class="attr">host:</span> <span class="string">https://yourname.gitee.io/</span>    <span class="comment"># 在百度站长平台中添加的域名</span></span><br><span class="line">  <span class="attr">token:</span> <span class="string">your_token</span>             	  <span class="comment"># 秘钥</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">baidu_urls.txt</span>                <span class="comment"># 文本文档的地址,新链接会保存在此文本文档里</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">baidu_url_submit:</span></span><br><span class="line">  <span class="attr">count:</span> <span class="number">10</span>                           <span class="comment"># 提交最新的多少个链接</span></span><br><span class="line">  <span class="attr">host:</span> <span class="string">https://yourname.gitee.io/</span>    <span class="comment"># 在百度站长平台中添加的域名</span></span><br><span class="line">  <span class="attr">token:</span> <span class="string">your_token</span>                 <span class="comment"># 秘钥</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">baidu_urls.txt</span>                <span class="comment"># 文本文档的地址,新链接会保存在此文本文档里</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>记得查看Hexo根目录<code>_config.yml</code>文件中<code>url</code>的值，必须包含是百度站长平台注册的域名， 比如:  <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">https://yourname.gitee.io/</span></span><br><span class="line"><span class="attr">root:</span> <span class="string">/</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">:year/:month/:day/:urlname/</span></span><br></pre></td></tr></table></figure></li>
 <li><p><code>token</code> 可以在<strong>链接提交</strong>  →  <strong>自动提交</strong>  →  <strong>主动推送</strong>下面看到，接口调用地址最后面 <code>token=xxxxx</code> 即为你的 <code>token</code>：</p>
