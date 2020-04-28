@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="LL Leung">
+
+
+
+
+
+<title>【洛谷 1072 &amp; 蓝桥杯 算法训练 ALGO - 37】Hankson的趣味题（数论） | 一塔湖图&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/1.jpg">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">一塔湖图 &#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">归档</a>
+                
+                    <a class="menu-item" href="/category">分类</a>
+                
+                    <a class="menu-item" href="/tag">标签</a>
+                
+                    <a class="menu-item" href="/about">关于</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">一塔湖图 &#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">归档</a>
+                
+                    <a class="menu-item" href="/category">分类</a>
+                
+                    <a class="menu-item" href="/tag">标签</a>
+                
+                    <a class="menu-item" href="/about">关于</a>
+                
+            </div>
+        </div>
+    </nav>
+
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?15996f0061886ef8292c939a628bb618";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+    
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+    <meta name="baidu-site-verification" content="JrgoM5Rn2Y" />
+
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+        
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">【洛谷 1072 &amp; 蓝桥杯 算法训练 ALGO - 37】Hankson的趣味题（数论）</h1>
+            
+                <div class="post-meta">
+                    <!-- 
+                        作者 : <a itemprop="author" rel="author" href="/">LL Leung</a>
+                     -->
+
+                    
+                        <span class="post-time">
+                        发表于 : <a href="#">April 28, 2020&nbsp;&nbsp;23:15:40</a>
+                        </span>
+                    
+
+                    
+                        <span class="post-category">
+                        &nbsp&nbsp分类于 : 
+                            
+                                <a href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+                            
+                        </span>
+                    
+
+                    
+                        <span class="post-meta-item-text">  
+                            &nbsp&nbsp文章字数 : 
+                            <a href="#">
+                                949
+                            </a>
+                            字
+                        </span>
+
+                        <span class="post-meta-item-text">  
+                            &nbsp&nbsp阅读时长 : 
+                            <a href="#">
+                                4
+                            </a>
+                            分钟
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p><strong>题目链接：</strong><a href="http://lx.lanqiao.cn/problem.page?gpid=T99" target="_blank" rel="noopener">http://lx.lanqiao.cn/problem.page?gpid=T99</a></p>
+<h1 id="1-题目"><a href="#1-题目" class="headerlink" title="1 题目"></a>1 题目</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><blockquote>
+<p>Hanks 博士是BT (Bio-Tech，生物技术) 领域的知名专家，他的儿子名叫Hankson。现在，刚刚放学回家的Hankson 正在思考一个有趣的问题。 今天在课堂上，老师讲解了如何求两个正整数c1 和c2 的最大公约数和最小公倍数。现 在Hankson 认为自己已经熟练地掌握了这些知识，他开始思考一个“求公约数”和“求公 倍数”之类问题的“逆问题”，这个问题是这样的：已知正整数a0,a1,b0,b1，设某未知正整 数x 满足： 1． x 和a0 的最大公约数是a1； 2． x 和b0 的最小公倍数是b1。 Hankson 的“逆问题”就是求出满足条件的正整数x。但稍加思索之后，他发现这样的 x 并不唯一，甚至可能不存在。因此他转而开始考虑如何求解满足条件的x 的个数。请你帮助他编程求解这个问题。</p>
+</blockquote>
+<h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><blockquote>
+<p>输入第一行为一个正整数n，表示有n 组输入数据。<br>接下来的n 行每 行一组输入数据，为四个正整数a0，a1，b0，b1，每两个整数之间用一个空格隔开。输入 数据保证a0 能被a1 整除，b1 能被b0 整除。</p>
+</blockquote>
+<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><blockquote>
+<p>输出共n 行。每组输入数据的输出结果占一行，为一个整数。<br>对于每组数据：若不存在这样的 x，请输出0； 若存在这样的 x，请输出满足条件的x 的个数；</p>
+</blockquote>
+<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><blockquote>
+<p>2<br>41 1 96 288<br>95 1 37 1776</p>
+</blockquote>
+<h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><blockquote>
+<p>6<br>2</p>
+</blockquote>
+<h2 id="样例说明"><a href="#样例说明" class="headerlink" title="样例说明"></a>样例说明</h2><blockquote>
+<p>第一组输入数据，x 可以是9、18、36、72、144、288，共有6 个。<br>第二组输入数据，x 可以是48、1776，共有2 个。</p>
+</blockquote>
+<h1 id="2-分析"><a href="#2-分析" class="headerlink" title="2 分析"></a>2 分析</h1><blockquote>
+<p>首先，直接暴力枚举只能过 $50\%$ 的数据。</p>
+</blockquote>
+<p><strong>1.关于两个定理：</strong></p>
+<ul>
+<li>最大公约数</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;   </span><br><span class="line">    <span class="keyword">return</span> b == <span class="number">0</span> ? a : gcd(b, a % b);     </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>最小公倍数</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lcm</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a * b / gcd(a, b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>2.一个结论</strong>：设 $gcd(x,a_0)=a_1$ ，并有</p>
+<script type="math/tex; mode=display">
+\left\{
+    \begin{aligned}
+    x=k_{1}*a_{1} \\ 
+    a_{0}=k_{2}*a_{1}&
+\end{aligned}
+\right.</script><p>则 $gcd(k_1,k_2)=1$ 。</p>
+<p><strong>证明：</strong></p>
+<ul>
+<li>假设 $gcd(k_1,k_2)\neq1$，$gcd(k_1,k_2)=K$，并有<script type="math/tex; mode=display">
+\left\{
+  \begin{aligned}
+  k_{1}=p*K \\ 
+  k_{2}=q*K&
+\end{aligned}
+\right.</script></li>
+<li>由假设得：<script type="math/tex; mode=display">
+\left\{
+  \begin{aligned}
+  x=p*K*a_{1} \\ 
+  a_{0}=q*K*a_{1}&
+\end{aligned}
+\right.</script></li>
+<li>可得 $gcd(x,a_0)=K*a_1\neq a_1$，结果与题目条件不符，假设不成立</li>
+<li>则 $gcd(k_1,k_2)=1$</li>
+</ul>
+<p>因此可得：</p>
+<blockquote>
+<p>对于两个正整数 $a,b$ ，设 $gcd(a,b)=k$ 则存在 $gcd(a / k,b / k)=1$</p>
+</blockquote>
+<p><strong>3.推导</strong></p>
+<ul>
+<li>由最大公约数定理<script type="math/tex; mode=display">
+gcd(x,a_{0})=a_{1}=gcd(\frac {x} {a_{1}} ,\frac {a_{0}}{a_{1}})</script></li>
+<li>由最小公倍数定理<script type="math/tex; mode=display">
+lcm(x,b_{0})=b_{1}=\frac {x*b_{0}}{gcd(x,b_{0})}</script>则<script type="math/tex; mode=display">
+gcd(x,b_{0})=\frac{x*b_{0}}{b_{1}}=gcd(\frac {b_1} {b_{0}} ,\frac {b_{1}}{x})</script></li>
+</ul>
+<p><strong>4.最终可得如下结论：</strong></p>
+<script type="math/tex; mode=display">
+ \left\{
+    \begin{aligned}
+    gcd(\frac {x} {a_{1}} ,\frac {a_{0}}{a_{1}})=1 \\ 
+    gcd(\frac {b_1} {b_{0}} ,\frac {b_{1}}{x})=1&
+\end{aligned}
+\right.</script><h1 id="3-题解"><a href="#3-题解" class="headerlink" title="3 题解"></a>3 题解</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> b == <span class="number">0</span> ? a : gcd(b, a % b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="keyword">while</span>(n--)&#123;</span><br><span class="line">        <span class="keyword">int</span> a0, a1, b0, b1, ans = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; a0 &gt;&gt; a1 &gt;&gt; b0 &gt;&gt; b1;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> x = <span class="number">1</span>;x &lt;= <span class="built_in">sqrt</span>(b1);x++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(b1 % x == <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span>(x % a1 == <span class="number">0</span> &amp;&amp; gcd(x / a1, a0 / a1) == <span class="number">1</span> &amp;&amp; gcd(b1 / x, b1 / b0) == <span class="number">1</span>)&#123;</span><br><span class="line">                    ans++;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//枚举另一个因子 </span></span><br><span class="line">                <span class="keyword">int</span> y = b1 / x;</span><br><span class="line">                <span class="keyword">if</span>(y == x)&#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(y % a1 == <span class="number">0</span> &amp;&amp; gcd(y / a1, a0 / a1) == <span class="number">1</span> &amp;&amp; gcd(b1 / y, b1 / b0) == <span class="number">1</span>)&#123;</span><br><span class="line">                    ans++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(ans != <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"0\n"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span style="font-size:17px"><strong>文章作者 : </span></strong>
+                        <span><strong><a href="/">LL Leung</a></strong></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span style="font-size:17px"><strong>博文链接 : </span></strong>
+                        <strong><span><a href="https://ll_leung.gitee.io/2020/04/28/algo-28/">https://ll_leung.gitee.io/2020/04/28/algo-28/</a></span></strong>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span style="font-size:17px"><strong>版权声明 : </strong>
+                        本博客所有文章除特別声明外，均采用
+                        <strong><span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span></strong>
+                        许可协议。转载请注明来源
+                        <strong><a href="/">LL Leung</a></strong> 。
+                    </p>
+                    <p></p>
+                
+                <!-- 
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                 -->
+                </section>
+        
+        <p></p>
+        <span style="font-size:20px"><strong>添加新评论</strong></span>
+        
+        <p></p>
+        <div id="vcomments" style="font-size:16px"></div>
+        <script>
+            new Valine({
+                el: '#vcomments',
+                appId: 'addRaUPaIYkQW4qXNOpRi99T-gzGzoHsz',
+                appKey: 'q82rU56Rz2oPbCQEtToDoVfj',
+                placeholder: '您可以选择匿名评论，即“昵称”,“邮箱”,“网址”均为非必填项。当然，也欢迎实名，且您的邮箱与网址将得到保密…',
+                visitor: true,
+                recordIP: true
+            })
+        </script>
+
+        <section class="post-tags">
+            <div>
+                <strong><span>文章标签 : </span></strong>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/C-C/"># C/C++</a>
+                    
+                        <a href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/"># 蓝桥杯</a>
+                    
+                        <a href="/tags/%E6%95%B0%E8%AE%BA/"># 数论</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <strong><a href="javascript:window.history.back();">返回上一页</a></strong>
+                <span><strong> · </strong></span>
+                <strong><a href="/">回到主页</a></strong>
+            </div>
+        </section>
+        
+        <section class="post-nav">
+            
+            
+                <a class="next" rel="next" href="/2020/04/12/dp/">算法之动态规划篇</a>
+            
+        </section>
+        
+    </article>
+    
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>Copyright © 2019 - 2020 
+            <strong>
+                <a href="/">LL Leung</a></strong> | Powered by 
+            <strong>
+                <a href="https://hexo.io" target="_blank">Hexo</a>
+            </strong>
+                 | Theme <strong><a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a>
+            </strong>
+        </span>
+        <span id="sitetime"></span>
+        <script language=javascript>
+            function siteTime(){
+                window.setTimeout("siteTime()", 1000);
+                var seconds = 1000;
+                var minutes = seconds * 60;
+                var hours = minutes * 60;
+                var days = hours * 24;
+                var years = days * 365;
+                var today = new Date();
+                var todayYear = today.getFullYear();
+                var todayMonth = today.getMonth()+1;
+                var todayDate = today.getDate();
+                var todayHour = today.getHours();
+                var todayMinute = today.getMinutes();
+                var todaySecond = today.getSeconds();
+                /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+                year - 作为date对象的年份，为4位年份值
+                month - 0-11之间的整数，做为date对象的月份
+                day - 1-31之间的整数，做为date对象的天数
+                hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+                minutes - 0-59之间的整数，做为date对象的分钟数
+                seconds - 0-59之间的整数，做为date对象的秒数
+                microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+                var t1 = Date.UTC(2019,06,02,15,03,00); //建站时间
+                var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+                var diff = t2-t1;
+                var diffYears = Math.floor(diff/years);
+                var diffDays = Math.floor((diff/days)-diffYears*365);
+                var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+                var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+                var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+                document.getElementById("sitetime").innerHTML="&nbsp;| 本站已安全运行 "+ diffYears + " 年 " + diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+            }
+            siteTime();
+        </script>
+        <!-- {% if theme.baidu_analytics %} -->
+        <span style="display:none">
+            <script>
+                var _hmt = _hmt || [];
+                (function() {
+                  var hm = document.createElement("script");
+                  hm.src = "https://hm.baidu.com/hm.js?15996f0061886ef8292c939a628bb618";
+                  var s = document.getElementsByTagName("script")[0]; 
+                  s.parentNode.insertBefore(hm, s);
+                })();
+                </script>                
+        </span>
+        <!-- {% endif %} -->
+    </div>
+</footer>
+    
+
+    </div>
+</body>
+</html>
