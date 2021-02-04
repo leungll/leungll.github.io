@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://ll_leung.gitee.io/2020/08/04/algorithm-notes/</loc>
+    <lastmod>2021-02-04</lastmod>
+  </url>  <url>
     <loc>https://ll_leung.gitee.io/2020/04/02/hexo-github-gitee-permalink/</loc>
     <lastmod>2021-01-26</lastmod>
   </url>  <url>
@@ -15,9 +18,6 @@
   </url>  <url>
     <loc>https://ll_leung.gitee.io/2020/10/12/oj-1455/</loc>
     <lastmod>2020-10-12</lastmod>
-  </url>  <url>
-    <loc>https://ll_leung.gitee.io/2020/08/04/algorithm-notes/</loc>
-    <lastmod>2020-08-06</lastmod>
   </url>  <url>
     <loc>https://ll_leung.gitee.io/2020/07/23/pat-1022/</loc>
     <lastmod>2020-08-06</lastmod>
