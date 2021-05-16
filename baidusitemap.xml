@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://leungll.site/2019/05/03/python-neo4j-marvel/</loc>
+    <lastmod>2021-05-16</lastmod>
+  </url>  <url>
+    <loc>https://leungll.site/2020/10/12/oj-1455/</loc>
+    <lastmod>2021-05-16</lastmod>
+  </url>  <url>
     <loc>https://leungll.site/2020/08/04/algorithm-notes/</loc>
     <lastmod>2021-02-18</lastmod>
   </url>  <url>
@@ -14,9 +20,6 @@
     <lastmod>2021-01-26</lastmod>
   </url>  <url>
     <loc>https://leungll.site/2020/10/12/oj-1317/</loc>
-    <lastmod>2020-10-12</lastmod>
-  </url>  <url>
-    <loc>https://leungll.site/2020/10/12/oj-1455/</loc>
     <lastmod>2020-10-12</lastmod>
   </url>  <url>
     <loc>https://leungll.site/2020/07/23/pat-1022/</loc>
