@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Lili Liang">
+
+
+
+
+
+<title>快速幂 &amp; 快速乘原理讲解（模板） | Lili Liang</title>
+
+
+
+    <link rel="icon" href="/logo.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Lili Liang" type="application/atom+xml">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Lili Liang &#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">归档</a>
+                
+                    <a class="menu-item" href="/category">分类</a>
+                
+                    <a class="menu-item" href="/tag">标签</a>
+                
+                    <a class="menu-item" href="/about">关于</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Lili Liang &#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">归档</a>
+                
+                    <a class="menu-item" href="/category">分类</a>
+                
+                    <a class="menu-item" href="/tag">标签</a>
+                
+                    <a class="menu-item" href="/about">关于</a>
+                
+            </div>
+        </div>
+    </nav>
+
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?15996f0061886ef8292c939a628bb618";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+    
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+    <meta name="baidu-site-verification" content="JrgoM5Rn2Y" />
+
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+        
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">快速幂 &amp; 快速乘原理讲解（模板）</h1>
+            
+                <div class="post-meta">
+                    <!-- 
+                        作者 : <a itemprop="author" rel="author" href="/">Lili Liang</a>
+                     -->
+
+                    
+                        <span class="post-time">
+                        发表于 : <a href="#">Aug 27, 2018&nbsp;&nbsp;21:49:46</a>
+                        </span>
+                    
+
+                    
+                        <span class="post-category">
+                        &nbsp&nbsp分类于 : 
+                            
+                                <a href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+                            
+                        </span>
+                    
+
+                    
+                        <span class="post-meta-item-text">  
+                            &nbsp&nbsp文章字数 : 
+                            <a href="#">
+                                897
+                            </a>
+                            字
+                        </span>
+
+                        <span class="post-meta-item-text">  
+                            &nbsp&nbsp阅读时长 : 
+                            <a href="#">
+                                3
+                            </a>
+                            分钟
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="1-问题描述"><a href="#1-问题描述" class="headerlink" title="1 问题描述"></a>1 问题描述</h2><blockquote>
+<p>我们发现，在 int 型下使用 pow 函数求 $5^{3}$，结果为 124 。</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-1.png" alt="ksm-1"></p>
+<h2 id="2-原因分析"><a href="#2-原因分析" class="headerlink" title="2 原因分析"></a>2 原因分析</h2><blockquote>
+<p>pow 函数的返回值为 <code>double</code> 型 ，因浮点数长度问题，存在截断误差。</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-2.png" alt="ksm-2"></p>
+<h2 id="3-解决方法"><a href="#3-解决方法" class="headerlink" title="3 解决方法"></a>3 解决方法</h2><blockquote>
+<p>将变量定义为 <code>double</code> 型</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-3.png" alt="ksm-3"></p>
+<p><strong>有没有更快求幂的方法？</strong></p>
+<h2 id="4-快速幂讲解"><a href="#4-快速幂讲解" class="headerlink" title="4 快速幂讲解"></a>4 快速幂讲解</h2><blockquote>
+<p>假设我们要求 $a^{b}$ ，按照朴素算法就是把 a 连乘 b 次，这样一来时间复杂度是 O(b) ，即是 O(n) 级别。但快速幂能做到 O(logn) 的复杂度。</p>
+</blockquote>
+<p>快速幂：<br><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-4.png" alt="ksm-4"></p>
+<p>对于二进制的位运算，我们需要用到 <code>&amp;</code> 与 <code>&gt;&gt;</code> 运算符，详见 <a href="https://blog.csdn.net/liangllhahaha/article/details/79382094" target="_blank" rel="noopener">位运算符的应用</a></p>
+<p><strong>先上实现快速幂运算的具体代码：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">ksm</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a, <span class="keyword">long</span> <span class="keyword">long</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">1</span>, base = a;</span><br><span class="line">    <span class="keyword">while</span>(b != <span class="number">0</span>) &#123;</span><br><span class="line">	<span class="keyword">if</span>(b &amp; <span class="number">1</span> != <span class="number">0</span>) &#123;</span><br><span class="line">	    ans *= base;</span><br><span class="line">	&#125;</span><br><span class="line">	base *= base;</span><br><span class="line">	b &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中 <code>b &amp; 1</code> 指取 b 的二进制数的最末位，如 <code>11</code> 的二进制数为 <code>1011</code> ，第一次循环，取的是最右边的 <code>1</code> ，以此类推。</p>
+<p>而 <code>b &gt;&gt;= 1</code> 等效于 <code>b = b &gt;&gt; 1</code>，即右移 <code>1</code> 位，删去最低位。</p>
+<p><strong>以 $a ^ {11}$ 为例：</strong></p>
+<p><code>b</code> 的二进制数为 <code>1011</code>，二进制从右向左算，但乘出来的顺序是 <script type="math/tex">a^{2^{0}} * a^{2^{1}} * a^{2^{3}}</script> ，是从左向右的。我们不断的让 $base\,*=\,base$ 目的是累乘，以便随时对 <code>ans</code> 做出贡献。</p>
+<blockquote>
+<p>要理解<script type="math/tex">base*=base</script>这一步：因为<script type="math/tex">base\,*\,base == base^{2}</script>，下一步再乘，就是<script type="math/tex">base^{2} * base^{2} == base^{4}</script>，然后同理<script type="math/tex">base^{4} * base^{4} == base^{8}</script>，由此可以做到$base→ base^{2} → base^{4} → base^{8} → base^{16} → base^{32}$…….指数正好是$2^{i}$。再看上面的例子，<script type="math/tex">a^{11} = a^{1}\,*\,a^{2}\,*\,a^{8}</script>，这三项就可以完美解决了，快速幂就是这样。</p>
+</blockquote>
+<p>如还有不明白的地方，建议手动模拟代码的运行过程。</p>
+<h2 id="5-快速乘讲解"><a href="#5-快速乘讲解" class="headerlink" title="5 快速乘讲解"></a>5 快速乘讲解</h2><blockquote>
+<p>我们知道，在计算机中做加法运算会比乘法快得多（参考模电中的加法器），做乘法运算往往会溢出，即使用 long long 类型也拯救不了。因此需要寻找一种能高效完成乘法运算且不会溢出的算法，这就是快速乘算法。</p>
+</blockquote>
+<p>快速乘与快速幂原理相似，也是将运算转换为二进制处理.</p>
+<p>以 a * 11 为例:  <code>11</code> 的二进制数为 <code>1011</code>，则有 $a*11 = a * 2^{0}\,+\,a * 2^{1}\,+\,a * 2^{3}$</p>
+<p>就是把快速幂中的 <code>*</code> 号改为 <code>＋</code> 号 </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">ksc</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a, <span class="keyword">long</span> <span class="keyword">long</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(b != <span class="number">0</span>) &#123;</span><br><span class="line">	<span class="keyword">if</span>(b &amp; <span class="number">1</span> != <span class="number">0</span>) &#123;</span><br><span class="line">	    ans += a;</span><br><span class="line">	&#125;</span><br><span class="line">	a += a;</span><br><span class="line">	b &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此版本的复杂度和快速幂一样，也是 O(logn) 。如果需要特别卡常数，可以去了解 O(1) 版本的快速乘。</p>
+<h2 id="6-完整代码"><a href="#6-完整代码" class="headerlink" title="6 完整代码"></a>6 完整代码</h2><blockquote>
+<p>为了防止溢出，一般快速幂和快速乘的算法会在 mod 下运用，下面给出取模运算代码。</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> ll mod = <span class="number">1e7</span>;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//a ^ b</span></span><br><span class="line"><span class="function">ll <span class="title">ksm</span><span class="params">(ll a, ll b, ll mod)</span> </span>&#123;</span><br><span class="line">    ll ans = <span class="number">1</span>, base = a;</span><br><span class="line">    <span class="keyword">while</span>(b != <span class="number">0</span>) &#123;</span><br><span class="line">	<span class="keyword">if</span>(b &amp; <span class="number">1</span> != <span class="number">0</span>) &#123;</span><br><span class="line">	    ans = (ans * base) % mod;</span><br><span class="line">	&#125;</span><br><span class="line">	base = (base * base) % mod;</span><br><span class="line">	b &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//a * b</span></span><br><span class="line"><span class="function">ll <span class="title">ksc</span><span class="params">(ll a, ll b, ll mod)</span> </span>&#123;</span><br><span class="line">    ll ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(b != <span class="number">0</span>) &#123;</span><br><span class="line">	<span class="keyword">if</span>(b &amp; <span class="number">1</span> != <span class="number">0</span>) &#123;</span><br><span class="line">	    ans = (ans + a) % mod;</span><br><span class="line">	&#125;</span><br><span class="line">	a = (a + a) % mod;</span><br><span class="line">	b &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"5 ^ 3 = "</span> &lt;&lt; ksm(<span class="number">5</span>, <span class="number">3</span>, mod) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"345352 * 11 = "</span> &lt;&lt; ksc(<span class="number">345352</span>, <span class="number">11</span>, mod) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>运算结果：</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-5.png" alt="ksm-5"></p>
+<h2 id="7-References"><a href="#7-References" class="headerlink" title="7 References"></a>7 References</h2><ul>
+<li><a href="https://www.cnblogs.com/CXCXCXC/p/4641812.html" target="_blank" rel="noopener">https://www.cnblogs.com/CXCXCXC/p/4641812.html</a></li>
+</ul>
+<p>以上，有问题欢迎指正！</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span style="font-size:17px"><strong>文章作者 : </span></strong>
+                        <span><strong><a href="/">Lili Liang</a></strong></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span style="font-size:17px"><strong>博文链接 : </span></strong>
+                        <strong><span><a href="https://leungll.site/2018/08/27/ksm-permalink/">https://leungll.site/2018/08/27/ksm-permalink/</a></span></strong>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span style="font-size:17px"><strong>版权声明 : </strong>
+                        本博客所有文章除特別声明外，均采用
+                        <strong><span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span></strong>
+                        许可协议。转载请注明来源
+                        <strong><a href="/">Lili Liang</a></strong> 。
+                    </p>
+                    <p></p>
+                
+                <!-- 
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                 -->
+                </section>
+        
+        <p></p>
+        <span style="font-size:20px"><strong>添加新评论</strong></span>
+        
+        <p></p>
+        <div id="vcomments" style="font-size:16px"></div>
+        <script>
+            new Valine({
+                el: '#vcomments',
+                appId: 'addRaUPaIYkQW4qXNOpRi99T-gzGzoHsz',
+                appKey: 'q82rU56Rz2oPbCQEtToDoVfj',
+                placeholder: 'Check it out!',
+                visitor: true,
+                recordIP: true
+            })
+        </script>
+
+        <section class="post-tags">
+            <div>
+                <strong><span>文章标签 : </span></strong>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/C-C/"># C/C++</a>
+                    
+                        <a href="/tags/%E5%BF%AB%E9%80%9F%E5%B9%82/"># 快速幂</a>
+                    
+                        <a href="/tags/%E5%BF%AB%E9%80%9F%E4%B9%98/"># 快速乘</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <strong><a href="javascript:window.history.back();">返回上一页</a></strong>
+                <span><strong> · </strong></span>
+                <strong><a href="/">回到主页</a></strong>
+            </div>
+        </section>
+        
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/04/10/jetBrains-ide-certification/">JetBrains IDE（e.g. IntelliJ IDEA )旗舰版认证安装方法（针对在校学生）</a>
+            
+            
+        </section>
+        
+    </article>
+    
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>Copyright © 2019 - 2021 
+            <strong>
+                <a href="/">Lili Liang</a></strong> | Powered by 
+            <strong>
+                <a href="https://hexo.io" target="_blank">Hexo</a>
+            </strong>
+                 | Theme <strong><a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a>
+            </strong>
+            <!-- </strong>
+                | 此站点已暂停维护，欢迎访问 <strong><a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">新站点</a>
+            </strong> -->
+        </span>
+        <span id="sitetime"></span>
+        <script language=javascript>
+            function siteTime(){
+                window.setTimeout("siteTime()", 1000);
+                var seconds = 1000;
+                var minutes = seconds * 60;
+                var hours = minutes * 60;
+                var days = hours * 24;
+                var years = days * 365;
+                var today = new Date();
+                var todayYear = today.getFullYear();
+                var todayMonth = today.getMonth()+1;
+                var todayDate = today.getDate();
+                var todayHour = today.getHours();
+                var todayMinute = today.getMinutes();
+                var todaySecond = today.getSeconds();
+                /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+                year - 作为date对象的年份，为4位年份值
+                month - 0-11之间的整数，做为date对象的月份
+                day - 1-31之间的整数，做为date对象的天数
+                hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+                minutes - 0-59之间的整数，做为date对象的分钟数
+                seconds - 0-59之间的整数，做为date对象的秒数
+                microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+                var t1 = Date.UTC(2019,06,02,15,03,00); //建站时间
+                var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+                var diff = t2-t1;
+                var diffYears = Math.floor(diff/years);
+                var diffDays = Math.floor((diff/days)-diffYears*365);
+                var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+                var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+                var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+                document.getElementById("sitetime").innerHTML="&nbsp;| 本站已安全运行 "+ diffYears + " 年 " + diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+            }
+            siteTime();
+        </script>
+        
+        <!-- {% if theme.baidu_analytics %} -->
+        <span style="display:none">
+            <script>
+                var _hmt = _hmt || [];
+                (function() {
+                  var hm = document.createElement("script");
+                  hm.src = "https://hm.baidu.com/hm.js?15996f0061886ef8292c939a628bb618";
+                  var s = document.getElementsByTagName("script")[0]; 
+                  s.parentNode.insertBefore(hm, s);
+                })();
+                </script>                
+        </span>
+        <!-- {% endif %} -->
+    </div>
+</footer>
+    
+
+    </div>
+</body>
+</html>
