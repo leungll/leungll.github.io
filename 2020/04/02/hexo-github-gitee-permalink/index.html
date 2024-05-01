@@ -29,45 +29,31 @@
         gtag('config', 'G-WF4EY3839B');
     </script>
 
-    <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
-<script type="text/x-mathjax-config">
+    <!-- <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
-    "HTML-CSS": {
-        preferredFont: "TeX",
-        availableFonts: ["STIX","TeX"],
-        linebreaks: { automatic:true },
-        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
-    },
-    tex2jax: {
-        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
-        processEscapes: true,
-        ignoreClass: "tex2jax_ignore|dno",
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-        equationNumbers: { autoNumber: "AMS" },
-        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
-        Macros: { href: "{}" }
-    },
-    messageStyle: "none"
-    });
-</script>
-<!-- 给MathJax元素添加has-jax class -->
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
+      menuSettings: {
+        zoom: "None"
+      },
+      showMathMenu: false,
+      jax: ["input/TeX","output/CommonHTML"],
+      extensions: ["tex2jax.js"],
+      TeX: {
+        extensions: ["AMSmath.js","AMSsymbols.js"],
+        equationNumbers: {
+          autoNumber: "AMS"
         }
+      },
+      tex2jax: {
+        inlineMath: [["\\(", "\\)"]],
+        displayMath: [["\\[", "\\]"]]
+      }
     });
-</script>
-<!-- 通过连接CDN加载MathJax的js代码 -->
-<script type="text/javascript" async
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-
-
-
+  </script>
+  
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script>
+  </script> -->
+    
+    
     <!-- Mathjax support -->
     
         <!-- import mathjax method: global or demand -->
@@ -336,7 +322,14 @@ roo<span class="hljs-variable">t:</span> /
     </div>
 
 </div>
-                <div class="footer">
+                <!--
+ * @Author: Lili Liang
+ * @Date: 2024-04-27 23:36:31
+ * @LastEditors: Lili Liang
+ * @LastEditTime: 2024-05-02 01:29:10
+ * @Description: Please set description
+-->
+<div class="footer">
     <span>Copyright © 2024 Lili Liang</span>
     <!-- <span>Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> with <a href="https:///imzl.com/zenmind" target="_blank" rel="noopener">ZenMind</a></span> -->
 </div>
@@ -349,6 +342,7 @@ roo<span class="hljs-variable">t:</span> /
 
 <script src="/js/highlightjs-line-numbers.js"></script>
 
+
 <script>
     hljs.initHighlightingOnLoad();
     hljs.initLineNumbersOnLoad();
@@ -356,21 +350,5 @@ roo<span class="hljs-variable">t:</span> /
 
             </div>
         </div>
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script> -->
-</body>
+    </body>
 </html>
