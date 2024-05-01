@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://leungll.site/2020/03/11/ex-gcd-permalink/</loc>
+    <lastmod>2024-05-01</lastmod>
+  </url>
+  <url>
     <loc>https://leungll.site/2021/01/26/mysql-navicat-install/</loc>
     <lastmod>2024-05-01</lastmod>
   </url>
@@ -30,10 +34,6 @@
   </url>
   <url>
     <loc>https://leungll.site/2019/11/16/vscode-configuration/</loc>
-    <lastmod>2024-05-01</lastmod>
-  </url>
-  <url>
-    <loc>https://leungll.site/2020/03/11/ex-gcd-permalink/</loc>
     <lastmod>2024-05-01</lastmod>
   </url>
   <url>
