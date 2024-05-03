@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://leungll.site/about/index.html</loc>
+    
+    <lastmod>2024-05-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://leungll.site/2020/03/12/ksm-ksc-permalink/</loc>
     
     <lastmod>2024-05-03</lastmod>
@@ -120,15 +129,6 @@
   
   <url>
     <loc>https://leungll.site/2020/10/12/oj-1317/</loc>
-    
-    <lastmod>2024-05-03</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://leungll.site/about/index.html</loc>
     
     <lastmod>2024-05-03</lastmod>
     
