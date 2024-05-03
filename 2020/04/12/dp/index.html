@@ -48,7 +48,7 @@
 <meta property="og:site_name" content="Lili Liang">
 <meta property="og:description" content="1 $dp$ 基本性质   最优子结构  当问题的最优解包含了其子问题的最优解时，称该问题具有最优子结构性质。问题的最优子结构性质提供了该问题可用动态规划算法求解的重要线索。 在动态规划算法中，利用问题的最优子结构性质，以自底向上的方式递归地从子问题的最优解逐步构造出整个问题的最优解。    重叠子问题  子问题之间是不独立的，一个子问题在下一阶段决策中可能被多次使用。对每个子问题只解一次，而后将">
 <meta property="article:published_time" content="2020-04-11T16:35:20.000Z">
-<meta property="article:modified_time" content="2024-04-28T15:47:21.172Z">
+<meta property="article:modified_time" content="2024-05-03T14:09:23.212Z">
 <meta property="article:author" content="Lili Liang 梁莉莉">
 <meta property="article:tag" content="C&#x2F;C++">
 <meta property="article:tag" content="dp">
@@ -214,10 +214,10 @@ $$</div><p><strong>题解</strong>：</p>
 </li>
 <li>
 <p><span class="markdown-them-math-inline">$dp$</span> 方程：</p>
+<div class="markdown-them-math-block">$$    dp[i][j] = max( dp[i - 1][j], \,dp[i - 1][j - v] + v * p)
+$$</div><p>其中，<span class="markdown-them-math-inline">$v$</span> 表示物品的价格，<span class="markdown-them-math-inline">$p$</span> 表示该物品的重要度。</p>
 </li>
 </ul>
-<div class="markdown-them-math-block">$$dp[i][j] = max( dp[i - 1][j], \,dp[i - 1][j - v] + v * p)
-$$</div><p>其中，<span class="markdown-them-math-inline">$v$</span> 表示物品的价格，<span class="markdown-them-math-inline">$p$</span> 表示该物品的重要度。</p>
 <p><strong>题解</strong>：</p>
 <div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
@@ -330,29 +330,25 @@ $$</div><p>其中，<span class="markdown-them-math-inline">$v$</span> 表示物
 </ol>
 </li>
 </ul>
-</blockquote>
-<blockquote>
 <p>比如，当 k = 3 时，有下面几个这样的序列：</p>
-</blockquote>
-<div class="highlight"><pre class="code"><code>　　<span class="hljs-attribute">1</span> <span class="hljs-number">2</span>
-　　<span class="hljs-attribute">1</span> <span class="hljs-number">3</span>
-　　<span class="hljs-attribute">2</span> <span class="hljs-number">1</span>
-　　<span class="hljs-attribute">2</span> <span class="hljs-number">1</span> <span class="hljs-number">3</span>
-　　<span class="hljs-attribute">2</span> <span class="hljs-number">3</span>
-　　<span class="hljs-attribute">2</span> <span class="hljs-number">3</span> <span class="hljs-number">1</span>
-　　<span class="hljs-attribute">3</span> <span class="hljs-number">1</span>
-　　<span class="hljs-attribute">3</span> <span class="hljs-number">2</span>
+<div class="highlight"><pre class="code"><code><span class="hljs-symbol">1 </span><span class="hljs-number">2</span>
+<span class="hljs-symbol">1 </span><span class="hljs-number">3</span>
+<span class="hljs-symbol">2 </span><span class="hljs-number">1</span>
+<span class="hljs-symbol">2 </span><span class="hljs-number">1</span> <span class="hljs-number">3</span>
+<span class="hljs-symbol">2 </span><span class="hljs-number">3</span>
+<span class="hljs-symbol">2 </span><span class="hljs-number">3</span> <span class="hljs-number">1</span>
+<span class="hljs-symbol">3 </span><span class="hljs-number">1</span>
+<span class="hljs-symbol">3 </span><span class="hljs-number">2</span>
 </code></pre></div>
-<blockquote>
 <p>一共有 8 种，给定 k ，请求出满足上面要求的序列的个数。</p>
 </blockquote>
 <p><strong>解题思路：</strong></p>
 <ul>
 <li>本题用 <span class="markdown-them-math-inline">$dfs$</span> 实现，其中条件 <span class="markdown-them-math-inline">$1$</span> 与条件 <span class="markdown-them-math-inline">$2$</span> 很容易满足。</li>
-<li>条件 <span class="markdown-them-math-inline">$3$</span> 与条件 <span class="markdown-them-math-inline">$4$</span> ，用下列方程即可满足：</li>
+<li>条件 <span class="markdown-them-math-inline">$3$</span> 与条件 <span class="markdown-them-math-inline">$4$</span> ，用下列方程即可满足：<div class="markdown-them-math-block">$$    (arr[x - 2] - arr[x - 3]) * (arr[x - 1] - arr[x - 3]) &lt; 0
+$$</div></li>
 </ul>
-<div class="markdown-them-math-block">$$(arr[x - 2] - arr[x - 3]) * (arr[x - 1] - arr[x - 3]) &lt; 0
-$$</div><p><strong>题解：</strong></p>
+<p><strong>题解：</strong></p>
 <div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span>
@@ -406,10 +402,9 @@ $$</div><p><strong>题解：</strong></p>
 <p>约定，<span class="markdown-them-math-inline">$dp[i][j]$</span> 表示传了 <span class="markdown-them-math-inline">$i$</span> 次球，到第 <span class="markdown-them-math-inline">$j$</span> 个人手上的传球方法。</p>
 <ul>
 <li>因为是环形传球，因此需要考虑两个边界，第 <span class="markdown-them-math-inline">$1$</span> 个人和第 <span class="markdown-them-math-inline">$n$</span> 个人的情况。</li>
-<li>当前同学的传球次数，为左右同学(传了 <span class="markdown-them-math-inline">$i-1$</span> 次球)的传球方法相加</li>
+<li>当前同学的传球次数，为左右同学(传了 <span class="markdown-them-math-inline">$i-1$</span> 次球)的传球方法相加<div class="markdown-them-math-block">$$    dp[i][j] = dp[i - 1][x] + dp[i - 1][y]
+$$</div>其中 <span class="markdown-them-math-inline">$x=j-1,y=j+1$</span></li>
 </ul>
-<div class="markdown-them-math-block">$$dp[i][j] = dp[i - 1][x] + dp[i - 1][y]
-$$</div><p>其中 <span class="markdown-them-math-inline">$x=j-1,y=j+1$</span></p>
 <p><strong>题解：</strong></p>
 <div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>

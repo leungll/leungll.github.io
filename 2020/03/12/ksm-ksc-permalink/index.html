@@ -50,7 +50,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-ksc-01.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-ksc-02.png">
 <meta property="article:published_time" content="2020-03-12T01:59:10.000Z">
-<meta property="article:modified_time" content="2024-05-01T16:32:02.378Z">
+<meta property="article:modified_time" content="2024-05-03T14:19:18.787Z">
 <meta property="article:author" content="Lili Liang 梁莉莉">
 <meta property="article:tag" content="C&#x2F;C++">
 <meta property="article:tag" content="快速幂">
@@ -136,9 +136,9 @@
 <div class="markdown-them-math-block">$$ X\ =\ C^{e}\ mod\ n $$</div><br>
 如果想让你计算</p>
 <div class="markdown-them-math-block">$$      20190324^{823816093931522017}\ mod\ 1001733993063167141
-$$</div><p>应该如何用代码实现？我们知道，在 Java 里有大数类，Python 依靠其强大的计算性能有些数据甚至可以直接计算。那么在 C/C++ 中应该如何处理？单独用快速幂也会爆 long long ，我们可以采取快速幂调用快速乘进行取模的方法得到结果。</p>
+$$</div><p>应该如何用代码实现？我们知道，在 Java 里有大数类，Python 依靠其强大的计算性能有些数据甚至可以直接计算。那么在 C/C++ 中应该如何处理？单独用快速幂也会爆 long long ，我们可以采取快速幂调用快速乘进行取模的方法得到结果。<br>
+关于快速幂与快速乘的具体原理，可在此博客了解：<a href="https://leungll.site/2021/05/24/ksm-permalink/">快速幂 &amp; 快速乘原理讲解（模板）</a></p>
 </blockquote>
-<p>关于快速幂与快速乘的具体原理，可在此博客了解：<a href="https://leungll.site/2021/05/24/ksm-permalink/">快速幂 &amp; 快速乘原理讲解（模板）</a></p>
 <h2 id="1-原因分析">1 原因分析</h2>
 <p>首先我们直接用快速幂计算引言中提到的公式：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-ksc-01.png" alt="ksm-ksc-01"></p>

@@ -41,14 +41,14 @@
      -->
   
     <!-- Open graph -->
-    <meta name="description" content="题目链接：http:&#x2F;&#x2F;lx.lanqiao.cn&#x2F;problem.page?gpid&#x3D;T99 1 题目 题目描述  Hanks 博士是 BT (Bio-Tech，生物技术) 领域的知名专家，他的儿子名叫 Hankson。现在，刚刚放学回家的 Hankson 正在思考一个有趣的问题。 今天在课堂上，老师讲解了如何求两个正整数 c1 和 c2 的最大公约数和最小公倍数。现在 Hankson 认为自己">
+    <meta name="description" content="题目链接：http:&#x2F;&#x2F;lx.lanqiao.cn&#x2F;problem.page?gpid&#x3D;T99  1 题目 题目描述  Hanks 博士是 BT (Bio-Tech，生物技术) 领域的知名专家，他的儿子名叫 Hankson。现在，刚刚放学回家的 Hankson 正在思考一个有趣的问题。 今天在课堂上，老师讲解了如何求两个正整数 c1 和 c2 的最大公约数和最小公倍数。现在 Hankson 认为">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【洛谷 1072 &amp; 蓝桥杯 算法训练 ALGO - 37】Hankson的趣味题（数论）">
 <meta property="og:url" content="https://leungll.site/2020/04/28/algo-28/index.html">
 <meta property="og:site_name" content="Lili Liang">
-<meta property="og:description" content="题目链接：http:&#x2F;&#x2F;lx.lanqiao.cn&#x2F;problem.page?gpid&#x3D;T99 1 题目 题目描述  Hanks 博士是 BT (Bio-Tech，生物技术) 领域的知名专家，他的儿子名叫 Hankson。现在，刚刚放学回家的 Hankson 正在思考一个有趣的问题。 今天在课堂上，老师讲解了如何求两个正整数 c1 和 c2 的最大公约数和最小公倍数。现在 Hankson 认为自己">
+<meta property="og:description" content="题目链接：http:&#x2F;&#x2F;lx.lanqiao.cn&#x2F;problem.page?gpid&#x3D;T99  1 题目 题目描述  Hanks 博士是 BT (Bio-Tech，生物技术) 领域的知名专家，他的儿子名叫 Hankson。现在，刚刚放学回家的 Hankson 正在思考一个有趣的问题。 今天在课堂上，老师讲解了如何求两个正整数 c1 和 c2 的最大公约数和最小公倍数。现在 Hankson 认为">
 <meta property="article:published_time" content="2020-04-28T15:15:40.000Z">
-<meta property="article:modified_time" content="2024-04-29T11:54:08.258Z">
+<meta property="article:modified_time" content="2024-05-03T14:04:59.982Z">
 <meta property="article:author" content="Lili Liang 梁莉莉">
 <meta property="article:tag" content="C&#x2F;C++">
 <meta property="article:tag" content="蓝桥杯">
@@ -126,7 +126,9 @@
             <!--  -->
         <!-- </div> -->
         <div class="post-md">
-            <p><strong>题目链接：</strong><a href="http://lx.lanqiao.cn/problem.page?gpid=T99" target="_blank" rel="noopener">http://lx.lanqiao.cn/problem.page?gpid=T99</a></p>
+            <blockquote>
+<p><strong>题目链接：</strong><a href="http://lx.lanqiao.cn/problem.page?gpid=T99" target="_blank" rel="noopener">http://lx.lanqiao.cn/problem.page?gpid=T99</a></p>
+</blockquote>
 <h1 id="1-题目">1 题目</h1>
 <h2 id="题目描述">题目描述</h2>
 <blockquote>
@@ -143,8 +145,6 @@
 </ol>
 </li>
 </ul>
-</blockquote>
-<blockquote>
 <p>Hankson 的“逆问题”就是求出满足条件的正整数 x。但稍加思索之后，他发现这样的 x 并不唯一，甚至可能不存在。因此他转而开始考虑如何求解满足条件的 x 的个数。请你帮助他编程求解这个问题。</p>
 </blockquote>
 <h2 id="输入格式">输入格式</h2>
@@ -158,16 +158,14 @@
 对于每组数据：若不存在这样的 x ，请输出 0 ； 若存在这样的 x ，请输出满足条件的 x 的个数；</p>
 </blockquote>
 <h2 id="样例输入">样例输入</h2>
-<blockquote>
-<p>2<br>
-41 1 96 288<br>
-95 1 37 1776</p>
-</blockquote>
+<div class="highlight"><pre class="code"><code><span class="hljs-number">2</span>
+<span class="hljs-symbol">41 </span><span class="hljs-number">1</span> <span class="hljs-number">96</span> <span class="hljs-number">288</span>
+<span class="hljs-symbol">95 </span><span class="hljs-number">1</span> <span class="hljs-number">37</span> <span class="hljs-number">1776</span>
+</code></pre></div>
 <h2 id="样例输出">样例输出</h2>
-<blockquote>
-<p>6<br>
-2</p>
-</blockquote>
+<div class="highlight"><pre class="code"><code>6
+2
+</code></pre></div>
 <h2 id="样例说明">样例说明</h2>
 <blockquote>
 <p>第一组输入数据，x 可以是 9、18、36、72、144、288，共有 6 个。<br>
@@ -194,36 +192,42 @@
 </code></pre></div>
 </li>
 </ul>
-<p><strong>2. 一个结论</strong>：设 <span class="markdown-them-math-inline">$gcd(x, a_0)=a_1$</span> ，并有</p>
-<div class="markdown-them-math-block">$$\left\{
-	\begin{aligned}
-	x=k_{1}*a_{1} \\ 
-	a_{0}=k_{2}*a_{1}&amp;
-\end{aligned}
-\right.
-$$</div><p>则 <span class="markdown-them-math-inline">$gcd(k_1,k_2)=1$</span> 。</p>
+<p><strong>2. 一个结论</strong>：设 <span class="markdown-them-math-inline">$gcd(x, a_0)=a_1$</span> ，并有<br>
+<div class="markdown-them-math-block">$$
+        \left\{
+            \begin{aligned}
+                x=k_{1}*a_{1} \\ 
+                a_{0}=k_{2}*a_{1}&amp;
+            \end{aligned}
+        \right.
+    $$</div></p>
+<p>则 <span class="markdown-them-math-inline">$gcd(k_1,k_2)=1$</span> 。</p>
 <p><strong>证明：</strong></p>
 <ul>
-<li>假设 <span class="markdown-them-math-inline">$gcd(k_1,k_2)\neq1$</span>，<span class="markdown-them-math-inline">$gcd(k_1,k_2)=K$</span>，并有</li>
-</ul>
-<div class="markdown-them-math-block">$$ \left\{
-	\begin{aligned}
-	k_{1}=p*K \\ 
-	k_{2}=q*K&amp;
-\end{aligned}
-\right.
-$$</div><ul>
-<li>由假设得：</li>
-</ul>
-<div class="markdown-them-math-block">$$ \left\{
-	\begin{aligned}
-	x=p*K*a_{1} \\ 
-	a_{0}=q*K*a_{1}&amp;
-\end{aligned}
-\right.
-$$</div><ul>
-<li>可得 <span class="markdown-them-math-inline">$gcd(x,a_0)=K*a_1\neq a_1$</span>，结果与题目条件不符，假设不成立</li>
-<li>则 <span class="markdown-them-math-inline">$gcd(k_1,k_2)=1$</span></li>
+<li>
+<p>假设 <span class="markdown-them-math-inline">$gcd(k_1,k_2)\neq1$</span>，<span class="markdown-them-math-inline">$gcd(k_1,k_2)=K$</span>，并有</p>
+<div class="markdown-them-math-block">$$    \left\{
+        \begin{aligned}
+            k_{1}=p*K \\ 
+            k_{2}=q*K&amp;
+        \end{aligned}
+    \right.
+$$</div></li>
+<li>
+<p>由假设得：</p>
+<div class="markdown-them-math-block">$$    \left\{
+        \begin{aligned}
+            x=p*K*a_{1} \\ 
+            a_{0}=q*K*a_{1}&amp;
+        \end{aligned}
+    \right.
+$$</div></li>
+<li>
+<p>可得 <span class="markdown-them-math-inline">$gcd(x,a_0)=K*a_1\neq a_1$</span>，结果与题目条件不符，假设不成立</p>
+</li>
+<li>
+<p>则 <span class="markdown-them-math-inline">$gcd(k_1,k_2)=1$</span></p>
+</li>
 </ul>
 <p>因此可得：</p>
 <blockquote>
@@ -231,26 +235,28 @@ $$</div><ul>
 </blockquote>
 <p><strong>3. 推导</strong></p>
 <ul>
-<li>由最大公约数定理</li>
-</ul>
-<div class="markdown-them-math-block">$$gcd(x,a_{0})=a_{1}
+<li>
+<p>由最大公约数定理</p>
+<div class="markdown-them-math-block">$$    gcd(x,a_{0})=a_{1}
 $$</div><p>得</p>
-<div class="markdown-them-math-block">$$gcd(\frac {x} {a_{1}} ,\frac {a_{0}}{a_{1}})=1
-$$</div><ul>
-<li>由最小公倍数定理</li>
-</ul>
-<div class="markdown-them-math-block">$$lcm(x,b_{0})=b_{1}=\frac {x*b_{0}}{gcd(x,b_{0})}
+<div class="markdown-them-math-block">$$    gcd(\frac {x} {a_{1}} ,\frac {a_{0}}{a_{1}})=1
+$$</div></li>
+<li>
+<p>由最小公倍数定理</p>
+<div class="markdown-them-math-block">$$    lcm(x,b_{0})=b_{1}=\frac {x*b_{0}}{gcd(x,b_{0})}
 $$</div><p>则</p>
-<div class="markdown-them-math-block">$$gcd(x,b_{0})=\frac{x*b_{0}}{b_{1}}
+<div class="markdown-them-math-block">$$    gcd(x,b_{0})=\frac{x*b_{0}}{b_{1}}
 $$</div><p>得</p>
-<div class="markdown-them-math-block">$$gcd(\frac {b_1} {b_{0}} ,\frac {b_{1}}{x})=1
-$$</div><p><strong>4. 最终可得如下结论：</strong></p>
-<div class="markdown-them-math-block">$$ \left\{
-	\begin{aligned}
-	gcd(\frac {x} {a_{1}} ,\frac {a_{0}}{a_{1}})=1 \\ 
-	gcd(\frac {b_1} {b_{0}} ,\frac {b_{1}}{x})=1&amp;
-\end{aligned}
-\right.
+<div class="markdown-them-math-block">$$    gcd(\frac {b_1} {b_{0}} ,\frac {b_{1}}{x})=1
+$$</div></li>
+</ul>
+<p><strong>4. 最终可得如下结论：</strong></p>
+<div class="markdown-them-math-block">$$    \left\{
+        \begin{aligned}
+            gcd(\frac {x} {a_{1}} ,\frac {a_{0}}{a_{1}})=1 \\ 
+            gcd(\frac {b_1} {b_{0}} ,\frac {b_{1}}{x})=1&amp;
+        \end{aligned}
+    \right.
 $$</div><h1 id="3-题解">3 题解</h1>
 <div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>

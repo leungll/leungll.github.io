@@ -51,7 +51,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/hexo-github-gitee-02.jpg">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/hexo-github-gitee-03.png">
 <meta property="article:published_time" content="2020-04-02T12:15:19.000Z">
-<meta property="article:modified_time" content="2024-05-01T16:30:47.168Z">
+<meta property="article:modified_time" content="2024-05-03T14:18:40.255Z">
 <meta property="article:author" content="Lili Liang 梁莉莉">
 <meta property="article:tag" content="Hexo">
 <meta property="article:tag" content="Gitee">
@@ -190,26 +190,28 @@
 <p><strong>1. 首先推荐食用 Hexo 的官方说明文档</strong>：<strong><a href="https://hexo.io/zh-cn/docs" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs</a></strong></p>
 <p><strong>2. 常用命令</strong>：</p>
 <ul>
-<li>新建一篇博客：</li>
-</ul>
+<li>
+<p>新建一篇博客：</p>
 <div class="highlight"><pre class="code"><code>hexo <span class="hljs-keyword">new</span> post <span class="hljs-string">&quot;article title&quot;</span>
 </code></pre></div>
-<ul>
-<li>部署至本地服务器（本地服务器端口：<code>http://localhost:4000</code>)：</li>
-</ul>
+</li>
+<li>
+<p>部署至本地服务器（本地服务器端口：<code>http://localhost:4000</code>)：</p>
 <div class="highlight"><pre class="code"><code>hexo s
 </code></pre></div>
-<ul>
-<li>运行生成、部署命令：</li>
-</ul>
+</li>
+<li>
+<p>运行生成、部署命令：</p>
 <div class="highlight"><pre class="code"><code>hexo g   <span class="hljs-comment">// 生成</span>
 hexo d   <span class="hljs-comment">// 部署</span>
 </code></pre></div>
-<ul>
-<li>在部署前生成:</li>
-</ul>
+</li>
+<li>
+<p>在部署前生成:</p>
 <div class="highlight"><pre class="code"><code>hexo d -g 
 </code></pre></div>
+</li>
+</ul>
 <h2 id="6-解决 github 博客访问过慢问题的方案">6 解决 Github 博客访问过慢问题的方案</h2>
 <p>经常使用 Github 的朋友都知道，因为 Github 服务器在外网，访问 Github 时经常会出现<strong>延时</strong>甚至<strong>拒绝访问</strong>的情况。那么我们基于 Github 服务器搭建的博客也不例外，有没有好的解决方案？</p>
 <ul>
@@ -240,8 +242,6 @@ hexo d   <span class="hljs-comment">// 部署</span>
 </li>
 <li>
 <p>修改<strong>本地 Hexo 根目录下</strong>的 <strong>_config.yml</strong> 文件，将 <strong>Deployment</strong> 及 <strong>URL</strong> 更改为相应的 gitee 链接</p>
-</li>
-</ul>
 <div class="highlight"><pre class="code"><code># URL
 ## If your site <span class="hljs-keyword">is</span> <span class="hljs-keyword">put</span> in <span class="hljs-keyword">a</span> subdirectory, <span class="hljs-keyword">set</span> url <span class="hljs-keyword">as</span> <span class="hljs-string">&#x27;http://yoursite.com/child&#x27;</span> <span class="hljs-built_in">and</span> root <span class="hljs-keyword">as</span> <span class="hljs-string">&#x27;/child/&#x27;</span>
 ur<span class="hljs-variable">l:</span> http://yourname.gitee.io/
@@ -254,14 +254,14 @@ roo<span class="hljs-variable">t:</span> /
 <span class="hljs-symbol">  repo:</span> https:<span class="hljs-comment">//gitee.com/yourname/yourname.git</span>
 <span class="hljs-symbol">  branch:</span> master
 </code></pre></div>
-<ul>
+</li>
+</ul>
+</li>
 <li>
 <p>不需要将代码上传到 Gitee 的仓库中，使用 <code>hexo d -g</code> 指令在本地部署上传即可。</p>
 </li>
 <li>
 <p>需要注意的是，Gitee 普通版不支持自动更新，即你用 Hexo 部署到服务器后，需要到 Gitee Pages 服务<strong>手动更新</strong>，更新的博文才会生效。</p>
-</li>
-</ul>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/hexo-github-gitee-03.png" alt="hexo-github-gitee-03"></p>
 </li>
 </ul>
