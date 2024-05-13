@@ -137,19 +137,24 @@
 <p>一年前使用 Hexo + Github 搭过一个博客，但是当时事情多，搭好之后也没有后续维护，导致最后不了了之。现在闲下来，重新打开当时搭的博客，发现实在是太花哨了，因此决定重新搭一个，并记录一下采坑的过程，以便后续更新。</p>
 </blockquote>
 <p>简单来说整个搭建过程可以理解成，将 GitHub 当成个人 Blog 的服务器，而 Hexo 就是一个博客框架，我们可以更换 Hexo 的主题，使博客个性化。</p>
-<h2 id="1-关于GitHub-Pages"><a href="#1-关于GitHub-Pages" class="headerlink" title="1 关于GitHub Pages"></a>1 关于GitHub Pages</h2><blockquote>
+<h2 id="1-关于github pages">1 关于GitHub Pages</h2>
+<blockquote>
 <p>Github Pages 是 Github 免费给开发者提供的一款<strong>托管个人网站</strong>的产品, 可托管<strong>静态内容</strong>, 非常适合用来搭博客。</p>
 </blockquote>
-<h2 id="2-关于Hexo"><a href="#2-关于Hexo" class="headerlink" title="2 关于Hexo"></a>2 关于Hexo</h2><blockquote>
+<h2 id="2-关于hexo">2 关于Hexo</h2>
+<blockquote>
 <p>Hexo 是一个快速、简洁且高效的<strong>博客框架</strong>。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
 </blockquote>
 <ul>
-<li><p><strong>Hexo官网</strong>：<strong><a href="https://hexo.io" target="_blank" rel="noopener">https://hexo.io</a></strong>（官网右上角可选择切换中文，方便阅读）；</p>
+<li>
+<p><strong>Hexo官网</strong>：<strong><a href="https://hexo.io" target="_blank" rel="noopener">https://hexo.io</a></strong>（官网右上角可选择切换中文，方便阅读）；</p>
 </li>
-<li><p><strong>Hexo的安装</strong>：使用 Node.js 中的 npm 库安装 Hexo；</p>
+<li>
+<p><strong>Hexo的安装</strong>：使用 Node.js 中的 npm 库安装 Hexo；</p>
 </li>
 </ul>
-<h2 id="3-Hexo环境搭建"><a href="#3-Hexo环境搭建" class="headerlink" title="3 Hexo环境搭建"></a>3 Hexo环境搭建</h2><p><strong>1. 前期需要准备的环境如下</strong>：</p>
+<h2 id="3-hexo环境搭建">3 Hexo环境搭建</h2>
+<p><strong>1. 前期需要准备的环境如下</strong>：</p>
 <ul>
 <li>Git 的安装</li>
 <li>Github 账户的配置</li>
@@ -158,18 +163,22 @@
 <p><strong>2. 整个搭建过程为</strong>：搭建 Node.js 环境 → 利用 npm 库安装 Hexo → 配置 Github 账户（启动 GitHub Pages ）→ 初始化 Hexo → 更换你喜欢的 Hexo 主题 → 写博客发文章。</p>
 <p><strong>3. 接下来可以参考一个博主写的搭建博文，但是有一些事项需要注意</strong>：</p>
 <ul>
-<li><p>博主文章中给的 Node.js 版本过低，安装时会 <strong>WARN</strong> 甚至会报错，因此最好到 Node.js 官网安装<strong>长期支持版本（LTS）</strong>，Node.js官网：<strong><a href="https://nodejs.org/zh-cn" target="_blank" rel="noopener">https://nodejs.org/zh-cn</a></strong>；</p>
+<li>
+<p>博主文章中给的 Node.js 版本过低，安装时会 <strong>WARN</strong> 甚至会报错，因此最好到 Node.js 官网安装<strong>长期支持版本（LTS）</strong>，Node.js官网：<strong><a href="https://nodejs.org/zh-cn" target="_blank" rel="noopener">https://nodejs.org/zh-cn</a></strong>；</p>
 </li>
-<li><p>在 Hexo 连接 Github 之前务必配置 SSH ，SSH 配置（参考博客的第4点）：<strong><a href="https://blog.csdn.net/liangllhahaha/article/details/89565779" target="_blank" rel="noopener">https://blog.csdn.net/liangllhahaha/article/details/89565779</a></strong>；</p>
+<li>
+<p>在 Hexo 连接 Github 之前务必配置 SSH ，SSH 配置（参考博客的第4点）：<strong><a href="https://blog.csdn.net/liangllhahaha/article/details/89565779" target="_blank" rel="noopener">https://blog.csdn.net/liangllhahaha/article/details/89565779</a></strong>；</p>
 </li>
-<li><p>注意你的仓库名称一定是：<strong>yourname.github.io</strong>，其中 <strong>yourname</strong> 为你的 Github 用户名；</p>
+<li>
+<p>注意你的仓库名称一定是：<strong><a href="http://yourname.github.io" target="_blank" rel="noopener">yourname.github.io</a></strong>，其中 <strong>yourname</strong> 为你的 Github 用户名；</p>
 </li>
 </ul>
 <p><strong>4. 好了，啰嗦那么多，开始搭建吧</strong>：</p>
 <blockquote>
 <p><strong>安装传送门：</strong><a href="https://blog.csdn.net/gdutxiaoxu/article/details/53576018" target="_blank" rel="noopener">手把手教你用Hexo+Github 搭建属于自己的博客</a></p>
 </blockquote>
-<h2 id="4-Hexo主题更换"><a href="#4-Hexo主题更换" class="headerlink" title="4 Hexo主题更换"></a>4 Hexo主题更换</h2><p><strong>1. 如果你不喜欢 Hexo 的默认主题</strong>：</p>
+<h2 id="4-hexo主题更换">4 Hexo主题更换</h2>
+<p><strong>1. 如果你不喜欢 Hexo 的默认主题</strong>：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/hexo-github-gitee-02.jpg" alt="hexo-github-gitee-02"></p>
 <p>可到 Hexo 官网或者知乎上选择更换：</p>
 <ul>
@@ -177,65 +186,82 @@
 <li>知乎：<strong><a href="https://www.zhihu.com/question/24422335" target="_blank" rel="noopener">https://www.zhihu.com/question/24422335</a></strong></li>
 </ul>
 <p><strong>2. 关于如何更换的问题</strong>：可参考开发者提供的 Readme 文档，如果你是小白，建议你选择对应 Readme 文档写得详尽的主题，这样方便你安装。</p>
-<h2 id="5-Hexo常用命令"><a href="#5-Hexo常用命令" class="headerlink" title="5 Hexo常用命令"></a>5 Hexo常用命令</h2><p><strong>1. 首先推荐食用 Hexo 的官方说明文档</strong>：<strong><a href="https://hexo.io/zh-cn/docs" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs</a></strong></p>
+<h2 id="5-hexo常用命令">5 Hexo常用命令</h2>
+<p><strong>1. 首先推荐食用 Hexo 的官方说明文档</strong>：<strong><a href="https://hexo.io/zh-cn/docs" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs</a></strong></p>
 <p><strong>2. 常用命令</strong>：</p>
 <ul>
-<li><p>新建一篇博客：</p>
-<pre class=" language-lang-cpp"><code class="language-lang-cpp">hexo new post "article title"
-</code></pre>
+<li>
+<p>新建一篇博客：</p>
+<div class="highlight"><pre class="code"><code>hexo <span class="hljs-keyword">new</span> post <span class="hljs-string">&quot;article title&quot;</span>
+</code></pre></div>
 </li>
-<li><p>部署至本地服务器（本地服务器端口：<code>http://localhost:4000</code>)：</p>
-<pre class=" language-lang-cpp"><code class="language-lang-cpp">hexo s
-</code></pre>
+<li>
+<p>部署至本地服务器（本地服务器端口：<code>http://localhost:4000</code>)：</p>
+<div class="highlight"><pre class="code"><code>hexo s
+</code></pre></div>
 </li>
-<li><p>运行生成、部署命令：</p>
-<pre class=" language-lang-cpp"><code class="language-lang-cpp">hexo g   // 生成
-hexo d   // 部署
-</code></pre>
+<li>
+<p>运行生成、部署命令：</p>
+<div class="highlight"><pre class="code"><code>hexo g   <span class="hljs-comment">// 生成</span>
+hexo d   <span class="hljs-comment">// 部署</span>
+</code></pre></div>
 </li>
-<li><p>在部署前生成:</p>
-<pre class=" language-lang-cpp"><code class="language-lang-cpp">hexo d -g
-</code></pre>
+<li>
+<p>在部署前生成:</p>
+<div class="highlight"><pre class="code"><code>hexo d -g 
+</code></pre></div>
 </li>
 </ul>
-<h2 id="6-解决-Github-博客访问过慢问题的方案"><a href="#6-解决-Github-博客访问过慢问题的方案" class="headerlink" title="6 解决 Github 博客访问过慢问题的方案"></a>6 解决 Github 博客访问过慢问题的方案</h2><p>经常使用 Github 的朋友都知道，因为 Github 服务器在外网，访问 Github 时经常会出现<strong>延时</strong>甚至<strong>拒绝访问</strong>的情况。那么我们基于 Github 服务器搭建的博客也不例外，有没有好的解决方案？</p>
+<h2 id="6-解决 github 博客访问过慢问题的方案">6 解决 Github 博客访问过慢问题的方案</h2>
+<p>经常使用 Github 的朋友都知道，因为 Github 服务器在外网，访问 Github 时经常会出现<strong>延时</strong>甚至<strong>拒绝访问</strong>的情况。那么我们基于 Github 服务器搭建的博客也不例外，有没有好的解决方案？</p>
 <ul>
 <li>开<strong>代理服务器</strong>；</li>
 <li>修改<strong>本机 Hosts 文件</strong>，绕过国内 DNS 解析，加快访问速度。（过时的方式，现在来看，效果已经不明显）；</li>
 <li>做一些其他的<strong>速度优化</strong>处理，可参考网上资料；</li>
 <li>因此我们可以考虑将 Hexo 博客同时部署到国内的 <strong>Gitee</strong> 上，如果以后 Github 真被墙了（参考伊朗），我们也可以有一个备份。（顺便提一句，Gitee 也是目前为止，解决 Github 下载速度慢问题<strong>最新且最优</strong>的办法）；</li>
 </ul>
-<h2 id="7-关于Gitee"><a href="#7-关于Gitee" class="headerlink" title="7 关于Gitee"></a>7 关于Gitee</h2><blockquote>
+<h2 id="7-关于gitee">7 关于Gitee</h2>
+<blockquote>
 <p>码云 Gitee ：是由开源中国（OSChina）出品，旨在树立国内代码托管和协作开发的行业标杆，灵活便捷地支撑个人、团队、企业的开发需求的产品。</p>
 </blockquote>
 <ul>
-<li><p>Gitee 可以理解为就是国内的 Github ，也使用 git 内核，我们可以将 Hexo 博文同时同步到 Github 和 Gitee 上，国外访问你的博客用 Github（<del>谁看啊</del> ），国内用户使用 Gitee。</p>
+<li>
+<p>Gitee 可以理解为就是国内的 Github ，也使用 git 内核，我们可以将 Hexo 博文同时同步到 Github 和 Gitee 上，国外访问你的博客用 Github（<s>谁看啊</s> ），国内用户使用 Gitee。</p>
 </li>
-<li><p>Gitee 官网：<strong><a href="https://gitee.com" target="_blank" rel="noopener">https://gitee.com</a></strong></p>
+<li>
+<p>Gitee 官网：<strong><a href="https://gitee.com" target="_blank" rel="noopener">https://gitee.com</a></strong></p>
 </li>
-<li><p>可参考的博客：<strong><a href="https://www.cnblogs.com/somata/p/11255547.html" target="_blank" rel="noopener">通过gitee和hexo搭建个人博客</a></strong></p>
+<li>
+<p>可参考的博客：<strong><a href="https://www.cnblogs.com/somata/p/11255547.html" target="_blank" rel="noopener">通过gitee和hexo搭建个人博客</a></strong></p>
 </li>
-<li><p>关于将博客部署到 Gittee 服务器上，操作与 Github 原理一致，只是服务器由 Github 更改到 Gitee 上，更改只需要做两点：</p>
+<li>
+<p>关于将博客部署到 Gittee 服务器上，操作与 Github 原理一致，只是服务器由 Github 更改到 Gitee 上，更改只需要做两点：</p>
 <ul>
-<li><p>创建 Gitee 用户以及个人仓库（博客后缀名由 <strong>yourname.github.io</strong> 变成了 <strong>yourname.gitee.io</strong>）</p>
+<li>
+<p>创建 Gitee 用户以及个人仓库（博客后缀名由 <strong><a href="http://yourname.github.io" target="_blank" rel="noopener">yourname.github.io</a></strong> 变成了 <strong><a href="http://yourname.gitee.io" target="_blank" rel="noopener">yourname.gitee.io</a></strong>）</p>
 </li>
-<li><p>修改<strong>本地 Hexo 根目录下</strong>的 <strong>_config.yml</strong> 文件，将 <strong>Deployment</strong> 及 <strong>URL</strong> 更改为相应的 gitee 链接</p>
-<pre><code># URL
-## If your site is put in a subdirectory, set url as &#39;http://yoursite.com/child&#39; and root as &#39;/child/&#39;
-url: http://yourname.gitee.io/
-root: /
-</code></pre><pre><code># Deployment
-## Docs: https://hexo.io/docs/deployment.html
-deploy:
-  type: git
-  repo: https://gitee.com/yourname/yourname.git
-  branch: master
-</code></pre></li>
+<li>
+<p>修改<strong>本地 Hexo 根目录下</strong>的 <strong>_config.yml</strong> 文件，将 <strong>Deployment</strong> 及 <strong>URL</strong> 更改为相应的 gitee 链接</p>
+<div class="highlight"><pre class="code"><code># URL
+## If your site <span class="hljs-keyword">is</span> <span class="hljs-keyword">put</span> in <span class="hljs-keyword">a</span> subdirectory, <span class="hljs-keyword">set</span> url <span class="hljs-keyword">as</span> <span class="hljs-string">&#x27;http://yoursite.com/child&#x27;</span> <span class="hljs-built_in">and</span> root <span class="hljs-keyword">as</span> <span class="hljs-string">&#x27;/child/&#x27;</span>
+ur<span class="hljs-variable">l:</span> http://yourname.gitee.io/
+roo<span class="hljs-variable">t:</span> /
+</code></pre></div>
+<div class="highlight"><pre class="code"><code><span class="hljs-meta"># Deployment</span>
+<span class="hljs-meta">## Docs: https:<span class="hljs-comment">//hexo.io/docs/deployment.html</span></span>
+<span class="hljs-symbol">deploy:</span>
+<span class="hljs-symbol">  type:</span> git
+<span class="hljs-symbol">  repo:</span> https:<span class="hljs-comment">//gitee.com/yourname/yourname.git</span>
+<span class="hljs-symbol">  branch:</span> master
+</code></pre></div>
+</li>
 </ul>
 </li>
-<li><p>不需要将代码上传到 Gitee 的仓库中，使用 <code>hexo d -g</code> 指令在本地部署上传即可。</p>
+<li>
+<p>不需要将代码上传到 Gitee 的仓库中，使用 <code>hexo d -g</code> 指令在本地部署上传即可。</p>
 </li>
-<li><p>需要注意的是，Gitee 普通版不支持自动更新，即你用 Hexo 部署到服务器后，需要到 Gitee Pages 服务<strong>手动更新</strong>，更新的博文才会生效。</p>
+<li>
+<p>需要注意的是，Gitee 普通版不支持自动更新，即你用 Hexo 部署到服务器后，需要到 Gitee Pages 服务<strong>手动更新</strong>，更新的博文才会生效。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/hexo-github-gitee-03.png" alt="hexo-github-gitee-03"></p>
 </li>
 </ul>
