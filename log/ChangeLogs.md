@@ -2,7 +2,7 @@
  * @Author: Lili Liang
  * @Date: 2024-05-13 15:50:54
  * @LastEditors: Lili Liang
- * @LastEditTime: 2024-05-13 22:03:44
+ * @LastEditTime: 2024-05-13 22:10:50
  * @Description: Please set description
 -->
 ## Timeline
@@ -37,11 +37,12 @@
   - 优化博客样式
   - 处理 Mathjax 渲染失效问题，参考 [博客](https://www.jianshu.com/p/e8d433a2c5b7)
   - 重新设计 About 页面
-  - 对域名：https://leungll.site，配置谷歌收录、谷歌站长工具、百度收录、百度站长工具
+  - 对域名：<https://leungll.site>，配置谷歌收录、谷歌站长工具、百度收录、百度站长工具
   - 重新搭建个人 CDN
 
 ## 注意事项
-
+- [CDN仓库](https://github.com/leungll/MyImgHosting) 不可改成私有，否则图床的图片全部不可见
+- 对于 ZenMind 配置的 Mathjax，如果 `hexo clean && hexo g` 导致代码高亮不生效，重新执行命令
 
 ## TODO
 - ~~提交百度搜索引擎收录~~
