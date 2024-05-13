@@ -52,4 +52,4 @@
 - [x] To add `RSS` subscription.
 - [ ] To add article update time record.
 - [ ] To use [hexo-git-backup](https://github.com/coneycode/hexo-git-backup) for blog backup.
-- [ ] To enable blog comments: [Valine](https://valine.js.org/)
+- [ ] To enable blog comment: [Valine](https://valine.js.org/) .
