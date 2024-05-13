@@ -40,7 +40,7 @@
   - 对域名：<https://leungll.site>，配置谷歌收录、谷歌站长工具、百度收录、百度站长工具
   - 重新搭建个人 CDN
 
-## 注意事项
+## Precautions
 - [CDN仓库](https://github.com/leungll/MyImgHosting) 不可改成私有，否则图床的图片全部不可见
 - 对于 ZenMind 配置的 Mathjax，如果 `hexo clean && hexo g` 导致代码高亮不生效，重新执行命令
 
