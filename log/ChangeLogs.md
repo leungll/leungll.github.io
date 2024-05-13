@@ -2,7 +2,7 @@
  * @Author: Lili Liang
  * @Date: 2024-05-13 15:50:54
  * @LastEditors: Lili Liang
- * @LastEditTime: 2024-05-13 23:40:59
+ * @LastEditTime: 2024-05-13 23:42:31
  * @Description: Please set description
 -->
 ## Timeline
@@ -53,4 +53,3 @@
 - [ ] To add article update time record.
 - [ ] To use [hexo-git-backup](https://github.com/coneycode/hexo-git-backup) for blog backup.
 - [ ] To enable blog comments: [Valine](https://valine.js.org/)
-- etc.
