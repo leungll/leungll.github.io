@@ -31,25 +31,25 @@
 
     <!-- title -->
     
-        <title>最短路径算法之Dijkstra &amp; BellmanFord（模板） | Lili Liang</title>
+        <title>最短路径算法之 Dijkstra &amp;&amp; BellmanFord（模板） | Lili Liang</title>
     
 
     <!-- 
     
-        <title>最短路径算法之Dijkstra &amp; BellmanFord（模板） - Lili Liang</title>
+        <title>最短路径算法之 Dijkstra &amp;&amp; BellmanFord（模板） - Lili Liang</title>
     
      -->
   
     <!-- Open graph -->
     <meta name="description" content="1 Dijkstra 算法  适用范围：不能解决带有负边的图  1.1 算法模板 #include &lt;iosream&gt; #include &lt;cstdio&gt; using namespace std;  #define maxn 205 #define inf 1e18 #define eps 0.00001 typedef long long ll; const ll mod">
 <meta property="og:type" content="article">
-<meta property="og:title" content="最短路径算法之Dijkstra &amp; BellmanFord（模板）">
+<meta property="og:title" content="最短路径算法之 Dijkstra &amp;&amp; BellmanFord（模板）">
 <meta property="og:url" content="https://leungll.site/2020/05/26/dijkstra-bellmanFord/index.html">
 <meta property="og:site_name" content="Lili Liang">
 <meta property="og:description" content="1 Dijkstra 算法  适用范围：不能解决带有负边的图  1.1 算法模板 #include &lt;iosream&gt; #include &lt;cstdio&gt; using namespace std;  #define maxn 205 #define inf 1e18 #define eps 0.00001 typedef long long ll; const ll mod">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/dijkstra-bellmanFord-01.png">
 <meta property="article:published_time" content="2020-05-26T13:21:06.000Z">
-<meta property="article:modified_time" content="2024-05-12T14:02:04.759Z">
+<meta property="article:modified_time" content="2024-05-24T06:32:58.827Z">
 <meta property="article:author" content="Lili Liang 梁莉莉">
 <meta property="article:tag" content="C&#x2F;C++">
 <meta property="article:tag" content="PAT">
@@ -115,7 +115,7 @@
 <div class="post-main">
     
         <div class="post-main-title">
-            最短路径算法之Dijkstra &amp; BellmanFord（模板）
+            最短路径算法之 Dijkstra &amp;&amp; BellmanFord（模板）
         </div>
         <div class="post-meta">
             May 26, 2020 ｜ 
@@ -319,14 +319,17 @@ ll n, vis[maxn][maxn], dis[maxn];
 <h2 id="2-bellmanford">2 BellmanFord</h2>
 <h3 id="21-讲解">2.1 讲解</h3>
 <ul>
-<li>适用范围
+<li>
+<p>适用范围</p>
 <ul>
 <li>BellmanFord 算法适合含有<strong>负权</strong>的<strong>大图</strong>求最短路径 。</li>
 <li>但如果存在从源点可达的负权值回路（负回路），则最短路径不存在。因为可以重复走这个回路，使得路径无穷小。</li>
 </ul>
 </li>
-<li>松弛操作<br>
-<img src="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/dijkstra-bellmanFord-01.png" alt="dijkstra-bellmanFord-01"></li>
+<li>
+<p>松弛操作</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/dijkstra-bellmanFord-01.png" alt="dijkstra-bellmanFord-01"></p>
+</li>
 </ul>
 <h3 id="22-例题">2.2 例题</h3>
 <blockquote>
@@ -454,22 +457,5 @@ ll n, vis[maxn][maxn], dis[maxn];
 
             </div>
         </div>
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-</body>
+    </body>
 </html>

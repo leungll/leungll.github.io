@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://leungll.site/2020/05/26/dijkstra-bellmanFord/</loc>
+    
+    <lastmod>2024-05-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://leungll.site/2021/01/26/mysql-navicat-install/</loc>
     
     <lastmod>2024-05-24</lastmod>
@@ -48,15 +57,6 @@
   
   <url>
     <loc>https://leungll.site/2020/03/11/ex-gcd-permalink/</loc>
-    
-    <lastmod>2024-05-12</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://leungll.site/2020/05/26/dijkstra-bellmanFord/</loc>
     
     <lastmod>2024-05-12</lastmod>
     
