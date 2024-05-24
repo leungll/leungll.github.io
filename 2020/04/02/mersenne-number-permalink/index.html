@@ -31,24 +31,24 @@
 
     <!-- title -->
     
-        <title>【洛谷 1045 &amp; 蓝桥杯 算法训练 ALGO-26】麦森数（二分 + 高精度） | Lili Liang</title>
+        <title>【洛谷 1045 &amp;&amp; 蓝桥杯 算法训练 ALGO - 26】麦森数（二分 + 高精度） | Lili Liang</title>
     
 
     <!-- 
     
-        <title>【洛谷 1045 &amp; 蓝桥杯 算法训练 ALGO-26】麦森数（二分 + 高精度） - Lili Liang</title>
+        <title>【洛谷 1045 &amp;&amp; 蓝桥杯 算法训练 ALGO - 26】麦森数（二分 + 高精度） - Lili Liang</title>
     
      -->
   
     <!-- Open graph -->
     <meta name="description" content="1 题目 问题描述  形如 $2 ^ {P}-1$ 的素数称为麦森数，这时 $P$ 一定也是个素数。但反过来不一定，即如果 $P$ 是个素数， $2 ^ {P}-1$ 不一定也是素数。到 1998 年底，人们已找到了 37 个麦森数。最大的一个是 $P&#x3D;3021377$ ，它有 $909526$ 位。麦森数有许多重要应用，它与完全数密切相关。 任务：从文件中输入 $P（1000 &lt; P &amp;l">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【洛谷 1045 &amp; 蓝桥杯 算法训练 ALGO-26】麦森数（二分 + 高精度）">
+<meta property="og:title" content="【洛谷 1045 &amp;&amp; 蓝桥杯 算法训练 ALGO - 26】麦森数（二分 + 高精度）">
 <meta property="og:url" content="https://leungll.site/2020/04/02/mersenne-number-permalink/index.html">
 <meta property="og:site_name" content="Lili Liang">
 <meta property="og:description" content="1 题目 问题描述  形如 $2 ^ {P}-1$ 的素数称为麦森数，这时 $P$ 一定也是个素数。但反过来不一定，即如果 $P$ 是个素数， $2 ^ {P}-1$ 不一定也是素数。到 1998 年底，人们已找到了 37 个麦森数。最大的一个是 $P&#x3D;3021377$ ，它有 $909526$ 位。麦森数有许多重要应用，它与完全数密切相关。 任务：从文件中输入 $P（1000 &lt; P &amp;l">
 <meta property="article:published_time" content="2020-04-02T14:24:37.000Z">
-<meta property="article:modified_time" content="2024-05-03T14:16:04.397Z">
+<meta property="article:modified_time" content="2024-05-24T08:20:52.172Z">
 <meta property="article:author" content="Lili Liang 梁莉莉">
 <meta property="article:tag" content="C&#x2F;C++">
 <meta property="article:tag" content="快速幂">
@@ -113,7 +113,7 @@
 <div class="post-main">
     
         <div class="post-main-title">
-            【洛谷 1045 &amp; 蓝桥杯 算法训练 ALGO-26】麦森数（二分 + 高精度）
+            【洛谷 1045 &amp;&amp; 蓝桥杯 算法训练 ALGO - 26】麦森数（二分 + 高精度）
         </div>
         <div class="post-meta">
             Apr 2, 2020 ｜ 
@@ -129,25 +129,25 @@
         <!-- </div> -->
         <div class="post-md">
             <h2 id="1-题目">1 题目</h2>
-<h4 id="问题描述">问题描述</h4>
+<h2 id="问题描述">问题描述</h2>
 <blockquote>
 <p>形如 <span class="markdown-them-math-inline">$2 ^ {P}-1$</span> 的素数称为麦森数，这时 <span class="markdown-them-math-inline">$P$</span> 一定也是个素数。但反过来不一定，即如果 <span class="markdown-them-math-inline">$P$</span> 是个素数， <span class="markdown-them-math-inline">$2 ^ {P}-1$</span> 不一定也是素数。到 1998 年底，人们已找到了 37 个麦森数。最大的一个是 <span class="markdown-them-math-inline">$P=3021377$</span> ，它有 <span class="markdown-them-math-inline">$909526$</span> 位。麦森数有许多重要应用，它与完全数密切相关。<br>
 任务：从文件中输入 <span class="markdown-them-math-inline">$P（1000 &lt; P &lt; 3100000）$</span>，计算 <span class="markdown-them-math-inline">$2 ^ {P}-1$</span> 的位数和最后 <span class="markdown-them-math-inline">$500$</span> 位数字（用十进制高精度数表示）</p>
 </blockquote>
-<h4 id="输入格式">输入格式</h4>
+<h2 id="输入格式">输入格式</h2>
 <blockquote>
 <p>文件中只包含一个整数 <span class="markdown-them-math-inline">$P$</span>（1000 &lt; P &lt; 3100000）</p>
 </blockquote>
-<h4 id="输出格式">输出格式</h4>
+<h2 id="输出格式">输出格式</h2>
 <blockquote>
 <p>第一行：十进制高精度数 <span class="markdown-them-math-inline">$2 ^ {P}-1$</span> 的位数。<br>
 第 2 - 11 行：十进制高精度数 <span class="markdown-them-math-inline">$2 ^ {P}-1$</span> 的最后 500 位数字.（每行输出 50 位，共输出 10 行，不足 500 位时高位补 0 ）<br>
 不必验证 <span class="markdown-them-math-inline">$2 ^ {P}-1$</span> 与 <span class="markdown-them-math-inline">$P$</span> 是否为素数。</p>
 </blockquote>
-<h4 id="样例输入">样例输入</h4>
+<h2 id="样例输入">样例输入</h2>
 <div class="highlight"><pre class="code"><code><span class="hljs-number">1279</span>
 </code></pre></div>
-<h4 id="样例输出">样例输出</h4>
+<h2 id="样例输出">样例输出</h2>
 <div class="highlight"><pre class="code"><code>386
 00000000000000000000000000000000000000000000000000
 00000000000000000000000000000000000000000000000000
@@ -172,7 +172,7 @@
 <li>首先要知道的是 <span class="markdown-them-math-inline">$2 ^ {P}-1$</span> 与 <span class="markdown-them-math-inline">$2 ^ {P}$</span> 有相同的位数，因此接下来我们直接求 <span class="markdown-them-math-inline">$2 ^ {P}$</span> 的位数</li>
 <li>不妨设 <span class="markdown-them-math-inline">$k\ =\ 2^{p}$</span></li>
 <li>我们知道， <span class="markdown-them-math-inline">$10^{n}$</span> 的位数为 <span class="markdown-them-math-inline">$n+1$</span>，而根据对数运算规则，<span class="markdown-them-math-inline">$10^{\lg 2}\ =\ 2$</span></li>
-<li>因此将 <span class="markdown-them-math-inline">$10^{\lg 2}\ =\ 2$</span> 代入<span class="markdown-them-math-inline">$k\ =\ 2^{p}$</span> 得<br>
+<li>因此将 <span class="markdown-them-math-inline">$10^{\lg 2}\ =\ 2$</span> 代入 <span class="markdown-them-math-inline">$k\ =\ 2^{p}$</span> 得<br>
 <div class="markdown-them-math-block">$$k = 10 ^ {\lg 2 * p}$$</div><br>
 所以 <span class="markdown-them-math-inline">$ 2 ^ {P}$</span> 的位数为 <span class="markdown-them-math-inline">$p*{\lg 2} +1$</span></li>
 <li>另外，C++ 的 cmath 库中<strong>自带 log10() 函数</strong>。也有直接计算位数的函数：<strong>ceil( n 次方 * log10(底数))</strong></li>
@@ -303,22 +303,5 @@
 
             </div>
         </div>
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-</body>
+    </body>
 </html>

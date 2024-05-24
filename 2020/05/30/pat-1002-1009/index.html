@@ -31,24 +31,24 @@
 
     <!-- title -->
     
-        <title>【PAT甲级】1002 A+B for Polynomials &amp; 1009 Product of Polynomials | Lili Liang</title>
+        <title>【PAT甲级】1002 A+B for Polynomials &amp;&amp; 1009 Product of Polynomials | Lili Liang</title>
     
 
     <!-- 
     
-        <title>【PAT甲级】1002 A+B for Polynomials &amp; 1009 Product of Polynomials - Lili Liang</title>
+        <title>【PAT甲级】1002 A+B for Polynomials &amp;&amp; 1009 Product of Polynomials - Lili Liang</title>
     
      -->
   
     <!-- Open graph -->
-    <meta name="description" content="1 A+B for Polynomials 题目链接：1002 A+B for Polynomials  This time, you are supposed to find A+B where A and B are two polynomials.  Input Specification  Each input file contains one test case. Each case">
+    <meta name="description" content="1 A+B for Polynomials题目链接：1002 A+B for Polynomials  This time, you are supposed to find A+B where A and B are two polynomials.  Input Specification Each input file contains one test case. Each case oc">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【PAT甲级】1002 A+B for Polynomials &amp; 1009 Product of Polynomials">
+<meta property="og:title" content="【PAT甲级】1002 A+B for Polynomials &amp;&amp; 1009 Product of Polynomials">
 <meta property="og:url" content="https://leungll.site/2020/05/30/pat-1002-1009/index.html">
 <meta property="og:site_name" content="Lili Liang">
-<meta property="og:description" content="1 A+B for Polynomials 题目链接：1002 A+B for Polynomials  This time, you are supposed to find A+B where A and B are two polynomials.  Input Specification  Each input file contains one test case. Each case">
+<meta property="og:description" content="1 A+B for Polynomials题目链接：1002 A+B for Polynomials  This time, you are supposed to find A+B where A and B are two polynomials.  Input Specification Each input file contains one test case. Each case oc">
 <meta property="article:published_time" content="2020-05-30T14:13:56.000Z">
-<meta property="article:modified_time" content="2024-04-29T11:50:22.805Z">
+<meta property="article:modified_time" content="2024-05-24T08:29:39.649Z">
 <meta property="article:author" content="Lili Liang 梁莉莉">
 <meta property="article:tag" content="C&#x2F;C++">
 <meta property="article:tag" content="PAT">
@@ -111,7 +111,7 @@
 <div class="post-main">
     
         <div class="post-main-title">
-            【PAT甲级】1002 A+B for Polynomials &amp; 1009 Product of Polynomials
+            【PAT甲级】1002 A+B for Polynomials &amp;&amp; 1009 Product of Polynomials
         </div>
         <div class="post-meta">
             May 30, 2020 ｜ 
@@ -126,157 +126,134 @@
             <!--  -->
         <!-- </div> -->
         <div class="post-md">
-            <h2 id="1-a+b for polynomials">1 A+B for Polynomials</h2>
-<p><strong>题目链接：<a href="https://pintia.cn/problem-sets/994805342720868352/problems/994805526272000000" target="_blank" rel="noopener">1002 A+B for Polynomials</a></strong></p>
+            <h2 id="1-A-B-for-Polynomials"><a href="#1-A-B-for-Polynomials" class="headerlink" title="1 A+B for Polynomials"></a>1 A+B for Polynomials</h2><p><strong>题目链接：<a href="https://pintia.cn/problem-sets/994805342720868352/problems/994805526272000000" target="_blank" rel="noopener">1002 A+B for Polynomials</a></strong></p>
 <blockquote>
 <p>This time, you are supposed to find A+B where A and B are two polynomials.</p>
 </blockquote>
-<h3 id="input-specification">Input Specification</h3>
-<blockquote>
-<p>Each input file contains one test case. Each case occupies 2 lines, and each line contains the information of a polynomial:<br>
-<span class="markdown-them-math-inline">$K\ N_1\ a_{​N​1}​​​​ N_2\ a_{​N​2}​​​​...\ N_K​\ a_{​N​K}​​​​$</span><br>
-where <span class="markdown-them-math-inline">$K$</span> is the number of nonzero terms in the polynomial, <span class="markdown-them-math-inline">$N​_i$</span>​​ and <span class="markdown-them-math-inline">$a​_{N​i}​​​​(i=1,2,⋯,K)$</span> are the exponents and coefficients, respectively. It is given that<br>
-<span class="markdown-them-math-inline">$1 ≤ K ≤ 10，0 ≤ N​_K ​​&lt; ⋯ &lt; N_2 ​​&lt; N​_1 ≤ 1000$</span>.</p>
+<h3 id="Input-Specification"><a href="#Input-Specification" class="headerlink" title="Input Specification"></a>Input Specification</h3><blockquote>
+<p>Each input file contains one test case. Each case occupies 2 lines, and each line contains the information of a polynomial:<br>$K N_1 a_{​N​1}​​​​ N_2 a_{​N​2}​​​​… N_K​ a_{​N​K}​​​​$<br>where $K$ is the number of nonzero terms in the polynomial, $N​_i$​​ and $a​_{N​i}​​​​(i=1,2,⋯,K)$ are the exponents and coefficients, respectively. It is given that<br>$1 ≤ K ≤ 10，0 ≤ N​_K ​​&lt; ⋯ &lt; N_2 ​​&lt; N​_1 ≤ 1000$.</p>
 </blockquote>
-<h3 id="output-specification">Output Specification</h3>
-<blockquote>
-<p>For each test case you should output the sum of <span class="markdown-them-math-inline">$A$</span> and <span class="markdown-them-math-inline">$B$</span> in one line, with the same format as the input. Notice that there must be <strong>NO</strong> extra space at the end of each line. Please be accurate to 1 decimal place.</p>
+<h3 id="Output-Specification"><a href="#Output-Specification" class="headerlink" title="Output Specification"></a>Output Specification</h3><blockquote>
+<p>For each test case you should output the sum of $A$ and $B$ in one line, with the same format as the input. Notice that there must be <strong>NO</strong> extra space at the end of each line. Please be accurate to 1 decimal place.</p>
 </blockquote>
-<h3 id="sample-input">Sample Input</h3>
-<blockquote>
-<p>2 1 2.4 0 3.2<br>
-2 2 1.5 1 0.5</p>
+<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><blockquote>
+<p>2 1 2.4 0 3.2<br>2 2 1.5 1 0.5</p>
 </blockquote>
-<h3 id="sample-output">Sample Output</h3>
-<blockquote>
+<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><blockquote>
 <p>3 2 1.5 1 2.9 0 3.2</p>
 </blockquote>
-<h3 id="解题思路">解题思路</h3>
-<p>这道题有几个点需要注意：</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>这道题有几个点需要注意：</p>
 <ul>
 <li>处理<strong>输入数据方式</strong>和常规有一些区别</li>
 <li>coefficients 为<strong>浮点数</strong>且为<strong>负数时也要输出</strong></li>
 <li>输出要精确到<strong>小数点后一位</strong></li>
 <li>最后<strong>没有空格</strong></li>
 </ul>
-<h3 id="题解">题解</h3>
-<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
-<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><pre class=" language-lang-cpp"><code class="language-lang-cpp">#include <iostream>
+#include <cstdio>
+using namespace std;
 
-<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn = <span class="hljs-number">1e3</span> + <span class="hljs-number">5</span>;
-<span class="hljs-keyword">double</span> a[maxn] = {<span class="hljs-number">0</span>};
+const int maxn = 1e3 + 5;
+double a[maxn] = {0};
 
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
-    <span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> ONLINE_JUDGE</span>
-    <span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span>
-        <span class="hljs-built_in">freopen</span>(<span class="hljs-string">&quot;input.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, stdin);
-    <span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span> <span class="hljs-comment">// ONLINE_JUDGE</span></span>
-    <span class="hljs-keyword">int</span> k;
-    cin &gt;&gt; k;
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; k;i++){
-        <span class="hljs-keyword">int</span> exp;
-        <span class="hljs-keyword">double</span> coe;
-        cin &gt;&gt; exp &gt;&gt; coe;
+int main(){
+    #ifdef ONLINE_JUDGE
+    #else
+        freopen("input.txt", "r", stdin);
+    #endif // ONLINE_JUDGE
+    int k;
+    cin >> k;
+    for(int i = 0;i < k;i++){
+        int exp;
+        double coe;
+        cin >> exp >> coe;
         a[exp] = coe;
     }
-    cin &gt;&gt; k;
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; k;i++){
-        <span class="hljs-keyword">int</span> exp;
-        <span class="hljs-keyword">double</span> coe;
-        cin &gt;&gt; exp &gt;&gt; coe;
+    cin >> k;
+    for(int i = 0;i < k;i++){
+        int exp;
+        double coe;
+        cin >> exp >> coe;
         a[exp] += coe;
     }
-    <span class="hljs-keyword">int</span> cnt = <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; maxn;i++){
-        <span class="hljs-keyword">if</span>(a[i]){
+    int cnt = 0;
+    for(int i = 0;i < maxn;i++){
+        if(a[i]){
             cnt++;
         }
     }
-    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, cnt);
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = maxn;i &gt;= <span class="hljs-number">0</span>;i--){
-        <span class="hljs-comment">//负数也需要输出</span>
-        <span class="hljs-keyword">if</span>(a[i] != <span class="hljs-number">0</span>){
-			<span class="hljs-comment">//cout &lt;&lt; &quot; &quot; &lt;&lt; i &lt;&lt; &quot; &quot; &lt;&lt; a[i];</span>
-            <span class="hljs-comment">//coe精确到小数点后一位</span>
-            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; %d %.1f&quot;</span>, i, a[i]);
+    printf("%d", cnt);
+    for(int i = maxn;i >= 0;i--){
+        //负数也需要输出
+        if(a[i] != 0){
+            //cout << " " << i << " " << a[i];
+            //coe精确到小数点后一位
+            printf(" %d %.1f", i, a[i]);
         }
     }
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    return 0;
 }
-
-</code></pre></div>
-<h2 id="2-product of polynomials">2 Product of Polynomials</h2>
-<p><strong>题目链接：<a href="https://pintia.cn/problem-sets/994805342720868352/problems/994805509540921344" target="_blank" rel="noopener">1009 Product of Polynomials</a></strong></p>
+</code></pre>
+<h2 id="2-Product-of-Polynomials"><a href="#2-Product-of-Polynomials" class="headerlink" title="2 Product of Polynomials"></a>2 Product of Polynomials</h2><p><strong>题目链接：<a href="https://pintia.cn/problem-sets/994805342720868352/problems/994805509540921344" target="_blank" rel="noopener">1009 Product of Polynomials</a></strong></p>
 <blockquote>
-<p>This time, you are supposed to find <span class="markdown-them-math-inline">$A×B$</span> where <span class="markdown-them-math-inline">$A$</span> and <span class="markdown-them-math-inline">$B$</span> are two polynomials.</p>
+<p>This time, you are supposed to find $A×B$ where $A$ and $B$ are two polynomials.</p>
 </blockquote>
-<h3 id="input-specification-1">Input Specification</h3>
-<blockquote>
-<p>Each input file contains one test case. Each case occupies 2 lines, and each line contains the information of a polynomial:<br>
-<span class="markdown-them-math-inline">$K\ N_1\ a_{​N​1}​​​​ N_2\ a_{​N​2}​​​​...\ N_K​\ a_{​N​K}​​​​$</span><br>
-where <span class="markdown-them-math-inline">$K$</span> is the number of nonzero terms in the polynomial, <span class="markdown-them-math-inline">$N​_i$</span>​​ and <span class="markdown-them-math-inline">$a​_{N​i}​​​​(i=1,2,⋯,K)$</span> are the exponents and coefficients, respectively. It is given that<br>
-<span class="markdown-them-math-inline">$1 ≤ K ≤ 10，0 ≤ N​_K​ ​&lt; ⋯ &lt; N_2 ​​&lt; N​_1 ≤ 1000$</span>.</p>
+<h3 id="Input-Specification-1"><a href="#Input-Specification-1" class="headerlink" title="Input Specification"></a>Input Specification</h3><blockquote>
+<p>Each input file contains one test case. Each case occupies 2 lines, and each line contains the information of a polynomial:<br>$K N_1 a_{​N​1}​​​​ N_2 a_{​N​2}​​​​… N_K​ a_{​N​K}​​​​$<br>where $K$ is the number of nonzero terms in the polynomial, $N​_i$​​ and $a​_{N​i}​​​​(i=1,2,⋯,K)$ are the exponents and coefficients, respectively. It is given that<br>$1 ≤ K ≤ 10，0 ≤ N​_K​ ​&lt; ⋯ &lt; N_2 ​​&lt; N​_1 ≤ 1000$.</p>
 </blockquote>
-<h3 id="output-specification-1">Output Specification</h3>
-<blockquote>
-<p>For each test case you should output the sum of <span class="markdown-them-math-inline">$A$</span> and <span class="markdown-them-math-inline">$B$</span> in one line, with the same format as the input. Notice that there must be <strong>NO</strong> extra space at the end of each line. Please be accurate to 1 decimal place.</p>
+<h3 id="Output-Specification-1"><a href="#Output-Specification-1" class="headerlink" title="Output Specification"></a>Output Specification</h3><blockquote>
+<p>For each test case you should output the sum of $A$ and $B$ in one line, with the same format as the input. Notice that there must be <strong>NO</strong> extra space at the end of each line. Please be accurate to 1 decimal place.</p>
 </blockquote>
-<h3 id="sample-input-1">Sample Input</h3>
-<blockquote>
-<p>2 1 2.4 0 3.2<br>
-2 2 1.5 1 0.5</p>
+<h3 id="Sample-Input-1"><a href="#Sample-Input-1" class="headerlink" title="Sample Input"></a>Sample Input</h3><blockquote>
+<p>2 1 2.4 0 3.2<br>2 2 1.5 1 0.5</p>
 </blockquote>
-<h3 id="sample-output-1">Sample Output</h3>
-<blockquote>
+<h3 id="Sample-Output-1"><a href="#Sample-Output-1" class="headerlink" title="Sample Output"></a>Sample Output</h3><blockquote>
 <p>3 3 3.6 2 6.0 1 1.6</p>
 </blockquote>
-<h3 id="解题思路-1">解题思路</h3>
-<p>注意一个坑：作为输出结果的 <span class="markdown-them-math-inline">$C[maxn2]$</span> 数组，范围需要开到 <span class="markdown-them-math-inline">$2000$</span> 以上才可。</p>
-<h3 id="题解-1">题解</h3>
-<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
-<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><p>注意一个坑：作为输出结果的 $C[maxn2]$ 数组，范围需要开到 $2000$ 以上才可。</p>
+<h3 id="题解-1"><a href="#题解-1" class="headerlink" title="题解"></a>题解</h3><pre class=" language-lang-cpp"><code class="language-lang-cpp">#include <iostream>
+#include <cstdio>
+using namespace std;
 
-<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn = <span class="hljs-number">1005</span>, maxn2 = <span class="hljs-number">2010</span>;
-<span class="hljs-keyword">double</span> a[maxn] = {<span class="hljs-number">0</span>}, b[maxn] = {<span class="hljs-number">0</span>}, c[maxn2] = {<span class="hljs-number">0</span>};
+const int maxn = 1005, maxn2 = 2010;
+double a[maxn] = {0}, b[maxn] = {0}, c[maxn2] = {0};
 
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
-    <span class="hljs-keyword">int</span> k;
-    cin &gt;&gt; k;
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; k;i++){
-        <span class="hljs-keyword">int</span> exp;
-        <span class="hljs-keyword">double</span> coe;
-        cin &gt;&gt; exp &gt;&gt; coe;
+int main(){
+    int k;
+    cin >> k;
+    for(int i = 0;i < k;i++){
+        int exp;
+        double coe;
+        cin >> exp >> coe;
         a[exp] = coe;
     }
-    cin &gt;&gt; k;
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; k;i++){
-        <span class="hljs-keyword">int</span> exp;
-        <span class="hljs-keyword">double</span> coe;
-        cin &gt;&gt; exp &gt;&gt; coe;
+    cin >> k;
+    for(int i = 0;i < k;i++){
+        int exp;
+        double coe;
+        cin >> exp >> coe;
         b[exp] = coe;
     }
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; maxn;i++){
-        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>;j &lt; maxn;j++){
+    for(int i = 0;i < maxn;i++){
+        for(int j = 0;j < maxn;j++){
             c[i + j] += a[i] * b[j];
         }
     }
-    <span class="hljs-keyword">int</span> cnt = <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; maxn2;i++){
-        <span class="hljs-keyword">if</span>(c[i]){
+    int cnt = 0;
+    for(int i = 0;i < maxn2;i++){
+        if(c[i]){
             cnt++;
         }
     }
-    cout &lt;&lt; cnt;
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = maxn2;i &gt;= <span class="hljs-number">0</span>;i--){
-        <span class="hljs-keyword">if</span>(c[i] != <span class="hljs-number">0</span>){
-            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; %d %.1f&quot;</span>, i, c[i]);
+    cout << cnt;
+    for(int i = maxn2;i >= 0;i--){
+        if(c[i] != 0){
+            printf(" %d %.1f", i, c[i]);
         }
     }
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    return 0;
 }
-</code></pre></div>
+</code></pre>
 
         </div>
     
@@ -316,22 +293,5 @@ where <span class="markdown-them-math-inline">$K$</span> is the number of nonzer
 
             </div>
         </div>
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-</body>
+    </body>
 </html>
