@@ -210,11 +210,12 @@ A Digital Library contains millions of books, stored according to their titles, 
     <div class="post">
         <a class="post-title" href="/2020/05/30/pat-1002-1009/">【PAT甲级】1002 A+B for Polynomials &amp;&amp; 1009 Product of Polynomials</a>
         <div class="post-except">
-            1 A+B for Polynomials题目链接：1002 A+B for Polynomials
+            1 A+B for Polynomials
+题目链接：1002 A+B for Polynomials
 
 This time, you are supposed to find A+B where A and B are two polynomials.
 
-In
+I
             <a class="read-more" href="/2020/05/30/pat-1002-1009/"> ... </a>
         </div>
         <div class="post-date">May 30, 2020</div>
@@ -298,5 +299,22 @@ using namespace std;
 
             </div>
         </div>
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
 </html>
