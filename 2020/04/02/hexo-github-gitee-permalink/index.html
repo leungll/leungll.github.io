@@ -31,27 +31,27 @@
 
     <!-- title -->
     
-        <title>基于Hexo + Github &amp; Gitee 搭建个人Blog | Lili Liang</title>
+        <title>基于Hexo + Github &amp;&amp; Gitee 搭建个人 Blog | Lili Liang</title>
     
 
     <!-- 
     
-        <title>基于Hexo + Github &amp; Gitee 搭建个人Blog - Lili Liang</title>
+        <title>基于Hexo + Github &amp;&amp; Gitee 搭建个人 Blog - Lili Liang</title>
     
      -->
   
     <!-- Open graph -->
-    <meta name="description" content="一年前使用 Hexo + Github 搭过一个博客，但是当时事情多，搭好之后也没有后续维护，导致最后不了了之。现在闲下来，重新打开当时搭的博客，发现实在是太花哨了，因此决定重新搭一个，并记录一下采坑的过程，以便后续更新。  简单来说整个搭建过程可以理解成，将 GitHub 当成个人 Blog 的服务器，而 Hexo 就是一个博客框架，我们可以更换 Hexo 的主题，使博客个性化。 1 关于G">
+    <meta name="description" content="1 关于GitHub Pages 2 关于Hexo 3 Hexo环境搭建 4 Hexo主题更换 5 Hexo常用命令 6 解决Github博客访问过慢问题的方案 7 关于Gitee    一年前使用 Hexo + Github 搭过一个博客，但是当时事情多，搭好之后也没有后续维护，导致最后不了了之。现在闲下来，重新打开当时搭的博客，发现实在是太花哨了，因此决定重新搭一个，并记录一下采坑的过程，以">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基于Hexo + Github &amp; Gitee 搭建个人Blog">
+<meta property="og:title" content="基于Hexo + Github &amp;&amp; Gitee 搭建个人 Blog">
 <meta property="og:url" content="https://leungll.site/2020/04/02/hexo-github-gitee-permalink/index.html">
 <meta property="og:site_name" content="Lili Liang">
-<meta property="og:description" content="一年前使用 Hexo + Github 搭过一个博客，但是当时事情多，搭好之后也没有后续维护，导致最后不了了之。现在闲下来，重新打开当时搭的博客，发现实在是太花哨了，因此决定重新搭一个，并记录一下采坑的过程，以便后续更新。  简单来说整个搭建过程可以理解成，将 GitHub 当成个人 Blog 的服务器，而 Hexo 就是一个博客框架，我们可以更换 Hexo 的主题，使博客个性化。 1 关于G">
+<meta property="og:description" content="1 关于GitHub Pages 2 关于Hexo 3 Hexo环境搭建 4 Hexo主题更换 5 Hexo常用命令 6 解决Github博客访问过慢问题的方案 7 关于Gitee    一年前使用 Hexo + Github 搭过一个博客，但是当时事情多，搭好之后也没有后续维护，导致最后不了了之。现在闲下来，重新打开当时搭的博客，发现实在是太花哨了，因此决定重新搭一个，并记录一下采坑的过程，以">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/hexo-github-gitee-01.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/hexo-github-gitee-02.jpg">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/hexo-github-gitee-03.png">
 <meta property="article:published_time" content="2020-04-02T12:15:19.000Z">
-<meta property="article:modified_time" content="2024-05-12T14:21:11.334Z">
+<meta property="article:modified_time" content="2024-05-24T08:45:50.800Z">
 <meta property="article:author" content="Lili Liang 梁莉莉">
 <meta property="article:tag" content="Hexo">
 <meta property="article:tag" content="Gitee">
@@ -117,7 +117,7 @@
 <div class="post-main">
     
         <div class="post-main-title">
-            基于Hexo + Github &amp; Gitee 搭建个人Blog
+            基于Hexo + Github &amp;&amp; Gitee 搭建个人 Blog
         </div>
         <div class="post-meta">
             Apr 2, 2020 ｜ 
@@ -132,7 +132,16 @@
             <!--  -->
         <!-- </div> -->
         <div class="post-md">
-            <p><img src="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/hexo-github-gitee-01.png" alt="hexo-github-gitee-01"></p>
+            <ul>
+<li><a href="#1-%E5%85%B3%E4%BA%8Egithub-pages">1 关于GitHub Pages</a></li>
+<li><a href="#2-%E5%85%B3%E4%BA%8Ehexo">2 关于Hexo</a></li>
+<li><a href="#3-hexo%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA">3 Hexo环境搭建</a></li>
+<li><a href="#4-hexo%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2">4 Hexo主题更换</a></li>
+<li><a href="#5-hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4">5 Hexo常用命令</a></li>
+<li><a href="#6-%E8%A7%A3%E5%86%B3github%E5%8D%9A%E5%AE%A2%E8%AE%BF%E9%97%AE%E8%BF%87%E6%85%A2%E9%97%AE%E9%A2%98%E7%9A%84%E6%96%B9%E6%A1%88">6 解决Github博客访问过慢问题的方案</a></li>
+<li><a href="#7-%E5%85%B3%E4%BA%8Egitee">7 关于Gitee</a></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/hexo-github-gitee-01.png" alt="hexo-github-gitee-01"></p>
 <blockquote>
 <p>一年前使用 Hexo + Github 搭过一个博客，但是当时事情多，搭好之后也没有后续维护，导致最后不了了之。现在闲下来，重新打开当时搭的博客，发现实在是太花哨了，因此决定重新搭一个，并记录一下采坑的过程，以便后续更新。</p>
 </blockquote>
@@ -212,7 +221,7 @@ hexo d   <span class="hljs-comment">// 部署</span>
 </code></pre></div>
 </li>
 </ul>
-<h2 id="6-解决 github 博客访问过慢问题的方案">6 解决 Github 博客访问过慢问题的方案</h2>
+<h2 id="6-解决github博客访问过慢问题的方案">6 解决Github博客访问过慢问题的方案</h2>
 <p>经常使用 Github 的朋友都知道，因为 Github 服务器在外网，访问 Github 时经常会出现<strong>延时</strong>甚至<strong>拒绝访问</strong>的情况。那么我们基于 Github 服务器搭建的博客也不例外，有没有好的解决方案？</p>
 <ul>
 <li>开<strong>代理服务器</strong>；</li>

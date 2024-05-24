@@ -41,15 +41,15 @@
      -->
   
     <!-- Open graph -->
-    <meta name="description" content="1 Dijkstra 算法  适用范围：不能解决带有负边的图  1.1 算法模板 #include &lt;iosream&gt; #include &lt;cstdio&gt; using namespace std;  #define maxn 205 #define inf 1e18 #define eps 0.00001 typedef long long ll; const ll mod">
+    <meta name="description" content="1 Dijkstra算法  1.1 算法模板 1.2 例题  Problem Description Input Specification Output Specification Sample Input Sample Output 题目大意 解题思路 题解     2 BellmanFord  2.1 讲解 2.2 例题  问题描述 输入格式 输出格式 样例输入 样例输出 数据规模与约定">
 <meta property="og:type" content="article">
 <meta property="og:title" content="最短路径算法之 Dijkstra &amp;&amp; BellmanFord（模板）">
 <meta property="og:url" content="https://leungll.site/2020/05/26/dijkstra-bellmanFord/index.html">
 <meta property="og:site_name" content="Lili Liang">
-<meta property="og:description" content="1 Dijkstra 算法  适用范围：不能解决带有负边的图  1.1 算法模板 #include &lt;iosream&gt; #include &lt;cstdio&gt; using namespace std;  #define maxn 205 #define inf 1e18 #define eps 0.00001 typedef long long ll; const ll mod">
+<meta property="og:description" content="1 Dijkstra算法  1.1 算法模板 1.2 例题  Problem Description Input Specification Output Specification Sample Input Sample Output 题目大意 解题思路 题解     2 BellmanFord  2.1 讲解 2.2 例题  问题描述 输入格式 输出格式 样例输入 样例输出 数据规模与约定">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/dijkstra-bellmanFord-01.png">
 <meta property="article:published_time" content="2020-05-26T13:21:06.000Z">
-<meta property="article:modified_time" content="2024-05-24T06:32:58.827Z">
+<meta property="article:modified_time" content="2024-05-24T08:48:32.355Z">
 <meta property="article:author" content="Lili Liang 梁莉莉">
 <meta property="article:tag" content="C&#x2F;C++">
 <meta property="article:tag" content="PAT">
@@ -130,7 +130,43 @@
             <!--  -->
         <!-- </div> -->
         <div class="post-md">
-            <h2 id="1-dijkstra 算法">1 Dijkstra 算法</h2>
+            <ul>
+<li><a href="#1-dijkstra%E7%AE%97%E6%B3%95">1 Dijkstra算法</a>
+<ul>
+<li><a href="#11-%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF">1.1 算法模板</a></li>
+<li><a href="#12-%E4%BE%8B%E9%A2%98">1.2 例题</a>
+<ul>
+<li><a href="#problem-description">Problem Description</a></li>
+<li><a href="#input-specification">Input Specification</a></li>
+<li><a href="#output-specification">Output Specification</a></li>
+<li><a href="#sample-input">Sample Input</a></li>
+<li><a href="#sample-output">Sample Output</a></li>
+<li><a href="#%E9%A2%98%E7%9B%AE%E5%A4%A7%E6%84%8F">题目大意</a></li>
+<li><a href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF">解题思路</a></li>
+<li><a href="#%E9%A2%98%E8%A7%A3">题解</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#2-bellmanford">2 BellmanFord</a>
+<ul>
+<li><a href="#21-%E8%AE%B2%E8%A7%A3">2.1 讲解</a></li>
+<li><a href="#22-%E4%BE%8B%E9%A2%98">2.2 例题</a>
+<ul>
+<li><a href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0">问题描述</a></li>
+<li><a href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F">输入格式</a></li>
+<li><a href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F">输出格式</a></li>
+<li><a href="#%E6%A0%B7%E4%BE%8B%E8%BE%93%E5%85%A5">样例输入</a></li>
+<li><a href="#%E6%A0%B7%E4%BE%8B%E8%BE%93%E5%87%BA">样例输出</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E8%A7%84%E6%A8%A1%E4%B8%8E%E7%BA%A6%E5%AE%9A">数据规模与约定</a></li>
+<li><a href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF-1">解题思路</a></li>
+<li><a href="#%E9%A2%98%E8%A7%A3-1">题解</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-dijkstra算法">1 Dijkstra算法</h2>
 <blockquote>
 <p>适用范围：不能解决带有负边的图</p>
 </blockquote>

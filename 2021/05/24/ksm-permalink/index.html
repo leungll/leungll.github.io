@@ -31,29 +31,29 @@
 
     <!-- title -->
     
-        <title>快速幂 &amp; 快速乘原理讲解（模板） | Lili Liang</title>
+        <title>快速幂 &amp;&amp; 快速乘原理讲解（模板） | Lili Liang</title>
     
 
     <!-- 
     
-        <title>快速幂 &amp; 快速乘原理讲解（模板） - Lili Liang</title>
+        <title>快速幂 &amp;&amp; 快速乘原理讲解（模板） - Lili Liang</title>
     
      -->
   
     <!-- Open graph -->
-    <meta name="description" content="1 问题描述  我们发现，在 $int$ 型下使用 $pow$ 函数求 $5^{3}$，结果为 $124$ 。   2 原因分析  $pow$ 函数的返回值为 double 型 ，因浮点数长度问题，存在截断误差。   3 解决方法  将变量定义为 double 型   有没有更快求幂的方法？ 4 快速幂讲解  假设我们要求 $a^{b}$ ，按照朴素算法就是把 a 连乘 b 次，这样一来时间复杂度">
+    <meta name="description" content="1 问题描述 2 原因分析 3 解决方法 4 快速幂讲解 5 快速乘讲解 6 完整代码 7 References  1 问题描述  我们发现，在 $int$ 型下使用 $pow$ 函数求 $5^{3}$，结果为 $124$ 。   2 原因分析  $pow$ 函数的返回值为 double 型 ，因浮点数长度问题，存在截断误差。   3 解决方法  将变量定义为 double 型   有没有更快求">
 <meta property="og:type" content="article">
-<meta property="og:title" content="快速幂 &amp; 快速乘原理讲解（模板）">
+<meta property="og:title" content="快速幂 &amp;&amp; 快速乘原理讲解（模板）">
 <meta property="og:url" content="https://leungll.site/2021/05/24/ksm-permalink/index.html">
 <meta property="og:site_name" content="Lili Liang">
-<meta property="og:description" content="1 问题描述  我们发现，在 $int$ 型下使用 $pow$ 函数求 $5^{3}$，结果为 $124$ 。   2 原因分析  $pow$ 函数的返回值为 double 型 ，因浮点数长度问题，存在截断误差。   3 解决方法  将变量定义为 double 型   有没有更快求幂的方法？ 4 快速幂讲解  假设我们要求 $a^{b}$ ，按照朴素算法就是把 a 连乘 b 次，这样一来时间复杂度">
+<meta property="og:description" content="1 问题描述 2 原因分析 3 解决方法 4 快速幂讲解 5 快速乘讲解 6 完整代码 7 References  1 问题描述  我们发现，在 $int$ 型下使用 $pow$ 函数求 $5^{3}$，结果为 $124$ 。   2 原因分析  $pow$ 函数的返回值为 double 型 ，因浮点数长度问题，存在截断误差。   3 解决方法  将变量定义为 double 型   有没有更快求">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-1.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-2.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-3.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-4.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-5.png">
 <meta property="article:published_time" content="2021-05-24T13:49:46.000Z">
-<meta property="article:modified_time" content="2024-05-03T13:48:30.198Z">
+<meta property="article:modified_time" content="2024-05-24T08:45:42.307Z">
 <meta property="article:author" content="Lili Liang 梁莉莉">
 <meta property="article:tag" content="C&#x2F;C++">
 <meta property="article:tag" content="快速幂">
@@ -117,7 +117,7 @@
 <div class="post-main">
     
         <div class="post-main-title">
-            快速幂 &amp; 快速乘原理讲解（模板）
+            快速幂 &amp;&amp; 快速乘原理讲解（模板）
         </div>
         <div class="post-meta">
             May 24, 2021 ｜ 
@@ -132,7 +132,16 @@
             <!--  -->
         <!-- </div> -->
         <div class="post-md">
-            <h2 id="1-问题描述">1 问题描述</h2>
+            <ul>
+<li><a href="#1-%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0">1 问题描述</a></li>
+<li><a href="#2-%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%90">2 原因分析</a></li>
+<li><a href="#3-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95">3 解决方法</a></li>
+<li><a href="#4-%E5%BF%AB%E9%80%9F%E5%B9%82%E8%AE%B2%E8%A7%A3">4 快速幂讲解</a></li>
+<li><a href="#5-%E5%BF%AB%E9%80%9F%E4%B9%98%E8%AE%B2%E8%A7%A3">5 快速乘讲解</a></li>
+<li><a href="#6-%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81">6 完整代码</a></li>
+<li><a href="#7-references">7 References</a></li>
+</ul>
+<h2 id="1-问题描述">1 问题描述</h2>
 <blockquote>
 <p>我们发现，在 <span class="markdown-them-math-inline">$int$</span> 型下使用 <span class="markdown-them-math-inline">$pow$</span> 函数求 <span class="markdown-them-math-inline">$5^{3}$</span>，结果为 <span class="markdown-them-math-inline">$124$</span> 。</p>
 </blockquote>

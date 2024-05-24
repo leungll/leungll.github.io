@@ -2,7 +2,7 @@
  * @Author: Lili Liang
  * @Date: 2024-05-13 15:50:54
  * @LastEditors: Lili Liang
- * @LastEditTime: 2024-05-13 23:42:31
+ * @LastEditTime: 2024-05-24 16:56:48
  * @Description: Please set description
 -->
 ## Timeline
@@ -50,6 +50,7 @@
 - [x] To use Github && jsDelivr && PicGo to build a image bed. Addtionally, the [imgchr](https://imgchr.com/) can also meet the needs.
 - [x] To use jsDelivr && Github to build a CDN, which can optimize the site loading speed.
 - [x] To add `RSS` subscription.
+- [ ] Solve the jump problem of directories with symbols and spaces.
 - [ ] To add article update time record.
 - [ ] To use [hexo-git-backup](https://github.com/coneycode/hexo-git-backup) for blog backup.
 - [ ] To enable blog comment: [Valine](https://valine.js.org/) .
