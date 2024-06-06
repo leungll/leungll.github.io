@@ -2,7 +2,7 @@
  * @Author: Lili Liang
  * @Date: 2024-05-13 15:50:54
  * @LastEditors: Lili Liang
- * @LastEditTime: 2024-05-24 16:56:48
+ * @LastEditTime: 2024-06-06 21:21:45
  * @Description: Please set description
 -->
 ## Timeline
@@ -39,6 +39,8 @@
   - Redesigned `About` page.
   - For domain name: <https://leungll.site>, configured [Google  Search Console](https://search.google.com/search-console/about) && [Google Analytics](https://developers.google.com/analytics/learn) && [Baidu Inclusion](https://ziyuan.baidu.com/dashboard) && [Baidu Tongji](https://tongji.baidu.com) .
   - Rebuilded personal CDN.
+
+- **June 06, 2024**: Added blog mirror source: [Vercel](https://vercel.com/), resolve Baidu crawler to domain name: <https://leungll-github-io.vercel.app>.
 
 ## Notice
 - The [CDN repo](https://github.com/leungll/MyImgHosting) cannot be changed to private，otherwise all the images on the image bed will be invisible.
