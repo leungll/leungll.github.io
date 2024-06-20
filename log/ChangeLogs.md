@@ -2,7 +2,7 @@
  * @Author: Lili Liang
  * @Date: 2024-05-13 15:50:54
  * @LastEditors: Lili Liang
- * @LastEditTime: 2024-06-06 21:21:45
+ * @LastEditTime: 2024-06-07 15:40:40
  * @Description: Please set description
 -->
 ## Timeline
@@ -44,7 +44,7 @@
 
 ## Notice
 - The [CDN repo](https://github.com/leungll/MyImgHosting) cannot be changed to private，otherwise all the images on the image bed will be invisible.
-- For the [MathJax]() configured in the [ZenMind](), if `hexo clean && hexo g` causes the code highlighting to not take effect, you can re-execute the command.
+- For the [MathJax](https://www.mathjax.org) configured in the [ZenMind](https://github.com/LenChou95/hexo-theme-ZenMind), if `hexo clean && hexo g` causes the code highlighting to not take effect, you can re-execute the command.
 
 ## TODO
 - [x] To submit to the Baidu search engine for inclusion.
@@ -52,7 +52,7 @@
 - [x] To use Github && jsDelivr && PicGo to build a image bed. Addtionally, the [imgchr](https://imgchr.com/) can also meet the needs.
 - [x] To use jsDelivr && Github to build a CDN, which can optimize the site loading speed.
 - [x] To add `RSS` subscription.
+- [ ] To use [hexo-git-backup](https://github.com/coneycode/hexo-git-backup) for blog backup.
 - [ ] Solve the jump problem of directories with symbols and spaces.
 - [ ] To add article update time record.
-- [ ] To use [hexo-git-backup](https://github.com/coneycode/hexo-git-backup) for blog backup.
 - [ ] To enable blog comment: [Valine](https://valine.js.org/) .
