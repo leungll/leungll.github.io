@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://leungll.site/ChangeLogs</loc>
+    
+    <lastmod>2024-06-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://leungll.site/category/index.html</loc>
+    
+    <lastmod>2024-06-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://leungll.site/about/index.html</loc>
     
     <lastmod>2024-06-21</lastmod>
@@ -237,15 +255,6 @@
   
   <url>
     <loc>https://leungll.site/tag/index.html</loc>
-    
-    <lastmod>2023-08-21</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://leungll.site/category/index.html</loc>
     
     <lastmod>2023-08-21</lastmod>
     
