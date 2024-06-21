@@ -20,15 +20,6 @@
   </url>
   
   <url>
-    <loc>https://leungll.site/log/ChangeLogs</loc>
-    
-    <lastmod>2024-06-07</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://leungll.site/2019/05/03/python-neo4j-marvel/</loc>
     
     <lastmod>2024-05-24</lastmod>
