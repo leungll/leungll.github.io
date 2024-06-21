@@ -45,6 +45,7 @@
 - [x] To use Github && jsDelivr && PicGo to build a image bed. Addtionally, the [imgchr](https://imgchr.com/) can also meet the needs.
 - [x] To use jsDelivr && Github to build a CDN, which can optimize the site loading speed.
 - [x] To add `RSS` subscription.
+- [ ] To solve Baidu crawler problem.
 - [ ] To use [hexo-git-backup](https://github.com/coneycode/hexo-git-backup) for blog backup.
 - [ ] Solve the jump problem of directories with symbols and spaces.
 - [ ] To add article update time record.
