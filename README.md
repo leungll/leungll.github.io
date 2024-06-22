@@ -1,3 +1,10 @@
+<!--
+ * @Author: Lili Liang
+ * @Date: 2024-06-21 23:29:12
+ * @LastEditors: Lili Liang
+ * @LastEditTime: 2024-06-23 00:08:56
+ * @Description: Please set description
+-->
 ## Timeline
 - **May, 2019**: Hello world, the site was deployed and online.
 
@@ -38,6 +45,7 @@
 ## Notice
 - The [CDN repo](https://github.com/leungll/MyImgHosting) cannot be changed to private，otherwise all the images on the image bed will be invisible.
 - For the [MathJax](https://www.mathjax.org) configured in the [ZenMind](https://github.com/LenChou95/hexo-theme-ZenMind), if `hexo clean && hexo g` causes the code highlighting to not take effect, you can re-execute the command.
+- If you want to change the theme of the blog, you need to reconfigure the Google and Baidu SEO verification in the new theme.
 
 ## TODO
 - [x] To submit to the Baidu search engine for inclusion.
