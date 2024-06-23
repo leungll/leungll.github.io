@@ -2,7 +2,7 @@
  * @Author: Lili Liang
  * @Date: 2024-06-21 23:29:12
  * @LastEditors: Lili Liang
- * @LastEditTime: 2024-06-23 00:47:44
+ * @LastEditTime: 2024-06-23 15:10:33
  * @Description: Please set description
 -->
 ## Timeline
@@ -40,7 +40,7 @@
   - For domain name: <https://leungll.site>, configured [Google  Search Console](https://search.google.com/search-console/about) && [Google Analytics](https://developers.google.com/analytics/learn) && [Baidu Inclusion](https://ziyuan.baidu.com/dashboard) && [Baidu Tongji](https://tongji.baidu.com) .
   - Rebuilded personal CDN.
 
-- **June 06, 2024**: Added blog mirror source: [Vercel](https://vercel.com/), resolve Baidu crawler to domain name: <https://leungll-github-io.vercel.app>.
+- **June 06, 2024**: Added blog mirror source: [Vercel](https://vercel.com), resolve Baidu crawler to domain name: <https://l2liang.site>.
 
 ## Notice
 - The [CDN repo](https://github.com/leungll/MyImgHosting) cannot be changed to private，otherwise all the images on the image bed will be invisible.
@@ -53,7 +53,7 @@
 - [x] To use Github && jsDelivr && PicGo to build a image bed. Addtionally, the [imgchr](https://imgchr.com/) can also meet the needs.
 - [x] To use jsDelivr && Github to build a CDN, which can optimize the site loading speed.
 - [x] To add `RSS` subscription.
-- [ ] To solve Baidu crawler problem.
+- [x] To solve Baidu crawler problem.
 - [ ] To use [hexo-git-backup](https://github.com/coneycode/hexo-git-backup) for blog backup.
 - [ ] Solve the jump problem of directories with symbols and spaces.
 - [ ] To add article update time record.
