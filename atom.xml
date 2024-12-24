@@ -6,7 +6,7 @@
   <link href="https://leungll.site/atom.xml" rel="self"/>
   
   <link href="https://leungll.site/"/>
-  <updated>2024-05-24T08:45:42.307Z</updated>
+  <updated>2024-12-24T08:21:45.355Z</updated>
   <id>https://leungll.site/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Designing Data-Intensive Applications - Part I Foundations of Data Systems</title>
+    <link href="https://leungll.site/2024/12/23/DDIA-Part-1/"/>
+    <id>https://leungll.site/2024/12/23/DDIA-Part-1/</id>
+    <published>2024-12-23T16:11:42.000Z</published>
+    <updated>2024-12-24T08:21:45.355Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li><a href="#chapter-1-reliable-scalable-and-maintainable-applications">CHAPTER 1 Reliable, Scalable, and Maintainable Applications</a><ul><li><a href="#thinking-about-data-systems">Thinking About Data Systems</a></li></ul></li></ul><h1 id="chapter-1 reliable, scalable, and maintainable applications">CHAPTER 1 Reliable, Scalable, and Maintainable Applications</h1><h2 id="thinking-about data systems">Thinking About Data Systems</h2><p>One possible architecture for a data system that combines several components.</p><p><img src="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/DDIA-Part1-C1-01.png" alt="DDIA-Part1-C1-01"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#chapter-1-reliable-scalable-and-maintainable-applications&quot;&gt;CHAPTER 1 Reliable, Scalable, and Maintainable Applications&lt;/a</summary>
+      
+    
+    
+    
+    <category term="System Design" scheme="https://leungll.site/categories/System-Design/"/>
+    
+    
+    <category term="System Design" scheme="https://leungll.site/tags/System-Design/"/>
+    
+    <category term="Distributed System" scheme="https://leungll.site/tags/Distributed-System/"/>
+    
+    <category term="Data System" scheme="https://leungll.site/tags/Data-System/"/>
+    
+  </entry>
   
   <entry>
     <title>快速幂 &amp;&amp; 快速乘原理讲解（模板）</title>
@@ -588,39 +617,6 @@
     <category term="GitHub Page" scheme="https://leungll.site/tags/GitHub-Page/"/>
     
     <category term="Gitee Page" scheme="https://leungll.site/tags/Gitee-Page/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>快速幂 &amp;&amp; 快速乘取模（模拟大数模幂运算，解决乘法爆long long问题）</title>
-    <link href="https://leungll.site/2020/03/11/ksm-ksc-permalink/"/>
-    <id>https://leungll.site/2020/03/11/ksm-ksc-permalink/</id>
-    <published>2020-03-12T01:59:10.000Z</published>
-    <updated>2024-05-24T08:46:32.399Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="引言">引言</h2><blockquote><p>在 RSA 密码中，当收到密文 C 时，可使用私钥解开，计算公式为<br><div class="markdown-them-math-block">$$ X\ =\ C^{e}\ mod\ n $$</div><br>如果想让你计算</p><div class="markdown-them-math-block">$$      20190324^{823816093931522017}\ mod\ 1001733993063167141$$</div><p>应该如何用代码实现？我们知道，在 Java 里有大数类，Python 依靠其强大的计算性能有些数据甚至可以直接计算。那么在 C/C++ 中应该如何处理？单独用快速幂也会爆 long long ，我们可以采取快速幂调用快速乘进行取模的方法得到结果。<br>关于快速幂与快速乘的具体原理，可在此博客了解：<a href="https://leungll.site/2021/05/24/ksm-permalink/">快速幂 &amp; 快速乘原理讲解（模板）</a></p></blockquote><h2 id="1-原因分析">1 原因分析</h2><p>首先我们直接用快速幂计算引言中提到的公式：</p><p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-ksc-01.png" alt="ksm-ksc-01"></p><p>不出意料，结果直接溢出。</p><h2 id="2-快速幂取模（大数模幂模拟）">2 快速幂取模（大数模幂模拟）</h2><p>因为数据实在是太大了，取模和开 long long 也没办法解决问题，于是可以对快速幂中的乘法运算</p><div class="highlight"><pre class="code"><code>ans = (ans * base) % mod;base = (base * base) % mod;</code></pre></div><p>进行优化，改为<strong>快速乘求结果</strong></p><div class="highlight"><pre class="code"><code><span class="hljs-function">ll <span class="hljs-title">ksc</span><span class="hljs-params">(ll a, ll b, ll mod)</span> </span>{    ll ans = <span class="hljs-number">0</span>;    <span class="hljs-keyword">while</span>(b) {<span class="hljs-keyword">if</span>(b &amp; <span class="hljs-number">1</span>) {ans = (ans + a) % mod;}a = (a + a) % mod;b &gt;&gt;= <span class="hljs-number">1</span>;    }    <span class="hljs-keyword">return</span> ans;}<span class="hljs-function">ll <span class="hljs-title">ksm</span><span class="hljs-params">(ll a, ll b, ll mod)</span> </span>{    ll ans = <span class="hljs-number">1</span>, base = a;    <span class="hljs-keyword">while</span>(b) {<span class="hljs-keyword">if</span>(b &amp; <span class="hljs-number">1</span>) {<span class="hljs-comment">//优化1</span>ans = <span class="hljs-built_in">ksc</span>(ans, base, mod) % mod;}<span class="hljs-comment">//优化2</span>base = <span class="hljs-built_in">ksc</span>(base, base, mod) % mod;b &gt;&gt;= <span class="hljs-number">1</span>;    }    <span class="hljs-keyword">return</span> ans;}</code></pre></div><h2 id="3-验证">3 验证</h2><p>完整代码：</p><div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std; <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ll;<span class="hljs-keyword">const</span> ll mod = <span class="hljs-number">1001733993063167141</span>;<span class="hljs-function">ll <span class="hljs-title">ksc</span><span class="hljs-params">(ll a, ll b, ll mod)</span> </span>{    ll ans = <span class="hljs-number">0</span>;    <span class="hljs-keyword">while</span>(b) {<span class="hljs-keyword">if</span>(b &amp; <span class="hljs-number">1</span>) {ans = (ans + a) % mod;}a = (a + a) % mod;b &gt;&gt;= <span class="hljs-number">1</span>;    }    <span class="hljs-keyword">return</span> ans;}<span class="hljs-function">ll <span class="hljs-title">ksm</span><span class="hljs-params">(ll a, ll b, ll mod)</span> </span>{    ll ans = <span class="hljs-number">1</span>, base = a;    <span class="hljs-keyword">while</span>(b) {<span class="hljs-keyword">if</span>(b &amp; <span class="hljs-number">1</span>) {ans = <span class="hljs-built_in">ksc</span>(ans, base, mod) % mod;}base = <span class="hljs-built_in">ksc</span>(base, base, mod) % mod;b &gt;&gt;= <span class="hljs-number">1</span>;    }    <span class="hljs-keyword">return</span> ans;} <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{    cout &lt;&lt; <span class="hljs-string">&quot;20190324 ^ 823816093931522017 = &quot;</span> &lt;&lt; <span class="hljs-built_in">ksm</span>(<span class="hljs-number">20190324</span>, <span class="hljs-number">823816093931522017</span>, mod) &lt;&lt; endl;    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;}</code></pre></div><p>运行结果：</p><p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-ksc-02.png" alt="ksm-ksc-02"></p><p>可以看到数据溢出的问题得到解决，达到了大数模拟的效果。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;引言&quot;&gt;引言&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;在 RSA 密码中，当收到密文 C 时，可使用私钥解开，计算公式为&lt;br&gt;
-&lt;div class=&quot;markdown-them-math-block&quot;&gt;$$ X\ =\ C^{e}\ mod\ n $$&lt;/d</summary>
-      
-    
-    
-    
-    <category term="算法" scheme="https://leungll.site/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-    <category term="C/C++" scheme="https://leungll.site/tags/C-C/"/>
-    
-    <category term="快速幂" scheme="https://leungll.site/tags/%E5%BF%AB%E9%80%9F%E5%B9%82/"/>
-    
-    <category term="快速乘" scheme="https://leungll.site/tags/%E5%BF%AB%E9%80%9F%E4%B9%98/"/>
-    
-    <category term="大数模幂运算" scheme="https://leungll.site/tags/%E5%A4%A7%E6%95%B0%E6%A8%A1%E5%B9%82%E8%BF%90%E7%AE%97/"/>
     
   </entry>
   
