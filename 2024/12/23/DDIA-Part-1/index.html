@@ -53,7 +53,7 @@
 <meta property="og:description" content="CHAPTER 1 Reliable, Scalable, and Maintainable Applications  Thinking About Data Systems    CHAPTER 1 Reliable, Scalable, and Maintainable Applications Thinking About Data Systems One possible archit">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/DDIA-Part1-C1-01.png">
 <meta property="article:published_time" content="2024-12-23T16:11:42.000Z">
-<meta property="article:modified_time" content="2024-12-24T08:21:45.355Z">
+<meta property="article:modified_time" content="2024-12-24T08:31:26.910Z">
 <meta property="article:author" content="Lili Liang 梁莉莉">
 <meta property="article:tag" content="System Design">
 <meta property="article:tag" content="Distributed System">
@@ -136,6 +136,19 @@
 <h2 id="thinking-about data systems">Thinking About Data Systems</h2>
 <p>One possible architecture for a data system that combines several components.</p>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/DDIA-Part1-C1-01.png" alt="DDIA-Part1-C1-01"></p>
+<p>Three concerns that are important in most software systems:</p>
+<p>Reliability</p>
+<ul>
+<li>The system should continue to <strong>work correctly</strong> (performing the correct function at the desired level of performance) even in the face of adversity (hardware or software faults, and even human error).</li>
+</ul>
+<p>Scalability</p>
+<ul>
+<li>As the system grows (in data volume, traffic volume, or complexity), there should be reasonable ways of <strong>dealing with that growth</strong>.</li>
+</ul>
+<p>Maintainbility</p>
+<ul>
+<li>Over time, many different people will work on the system (engineering and operations, both maintaining current behavior and adapting the system to new use cases), and they should all be able to <strong>work on it productively</strong>.</li>
+</ul>
 
         </div>
     
