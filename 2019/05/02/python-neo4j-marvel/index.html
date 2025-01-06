@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="robots" content="index, follow">
+
+    <!-- Baidu Site SEO -->
+    <meta name="baidu-site-verification" content="codeva-Fn6WoXLOMw" />
+    <!-- <meta name="baidu-site-verification" content="codeva-mdLm33TTHY" /> -->
+
+    <!-- Baidu analytics -->
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?1a364896f028f8093396007dc78eb0a0";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WF4EY3839B"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-WF4EY3839B');
+    </script>
+
+    <!-- Bing Site SEO -->
+    <meta name="msvalidate.01" content="85648BC2E966622B7CC9FF6BCB04E326" />
+
+    <!-- title -->
+    
+        <title>Python + Neo4j（安装）可视化分析漫威十年人物关系图谱 | Lili Liang</title>
+    
+  
+    <!-- Open graph -->
+    <meta name="description" content="1 数据爬取  1.1 漫威人物关系图谱网站 1.2 爬取人物关系数据   2 Neo4j的安装及服务启动  2.1 Neo4j下载安装 2.2 开启Neo4j服务   3 数据准备  3.1 加入列名 3.2 放入本地Neo4j的import文件   4 数据可视化  4.1 加载names_message.csv文件 4.2 加载relation_message.csv文件 4.3 查看人">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python + Neo4j（安装）可视化分析漫威十年人物关系图谱">
+<meta property="og:url" content="https://leungll.site/2019/05/02/python-neo4j-marvel/index.html">
+<meta property="og:site_name" content="Lili Liang">
+<meta property="og:description" content="1 数据爬取  1.1 漫威人物关系图谱网站 1.2 爬取人物关系数据   2 Neo4j的安装及服务启动  2.1 Neo4j下载安装 2.2 开启Neo4j服务   3 数据准备  3.1 加入列名 3.2 放入本地Neo4j的import文件   4 数据可视化  4.1 加载names_message.csv文件 4.2 加载relation_message.csv文件 4.3 查看人">
+<meta property="og:locale">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-1.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-2.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-3.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-4.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-5.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-6.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-7.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-8.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-9.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-10.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-11.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-12.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-13.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-14.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-15.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-16.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-17.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-18.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-19.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-20.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-21.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-22.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-23.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-24.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-25.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-26.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-27.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-28.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-29.png">
+<meta property="article:published_time" content="2019-05-03T06:52:59.000Z">
+<meta property="article:modified_time" content="2025-01-05T07:06:15.535Z">
+<meta property="article:author" content="Lili Liang 梁莉莉">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Neo4j">
+<meta property="article:tag" content="Marvel">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-1.png">
+
+    <!-- Canonical -->
+    
+        <link rel="canonical" href="https://leungll.site/2019/05/02/python-neo4j-marvel/">
+    
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/logo.png">
+
+    <!-- CSS -->
+    
+<link rel="stylesheet" href="/css/reset.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/markdown.css">
+
+    
+<link rel="stylesheet" href="/css/fonts.css">
+
+
+    <script>
+        MathJax = {
+          tex: {
+            packages: ['base', 'ams'],
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true
+          },
+          options: {
+            ignoreHtmlClass: "tex2jax_ignore",
+            processHtmlClass: "tex2jax_process"
+          }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Lili Liang" type="application/atom+xml">
+</head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">Lili Liang 梁莉莉</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Blogs</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+            <li><a href="/about">About</a></li>
+            
+        </ul>
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <!-- Post Title -->
+        <div class="post-main-title">
+            Python + Neo4j（安装）可视化分析漫威十年人物关系图谱
+        </div>
+
+        <!-- Post Meta Information -->
+        <div class="post-meta">
+            <!-- Show Creation Date -->
+            Created: May 3, 2019 ｜ 
+
+            <!-- Show Last Updated Date -->
+            
+                Last updated: Jan 5, 2025 ｜ 
+            
+
+            <!-- Show Post Categories -->
+            
+                <a href="/categories/%E5%8F%AF%E8%A7%86%E5%8C%96/"># 可视化</a>
+            
+        </div>
+
+        <!-- Post Content -->
+        <div class="post-md">
+            <!-- toc -->
+<ul>
+<li><a href="#1-%E6%95%B0%E6%8D%AE%E7%88%AC%E5%8F%96">1 数据爬取</a>
+<ul>
+<li><a href="#11-%E6%BC%AB%E5%A8%81%E4%BA%BA%E7%89%A9%E5%85%B3%E7%B3%BB%E5%9B%BE%E8%B0%B1%E7%BD%91%E7%AB%99">1.1 漫威人物关系图谱网站</a></li>
+<li><a href="#12-%E7%88%AC%E5%8F%96%E4%BA%BA%E7%89%A9%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE">1.2 爬取人物关系数据</a></li>
+</ul>
+</li>
+<li><a href="#2-neo4j%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E6%9C%8D%E5%8A%A1%E5%90%AF%E5%8A%A8">2 Neo4j的安装及服务启动</a>
+<ul>
+<li><a href="#21-neo4j%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85">2.1 Neo4j下载安装</a></li>
+<li><a href="#22-%E5%BC%80%E5%90%AFneo4j%E6%9C%8D%E5%8A%A1">2.2 开启Neo4j服务</a></li>
+</ul>
+</li>
+<li><a href="#3-%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87">3 数据准备</a>
+<ul>
+<li><a href="#31-%E5%8A%A0%E5%85%A5%E5%88%97%E5%90%8D">3.1 加入列名</a></li>
+<li><a href="#32-%E6%94%BE%E5%85%A5%E6%9C%AC%E5%9C%B0neo4j%E7%9A%84import%E6%96%87%E4%BB%B6">3.2 放入本地Neo4j的import文件</a></li>
+</ul>
+</li>
+<li><a href="#4-%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96">4 数据可视化</a>
+<ul>
+<li><a href="#41-%E5%8A%A0%E8%BD%BDnames_messagecsv%E6%96%87%E4%BB%B6">4.1 加载names_message.csv文件</a></li>
+<li><a href="#42-%E5%8A%A0%E8%BD%BDrelation_messagecsv%E6%96%87%E4%BB%B6">4.2 加载relation_message.csv文件</a></li>
+<li><a href="#43-%E6%9F%A5%E7%9C%8B%E4%BA%BA%E7%89%A9%E5%85%B3%E7%B3%BB%E5%9B%BE%E8%B0%B1">4.3 查看人物关系图谱</a></li>
+<li><a href="#44-%E7%AD%9B%E9%80%89%E4%BA%BA%E7%89%A9%E5%85%B3%E7%B3%BB">4.4 筛选人物关系</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<h2><span id="1-数据爬取">1 数据爬取</span></h2>
+<h3><span id="11-漫威人物关系图谱网站">1.1 漫威人物关系图谱网站</span></h3>
+<ol>
+<li>
+<p>网址传送门：<a target="_blank" rel="noopener" href="https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/2018/04/marvel-cinematic-universe-whos-who-interactive/index.html">https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/2018/04/marvel-cinematic-universe-whos-who-interactive/index.html</a></p>
+<ul>
+<li>注：网站被墙，因此很多朋友反应网站打不开，但是用梯子是可以访问的。另外，我会将爬下来的 csv 文件的 github 地址直接贴在下文中，有需要的朋友可以自取。</li>
+</ul>
+</li>
+<li>
+<p>网站介绍：网站是基于 Graph 技术开发的，主要是关于漫威人物、漫威电影的图谱。</p>
+</li>
+<li>
+<p>网站一览</p>
+</li>
+</ol>
+<p>首页</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-1.png" alt="python-neo4j-marvel-1"></p>
+<p>人物关系</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-2.png" alt="python-neo4j-marvel-2"></p>
+<p>点击头像，可看到人物的详细信息：（钢铁侠！！</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-3.png" alt="python-neo4j-marvel-3"></p>
+<p>漫威宇宙系列电影</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-4.png" alt="python-neo4j-marvel-4"></p>
+<h3><span id="12-爬取人物关系数据">1.2 爬取人物关系数据</span></h3>
+<blockquote>
+<p>注：浏览器推荐使用 Google Chrome</p>
+</blockquote>
+<ol>
+<li>打开 <code>F12</code> 调试，选择 <code>Network</code>（注意是在首页）</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-5.png" alt="python-neo4j-marvel-5"></p>
+<ol start="2">
+<li>关键词搜索（ <code>Ctrl + F</code> ），输入 <code>marvel-data.json</code></li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-6.png" alt="python-neo4j-marvel-6"></p>
+<ol start="3">
+<li>进入 <code>marvel-data.json</code> ，复制 <code>json</code> 接口的 <code>URL</code></li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-7.png" alt="python-neo4j-marvel-7"></p>
+<p>在这里，我们主要需要爬取的数据是 <code>characters</code> 与 <code>relationship</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-8.png" alt="python-neo4j-marvel-8"></p>
+<ol start="4">
+<li>python代码</li>
+</ol>
+<blockquote>
+<p>跑代码之前需要先配置 python 环境，在这里我使用的 IDE 是 PyCharm，PyCharm 的安装见此处：<a target="_blank" rel="noopener" href="https://blog.csdn.net/liangllhahaha/article/details/86710022">Win10环境Python+Tensorflow+Jupyter入门安装详解</a></p>
+</blockquote>
+<p>代码中的 <code>url</code> 即刚才在网站上复制的 <code>json</code> 接口</p>
+<div class="highlight"><pre class="code"><code><span class="hljs-keyword">import</span> json
+<span class="hljs-keyword">import</span> requests
+ 
+headers = &#123;
+    <span class="hljs-string">&#x27;user-agent&#x27;</span>:<span class="hljs-string">&#x27;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36&#x27;</span>
+&#125;
+ 
+url = <span class="hljs-string">&#x27;https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/2018/04/marvel-cinematic-universe-whos-who-interactive/data/marvel-data.json&#x27;</span>
+response = requests.get(url=url, headers=headers)
+result = json.loads(response.text)
+ 
+num = <span class="hljs-number">0</span>
+names = []
+item = &#123;<span class="hljs-number">0</span>: <span class="hljs-string">&#x27;friend&#x27;</span>, <span class="hljs-number">1</span>: <span class="hljs-string">&#x27;enemy&#x27;</span>, <span class="hljs-number">2</span>: <span class="hljs-string">&#x27;creation&#x27;</span>, <span class="hljs-number">3</span>: <span class="hljs-string">&#x27;family&#x27;</span>, <span class="hljs-number">4</span>: <span class="hljs-string">&#x27;work&#x27;</span>, <span class="hljs-number">5</span>: <span class="hljs-string">&#x27;love&#x27;</span>&#125;
+ 
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> result[<span class="hljs-string">&#x27;relationship&#x27;</span>]:
+    subject = result[<span class="hljs-string">&#x27;relationship&#x27;</span>][i][<span class="hljs-string">&#x27;id&#x27;</span>]
+    <span class="hljs-built_in">object</span> = result[<span class="hljs-string">&#x27;relationship&#x27;</span>][i][<span class="hljs-string">&#x27;target_id&#x27;</span>]
+ 
+    <span class="hljs-keyword">if</span> subject <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> names:
+        names.append(subject)
+    <span class="hljs-keyword">if</span> <span class="hljs-built_in">object</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> names:
+        names.append(<span class="hljs-built_in">object</span>)
+ 
+    relation = <span class="hljs-built_in">int</span>(result[<span class="hljs-string">&#x27;relationship&#x27;</span>][i][<span class="hljs-string">&#x27;relationship&#x27;</span>])
+    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;relation_message.csv&#x27;</span>, <span class="hljs-string">&#x27;a+&#x27;</span>) <span class="hljs-keyword">as</span> f:
+        f.write(subject + <span class="hljs-string">&#x27;,&#x27;</span> + <span class="hljs-built_in">object</span> + <span class="hljs-string">&#x27;,&#x27;</span> + item[relation] + <span class="hljs-string">&#x27;\n&#x27;</span>)
+ 
+<span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> names:
+    num += <span class="hljs-number">1</span>
+    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;names_message.csv&#x27;</span>, <span class="hljs-string">&#x27;a+&#x27;</span>) <span class="hljs-keyword">as</span> f:
+        f.write(j + <span class="hljs-string">&#x27;,&#x27;</span> + <span class="hljs-built_in">str</span>(num) + <span class="hljs-string">&#x27;\n&#x27;</span>)
+ 
+<span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> result[<span class="hljs-string">&#x27;characters&#x27;</span>]:
+    <span class="hljs-built_in">id</span> = result[<span class="hljs-string">&#x27;characters&#x27;</span>][k][<span class="hljs-string">&#x27;id&#x27;</span>]
+    name = result[<span class="hljs-string">&#x27;characters&#x27;</span>][k][<span class="hljs-string">&#x27;name&#x27;</span>]
+    status = result[<span class="hljs-string">&#x27;characters&#x27;</span>][k][<span class="hljs-string">&#x27;status&#x27;</span>]
+    species = result[<span class="hljs-string">&#x27;characters&#x27;</span>][k][<span class="hljs-string">&#x27;species&#x27;</span>]
+    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;message.csv&#x27;</span>, <span class="hljs-string">&#x27;a+&#x27;</span>) <span class="hljs-keyword">as</span> f:
+        f.write(<span class="hljs-built_in">id</span> + <span class="hljs-string">&#x27;,&#x27;</span> + name + <span class="hljs-string">&#x27;,&#x27;</span> + status + <span class="hljs-string">&#x27;,&#x27;</span> + species + <span class="hljs-string">&#x27;\n&#x27;</span>)
+</code></pre></div>
+<ol start="5">
+<li>运行完毕后会产生三个 <code>csv</code> 文件</li>
+</ol>
+<blockquote>
+<p><code>csv</code> 文件 github 地址：<a target="_blank" rel="noopener" href="https://github.com/leungll/Marvel-File">https://github.com/leungll/Marvel-File</a></p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-9.png" alt="python-neo4j-marvel-9"></p>
+<p>至此，数据爬取部分已经完成。</p>
+<h2><span id="2-neo4j的安装及服务启动">2 Neo4j的安装及服务启动</span></h2>
+<h3><span id="21-neo4j下载安装">2.1 Neo4j下载安装</span></h3>
+<ol>
+<li>进入官网下载：<a target="_blank" rel="noopener" href="https://neo4j.com/download-center/#releases">https://neo4j.com/download-center/#releases</a></li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-10.png" alt="python-neo4j-marvel-10"></p>
+<p>若点击之后网站没有弹出下载提示，则点击此处下载</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-11.png" alt="python-neo4j-marvel-11"></p>
+<ol start="2">
+<li>解压安装包</li>
+</ol>
+<blockquote>
+<p>注：切记安装路径 <strong>不要含任何中文字符或空格</strong>（例如文件名为 <code>Program Files</code> ），否则远程服务器访问本地数据库时会乱码，导致无法读取数据</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-12.png" alt="python-neo4j-marvel-12"></p>
+<h3><span id="22-开启neo4j服务">2.2 开启Neo4j服务</span></h3>
+<ol>
+<li>管理员身份打开 Windows PowerShell</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-13.png" alt="python-neo4j-marvel-13"></p>
+<ol start="2">
+<li>启动</li>
+</ol>
+<div class="highlight"><pre class="code"><code><span class="hljs-keyword">Set</span>-ExecutionPolicy <span class="hljs-comment">-ExecutionPolicy RemoteSigned</span>
+Import-Module <span class="hljs-comment">&#x27;（neo4j文件目录）\bin\Neo4j-Management.psd1&#x27;</span>
+Invoke-Neo4j <span class="hljs-comment">console</span>
+</code></pre></div>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-14.png" alt="python-neo4j-marvel-14"></p>
+<ol start="3">
+<li>访问服务器</li>
+</ol>
+<div class="highlight"><pre class="code"><code><span class="hljs-attribute">localhost</span>:<span class="hljs-number">7474</span>
+</code></pre></div>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-15.png" alt="python-neo4j-marvel-15"></p>
+<ol start="4">
+<li>输入密码</li>
+</ol>
+<blockquote>
+<p>初始用户名：neo4j，初始密码：neo4j</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-16.png" alt="python-neo4j-marvel-16"></p>
+<ol start="5">
+<li>之后服务器会要求你修改密码</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-17.png" alt="python-neo4j-marvel-17"></p>
+<h2><span id="3-数据准备">3 数据准备</span></h2>
+<blockquote>
+<p>生成的三个 csv 文件中，<code>names_message.csv</code> 即角色，<code>relation_message.csv</code> 即人物关系情况</p>
+</blockquote>
+<h3><span id="31-加入列名">3.1 加入列名</span></h3>
+<ol>
+<li>在 <code>names_message.csv</code> 中</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-18.png" alt="python-neo4j-marvel-18"></p>
+<ol start="2">
+<li>在 <code>relation_message.csv</code> 中</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-19.png" alt="python-neo4j-marvel-19"></p>
+<h3><span id="32-放入本地neo4j的import文件">3.2 放入本地Neo4j的import文件</span></h3>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-20.png" alt="python-neo4j-marvel-20"></p>
+<h2><span id="4-数据可视化">4 数据可视化</span></h2>
+<h3><span id="41-加载names_messagecsv文件">4.1 加载names_message.csv文件</span></h3>
+<div class="highlight"><pre class="code"><code><span class="hljs-keyword">LOAD</span> CSV  <span class="hljs-keyword">WITH</span> HEADERS <span class="hljs-keyword">FROM</span> <span class="hljs-string">&#x27;file:///names_message.csv&#x27;</span> <span class="hljs-keyword">AS</span> data <span class="hljs-keyword">CREATE</span> (:people&#123;<span class="hljs-type">name</span>:data.name, id:data.id&#125;);
+</code></pre></div>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-21.png" alt="python-neo4j-marvel-21"></p>
+<p>182 个人物节点已生成</p>
+<h3><span id="42-加载relation_messagecsv文件">4.2 加载relation_message.csv文件</span></h3>
+<div class="highlight"><pre class="code"><code><span class="hljs-keyword">LOAD</span> CSV  <span class="hljs-keyword">WITH</span> HEADERS <span class="hljs-keyword">FROM</span> &quot;file:///relation_message.csv&quot; <span class="hljs-keyword">AS</span> relations
+MATCH (entity1:people&#123;<span class="hljs-type">name</span>:relations.subject&#125;) , (entity2:people&#123;<span class="hljs-type">name</span>:relations.<span class="hljs-keyword">object</span>&#125;)
+<span class="hljs-keyword">CREATE</span> (entity1)-[:rel&#123;relation: relations.relation&#125;]-&gt;(entity2)
+</code></pre></div>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-22.png" alt="python-neo4j-marvel-22"></p>
+<p>1144 对人物关系已建立完毕</p>
+<h3><span id="43-查看人物关系图谱">4.3 查看人物关系图谱</span></h3>
+<ol>
+<li>取消限制（去掉 <code>LIMIT 25</code> ）</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-23.png" alt="python-neo4j-marvel-23"></p>
+<p>运行</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-24.png" alt="python-neo4j-marvel-24"></p>
+<ol start="2">
+<li>显示人物及关系</li>
+</ol>
+<p>选择全屏</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-25.png" alt="python-neo4j-marvel-25"></p>
+<p>替换人物名称</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-26.png" alt="python-neo4j-marvel-26"></p>
+<p>替换人物关系</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-27.png" alt="python-neo4j-marvel-27"></p>
+<h3><span id="44-筛选人物关系">4.4 筛选人物关系</span></h3>
+<ol>
+<li>托尼·斯达克的朋友</li>
+</ol>
+<div class="highlight"><pre class="code"><code><span class="hljs-keyword">match</span> p=(n:people&#123;name:<span class="hljs-string">&quot;tonys&quot;</span>&#125;)-[:rel&#123;relation:<span class="hljs-string">&quot;friend&quot;</span>&#125;]-&gt;() <span class="hljs-keyword">return</span> p;
+</code></pre></div>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-28.png" alt="python-neo4j-marvel-28"></p>
+<p>其中「thor」为「雷神」，「stever」为「美队」，「blackw」为「黑寡妇」，「vision」为「幻视」，「peterp」为「蜘蛛侠」，「bruceb」为「绿巨人」</p>
+<ol start="2">
+<li>美队的女友</li>
+</ol>
+<div class="highlight"><pre class="code"><code><span class="hljs-keyword">match</span> p=(n:people&#123;name:<span class="hljs-string">&quot;stever&quot;</span>&#125;)-[:rel&#123;relation:<span class="hljs-string">&quot;love&quot;</span>&#125;]-&gt;() <span class="hljs-keyword">return</span> p;
+</code></pre></div>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-29.png" alt="python-neo4j-marvel-29"></p>
+<p>其余的查询类似我们熟知的 SQL 语句，大家可以多多尝试。</p>
+
+        </div>
+    
+
+    <!-- Post Tags -->
+    
+        <div class="post-meta">
+            Tags:
+            
+                <a href="/tags/Python/"> / Python</a>
+            
+                <a href="/tags/Neo4j/"> / Neo4j</a>
+            
+                <a href="/tags/Marvel/"> / Marvel</a>
+            
+        </div>
+    
+</div>
+                <div class="footer">
+    <span>Copyright © 2025 Lili Liang</span>
+    <span>Build with <a target="_blank" rel="noopener" href="https://github.com/LenChou95/hexo-theme-ZenMind">ZenMind</a></span>
+</div>
+
+<!-- Copy Code Funciton -->
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('pre').forEach((pre) => {
+            const button = document.createElement('button');
+            button.innerText = 'Copy';
+            button.className = 'copy-button';
+
+            button.addEventListener('click', () => {
+            const codeLines = pre.querySelectorAll('.hljs-ln-code');
+            const codeContent = Array.from(codeLines)
+                .map(line => line.textContent)
+                .join('\n');
+
+            navigator.clipboard.writeText(codeContent).then(() => {
+                button.innerText = '√ Copied!';
+                setTimeout(() => {
+                button.innerText = 'Copy';
+                }, 3000);
+            }).catch(err => {
+                console.error('Copy failed: ', err);
+                alert('Unable to copy code, please check browser permissions!');
+            });
+            });
+
+            pre.appendChild(button);
+        });
+    });
+</script>
+
+<!-- Change Code Style -->
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"> -->
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>

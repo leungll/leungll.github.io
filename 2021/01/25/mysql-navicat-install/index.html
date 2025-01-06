@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="robots" content="index, follow">
+
+    <!-- Baidu Site SEO -->
+    <meta name="baidu-site-verification" content="codeva-Fn6WoXLOMw" />
+    <!-- <meta name="baidu-site-verification" content="codeva-mdLm33TTHY" /> -->
+
+    <!-- Baidu analytics -->
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?1a364896f028f8093396007dc78eb0a0";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WF4EY3839B"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-WF4EY3839B');
+    </script>
+
+    <!-- Bing Site SEO -->
+    <meta name="msvalidate.01" content="85648BC2E966622B7CC9FF6BCB04E326" />
+
+    <!-- title -->
+    
+        <title>Win10 系统 MySQL &amp;&amp; Navicat Premium12 安装教程 | Lili Liang</title>
+    
+  
+    <!-- Open graph -->
+    <meta name="description" content="1 MySQL的下载与安装  1.1 进入MySQL官网 1.2 MySQL安装及环境变量配置 1.3 启动MySQL服务   2 Navicat安装  2.1 安装包下载 2.2 Navicat安装 2.3 文件夹解压   3 Navicat连接MySQL  3.1 连接localhost 3.2 修改MySQL密码      注：本文以 Win 10 系统 + 64 位为例  1 MySQ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Win10 系统 MySQL &amp;&amp; Navicat Premium12 安装教程">
+<meta property="og:url" content="https://leungll.site/2021/01/25/mysql-navicat-install/index.html">
+<meta property="og:site_name" content="Lili Liang">
+<meta property="og:description" content="1 MySQL的下载与安装  1.1 进入MySQL官网 1.2 MySQL安装及环境变量配置 1.3 启动MySQL服务   2 Navicat安装  2.1 安装包下载 2.2 Navicat安装 2.3 文件夹解压   3 Navicat连接MySQL  3.1 连接localhost 3.2 修改MySQL密码      注：本文以 Win 10 系统 + 64 位为例  1 MySQ">
+<meta property="og:locale">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-1.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-2.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-3.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-4.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-5.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-6.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-7.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-8.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-9.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-10.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-11.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-12.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-13.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-14.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-15.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-16.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-17.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-18.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-19.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-20.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-21.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-22.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-23.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-24.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-25.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-26.png">
+<meta property="article:published_time" content="2021-01-26T03:28:27.000Z">
+<meta property="article:modified_time" content="2025-01-05T07:21:26.142Z">
+<meta property="article:author" content="Lili Liang 梁莉莉">
+<meta property="article:tag" content="后端开发">
+<meta property="article:tag" content="Configuration">
+<meta property="article:tag" content="MySQL">
+<meta property="article:tag" content="Navicat Premium 12">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-1.png">
+
+    <!-- Canonical -->
+    
+        <link rel="canonical" href="https://leungll.site/2021/01/25/mysql-navicat-install/">
+    
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/logo.png">
+
+    <!-- CSS -->
+    
+<link rel="stylesheet" href="/css/reset.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/markdown.css">
+
+    
+<link rel="stylesheet" href="/css/fonts.css">
+
+
+    <script>
+        MathJax = {
+          tex: {
+            packages: ['base', 'ams'],
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true
+          },
+          options: {
+            ignoreHtmlClass: "tex2jax_ignore",
+            processHtmlClass: "tex2jax_process"
+          }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Lili Liang" type="application/atom+xml">
+</head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">Lili Liang 梁莉莉</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Blogs</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+            <li><a href="/about">About</a></li>
+            
+        </ul>
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <!-- Post Title -->
+        <div class="post-main-title">
+            Win10 系统 MySQL &amp;&amp; Navicat Premium12 安装教程
+        </div>
+
+        <!-- Post Meta Information -->
+        <div class="post-meta">
+            <!-- Show Creation Date -->
+            Created: Jan 26, 2021 ｜ 
+
+            <!-- Show Last Updated Date -->
+            
+                Last updated: Jan 5, 2025 ｜ 
+            
+
+            <!-- Show Post Categories -->
+            
+                <a href="/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"># 后端开发</a>
+            
+        </div>
+
+        <!-- Post Content -->
+        <div class="post-md">
+            <!-- toc -->
+<ul>
+<li><a href="#1-mysql%E7%9A%84%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85">1 MySQL的下载与安装</a>
+<ul>
+<li><a href="#11-%E8%BF%9B%E5%85%A5mysql%E5%AE%98%E7%BD%91">1.1 进入MySQL官网</a></li>
+<li><a href="#12-mysql%E5%AE%89%E8%A3%85%E5%8F%8A%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE">1.2 MySQL安装及环境变量配置</a></li>
+<li><a href="#13-%E5%90%AF%E5%8A%A8mysql%E6%9C%8D%E5%8A%A1">1.3 启动MySQL服务</a></li>
+</ul>
+</li>
+<li><a href="#2-navicat%E5%AE%89%E8%A3%85">2 Navicat安装</a>
+<ul>
+<li><a href="#21-%E5%AE%89%E8%A3%85%E5%8C%85%E4%B8%8B%E8%BD%BD">2.1 安装包下载</a></li>
+<li><a href="#22-navicat%E5%AE%89%E8%A3%85">2.2 Navicat安装</a></li>
+<li><a href="#23-%E6%96%87%E4%BB%B6%E5%A4%B9%E8%A7%A3%E5%8E%8B">2.3 文件夹解压</a></li>
+</ul>
+</li>
+<li><a href="#3-navicat%E8%BF%9E%E6%8E%A5mysql">3 Navicat连接MySQL</a>
+<ul>
+<li><a href="#31-%E8%BF%9E%E6%8E%A5localhost">3.1 连接localhost</a></li>
+<li><a href="#32-%E4%BF%AE%E6%94%B9mysql%E5%AF%86%E7%A0%81">3.2 修改MySQL密码</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<blockquote>
+<p>注：本文以 Win 10 系统 + 64 位为例</p>
+</blockquote>
+<h2><span id="1-mysql的下载与安装">1 MySQL的下载与安装</span></h2>
+<h3><span id="11-进入mysql官网">1.1 进入MySQL官网</span></h3>
+<p>官网链接：<a target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/mysql">https://dev.mysql.com/downloads/mysql</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-1.png" alt="mysql-navicat-install-1"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-2.png" alt="mysql-navicat-install-2"></p>
+<h3><span id="12-mysql安装及环境变量配置">1.2 MySQL安装及环境变量配置</span></h3>
+<p><strong>1. 从官网下载完毕后，并解压 zip 安装包，安装包结构如图所示：</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-3.png" alt="mysql-navicat-install-3"></p>
+<p><strong>2. 配置环境变量：</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-4.png" alt="mysql-navicat-install-4"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-5.png" alt="mysql-navicat-install-5"></p>
+<p><strong>3. 配置初始化的 my.ini 文件</strong></p>
+<p>发现解压后的目录并没有 <code>my.ini</code> 文件，没关系可以自行创建。在安装包的<strong>根目录</strong>下添加 <code>my.ini</code>（新建文本文件，将文件类型改为 <code>.ini</code> ），写入基本配置：</p>
+<div class="highlight"><pre class="code"><code><span class="hljs-section">[mysqld]</span>
+<span class="hljs-comment"># 设置3306端口</span>
+<span class="hljs-attr">port</span>=<span class="hljs-number">3306</span>
+<span class="hljs-comment"># 设置mysql的安装目录</span>
+<span class="hljs-attr">basedir</span>=D:\\Program Files\\mysql-<span class="hljs-number">8.0</span>.<span class="hljs-number">15</span>-winx64  
+<span class="hljs-comment"># 设置mysql数据库的数据的存放目录</span>
+<span class="hljs-attr">datadir</span>=D:\\Program Files\\mysql-<span class="hljs-number">8.0</span>.<span class="hljs-number">15</span>-winx64\\Data  
+<span class="hljs-comment"># 允许最大连接数</span>
+<span class="hljs-attr">max_connections</span>=<span class="hljs-number">200</span>
+<span class="hljs-comment"># 允许连接失败的次数。这是为了防止有人从该主机试图攻击数据库系统</span>
+<span class="hljs-attr">max_connect_errors</span>=<span class="hljs-number">10</span>
+<span class="hljs-comment"># 服务端使用的字符集默认为UTF8</span>
+<span class="hljs-attr">character-set-server</span>=utf8
+<span class="hljs-comment"># 创建新表时将使用的默认存储引擎</span>
+<span class="hljs-attr">default-storage-engine</span>=INNODB
+<span class="hljs-comment"># 默认使用“mysql_native_password”插件认证</span>
+<span class="hljs-attr">default_authentication_plugin</span>=mysql_native_password
+<span class="hljs-section">[mysql]</span>
+<span class="hljs-comment"># 设置mysql客户端默认字符集</span>
+<span class="hljs-attr">default-character-set</span>=utf8
+<span class="hljs-section">[client]</span>
+<span class="hljs-comment"># 设置mysql客户端连接服务端时默认使用的端口</span>
+<span class="hljs-attr">port</span>=<span class="hljs-number">3306</span>
+<span class="hljs-attr">default-character-set</span>=utf8
+</code></pre></div>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-6.png" alt="mysql-navicat-install-6"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-7.png" alt="mysql-navicat-install-7"></p>
+<h3><span id="13-启动mysql服务">1.3 启动MySQL服务</span></h3>
+<p><strong>1. 以管理员身份运行 cmd（否则在安装时会报错，会导致安装失败的情况）</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-8.png" alt="mysql-navicat-install-8"></p>
+<p><strong>2. 命令行进入 mysql 安装包的 bin 文件：</strong></p>
+<div class="highlight"><pre class="code"><code><span class="hljs-attribute">cd</span>/d D:\Program Files\mysql-<span class="hljs-number">8</span>.<span class="hljs-number">0</span>.<span class="hljs-number">15</span>-winx<span class="hljs-number">64</span>\bin
+</code></pre></div>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-9.png" alt="mysql-navicat-install-9"></p>
+<p><strong>3. 初始化数据库：</strong></p>
+<div class="highlight"><pre class="code"><code><span class="hljs-comment">mysqld</span> --<span class="hljs-comment">initialize</span> --<span class="hljs-comment">console</span>
+</code></pre></div>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-10.png" alt="mysql-navicat-install-10"></p>
+<p>执行完成后，会打印 <strong>root 用户的初始默认密码</strong>（即 mysql 密码），例如我的：</p>
+<p><strong>注意</strong>：一定要记住 mysql 的初始密码，以便之后 navicat 连接 mysql 输入密码（及修改密码）用。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-11.png" alt="mysql-navicat-install-11"></p>
+<p><strong>3. 安装服务：</strong></p>
+<div class="highlight"><pre class="code"><code>mysqld <span class="hljs-comment">--install [服务名]</span>
+</code></pre></div>
+<p>后面的服务名可以不写，默认的名字为 mysql 。当然，如果你的电脑上需要安装多个 MySQL 服务，就可以用不同的名字区分，比如 mysql5 和 mysql8 。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-12.png" alt="mysql-navicat-install-12"></p>
+<p><strong>4. 启动服务：</strong></p>
+<div class="highlight"><pre class="code"><code><span class="hljs-built_in">net</span> <span class="hljs-built_in">start</span> mysql
+</code></pre></div>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-13.png" alt="mysql-navicat-install-13"></p>
+<h2><span id="2-navicat安装">2 Navicat安装</span></h2>
+<h3><span id="21-安装包下载">2.1 安装包下载</span></h3>
+<p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1t8QxfnEhrcvYZPYOSLbw-A">https://pan.baidu.com/s/1t8QxfnEhrcvYZPYOSLbw-A</a> 提取码：<code>h18n</code> （链接失效可联系我）</p>
+<h3><span id="22-navicat安装">2.2 Navicat安装</span></h3>
+<p><strong>1. 解压安装包后，点击 exe 文件安装：</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-14.png" alt="mysql-navicat-install-14"></p>
+<p><strong>2. 选择安装路径后，一路 next 即可：</strong></p>
+<table>
+<thead>
+<tr>
+<th><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-15.png" alt="mysql-navicat-install-15"></th>
+<th><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-16.png" alt="mysql-navicat-install-16"></th>
+</tr>
+</thead>
+</table>
+<table>
+<thead>
+<tr>
+<th><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-17.png" alt="mysql-navicat-install-17"></th>
+<th><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-18.png" alt="mysql-navicat-install-18"></th>
+</tr>
+</thead>
+</table>
+<h3><span id="23-文件夹解压">2.3 文件夹解压</span></h3>
+<p><strong>1. 解压文件：</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-19.png" alt="mysql-navicat-install-19"></p>
+<p><strong>2. 将该“简体中文 64 位”目录下的两个文件拷贝至 navicat 安装目录的根目录：</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-20.png" alt="mysql-navicat-install-20"></p>
+<p><strong>3. 打开 navicat ，可以看到已经安装成功</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-21.png" alt="mysql-navicat-install-21"></p>
+<p><strong>注：采用此安装方式，不建议升级更新 Navicat Premium</strong></p>
+<h2><span id="3-navicat连接mysql">3 Navicat连接MySQL</span></h2>
+<h3><span id="31-连接localhost">3.1 连接localhost</span></h3>
+<p><strong>1. 建立连接：</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-22.png" alt="mysql-navicat-install-22"></p>
+<p><strong>2. 输入密码（初始密码）：</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-23.png" alt="mysql-navicat-install-23"></p>
+<p><strong>3. 连接成功：</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-24.png" alt="mysql-navicat-install-24"></p>
+<h3><span id="32-修改mysql密码">3.2 修改MySQL密码</span></h3>
+<p><strong>1. 点击“用户”，选择账号 “root@localhost”</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-25.png" alt="mysql-navicat-install-25"></p>
+<p><strong>2. 修改密码</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-26.png" alt="mysql-navicat-install-26"></p>
+<p>保存即可</p>
+<p>OK，至此 MySQL 与 Navicat Premium12 均已安装完毕，欢迎留言讨论！</p>
+
+        </div>
+    
+
+    <!-- Post Tags -->
+    
+        <div class="post-meta">
+            Tags:
+            
+                <a href="/tags/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"> / 后端开发</a>
+            
+                <a href="/tags/Configuration/"> / Configuration</a>
+            
+                <a href="/tags/MySQL/"> / MySQL</a>
+            
+                <a href="/tags/Navicat-Premium-12/"> / Navicat Premium 12</a>
+            
+        </div>
+    
+</div>
+                <div class="footer">
+    <span>Copyright © 2025 Lili Liang</span>
+    <span>Build with <a target="_blank" rel="noopener" href="https://github.com/LenChou95/hexo-theme-ZenMind">ZenMind</a></span>
+</div>
+
+<!-- Copy Code Funciton -->
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('pre').forEach((pre) => {
+            const button = document.createElement('button');
+            button.innerText = 'Copy';
+            button.className = 'copy-button';
+
+            button.addEventListener('click', () => {
+            const codeLines = pre.querySelectorAll('.hljs-ln-code');
+            const codeContent = Array.from(codeLines)
+                .map(line => line.textContent)
+                .join('\n');
+
+            navigator.clipboard.writeText(codeContent).then(() => {
+                button.innerText = '√ Copied!';
+                setTimeout(() => {
+                button.innerText = 'Copy';
+                }, 3000);
+            }).catch(err => {
+                console.error('Copy failed: ', err);
+                alert('Unable to copy code, please check browser permissions!');
+            });
+            });
+
+            pre.appendChild(button);
+        });
+    });
+</script>
+
+<!-- Change Code Style -->
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"> -->
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>

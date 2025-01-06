@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="robots" content="index, follow">
+
+    <!-- Baidu Site SEO -->
+    <meta name="baidu-site-verification" content="codeva-Fn6WoXLOMw" />
+    <!-- <meta name="baidu-site-verification" content="codeva-mdLm33TTHY" /> -->
+
+    <!-- Baidu analytics -->
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?1a364896f028f8093396007dc78eb0a0";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WF4EY3839B"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-WF4EY3839B');
+    </script>
+
+    <!-- Bing Site SEO -->
+    <meta name="msvalidate.01" content="85648BC2E966622B7CC9FF6BCB04E326" />
+
+    <!-- title -->
+    
+        <title>【PAT甲级】1002 A+B for Polynomials | Lili Liang</title>
+    
+  
+    <!-- Open graph -->
+    <meta name="description" content="题目链接：1002 A+B for Polynomials 1 题目  This time, you are supposed to find A+B where A and B are two polynomials.  Input Specification  Each input file contains one test case. Each case occupies 2 lines,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【PAT甲级】1002 A+B for Polynomials">
+<meta property="og:url" content="https://leungll.site/2020/04/05/pat-1002/index.html">
+<meta property="og:site_name" content="Lili Liang">
+<meta property="og:description" content="题目链接：1002 A+B for Polynomials 1 题目  This time, you are supposed to find A+B where A and B are two polynomials.  Input Specification  Each input file contains one test case. Each case occupies 2 lines,">
+<meta property="og:locale">
+<meta property="article:published_time" content="2020-04-05T14:39:26.000Z">
+<meta property="article:modified_time" content="2024-04-29T11:50:40.396Z">
+<meta property="article:author" content="Lili Liang 梁莉莉">
+<meta property="article:tag" content="C&#x2F;C++">
+<meta property="article:tag" content="PAT">
+<meta name="twitter:card" content="summary">
+
+    <!-- Canonical -->
+    
+        <link rel="canonical" href="https://leungll.site/2020/04/05/pat-1002/">
+    
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/logo.png">
+
+    <!-- CSS -->
+    
+<link rel="stylesheet" href="/css/reset.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/markdown.css">
+
+    
+<link rel="stylesheet" href="/css/fonts.css">
+
+
+    <script>
+        MathJax = {
+          tex: {
+            packages: ['base', 'ams'],
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true
+          },
+          options: {
+            ignoreHtmlClass: "tex2jax_ignore",
+            processHtmlClass: "tex2jax_process"
+          }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Lili Liang" type="application/atom+xml">
+</head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">Lili Liang 梁莉莉</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Blogs</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+            <li><a href="/about">About</a></li>
+            
+        </ul>
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <!-- Post Title -->
+        <div class="post-main-title">
+            【PAT甲级】1002 A+B for Polynomials
+        </div>
+
+        <!-- Post Meta Information -->
+        <div class="post-meta">
+            <!-- Show Creation Date -->
+            Created: Apr 5, 2020 ｜ 
+
+            <!-- Show Last Updated Date -->
+            
+                Last updated: Apr 29, 2024 ｜ 
+            
+
+            <!-- Show Post Categories -->
+            
+                <a href="/categories/%E7%AE%97%E6%B3%95/"># 算法</a>
+            
+        </div>
+
+        <!-- Post Content -->
+        <div class="post-md">
+            <p><strong>题目链接</strong>：<a target="_blank" rel="noopener" href="https://pintia.cn/problem-sets/994805342720868352/problems/994805526272000000">1002 A+B for Polynomials</a></p>
+<h2><span id="1-题目">1 题目</span></h2>
+<blockquote>
+<p>This time, you are supposed to find A+B where A and B are two polynomials.</p>
+</blockquote>
+<h3><span id="input-specification">Input Specification</span></h3>
+<blockquote>
+<p>Each input file contains one test case. Each case occupies 2 lines, and each line contains the information of a polynomial:<br>
+<span class="markdown-them-math-inline">$K\ N_1\ a_{​N​1}​​​​ N_2\ a_{​N​2}​​​​...\ N_K​\ a_{​N​K}​​​​$</span><br>
+where <span class="markdown-them-math-inline">$K$</span> is the number of nonzero terms in the polynomial, <span class="markdown-them-math-inline">$N​_i$</span>​​ and <span class="markdown-them-math-inline">$a​_{N​i}​​​​(i=1,2,⋯,K)$</span> are the exponents and coefficients, respectively. It is given that<br>
+<span class="markdown-them-math-inline">$1 ≤ K ≤ 10，0 ≤ N​_K​ ​&lt; ⋯ &lt; N_2 ​​&lt; N​_1 ≤ 1000$</span>.</p>
+</blockquote>
+<h3><span id="output-specification">Output Specification</span></h3>
+<blockquote>
+<p>For each test case you should output the sum of <span class="markdown-them-math-inline">$A$</span> and <span class="markdown-them-math-inline">$B$</span> in one line, with the same format as the input. Notice that there must be NO extra space at the end of each line. Please be accurate to 1 decimal place.</p>
+</blockquote>
+<h3><span id="sample-input">Sample Input</span></h3>
+<blockquote>
+<p>2 1 2.4 0 3.2<br>
+2 2 1.5 1 0.5</p>
+</blockquote>
+<h3><span id="sample-output">Sample Output</span></h3>
+<blockquote>
+<p>3 2 1.5 1 2.9 0 3.2</p>
+</blockquote>
+<h2><span id="2-分析">2 分析</span></h2>
+<p>这道题有几个点需要注意：</p>
+<ul>
+<li>处理<strong>输入数据方式</strong>和常规有一些区别</li>
+<li>coefficients 为<strong>浮点数</strong>且为<strong>负数时也要输出</strong></li>
+<li>输出要精确到<strong>小数点后一位</strong></li>
+<li>最后<strong>没有空格</strong></li>
+</ul>
+<h2><span id="3-题解">3 题解</span></h2>
+<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn = <span class="hljs-number">1e3</span> + <span class="hljs-number">5</span>;
+<span class="hljs-keyword">double</span> a[maxn] = &#123;<span class="hljs-number">0</span>&#125;;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
+    <span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> ONLINE_JUDGE</span>
+    <span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span>
+        <span class="hljs-built_in">freopen</span>(<span class="hljs-string">&quot;input.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, stdin);
+    <span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span> <span class="hljs-comment">// ONLINE_JUDGE</span></span>
+    <span class="hljs-keyword">int</span> k;
+    cin &gt;&gt; k;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; k;i++)&#123;
+        <span class="hljs-keyword">int</span> exp;
+        <span class="hljs-keyword">double</span> coe;
+        cin &gt;&gt; exp &gt;&gt; coe;
+        a[exp] = coe;
+    &#125;
+    cin &gt;&gt; k;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; k;i++)&#123;
+        <span class="hljs-keyword">int</span> exp;
+        <span class="hljs-keyword">double</span> coe;
+        cin &gt;&gt; exp &gt;&gt; coe;
+        a[exp] += coe;
+    &#125;
+    <span class="hljs-keyword">int</span> cnt = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; maxn;i++)&#123;
+        <span class="hljs-keyword">if</span>(a[i])&#123;
+            cnt++;
+        &#125;
+    &#125;
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, cnt);
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = maxn;i &gt;= <span class="hljs-number">0</span>;i--)&#123;
+        <span class="hljs-comment">//负数也需要输出</span>
+        <span class="hljs-keyword">if</span>(a[i] != <span class="hljs-number">0</span>)&#123;
+            <span class="hljs-comment">//cout &lt;&lt; &quot; &quot; &lt;&lt; i &lt;&lt; &quot; &quot; &lt;&lt; a[i];</span>
+            <span class="hljs-comment">//coe精确到小数点后一位</span>
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; %d %.1f&quot;</span>, i, a[i]);
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+
+</code></pre></div>
+
+        </div>
+    
+
+    <!-- Post Tags -->
+    
+        <div class="post-meta">
+            Tags:
+            
+                <a href="/tags/C-C/"> / C/C++</a>
+            
+                <a href="/tags/PAT/"> / PAT</a>
+            
+        </div>
+    
+</div>
+                <div class="footer">
+    <span>Copyright © 2025 Lili Liang</span>
+    <span>Build with <a target="_blank" rel="noopener" href="https://github.com/LenChou95/hexo-theme-ZenMind">ZenMind</a></span>
+</div>
+
+<!-- Copy Code Funciton -->
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('pre').forEach((pre) => {
+            const button = document.createElement('button');
+            button.innerText = 'Copy';
+            button.className = 'copy-button';
+
+            button.addEventListener('click', () => {
+            const codeLines = pre.querySelectorAll('.hljs-ln-code');
+            const codeContent = Array.from(codeLines)
+                .map(line => line.textContent)
+                .join('\n');
+
+            navigator.clipboard.writeText(codeContent).then(() => {
+                button.innerText = '√ Copied!';
+                setTimeout(() => {
+                button.innerText = 'Copy';
+                }, 3000);
+            }).catch(err => {
+                console.error('Copy failed: ', err);
+                alert('Unable to copy code, please check browser permissions!');
+            });
+            });
+
+            pre.appendChild(button);
+        });
+    });
+</script>
+
+<!-- Change Code Style -->
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"> -->
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="robots" content="index, follow">
+
+    <!-- Baidu Site SEO -->
+    <meta name="baidu-site-verification" content="codeva-Fn6WoXLOMw" />
+    <!-- <meta name="baidu-site-verification" content="codeva-mdLm33TTHY" /> -->
+
+    <!-- Baidu analytics -->
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?1a364896f028f8093396007dc78eb0a0";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WF4EY3839B"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-WF4EY3839B');
+    </script>
+
+    <!-- Bing Site SEO -->
+    <meta name="msvalidate.01" content="85648BC2E966622B7CC9FF6BCB04E326" />
+
+    <!-- title -->
+    
+        <title>快速幂 &amp;&amp; 快速乘原理讲解（模板） | Lili Liang</title>
+    
+  
+    <!-- Open graph -->
+    <meta name="description" content="1 问题描述 2 原因分析 3 解决方法 4 快速幂讲解 5 快速乘讲解 6 完整代码 7 References   1 问题描述  我们发现，在 $int$ 型下使用 $pow$ 函数求 $5^{3}$，结果为 $124$ 。   2 原因分析  $pow$ 函数的返回值为 double 型 ，因浮点数长度问题，存在截断误差。   3 解决方法  将变量定义为 double 型   有没有更">
+<meta property="og:type" content="article">
+<meta property="og:title" content="快速幂 &amp;&amp; 快速乘原理讲解（模板）">
+<meta property="og:url" content="https://leungll.site/2021/05/24/ksm-permalink/index.html">
+<meta property="og:site_name" content="Lili Liang">
+<meta property="og:description" content="1 问题描述 2 原因分析 3 解决方法 4 快速幂讲解 5 快速乘讲解 6 完整代码 7 References   1 问题描述  我们发现，在 $int$ 型下使用 $pow$ 函数求 $5^{3}$，结果为 $124$ 。   2 原因分析  $pow$ 函数的返回值为 double 型 ，因浮点数长度问题，存在截断误差。   3 解决方法  将变量定义为 double 型   有没有更">
+<meta property="og:locale">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-1.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-2.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-3.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-4.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-5.png">
+<meta property="article:published_time" content="2021-05-24T13:49:46.000Z">
+<meta property="article:modified_time" content="2025-01-05T07:21:22.012Z">
+<meta property="article:author" content="Lili Liang 梁莉莉">
+<meta property="article:tag" content="C&#x2F;C++">
+<meta property="article:tag" content="快速幂">
+<meta property="article:tag" content="快速乘">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-1.png">
+
+    <!-- Canonical -->
+    
+        <link rel="canonical" href="https://leungll.site/2021/05/24/ksm-permalink/">
+    
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/logo.png">
+
+    <!-- CSS -->
+    
+<link rel="stylesheet" href="/css/reset.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/markdown.css">
+
+    
+<link rel="stylesheet" href="/css/fonts.css">
+
+
+    <script>
+        MathJax = {
+          tex: {
+            packages: ['base', 'ams'],
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true
+          },
+          options: {
+            ignoreHtmlClass: "tex2jax_ignore",
+            processHtmlClass: "tex2jax_process"
+          }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Lili Liang" type="application/atom+xml">
+</head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">Lili Liang 梁莉莉</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Blogs</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+            <li><a href="/about">About</a></li>
+            
+        </ul>
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <!-- Post Title -->
+        <div class="post-main-title">
+            快速幂 &amp;&amp; 快速乘原理讲解（模板）
+        </div>
+
+        <!-- Post Meta Information -->
+        <div class="post-meta">
+            <!-- Show Creation Date -->
+            Created: May 24, 2021 ｜ 
+
+            <!-- Show Last Updated Date -->
+            
+                Last updated: Jan 5, 2025 ｜ 
+            
+
+            <!-- Show Post Categories -->
+            
+                <a href="/categories/%E7%AE%97%E6%B3%95/"># 算法</a>
+            
+        </div>
+
+        <!-- Post Content -->
+        <div class="post-md">
+            <!-- toc -->
+<ul>
+<li><a href="#1-%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0">1 问题描述</a></li>
+<li><a href="#2-%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%90">2 原因分析</a></li>
+<li><a href="#3-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95">3 解决方法</a></li>
+<li><a href="#4-%E5%BF%AB%E9%80%9F%E5%B9%82%E8%AE%B2%E8%A7%A3">4 快速幂讲解</a></li>
+<li><a href="#5-%E5%BF%AB%E9%80%9F%E4%B9%98%E8%AE%B2%E8%A7%A3">5 快速乘讲解</a></li>
+<li><a href="#6-%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81">6 完整代码</a></li>
+<li><a href="#7-references">7 References</a></li>
+</ul>
+<!-- tocstop -->
+<h2><span id="1-问题描述">1 问题描述</span></h2>
+<blockquote>
+<p>我们发现，在 <span class="markdown-them-math-inline">$int$</span> 型下使用 <span class="markdown-them-math-inline">$pow$</span> 函数求 <span class="markdown-them-math-inline">$5^{3}$</span>，结果为 <span class="markdown-them-math-inline">$124$</span> 。</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-1.png" alt="ksm-1"></p>
+<h2><span id="2-原因分析">2 原因分析</span></h2>
+<blockquote>
+<p><span class="markdown-them-math-inline">$pow$</span> 函数的返回值为 <code>double</code> 型 ，因浮点数长度问题，存在截断误差。</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-2.png" alt="ksm-2"></p>
+<h2><span id="3-解决方法">3 解决方法</span></h2>
+<blockquote>
+<p>将变量定义为 <code>double</code> 型</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-3.png" alt="ksm-3"></p>
+<p><strong>有没有更快求幂的方法？</strong></p>
+<h2><span id="4-快速幂讲解">4 快速幂讲解</span></h2>
+<blockquote>
+<p>假设我们要求 <span class="markdown-them-math-inline">$a^{b}$</span> ，按照朴素算法就是把 a 连乘 b 次，这样一来时间复杂度是 <span class="markdown-them-math-inline">$O(b)$</span> ，即是 <span class="markdown-them-math-inline">$O(n)$</span> 级别。但快速幂能做到 <span class="markdown-them-math-inline">$O(logn)$</span> 的复杂度。</p>
+</blockquote>
+<p>快速幂：<br>
+<img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-4.png" alt="ksm-4"></p>
+<p>对于二进制的位运算，我们需要用到 <code>&amp;</code> 与 <code>&gt;&gt;</code> 运算符，详见 <a target="_blank" rel="noopener" href="https://blog.csdn.net/liangllhahaha/article/details/79382094">位运算符的应用</a></p>
+<p><strong>先上实现快速幂运算的具体代码：</strong></p>
+<div class="highlight"><pre class="code"><code><span class="hljs-function"><span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> <span class="hljs-title">ksm</span><span class="hljs-params">(<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> a, <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> b)</span> </span>&#123;
+    <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ans = <span class="hljs-number">1</span>, base = a;
+    <span class="hljs-keyword">while</span>(b != <span class="hljs-number">0</span>) &#123;
+	<span class="hljs-keyword">if</span>(b &amp; <span class="hljs-number">1</span> != <span class="hljs-number">0</span>) &#123;
+	    ans *= base;
+	&#125;
+	base *= base;
+	b &gt;&gt;= <span class="hljs-number">1</span>;
+    &#125;
+    <span class="hljs-keyword">return</span> ans;
+&#125;
+</code></pre></div>
+<p>其中 <code>b &amp; 1</code> 指取 b 的二进制数的最末位，如 <code>11</code> 的二进制数为 <code>1011</code> ，第一次循环，取的是最右边的 <code>1</code> ，以此类推。</p>
+<p>而 <code>b &gt;&gt;= 1</code> 等效于 <code>b = b &gt;&gt; 1</code>，即右移 <code>1</code> 位，删去最低位。</p>
+<p><strong>以 <span class="markdown-them-math-inline">$a ^ {11}$</span> 为例：</strong></p>
+<p><code>b</code> 的二进制数为 <code>1011</code>，二进制从右向左算，但乘出来的顺序是 <span class="markdown-them-math-inline">$a^{2^{0}} * a^{2^{1}} * a^{2^{3}}$</span> ，是从左向右的。我们不断的让 <span class="markdown-them-math-inline">$base\,*=\,base$</span> 目的是累乘，以便随时对 <code>ans</code> 做出贡献。</p>
+<blockquote>
+<p>要理解 <span class="markdown-them-math-inline">$base*=base$</span> 这一步：因为 <span class="markdown-them-math-inline">$base\,*\,base == base^{2}$</span>，下一步再乘，就是 <span class="markdown-them-math-inline">$base^{2} * base^{2} == base^{4}$</span>，然后同理 <span class="markdown-them-math-inline">$base^{4} * base^{4} == base^{8}$</span>，由此可以做到 <span class="markdown-them-math-inline">$base→ base^{2} → base^{4} → base^{8} → base^{16} → base^{32}$</span> … 指数正好是 <span class="markdown-them-math-inline">$2^{i}$</span>。再看上面的例子，<span class="markdown-them-math-inline">$a^{11} = a^{1}\,*\,a^{2}\,*\,a^{8}$</span> ，这三项就可以完美解决了，快速幂就是这样。</p>
+</blockquote>
+<p>如还有不明白的地方，建议手动模拟代码的运行过程。</p>
+<h2><span id="5-快速乘讲解">5 快速乘讲解</span></h2>
+<blockquote>
+<p>我们知道，在计算机中做加法运算会比乘法快得多（参考模电中的加法器），做乘法运算往往会溢出，即使用 long long 类型也拯救不了。因此需要寻找一种能高效完成乘法运算且不会溢出的算法，这就是快速乘算法。</p>
+</blockquote>
+<p>快速乘与快速幂原理相似，也是将运算转换为二进制处理.</p>
+<p>以 <span class="markdown-them-math-inline">$a * 11$</span> 为例:  <code>11</code> 的二进制数为 <code>1011</code>，则有 <span class="markdown-them-math-inline">$a * 11 = a * 2^{0}\,+\,a * 2^{1}\,+\,a * 2^{3}$</span></p>
+<p>就是把快速幂中的 <code>*</code> 号改为 <code>＋</code> 号</p>
+<div class="highlight"><pre class="code"><code><span class="hljs-function"><span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> <span class="hljs-title">ksc</span><span class="hljs-params">(<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> a, <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> b)</span> </span>&#123;
+    <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ans = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">while</span>(b != <span class="hljs-number">0</span>) &#123;
+	<span class="hljs-keyword">if</span>(b &amp; <span class="hljs-number">1</span> != <span class="hljs-number">0</span>) &#123;
+	    ans += a;
+	&#125;
+	a += a;
+	b &gt;&gt;= <span class="hljs-number">1</span>;
+    &#125;
+    <span class="hljs-keyword">return</span> ans;
+&#125;
+</code></pre></div>
+<p>此版本的复杂度和快速幂一样，也是 <span class="markdown-them-math-inline">$O(logn)$</span> 。如果需要特别卡常数，可以去了解 <span class="markdown-them-math-inline">$O(1)$</span> 版本的快速乘。</p>
+<h2><span id="6-完整代码">6 完整代码</span></h2>
+<blockquote>
+<p>为了防止溢出，一般快速幂和快速乘的算法会在 <span class="markdown-them-math-inline">$mod$</span> 下运用，下面给出取模运算代码。</p>
+</blockquote>
+<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+ 
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ll;
+<span class="hljs-keyword">const</span> ll mod = <span class="hljs-number">1e7</span>;
+ 
+<span class="hljs-comment">//a ^ b</span>
+<span class="hljs-function">ll <span class="hljs-title">ksm</span><span class="hljs-params">(ll a, ll b, ll mod)</span> </span>&#123;
+    ll ans = <span class="hljs-number">1</span>, base = a;
+    <span class="hljs-keyword">while</span>(b != <span class="hljs-number">0</span>) &#123;
+	<span class="hljs-keyword">if</span>(b &amp; <span class="hljs-number">1</span> != <span class="hljs-number">0</span>) &#123;
+	    ans = (ans * base) % mod;
+	&#125;
+	base = (base * base) % mod;
+	b &gt;&gt;= <span class="hljs-number">1</span>;
+    &#125;
+    <span class="hljs-keyword">return</span> ans;
+&#125;
+ 
+<span class="hljs-comment">//a * b</span>
+<span class="hljs-function">ll <span class="hljs-title">ksc</span><span class="hljs-params">(ll a, ll b, ll mod)</span> </span>&#123;
+    ll ans = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">while</span>(b != <span class="hljs-number">0</span>) &#123;
+	<span class="hljs-keyword">if</span>(b &amp; <span class="hljs-number">1</span> != <span class="hljs-number">0</span>) &#123;
+	    ans = (ans + a) % mod;
+	&#125;
+	a = (a + a) % mod;
+	b &gt;&gt;= <span class="hljs-number">1</span>;
+    &#125;
+    <span class="hljs-keyword">return</span> ans;
+&#125;
+ 
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+    cout &lt;&lt; <span class="hljs-string">&quot;5 ^ 3 = &quot;</span> &lt;&lt; <span class="hljs-built_in">ksm</span>(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>, mod) &lt;&lt; endl;
+    cout &lt;&lt; <span class="hljs-string">&quot;345352 * 11 = &quot;</span> &lt;&lt; <span class="hljs-built_in">ksc</span>(<span class="hljs-number">345352</span>, <span class="hljs-number">11</span>, mod) &lt;&lt; endl;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+</code></pre></div>
+<p><strong>运算结果：</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-5.png" alt="ksm-5"></p>
+<h2><span id="7-references">7 References</span></h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/CXCXCXC/p/4641812.html">https://www.cnblogs.com/CXCXCXC/p/4641812.html</a></li>
+</ul>
+<p>以上，有问题欢迎指正！</p>
+
+        </div>
+    
+
+    <!-- Post Tags -->
+    
+        <div class="post-meta">
+            Tags:
+            
+                <a href="/tags/C-C/"> / C/C++</a>
+            
+                <a href="/tags/%E5%BF%AB%E9%80%9F%E5%B9%82/"> / 快速幂</a>
+            
+                <a href="/tags/%E5%BF%AB%E9%80%9F%E4%B9%98/"> / 快速乘</a>
+            
+        </div>
+    
+</div>
+                <div class="footer">
+    <span>Copyright © 2025 Lili Liang</span>
+    <span>Build with <a target="_blank" rel="noopener" href="https://github.com/LenChou95/hexo-theme-ZenMind">ZenMind</a></span>
+</div>
+
+<!-- Copy Code Funciton -->
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('pre').forEach((pre) => {
+            const button = document.createElement('button');
+            button.innerText = 'Copy';
+            button.className = 'copy-button';
+
+            button.addEventListener('click', () => {
+            const codeLines = pre.querySelectorAll('.hljs-ln-code');
+            const codeContent = Array.from(codeLines)
+                .map(line => line.textContent)
+                .join('\n');
+
+            navigator.clipboard.writeText(codeContent).then(() => {
+                button.innerText = '√ Copied!';
+                setTimeout(() => {
+                button.innerText = 'Copy';
+                }, 3000);
+            }).catch(err => {
+                console.error('Copy failed: ', err);
+                alert('Unable to copy code, please check browser permissions!');
+            });
+            });
+
+            pre.appendChild(button);
+        });
+    });
+</script>
+
+<!-- Change Code Style -->
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"> -->
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>

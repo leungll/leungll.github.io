@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="robots" content="index, follow">
+
+    <!-- Baidu Site SEO -->
+    <meta name="baidu-site-verification" content="codeva-Fn6WoXLOMw" />
+    <!-- <meta name="baidu-site-verification" content="codeva-mdLm33TTHY" /> -->
+
+    <!-- Baidu analytics -->
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?1a364896f028f8093396007dc78eb0a0";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WF4EY3839B"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-WF4EY3839B');
+    </script>
+
+    <!-- Bing Site SEO -->
+    <meta name="msvalidate.01" content="85648BC2E966622B7CC9FF6BCB04E326" />
+
+    <!-- title -->
+    
+        <title>【蓝桥杯 算法提高 ADV - 299】宰羊（ 区间 dp ） | Lili Liang</title>
+    
+  
+    <!-- Open graph -->
+    <meta name="description" content="题目链接：http:&#x2F;&#x2F;lx.lanqiao.cn&#x2F;problem.page?gpid&#x3D;T576 1 题目 题目描述  炫炫回了内蒙，肯定要吃羊肉啦，所有他家要宰羊吃。 炫炫家有 N 只羊，羊圈排成一排，标号 1 ~ N。炫炫每天吃掉一只羊（这食量！其实是放生啦），吃掉的羊的邻居会以为它被放生了，然后又会告诉他们的邻居，这样一直传播下去，除非某个邻居已经被“放生”了。每一天，所有知道某羊被“放生”">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【蓝桥杯 算法提高 ADV - 299】宰羊（ 区间 dp ）">
+<meta property="og:url" content="https://leungll.site/2020/04/08/adv-299/index.html">
+<meta property="og:site_name" content="Lili Liang">
+<meta property="og:description" content="题目链接：http:&#x2F;&#x2F;lx.lanqiao.cn&#x2F;problem.page?gpid&#x3D;T576 1 题目 题目描述  炫炫回了内蒙，肯定要吃羊肉啦，所有他家要宰羊吃。 炫炫家有 N 只羊，羊圈排成一排，标号 1 ~ N。炫炫每天吃掉一只羊（这食量！其实是放生啦），吃掉的羊的邻居会以为它被放生了，然后又会告诉他们的邻居，这样一直传播下去，除非某个邻居已经被“放生”了。每一天，所有知道某羊被“放生”">
+<meta property="og:locale">
+<meta property="article:published_time" content="2020-04-08T17:17:45.000Z">
+<meta property="article:modified_time" content="2024-05-24T07:49:23.416Z">
+<meta property="article:author" content="Lili Liang 梁莉莉">
+<meta property="article:tag" content="C&#x2F;C++">
+<meta property="article:tag" content="dp">
+<meta property="article:tag" content="蓝桥杯">
+<meta property="article:tag" content="区间dp">
+<meta name="twitter:card" content="summary">
+
+    <!-- Canonical -->
+    
+        <link rel="canonical" href="https://leungll.site/2020/04/08/adv-299/">
+    
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/logo.png">
+
+    <!-- CSS -->
+    
+<link rel="stylesheet" href="/css/reset.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/markdown.css">
+
+    
+<link rel="stylesheet" href="/css/fonts.css">
+
+
+    <script>
+        MathJax = {
+          tex: {
+            packages: ['base', 'ams'],
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true
+          },
+          options: {
+            ignoreHtmlClass: "tex2jax_ignore",
+            processHtmlClass: "tex2jax_process"
+          }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Lili Liang" type="application/atom+xml">
+</head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">Lili Liang 梁莉莉</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Blogs</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+            <li><a href="/about">About</a></li>
+            
+        </ul>
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <!-- Post Title -->
+        <div class="post-main-title">
+            【蓝桥杯 算法提高 ADV - 299】宰羊（ 区间 dp ）
+        </div>
+
+        <!-- Post Meta Information -->
+        <div class="post-meta">
+            <!-- Show Creation Date -->
+            Created: Apr 9, 2020 ｜ 
+
+            <!-- Show Last Updated Date -->
+            
+                Last updated: May 24, 2024 ｜ 
+            
+
+            <!-- Show Post Categories -->
+            
+                <a href="/categories/%E7%AE%97%E6%B3%95/"># 算法</a>
+            
+        </div>
+
+        <!-- Post Content -->
+        <div class="post-md">
+            <p><strong>题目链接：</strong><a target="_blank" rel="noopener" href="http://lx.lanqiao.cn/problem.page?gpid=T576">http://lx.lanqiao.cn/problem.page?gpid=T576</a></p>
+<h2><span id="1-题目">1 题目</span></h2>
+<h3><span id="题目描述">题目描述</span></h3>
+<blockquote>
+<p>炫炫回了内蒙，肯定要吃羊肉啦，所有他家要宰羊吃。<br>
+炫炫家有 N 只羊，羊圈排成一排，标号 1 ~ N。炫炫每天吃掉一只羊（这食量！其实是放生啦），吃掉的羊的邻居会以为它被放生了，然后又会告诉他们的邻居，这样一直传播下去，除非某个邻居已经被“放生”了。每一天，所有知道某羊被“放生”了这个消息的羊都会很不满，如果不给他们巧克力的话，他们就会很造反，炫炫已经知道他要吃掉哪些羊，他可以任意安排吃的顺序，然后使巧克力的用量最小，请求出这个最小值。</p>
+</blockquote>
+<h3><span id="输入格式">输入格式</span></h3>
+<blockquote>
+<p>本题有多组数据，第一行为数据组数 T。<br>
+对于每组数据：<br>
+第一行：两个用空格隔开的整数：N 和 M，表示羊的数量和需要吃掉的数量；<br>
+第二行：有 M 个数，表示要吃那些羊。</p>
+</blockquote>
+<h3><span id="输出格式">输出格式</span></h3>
+<blockquote>
+<p>T 行，为每组数据的答案。</p>
+</blockquote>
+<h3><span id="样例输入">样例输入</span></h3>
+<div class="highlight"><pre class="code"><code><span class="hljs-number">2</span>
+<span class="hljs-symbol">8 </span><span class="hljs-number">1</span>
+<span class="hljs-number">3</span>
+<span class="hljs-symbol">20 </span><span class="hljs-number">3</span>
+<span class="hljs-symbol">3 </span><span class="hljs-number">6</span> <span class="hljs-number">14</span>
+</code></pre></div>
+<h3><span id="样例输出">样例输出</span></h3>
+<div class="highlight"><pre class="code"><code><span class="hljs-attribute">T</span> = <span class="hljs-number">10</span>
+<span class="hljs-attribute">N</span> &lt;= <span class="hljs-number">10000</span>
+<span class="hljs-attribute">M</span> &lt;= <span class="hljs-number">100</span>
+</code></pre></div>
+<h2><span id="2-分析">2 分析</span></h2>
+<blockquote>
+<p>这题可用 <strong>区间dp</strong> 解决。</p>
+</blockquote>
+<p><strong>1. 首先我们来看（重温）dp的三个性质：</strong></p>
+<ul>
+<li>
+<p><strong>最优子结构</strong></p>
+<ul>
+<li>当问题的最优解包含了其子问题的最优解时，称该问题具有最优子结构性质。问题的<strong>最优子结构性质</strong>提供了该问题可用动态规划算法求解的重要线索。</li>
+<li>在动态规划算法中，利用问题的最优子结构性质，以<strong>自底向上</strong>的方式递归地从<strong>子问题</strong>的最优解逐步构造出<strong>整个问题的最优解</strong>。</li>
+</ul>
+</li>
+<li>
+<p><strong>重叠子问题</strong></p>
+<ul>
+<li>子问题之间是不独立的，一个子问题在下一阶段决策中可能被<strong>多次使用</strong>。对每个子问题只解一次，而后将其保存在一个表格中，当再次需要的时候，只是简单的用<strong>常数时间</strong>查看一下结果。</li>
+</ul>
+</li>
+<li>
+<p><strong>无后效性</strong></p>
+<ul>
+<li>即某阶段状态一旦确定，就不受这个状态以后决策的影响。即某状态以后的过程不会影响以前的状态，<strong>只与当前状态有关</strong>。</li>
+</ul>
+</li>
+</ul>
+<p><strong>2. 回到题目中：</strong></p>
+<blockquote>
+<p>首先给出<strong>状态转移方程</strong>：</p>
+<div class="markdown-them-math-block">$$  dp[l][r] = min\{ \, dp[l][r], \,\, dp[l][i - 1] + dp[i + 1][r] + (arr[r + 1] - arr[l - 1] - 2) \, \}
+$$</div></blockquote>
+<ul>
+<li>
+<p>数组 <span class="markdown-them-math-inline">$arr[i]$</span> 存储被杀羊的<strong>号码</strong>，而 <span class="markdown-them-math-inline">$i$</span> 表示羊在数组 <span class="markdown-them-math-inline">$arr$</span> 中的<strong>编号</strong>，例如在第2个样例中，一共有3只羊被杀，羊的号码分别为<span class="markdown-them-math-inline">$3,6,14$</span> ，则数组存储的规则为：<span class="markdown-them-math-inline">$arr[1]=3,arr[2]=6,arr[3]=14$</span>。</p>
+</li>
+<li>
+<p><span class="markdown-them-math-inline">$dp[l][r]$</span> 表示杀掉 <span class="markdown-them-math-inline">$arr[l] \sim arr[r]$</span> 只羊所花费的<strong>最小代价</strong>。这个表达可能有些拗口，举个栗子：<span class="markdown-them-math-inline">$dp[1][3]$</span> 表示杀掉<strong>数组编号</strong>为 <span class="markdown-them-math-inline">$1,2,3$</span> 的羊花费的最小代价，即 <span class="markdown-them-math-inline">$arr[1],arr[2],arr[3]$</span> 这三只羊。</p>
+</li>
+</ul>
+<p><strong>3. 为什么要用 dp 求解：</strong></p>
+<p>再来看一下题意，题目有两点关键信息：</p>
+<ul>
+<li>羊圈<strong>排成一排</strong>，标号为 <span class="markdown-them-math-inline">$1\sim N$</span>。（也就是说，羊圈的<strong>羊头和羊尾</strong>不会再传播下去）</li>
+<li>炫炫每吃掉一只羊，这只羊的邻居就会引起恐慌，接着这只羊的邻居们会继续告诉他们的邻居，一直传播下去，什么时候传播恐慌结束？（划重点！），<strong>当某个邻居已经被杀掉时</strong>。</li>
+</ul>
+<p>我们可以看出，其实求 <span class="markdown-them-math-inline">$dp[l][r]$</span> 可以缩小问题规模，变成求 <span class="markdown-them-math-inline">$dp[l][k] + dp[k + 1][r]$</span> 的最小代价，对吧？如果你认为没问题，好，通过不断地拆分区间求解，问题的规模得到了缩小，这里符合dp基本性质之一“<strong>最优子结构</strong>”。</p>
+<p>而我们知道，在动态规划算法中，利用问题的最优子结构性质，是以<strong>自底向上</strong>的方式递归地从<strong>子问题</strong>的最优解逐步构造出<strong>整个问题的最优解</strong>。</p>
+<p>在本题中，从<strong>子问题 → 整个问题</strong>的求解，可以这样做，区间以<strong>每只即将被杀掉的羊为结点</strong>划分：</p>
+<ul>
+<li>按照区间长度<strong>由小到大</strong>的规则，计算最小代价，即我们先从长度为 <span class="markdown-them-math-inline">$1$</span> 的区间开始计算最小代价，再计算区间长度为 <span class="markdown-them-math-inline">$2→3→4→5→…$</span> 的最小代价。最后当区间长度为 <span class="markdown-them-math-inline">$m$</span> 时，就是问题的<strong>求解结果</strong>。</li>
+<li>当区间长度 ＞ 1时，这时需要<strong>逐个遍历</strong>区间中每只即将被杀掉的 <span class="markdown-them-math-inline">$arr[i]$</span> 羊，通过 dp 方程去计算最小代价。</li>
+</ul>
+<p>在本题中，从区间的角度，我们要求的最小代价 <span class="markdown-them-math-inline">$dp[1][m]$</span> ，可以表示成：</p>
+<div class="markdown-them-math-block">$$    dp[1][m] = dp[1] [k - 1] + arr[k] + dp[k + 1] [m]
+$$</div><p>即杀掉所有羊的代价可以变成求杀掉 <span class="markdown-them-math-inline">$arr[1] \sim arr[k - 1]$</span> 只羊的最小代价与 <span class="markdown-them-math-inline">$arr[k + 1] \sim arr[m]$</span> 只羊，再加上杀掉 <span class="markdown-them-math-inline">$arr[k]$</span> 的最小代价。</p>
+<p>好了，到这一步应该没有太难理解的地方，那么应该如何求杀掉 <span class="markdown-them-math-inline">$arr[k]$</span> 的最小代价？</p>
+<p><strong>4. 如何求杀掉 <span class="markdown-them-math-inline">$arr[k]$</span> 的最小代价：</strong>：</p>
+<blockquote>
+<p>通过上面列出的 dp 方程中可以看到</p>
+<div class="markdown-them-math-block">$$  arr[k]=arr[r + 1] - arr[l - 1] - 2
+$$</div></blockquote>
+<p>为啥？</p>
+<p>我们改一下第 1 个样例中的数据，再举个栗子：</p>
+<blockquote>
+<p>羊   圈：1 <strong><code>2</code></strong> <strong><code>3</code></strong> 4 <strong><code>5</code></strong> 6 7 8<br>
+待杀羊号码：2 3 5  <span class="markdown-them-math-inline">$（arr[1]=2, arr[2]=3, arr[3]=5）$</span><br>
+考虑区间：{ <span class="markdown-them-math-inline">$2$</span> }，<span class="markdown-them-math-inline">$2$</span> 表示待杀羊在数组中的<strong>编号</strong>。</p>
+</blockquote>
+<p>即我们要杀掉号码为 <span class="markdown-them-math-inline">$3$</span>（<span class="markdown-them-math-inline">$arr[2]=3$</span>）的这只羊，也就是要求杀掉 <span class="markdown-them-math-inline">$arr[2]$</span> 的代价，这时候3号羊的邻居得到了消息，它们开始传播消息，什么时候传播停止？<strong>遇到了号码为2与号码为5的羊</strong>！</p>
+<p>换句话说，我们在杀死号码为3的这只羊时，它的左右邻居肯定被影响，也就是区间外的羊也会被影响，而<strong>传播停止是在遇到被杀死的羊的时候。</strong></p>
+<p>再来看公式：</p>
+<div class="markdown-them-math-block">$$    arr[k]=arr[r + 1] - arr[l - 1] - 2
+$$</div><p>是将区间扩展到<strong>左右边界外第一只</strong>待杀死的羊，为啥是 <span class="markdown-them-math-inline">$－2$</span> ？</p>
+<ul>
+<li>公式中已经将区间扩展到了 <span class="markdown-them-math-inline">$arr[r + 1]与arr[l - 1]$</span> ，即{ <strong><code>2</code>, <code>3</code>, 4, <code>5</code></strong> }，就是例子中羊的号码为 <span class="markdown-them-math-inline">$2$</span> 与号码为 <span class="markdown-them-math-inline">$5$</span> 的位置，这两只羊是要被杀死的，此时区间中有 <span class="markdown-them-math-inline">$5-2-1$</span> 只羊。</li>
+<li>而号码 <span class="markdown-them-math-inline">$3$</span>（即<span class="markdown-them-math-inline">$arr[2]$</span>）是我们最开始要杀的羊，所以最小代价为 <span class="markdown-them-math-inline">$5 - 2 - 1 - 1$</span>，即<span class="markdown-them-math-inline">$5 - 2 - 2 = 1$</span>，我们需要给一块巧克力去安慰号码为 <span class="markdown-them-math-inline">$4$</span> 这只羊。</li>
+</ul>
+<p>接下来<strong>验证</strong>一下这个公式是否合理：</p>
+<ul>
+<li>
+<p>考虑区间：{ <span class="markdown-them-math-inline">$2$</span> }，此时区间长度为 <span class="markdown-them-math-inline">$1$</span>，区间左部 <span class="markdown-them-math-inline">$l$</span> 与区间右部 <span class="markdown-them-math-inline">$r$</span> 相等，所以 <span class="markdown-them-math-inline">$l=r=2$</span>（前面约定，区间是以<strong>每只即将被杀掉的羊为结点</strong>划分，在这个例子中，羊的结点编号为 <span class="markdown-them-math-inline">$2$</span> ）</p>
+</li>
+<li>
+<p>代入公式：</p>
+<div class="markdown-them-math-block">$$    arr[2]=arr[2 + 1] - arr[2 - 1] - 2=1
+$$</div></li>
+<li>
+<p>公式结果表明，杀掉 <span class="markdown-them-math-inline">$arr[2]$</span> 这只羊，最小代价是 <span class="markdown-them-math-inline">$1$</span>。</p>
+</li>
+</ul>
+<p><strong>5. 考虑边界值：</strong></p>
+<ul>
+<li>题意说到，羊圈是排成一排的，即羊首与羊尾不会再传播给它的邻居，因此为了处理方便，我们设 <span class="markdown-them-math-inline">$arr[0] = 0，arr[m + 1] = n + 1$</span> 。</li>
+<li>当区间长度为1时，此时区间里只有一只待杀的羊，这时不需要再进行区间划分，直接计算杀掉 <span class="markdown-them-math-inline">$arr[k]$</span> 的代价即可。即：<br>
+<div class="markdown-them-math-block">$$dp[l][r] = arr[r + 1] - arr[l - 1] - 2$$</div></li>
+</ul>
+<h2><span id="3-题解">3 题解</span></h2>
+<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn = <span class="hljs-number">1e4</span> + <span class="hljs-number">5</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> INF = <span class="hljs-number">0x3f3f3f</span>;
+<span class="hljs-keyword">int</span> arr[maxn] = &#123;<span class="hljs-number">0</span>&#125;, dp[maxn][maxn] = &#123;<span class="hljs-number">0</span>&#125;;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span></span>&#123;
+    <span class="hljs-comment">//freopen(&quot;input.txt&quot;, &quot;r&quot;, stdin);</span>
+    <span class="hljs-keyword">int</span> t;
+    cin &gt;&gt; t;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> x = <span class="hljs-number">0</span>;x &lt; t;x++)&#123;
+        <span class="hljs-keyword">int</span> n, m;
+        cin &gt;&gt; n &gt;&gt; m;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>;i &lt;= m;i++)&#123;
+            cin &gt;&gt; arr[i];
+        &#125;
+        <span class="hljs-comment">//处理边界值 </span>
+        arr[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>, arr[m + <span class="hljs-number">1</span>] = n + <span class="hljs-number">1</span>;
+        <span class="hljs-comment">//区间长度由小到大 </span>
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> len = <span class="hljs-number">1</span>;len &lt;= m;len++)&#123;
+            <span class="hljs-comment">//考虑区间情况 l → r </span>
+            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> l = <span class="hljs-number">1</span>;l + len &lt;= m + <span class="hljs-number">1</span>;l++)&#123;
+                <span class="hljs-comment">//计算区间的右边界 r</span>
+                <span class="hljs-keyword">int</span> r = l + len - <span class="hljs-number">1</span>;
+                <span class="hljs-comment">//区间长度为 1 的特殊情况 </span>
+                <span class="hljs-keyword">if</span>(len == <span class="hljs-number">1</span>)&#123;
+                    dp[l][r] = arr[r + <span class="hljs-number">1</span>] - arr[l - <span class="hljs-number">1</span>] - <span class="hljs-number">2</span>;
+                &#125;<span class="hljs-keyword">else</span>&#123;
+                    <span class="hljs-comment">//赋初值 </span>
+                    dp[l][r] = INF;
+                    <span class="hljs-comment">//逐个遍历区间内每只待杀的羊 </span>
+                    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = l;i &lt;= r;i++)&#123;
+                        dp[l][r] = <span class="hljs-built_in">min</span>( dp[l][r], dp[l][i - <span class="hljs-number">1</span>] + dp[i + <span class="hljs-number">1</span>][r] + arr[r + <span class="hljs-number">1</span>] - arr[l - <span class="hljs-number">1</span>] - <span class="hljs-number">2</span> );
+                    &#125;
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, dp[<span class="hljs-number">1</span>][m]);
+    &#125;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+</code></pre></div>
+<p>如果你还是有一些疑惑，建议在代码中进行调试，输出各数据的运行情况，这可能有利于你理解。<br>
+另外如果你想进一步了解<strong>区间 dp 原理</strong>，可以查看 <span class="markdown-them-math-inline">$References$</span> 链接中的第一个。</p>
+<h2><span id="4-references">4 References</span></h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40772692/article/details/80183248">https://blog.csdn.net/qq_40772692/article/details/80183248</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.acwing.com/community/content/49891/">https://www.acwing.com/community/content/49891/</a></li>
+</ul>
+<p>有问题欢迎指正！</p>
+
+        </div>
+    
+
+    <!-- Post Tags -->
+    
+        <div class="post-meta">
+            Tags:
+            
+                <a href="/tags/C-C/"> / C/C++</a>
+            
+                <a href="/tags/dp/"> / dp</a>
+            
+                <a href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/"> / 蓝桥杯</a>
+            
+                <a href="/tags/%E5%8C%BA%E9%97%B4dp/"> / 区间dp</a>
+            
+        </div>
+    
+</div>
+                <div class="footer">
+    <span>Copyright © 2025 Lili Liang</span>
+    <span>Build with <a target="_blank" rel="noopener" href="https://github.com/LenChou95/hexo-theme-ZenMind">ZenMind</a></span>
+</div>
+
+<!-- Copy Code Funciton -->
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('pre').forEach((pre) => {
+            const button = document.createElement('button');
+            button.innerText = 'Copy';
+            button.className = 'copy-button';
+
+            button.addEventListener('click', () => {
+            const codeLines = pre.querySelectorAll('.hljs-ln-code');
+            const codeContent = Array.from(codeLines)
+                .map(line => line.textContent)
+                .join('\n');
+
+            navigator.clipboard.writeText(codeContent).then(() => {
+                button.innerText = '√ Copied!';
+                setTimeout(() => {
+                button.innerText = 'Copy';
+                }, 3000);
+            }).catch(err => {
+                console.error('Copy failed: ', err);
+                alert('Unable to copy code, please check browser permissions!');
+            });
+            });
+
+            pre.appendChild(button);
+        });
+    });
+</script>
+
+<!-- Change Code Style -->
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"> -->
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>

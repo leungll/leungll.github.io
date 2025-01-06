@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="robots" content="index, follow">
+
+    <!-- Baidu Site SEO -->
+    <meta name="baidu-site-verification" content="codeva-Fn6WoXLOMw" />
+    <!-- <meta name="baidu-site-verification" content="codeva-mdLm33TTHY" /> -->
+
+    <!-- Baidu analytics -->
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?1a364896f028f8093396007dc78eb0a0";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WF4EY3839B"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-WF4EY3839B');
+    </script>
+
+    <!-- Bing Site SEO -->
+    <meta name="msvalidate.01" content="85648BC2E966622B7CC9FF6BCB04E326" />
+
+    <!-- title -->
+    
+        <title>基于Hexo + Github &amp;&amp; Gitee 搭建个人 Blog | Lili Liang</title>
+    
+  
+    <!-- Open graph -->
+    <meta name="description" content="1 关于GitHub Pages 2 关于Hexo 3 Hexo环境搭建 4 Hexo主题更换 5 Hexo常用命令 6 解决Github博客访问过慢问题的方案 7 关于Gitee     一年前使用 Hexo + Github 搭过一个博客，但是当时事情多，搭好之后也没有后续维护，导致最后不了了之。现在闲下来，重新打开当时搭的博客，发现实在是太花哨了，因此决定重新搭一个，并记录一下采坑的过程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于Hexo + Github &amp;&amp; Gitee 搭建个人 Blog">
+<meta property="og:url" content="https://leungll.site/2020/04/02/hexo-github-gitee-permalink/index.html">
+<meta property="og:site_name" content="Lili Liang">
+<meta property="og:description" content="1 关于GitHub Pages 2 关于Hexo 3 Hexo环境搭建 4 Hexo主题更换 5 Hexo常用命令 6 解决Github博客访问过慢问题的方案 7 关于Gitee     一年前使用 Hexo + Github 搭过一个博客，但是当时事情多，搭好之后也没有后续维护，导致最后不了了之。现在闲下来，重新打开当时搭的博客，发现实在是太花哨了，因此决定重新搭一个，并记录一下采坑的过程">
+<meta property="og:locale">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/hexo-github-gitee-01.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/hexo-github-gitee-02.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/hexo-github-gitee-03.png">
+<meta property="article:published_time" content="2020-04-02T12:15:19.000Z">
+<meta property="article:modified_time" content="2025-01-05T07:21:24.113Z">
+<meta property="article:author" content="Lili Liang 梁莉莉">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="Gitee">
+<meta property="article:tag" content="Github">
+<meta property="article:tag" content="GitHub Page">
+<meta property="article:tag" content="Gitee Page">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/hexo-github-gitee-01.png">
+
+    <!-- Canonical -->
+    
+        <link rel="canonical" href="https://leungll.site/2020/04/02/hexo-github-gitee-permalink/">
+    
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/logo.png">
+
+    <!-- CSS -->
+    
+<link rel="stylesheet" href="/css/reset.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/markdown.css">
+
+    
+<link rel="stylesheet" href="/css/fonts.css">
+
+
+    <script>
+        MathJax = {
+          tex: {
+            packages: ['base', 'ams'],
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true
+          },
+          options: {
+            ignoreHtmlClass: "tex2jax_ignore",
+            processHtmlClass: "tex2jax_process"
+          }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Lili Liang" type="application/atom+xml">
+</head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">Lili Liang 梁莉莉</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Blogs</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+            <li><a href="/about">About</a></li>
+            
+        </ul>
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <!-- Post Title -->
+        <div class="post-main-title">
+            基于Hexo + Github &amp;&amp; Gitee 搭建个人 Blog
+        </div>
+
+        <!-- Post Meta Information -->
+        <div class="post-meta">
+            <!-- Show Creation Date -->
+            Created: Apr 2, 2020 ｜ 
+
+            <!-- Show Last Updated Date -->
+            
+                Last updated: Jan 5, 2025 ｜ 
+            
+
+            <!-- Show Post Categories -->
+            
+                <a href="/categories/Hexo/"># Hexo</a>
+            
+        </div>
+
+        <!-- Post Content -->
+        <div class="post-md">
+            <!-- toc -->
+<ul>
+<li><a href="#1-%E5%85%B3%E4%BA%8Egithub-pages">1 关于GitHub Pages</a></li>
+<li><a href="#2-%E5%85%B3%E4%BA%8Ehexo">2 关于Hexo</a></li>
+<li><a href="#3-hexo%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA">3 Hexo环境搭建</a></li>
+<li><a href="#4-hexo%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2">4 Hexo主题更换</a></li>
+<li><a href="#5-hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4">5 Hexo常用命令</a></li>
+<li><a href="#6-%E8%A7%A3%E5%86%B3github%E5%8D%9A%E5%AE%A2%E8%AE%BF%E9%97%AE%E8%BF%87%E6%85%A2%E9%97%AE%E9%A2%98%E7%9A%84%E6%96%B9%E6%A1%88">6 解决Github博客访问过慢问题的方案</a></li>
+<li><a href="#7-%E5%85%B3%E4%BA%8Egitee">7 关于Gitee</a></li>
+</ul>
+<!-- tocstop -->
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/hexo-github-gitee-01.png" alt="hexo-github-gitee-01"></p>
+<blockquote>
+<p>一年前使用 Hexo + Github 搭过一个博客，但是当时事情多，搭好之后也没有后续维护，导致最后不了了之。现在闲下来，重新打开当时搭的博客，发现实在是太花哨了，因此决定重新搭一个，并记录一下采坑的过程，以便后续更新。</p>
+</blockquote>
+<p>简单来说整个搭建过程可以理解成，将 GitHub 当成个人 Blog 的服务器，而 Hexo 就是一个博客框架，我们可以更换 Hexo 的主题，使博客个性化。</p>
+<h2><span id="1-关于github-pages">1 关于GitHub Pages</span></h2>
+<blockquote>
+<p>Github Pages 是 Github 免费给开发者提供的一款<strong>托管个人网站</strong>的产品, 可托管<strong>静态内容</strong>, 非常适合用来搭博客。</p>
+</blockquote>
+<h2><span id="2-关于hexo">2 关于Hexo</span></h2>
+<blockquote>
+<p>Hexo 是一个快速、简洁且高效的<strong>博客框架</strong>。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
+</blockquote>
+<ul>
+<li>
+<p><strong>Hexo官网</strong>：<strong><a target="_blank" rel="noopener" href="https://hexo.io">https://hexo.io</a></strong>（官网右上角可选择切换中文，方便阅读）；</p>
+</li>
+<li>
+<p><strong>Hexo的安装</strong>：使用 Node.js 中的 npm 库安装 Hexo；</p>
+</li>
+</ul>
+<h2><span id="3-hexo环境搭建">3 Hexo环境搭建</span></h2>
+<p><strong>1. 前期需要准备的环境如下</strong>：</p>
+<ul>
+<li>Git 的安装</li>
+<li>Github 账户的配置</li>
+<li>Node.js（npm）安装配置</li>
+</ul>
+<p><strong>2. 整个搭建过程为</strong>：搭建 Node.js 环境 → 利用 npm 库安装 Hexo → 配置 Github 账户（启动 GitHub Pages ）→ 初始化 Hexo → 更换你喜欢的 Hexo 主题 → 写博客发文章。</p>
+<p><strong>3. 接下来可以参考一个博主写的搭建博文，但是有一些事项需要注意</strong>：</p>
+<ul>
+<li>
+<p>博主文章中给的 Node.js 版本过低，安装时会 <strong>WARN</strong> 甚至会报错，因此最好到 Node.js 官网安装<strong>长期支持版本（LTS）</strong>，Node.js官网：<strong><a target="_blank" rel="noopener" href="https://nodejs.org/zh-cn">https://nodejs.org/zh-cn</a></strong>；</p>
+</li>
+<li>
+<p>在 Hexo 连接 Github 之前务必配置 SSH ，SSH 配置（参考博客的第4点）：<strong><a target="_blank" rel="noopener" href="https://blog.csdn.net/liangllhahaha/article/details/89565779">https://blog.csdn.net/liangllhahaha/article/details/89565779</a></strong>；</p>
+</li>
+<li>
+<p>注意你的仓库名称一定是：<strong><a target="_blank" rel="noopener" href="http://yourname.github.io">yourname.github.io</a></strong>，其中 <strong>yourname</strong> 为你的 Github 用户名；</p>
+</li>
+</ul>
+<p><strong>4. 好了，啰嗦那么多，开始搭建吧</strong>：</p>
+<blockquote>
+<p><strong>安装传送门：</strong><a target="_blank" rel="noopener" href="https://blog.csdn.net/gdutxiaoxu/article/details/53576018">手把手教你用Hexo+Github 搭建属于自己的博客</a></p>
+</blockquote>
+<h2><span id="4-hexo主题更换">4 Hexo主题更换</span></h2>
+<p><strong>1. 如果你不喜欢 Hexo 的默认主题</strong>：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/hexo-github-gitee-02.jpg" alt="hexo-github-gitee-02"></p>
+<p>可到 Hexo 官网或者知乎上选择更换：</p>
+<ul>
+<li>官网：<strong><a target="_blank" rel="noopener" href="https://hexo.io/themes">https://hexo.io/themes</a></strong></li>
+<li>知乎：<strong><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/24422335">https://www.zhihu.com/question/24422335</a></strong></li>
+</ul>
+<p><strong>2. 关于如何更换的问题</strong>：可参考开发者提供的 Readme 文档，如果你是小白，建议你选择对应 Readme 文档写得详尽的主题，这样方便你安装。</p>
+<h2><span id="5-hexo常用命令">5 Hexo常用命令</span></h2>
+<p><strong>1. 首先推荐食用 Hexo 的官方说明文档</strong>：<strong><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs">https://hexo.io/zh-cn/docs</a></strong></p>
+<p><strong>2. 常用命令</strong>：</p>
+<ul>
+<li>
+<p>新建一篇博客：</p>
+<div class="highlight"><pre class="code"><code>hexo <span class="hljs-keyword">new</span> post <span class="hljs-string">&quot;article title&quot;</span>
+</code></pre></div>
+</li>
+<li>
+<p>部署至本地服务器（本地服务器端口：<code>http://localhost:4000</code>)：</p>
+<div class="highlight"><pre class="code"><code>hexo s
+</code></pre></div>
+</li>
+<li>
+<p>运行生成、部署命令：</p>
+<div class="highlight"><pre class="code"><code>hexo g   <span class="hljs-comment">// 生成</span>
+hexo d   <span class="hljs-comment">// 部署</span>
+</code></pre></div>
+</li>
+<li>
+<p>在部署前生成:</p>
+<div class="highlight"><pre class="code"><code>hexo d -g 
+</code></pre></div>
+</li>
+</ul>
+<h2><span id="6-解决github博客访问过慢问题的方案">6 解决Github博客访问过慢问题的方案</span></h2>
+<p>经常使用 Github 的朋友都知道，因为 Github 服务器在外网，访问 Github 时经常会出现<strong>延时</strong>甚至<strong>拒绝访问</strong>的情况。那么我们基于 Github 服务器搭建的博客也不例外，有没有好的解决方案？</p>
+<ul>
+<li>开<strong>代理服务器</strong>；</li>
+<li>修改<strong>本机 Hosts 文件</strong>，绕过国内 DNS 解析，加快访问速度。（过时的方式，现在来看，效果已经不明显）；</li>
+<li>做一些其他的<strong>速度优化</strong>处理，可参考网上资料；</li>
+<li>因此我们可以考虑将 Hexo 博客同时部署到国内的 <strong>Gitee</strong> 上，如果以后 Github 真被墙了（参考伊朗），我们也可以有一个备份。（顺便提一句，Gitee 也是目前为止，解决 Github 下载速度慢问题<strong>最新且最优</strong>的办法）；</li>
+</ul>
+<h2><span id="7-关于gitee">7 关于Gitee</span></h2>
+<blockquote>
+<p>码云 Gitee ：是由开源中国（OSChina）出品，旨在树立国内代码托管和协作开发的行业标杆，灵活便捷地支撑个人、团队、企业的开发需求的产品。</p>
+</blockquote>
+<ul>
+<li>
+<p>Gitee 可以理解为就是国内的 Github ，也使用 git 内核，我们可以将 Hexo 博文同时同步到 Github 和 Gitee 上，国外访问你的博客用 Github（<s>谁看啊</s> ），国内用户使用 Gitee。</p>
+</li>
+<li>
+<p>Gitee 官网：<strong><a target="_blank" rel="noopener" href="https://gitee.com">https://gitee.com</a></strong></p>
+</li>
+<li>
+<p>可参考的博客：<strong><a target="_blank" rel="noopener" href="https://www.cnblogs.com/somata/p/11255547.html">通过gitee和hexo搭建个人博客</a></strong></p>
+</li>
+<li>
+<p>关于将博客部署到 Gittee 服务器上，操作与 Github 原理一致，只是服务器由 Github 更改到 Gitee 上，更改只需要做两点：</p>
+<ul>
+<li>
+<p>创建 Gitee 用户以及个人仓库（博客后缀名由 <strong><a target="_blank" rel="noopener" href="http://yourname.github.io">yourname.github.io</a></strong> 变成了 <strong><a target="_blank" rel="noopener" href="http://yourname.gitee.io">yourname.gitee.io</a></strong>）</p>
+</li>
+<li>
+<p>修改<strong>本地 Hexo 根目录下</strong>的 <strong>_config.yml</strong> 文件，将 <strong>Deployment</strong> 及 <strong>URL</strong> 更改为相应的 gitee 链接</p>
+<div class="highlight"><pre class="code"><code># URL
+## If your site <span class="hljs-keyword">is</span> <span class="hljs-keyword">put</span> in <span class="hljs-keyword">a</span> subdirectory, <span class="hljs-keyword">set</span> url <span class="hljs-keyword">as</span> <span class="hljs-string">&#x27;http://yoursite.com/child&#x27;</span> <span class="hljs-built_in">and</span> root <span class="hljs-keyword">as</span> <span class="hljs-string">&#x27;/child/&#x27;</span>
+ur<span class="hljs-variable">l:</span> http://yourname.gitee.io/
+roo<span class="hljs-variable">t:</span> /
+</code></pre></div>
+<div class="highlight"><pre class="code"><code><span class="hljs-meta"># Deployment</span>
+<span class="hljs-meta">## Docs: https:<span class="hljs-comment">//hexo.io/docs/deployment.html</span></span>
+<span class="hljs-symbol">deploy:</span>
+<span class="hljs-symbol">  type:</span> git
+<span class="hljs-symbol">  repo:</span> https:<span class="hljs-comment">//gitee.com/yourname/yourname.git</span>
+<span class="hljs-symbol">  branch:</span> master
+</code></pre></div>
+</li>
+</ul>
+</li>
+<li>
+<p>不需要将代码上传到 Gitee 的仓库中，使用 <code>hexo d -g</code> 指令在本地部署上传即可。</p>
+</li>
+<li>
+<p>需要注意的是，Gitee 普通版不支持自动更新，即你用 Hexo 部署到服务器后，需要到 Gitee Pages 服务<strong>手动更新</strong>，更新的博文才会生效。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/hexo-github-gitee-03.png" alt="hexo-github-gitee-03"></p>
+</li>
+</ul>
+<p>至此，整个 Blog 已经搭建完成。有句话叫“酒香也怕巷子深”，你的 Blog 写好之后，其实是希望更多人能够浏览，但是百度谷歌等搜索引擎其实收录不到你的博客内容的，因此我们需要将站点提交搜索引擎收录：</p>
+<p><a href="https://leungll.site/2020/04/06/hexo-blog-seo/">站点（e.g. Hexo Blog）提交百度搜索引擎收录实现SEO</a></p>
+<p>以上。欢迎留言一起讨论！</p>
+
+        </div>
+    
+
+    <!-- Post Tags -->
+    
+        <div class="post-meta">
+            Tags:
+            
+                <a href="/tags/Hexo/"> / Hexo</a>
+            
+                <a href="/tags/Gitee/"> / Gitee</a>
+            
+                <a href="/tags/Github/"> / Github</a>
+            
+                <a href="/tags/GitHub-Page/"> / GitHub Page</a>
+            
+                <a href="/tags/Gitee-Page/"> / Gitee Page</a>
+            
+        </div>
+    
+</div>
+                <div class="footer">
+    <span>Copyright © 2025 Lili Liang</span>
+    <span>Build with <a target="_blank" rel="noopener" href="https://github.com/LenChou95/hexo-theme-ZenMind">ZenMind</a></span>
+</div>
+
+<!-- Copy Code Funciton -->
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('pre').forEach((pre) => {
+            const button = document.createElement('button');
+            button.innerText = 'Copy';
+            button.className = 'copy-button';
+
+            button.addEventListener('click', () => {
+            const codeLines = pre.querySelectorAll('.hljs-ln-code');
+            const codeContent = Array.from(codeLines)
+                .map(line => line.textContent)
+                .join('\n');
+
+            navigator.clipboard.writeText(codeContent).then(() => {
+                button.innerText = '√ Copied!';
+                setTimeout(() => {
+                button.innerText = 'Copy';
+                }, 3000);
+            }).catch(err => {
+                console.error('Copy failed: ', err);
+                alert('Unable to copy code, please check browser permissions!');
+            });
+            });
+
+            pre.appendChild(button);
+        });
+    });
+</script>
+
+<!-- Change Code Style -->
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"> -->
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>

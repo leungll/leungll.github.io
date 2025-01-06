@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="robots" content="index, follow">
+
+    <!-- Baidu Site SEO -->
+    <meta name="baidu-site-verification" content="codeva-Fn6WoXLOMw" />
+    <!-- <meta name="baidu-site-verification" content="codeva-mdLm33TTHY" /> -->
+
+    <!-- Baidu analytics -->
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?1a364896f028f8093396007dc78eb0a0";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WF4EY3839B"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-WF4EY3839B');
+    </script>
+
+    <!-- Bing Site SEO -->
+    <meta name="msvalidate.01" content="85648BC2E966622B7CC9FF6BCB04E326" />
+
+    <!-- title -->
+    
+        <title>【洛谷 1072 &amp;&amp; 蓝桥杯 算法训练 ALGO - 37】Hankson 的趣味题（数论） | Lili Liang</title>
+    
+  
+    <!-- Open graph -->
+    <meta name="description" content="题目链接：http:&#x2F;&#x2F;lx.lanqiao.cn&#x2F;problem.page?gpid&#x3D;T99  1 题目 题目描述  Hanks 博士是 BT (Bio-Tech，生物技术) 领域的知名专家，他的儿子名叫 Hankson。现在，刚刚放学回家的 Hankson 正在思考一个有趣的问题。 今天在课堂上，老师讲解了如何求两个正整数 c1 和 c2 的最大公约数和最小公倍数。现在 Hankson 认为">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【洛谷 1072 &amp;&amp; 蓝桥杯 算法训练 ALGO - 37】Hankson 的趣味题（数论）">
+<meta property="og:url" content="https://leungll.site/2020/04/28/algo-28/index.html">
+<meta property="og:site_name" content="Lili Liang">
+<meta property="og:description" content="题目链接：http:&#x2F;&#x2F;lx.lanqiao.cn&#x2F;problem.page?gpid&#x3D;T99  1 题目 题目描述  Hanks 博士是 BT (Bio-Tech，生物技术) 领域的知名专家，他的儿子名叫 Hankson。现在，刚刚放学回家的 Hankson 正在思考一个有趣的问题。 今天在课堂上，老师讲解了如何求两个正整数 c1 和 c2 的最大公约数和最小公倍数。现在 Hankson 认为">
+<meta property="og:locale">
+<meta property="article:published_time" content="2020-04-28T15:15:40.000Z">
+<meta property="article:modified_time" content="2024-05-24T06:59:55.775Z">
+<meta property="article:author" content="Lili Liang 梁莉莉">
+<meta property="article:tag" content="C&#x2F;C++">
+<meta property="article:tag" content="蓝桥杯">
+<meta property="article:tag" content="数论">
+<meta name="twitter:card" content="summary">
+
+    <!-- Canonical -->
+    
+        <link rel="canonical" href="https://leungll.site/2020/04/28/algo-28/">
+    
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/logo.png">
+
+    <!-- CSS -->
+    
+<link rel="stylesheet" href="/css/reset.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/markdown.css">
+
+    
+<link rel="stylesheet" href="/css/fonts.css">
+
+
+    <script>
+        MathJax = {
+          tex: {
+            packages: ['base', 'ams'],
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true
+          },
+          options: {
+            ignoreHtmlClass: "tex2jax_ignore",
+            processHtmlClass: "tex2jax_process"
+          }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Lili Liang" type="application/atom+xml">
+</head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">Lili Liang 梁莉莉</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Blogs</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+            <li><a href="/about">About</a></li>
+            
+        </ul>
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <!-- Post Title -->
+        <div class="post-main-title">
+            【洛谷 1072 &amp;&amp; 蓝桥杯 算法训练 ALGO - 37】Hankson 的趣味题（数论）
+        </div>
+
+        <!-- Post Meta Information -->
+        <div class="post-meta">
+            <!-- Show Creation Date -->
+            Created: Apr 28, 2020 ｜ 
+
+            <!-- Show Last Updated Date -->
+            
+                Last updated: May 24, 2024 ｜ 
+            
+
+            <!-- Show Post Categories -->
+            
+                <a href="/categories/%E7%AE%97%E6%B3%95/"># 算法</a>
+            
+        </div>
+
+        <!-- Post Content -->
+        <div class="post-md">
+            <blockquote>
+<p><strong>题目链接：</strong><a target="_blank" rel="noopener" href="http://lx.lanqiao.cn/problem.page?gpid=T99">http://lx.lanqiao.cn/problem.page?gpid=T99</a></p>
+</blockquote>
+<h1><span id="1-题目">1 题目</span></h1>
+<h2><span id="题目描述">题目描述</span></h2>
+<blockquote>
+<p>Hanks 博士是 BT (Bio-Tech，生物技术) 领域的知名专家，他的儿子名叫 Hankson。现在，刚刚放学回家的 Hankson 正在思考一个有趣的问题。 今天在课堂上，老师讲解了如何求两个正整数 c1 和 c2 的最大公约数和最小公倍数。现在 Hankson 认为自己已经熟练地掌握了这些知识，他开始思考一个“求公约数”和“求公倍数”之类问题的“逆问题”，这个问题是这样的：已知正整数 a0, a1, b0, b1，设某未知正整数 x 满足：</p>
+<ul>
+<li>
+<ol>
+<li>x 和 a0 的最大公约数是 a1；</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>x 和 b0 的最小公倍数是 b1；</li>
+</ol>
+</li>
+</ul>
+<p>Hankson 的“逆问题”就是求出满足条件的正整数 x。但稍加思索之后，他发现这样的 x 并不唯一，甚至可能不存在。因此他转而开始考虑如何求解满足条件的 x 的个数。请你帮助他编程求解这个问题。</p>
+</blockquote>
+<h2><span id="输入格式">输入格式</span></h2>
+<blockquote>
+<p>输入第一行为一个正整数 n，表示有 n 组输入数据。<br>
+接下来的 n 行每行一组输入数据，为四个正整数 a0，a1，b0，b1，每两个整数之间用一个空格隔开。输入数据保证 a0 能被 a1 整除，b1 能被 b0 整除。</p>
+</blockquote>
+<h2><span id="输出格式">输出格式</span></h2>
+<blockquote>
+<p>输出共 n 行。每组输入数据的输出结果占一行，为一个整数。<br>
+对于每组数据：若不存在这样的 x ，请输出 0 ； 若存在这样的 x ，请输出满足条件的 x 的个数；</p>
+</blockquote>
+<h2><span id="样例输入">样例输入</span></h2>
+<div class="highlight"><pre class="code"><code><span class="hljs-number">2</span>
+<span class="hljs-symbol">41 </span><span class="hljs-number">1</span> <span class="hljs-number">96</span> <span class="hljs-number">288</span>
+<span class="hljs-symbol">95 </span><span class="hljs-number">1</span> <span class="hljs-number">37</span> <span class="hljs-number">1776</span>
+</code></pre></div>
+<h2><span id="样例输出">样例输出</span></h2>
+<div class="highlight"><pre class="code"><code>6
+2
+</code></pre></div>
+<h2><span id="样例说明">样例说明</span></h2>
+<blockquote>
+<p>第一组输入数据，x 可以是 9、18、36、72、144、288，共有 6 个。<br>
+第二组输入数据，x 可以是 48、1776，共有 2 个。</p>
+</blockquote>
+<h1><span id="2-分析">2 分析</span></h1>
+<blockquote>
+<p>首先，直接暴力枚举只能过 <span class="markdown-them-math-inline">$50\%$</span> 的数据。</p>
+</blockquote>
+<p><strong>1. 关于两个定理：</strong></p>
+<ul>
+<li>
+<p>最大公约数</p>
+<div class="highlight"><pre class="code"><code><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">gcd</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b)</span></span>&#123;   
+    <span class="hljs-keyword">return</span> b == <span class="hljs-number">0</span> ? a : <span class="hljs-built_in">gcd</span>(b, a % b);     
+&#125;
+</code></pre></div>
+</li>
+<li>
+<p>最小公倍数</p>
+<div class="highlight"><pre class="code"><code><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">lcm</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b)</span></span>&#123;
+    <span class="hljs-keyword">return</span> a * b / <span class="hljs-built_in">gcd</span>(a, b);
+&#125;
+</code></pre></div>
+</li>
+</ul>
+<p><strong>2. 一个结论</strong>：设 <span class="markdown-them-math-inline">$gcd(x, a_0)=a_1$</span> ，并有</p>
+<div class="markdown-them-math-block">$$    \left\{
+        \begin{aligned}
+            x=k_{1}*a_{1} \\ 
+            a_{0}=k_{2}*a_{1}&amp;
+        \end{aligned}
+    \right.
+$$</div><p>则 <span class="markdown-them-math-inline">$gcd(k_1,k_2)=1$</span> 。</p>
+<p><strong>证明：</strong></p>
+<ul>
+<li>
+<p>假设 <span class="markdown-them-math-inline">$gcd(k_1,k_2)\neq1$</span>，<span class="markdown-them-math-inline">$gcd(k_1,k_2)=K$</span>，并有</p>
+<div class="markdown-them-math-block">$$    \left\{
+        \begin{aligned}
+            k_{1}=p*K \\ 
+            k_{2}=q*K&amp;
+        \end{aligned}
+    \right.
+$$</div></li>
+<li>
+<p>由假设得：</p>
+<div class="markdown-them-math-block">$$    \left\{
+        \begin{aligned}
+            x=p*K*a_{1} \\ 
+            a_{0}=q*K*a_{1}&amp;
+        \end{aligned}
+    \right.
+$$</div></li>
+<li>
+<p>可得 <span class="markdown-them-math-inline">$gcd(x,a_0)=K*a_1\neq a_1$</span>，结果与题目条件不符，假设不成立</p>
+</li>
+<li>
+<p>则 <span class="markdown-them-math-inline">$gcd(k_1,k_2)=1$</span></p>
+</li>
+</ul>
+<p>因此可得：</p>
+<blockquote>
+<p>对于两个正整数 <span class="markdown-them-math-inline">$a,b$</span> ，设 <span class="markdown-them-math-inline">$gcd(a,b)=k$</span> 则存在 <span class="markdown-them-math-inline">$gcd(a / k,b / k)=1$</span></p>
+</blockquote>
+<p><strong>3. 推导</strong></p>
+<ul>
+<li>
+<p>由最大公约数定理</p>
+<div class="markdown-them-math-block">$$    gcd(x,a_{0})=a_{1}
+$$</div><p>得</p>
+<div class="markdown-them-math-block">$$    gcd(\frac {x} {a_{1}} ,\frac {a_{0}}{a_{1}})=1
+$$</div></li>
+<li>
+<p>由最小公倍数定理</p>
+<div class="markdown-them-math-block">$$    lcm(x,b_{0})=b_{1}=\frac {x*b_{0}}{gcd(x,b_{0})}
+$$</div><p>则</p>
+<div class="markdown-them-math-block">$$    gcd(x,b_{0})=\frac{x*b_{0}}{b_{1}}
+$$</div><p>得</p>
+<div class="markdown-them-math-block">$$    gcd(\frac {b_1} {b_{0}} ,\frac {b_{1}}{x})=1
+$$</div></li>
+</ul>
+<p><strong>4. 最终可得如下结论：</strong></p>
+<div class="markdown-them-math-block">$$    \left\{
+        \begin{aligned}
+            gcd(\frac {x} {a_{1}} ,\frac {a_{0}}{a_{1}})=1 \\ 
+            gcd(\frac {b_1} {b_{0}} ,\frac {b_{1}}{x})=1&amp;
+        \end{aligned}
+    \right.
+$$</div><h1><span id="3-题解">3 题解</span></h1>
+<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cmath&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">gcd</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b)</span></span>&#123;
+    <span class="hljs-keyword">return</span> b == <span class="hljs-number">0</span> ? a : <span class="hljs-built_in">gcd</span>(b, a % b);
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
+    <span class="hljs-keyword">int</span> n;
+    cin &gt;&gt; n;
+    <span class="hljs-keyword">while</span>(n--)&#123;
+        <span class="hljs-keyword">int</span> a0, a1, b0, b1, ans = <span class="hljs-number">0</span>;
+        cin &gt;&gt; a0 &gt;&gt; a1 &gt;&gt; b0 &gt;&gt; b1;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> x = <span class="hljs-number">1</span>;x &lt;= <span class="hljs-built_in">sqrt</span>(b1);x++)&#123;
+            <span class="hljs-keyword">if</span>(b1 % x == <span class="hljs-number">0</span>)&#123;
+                <span class="hljs-keyword">if</span>(x % a1 == <span class="hljs-number">0</span> &amp;&amp; <span class="hljs-built_in">gcd</span>(x / a1, a0 / a1) == <span class="hljs-number">1</span> &amp;&amp; <span class="hljs-built_in">gcd</span>(b1 / x, b1 / b0) == <span class="hljs-number">1</span>)&#123;
+                    ans++;
+                &#125;
+                <span class="hljs-comment">//枚举另一个因子 </span>
+                <span class="hljs-keyword">int</span> y = b1 / x;
+                <span class="hljs-keyword">if</span>(y == x)&#123;
+                    <span class="hljs-keyword">continue</span>;
+                &#125;
+                <span class="hljs-keyword">if</span>(y % a1 == <span class="hljs-number">0</span> &amp;&amp; <span class="hljs-built_in">gcd</span>(y / a1, a0 / a1) == <span class="hljs-number">1</span> &amp;&amp; <span class="hljs-built_in">gcd</span>(b1 / y, b1 / b0) == <span class="hljs-number">1</span>)&#123;
+                    ans++;
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">if</span>(ans != <span class="hljs-number">0</span>)&#123;
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, ans);
+        &#125;<span class="hljs-keyword">else</span>&#123;
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;0\n&quot;</span>);
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+</code></pre></div>
+
+        </div>
+    
+
+    <!-- Post Tags -->
+    
+        <div class="post-meta">
+            Tags:
+            
+                <a href="/tags/C-C/"> / C/C++</a>
+            
+                <a href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/"> / 蓝桥杯</a>
+            
+                <a href="/tags/%E6%95%B0%E8%AE%BA/"> / 数论</a>
+            
+        </div>
+    
+</div>
+                <div class="footer">
+    <span>Copyright © 2025 Lili Liang</span>
+    <span>Build with <a target="_blank" rel="noopener" href="https://github.com/LenChou95/hexo-theme-ZenMind">ZenMind</a></span>
+</div>
+
+<!-- Copy Code Funciton -->
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('pre').forEach((pre) => {
+            const button = document.createElement('button');
+            button.innerText = 'Copy';
+            button.className = 'copy-button';
+
+            button.addEventListener('click', () => {
+            const codeLines = pre.querySelectorAll('.hljs-ln-code');
+            const codeContent = Array.from(codeLines)
+                .map(line => line.textContent)
+                .join('\n');
+
+            navigator.clipboard.writeText(codeContent).then(() => {
+                button.innerText = '√ Copied!';
+                setTimeout(() => {
+                button.innerText = 'Copy';
+                }, 3000);
+            }).catch(err => {
+                console.error('Copy failed: ', err);
+                alert('Unable to copy code, please check browser permissions!');
+            });
+            });
+
+            pre.appendChild(button);
+        });
+    });
+</script>
+
+<!-- Change Code Style -->
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"> -->
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>

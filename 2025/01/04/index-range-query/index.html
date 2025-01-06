@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="robots" content="index, follow">
+
+    <!-- Baidu Site SEO -->
+    <meta name="baidu-site-verification" content="codeva-Fn6WoXLOMw" />
+    <!-- <meta name="baidu-site-verification" content="codeva-mdLm33TTHY" /> -->
+
+    <!-- Baidu analytics -->
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?1a364896f028f8093396007dc78eb0a0";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WF4EY3839B"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-WF4EY3839B');
+    </script>
+
+    <!-- Bing Site SEO -->
+    <meta name="msvalidate.01" content="85648BC2E966622B7CC9FF6BCB04E326" />
+
+    <!-- title -->
+    
+        <title>What&#39;s the difference between index(a, b, c) and index(b, c, a) in Range Query? | Lili Liang</title>
+    
+  
+    <!-- Open graph -->
+    <meta name="description" content="Scenario: How Would You Index This Query? Understanding Multi-Filed Indexing How Does Index Order Affect Range Query?  Case 1: Using INDEX(a, b, c) Case 2: Using INDEX(b, c, a)   Tips: How to Choose">
+<meta property="og:type" content="article">
+<meta property="og:title" content="What&#39;s the difference between index(a, b, c) and index(b, c, a) in Range Query?">
+<meta property="og:url" content="https://leungll.site/2025/01/04/index-range-query/index.html">
+<meta property="og:site_name" content="Lili Liang">
+<meta property="og:description" content="Scenario: How Would You Index This Query? Understanding Multi-Filed Indexing How Does Index Order Affect Range Query?  Case 1: Using INDEX(a, b, c) Case 2: Using INDEX(b, c, a)   Tips: How to Choose">
+<meta property="og:locale">
+<meta property="article:published_time" content="2025-01-04T13:57:03.000Z">
+<meta property="article:modified_time" content="2025-01-05T10:18:46.719Z">
+<meta property="article:author" content="Lili Liang 梁莉莉">
+<meta property="article:tag" content="index">
+<meta property="article:tag" content="range query">
+<meta name="twitter:card" content="summary">
+
+    <!-- Canonical -->
+    
+        <link rel="canonical" href="https://leungll.site/2025/01/04/index-range-query/">
+    
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/logo.png">
+
+    <!-- CSS -->
+    
+<link rel="stylesheet" href="/css/reset.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/markdown.css">
+
+    
+<link rel="stylesheet" href="/css/fonts.css">
+
+
+    <script>
+        MathJax = {
+          tex: {
+            packages: ['base', 'ams'],
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true
+          },
+          options: {
+            ignoreHtmlClass: "tex2jax_ignore",
+            processHtmlClass: "tex2jax_process"
+          }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Lili Liang" type="application/atom+xml">
+</head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">Lili Liang 梁莉莉</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Blogs</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+            <li><a href="/about">About</a></li>
+            
+        </ul>
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <!-- Post Title -->
+        <div class="post-main-title">
+            What&#39;s the difference between index(a, b, c) and index(b, c, a) in Range Query?
+        </div>
+
+        <!-- Post Meta Information -->
+        <div class="post-meta">
+            <!-- Show Creation Date -->
+            Created: Jan 4, 2025 ｜ 
+
+            <!-- Show Last Updated Date -->
+            
+                Last updated: Jan 5, 2025 ｜ 
+            
+
+            <!-- Show Post Categories -->
+            
+                <a href="/categories/Database/"># Database</a>
+            
+        </div>
+
+        <!-- Post Content -->
+        <div class="post-md">
+            <!-- toc -->
+<ul>
+<li><a href="#scenario-how-would-you-index-this-query">Scenario: How Would You Index This Query?</a></li>
+<li><a href="#understanding-multi-filed-indexing">Understanding Multi-Filed Indexing</a></li>
+<li><a href="#how-does-index-order-affect-range-query">How Does Index Order Affect Range Query?</a>
+<ul>
+<li><a href="#case-1-using-indexa-b-c">Case 1: Using INDEX(a, b, c)</a></li>
+<li><a href="#case-2-using-indexb-c-a">Case 2: Using INDEX(b, c, a)</a></li>
+</ul>
+</li>
+<li><a href="#tips-how-to-choose-the-right-index-order">Tips: How to Choose the Right Index Order?</a></li>
+</ul>
+<!-- tocstop -->
+<h2><span id="scenario-how-would-you-index-this-query">Scenario: How Would You Index This Query?</span></h2>
+<p>Image you have a table, and you need to optimize the following query:</p>
+<div class="highlight"><pre class="code"><code><span class="hljs-attribute">SELECT</span> * FROM my_table WHERE a &gt;= <span class="hljs-number">1</span> AND b = <span class="hljs-number">1</span> AND c = <span class="hljs-number">1</span>;
+</code></pre></div>
+<p>At first glance, you might think adding a multi-field index like <code>INDEX(a, b, c)</code> will solve the problem. But is that really the best choice?</p>
+<h2><span id="understanding-multi-filed-indexing">Understanding Multi-Filed Indexing</span></h2>
+<p>A multi-field index (also called a composite index) is an index that covers more than one column. For example:</p>
+<div class="highlight"><pre class="code"><code><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> index_abc <span class="hljs-keyword">ON</span> my_table (a, b, c);
+</code></pre></div>
+<p>This means the table is sorted in <u><strong>lexicographical order</strong></u> by:</p>
+<ol>
+<li>Column <code>a</code> first.</li>
+<li>Then by <code>b</code> within rows where <code>a</code> is the same.</li>
+<li>Finally by <code>c</code> within rows where both <code>a</code> and <code>b</code> are the same.</li>
+</ol>
+<p><u>But how does the order of column in an index affect performance in <strong>range query</strong> like <code>a &gt;= 1</code> ?</u></p>
+<h2><span id="how-does-index-order-affect-range-query">How Does Index Order Affect Range Query?</span></h2>
+<p>Let’s compare two different multi-field indexes:</p>
+<div class="highlight"><pre class="code"><code><span class="hljs-constructor">INDEX(<span class="hljs-params">a</span>, <span class="hljs-params">b</span>, <span class="hljs-params">c</span>)</span>
+<span class="hljs-constructor">INDEX(<span class="hljs-params">b</span>, <span class="hljs-params">c</span>, <span class="hljs-params">a</span>)</span>
+</code></pre></div>
+<p>And we will analyze their performance on this query:</p>
+<div class="highlight"><pre class="code"><code><span class="hljs-attribute">SELECT</span> * FROM my_table WHERE a &gt;= <span class="hljs-number">1</span> AND b = <span class="hljs-number">1</span> AND c = <span class="hljs-number">1</span>;
+</code></pre></div>
+<h3><span id="case-1-using-indexa-b-c">Case 1: Using INDEX(a, b, c)</span></h3>
+<p>With <code>INDEX(a, b, c)</code>, the query looks like this:</p>
+<div class="highlight"><pre class="code"><code><span class="hljs-attribute">SELECT</span> * FROM my_table WHERE a &gt;= <span class="hljs-number">1</span> AND b = <span class="hljs-number">1</span> AND c = <span class="hljs-number">1</span>;
+</code></pre></div>
+<p>Here’s how MySQL processes it:</p>
+<ol>
+<li>The database first finds <strong>rows where <code>a &gt;= 1</code></strong>;</li>
+<li>However, because <code>a</code> is a range condition, the database cannot use the remaining columns (<code>b</code> and <code>c</code>) efficiently. The sorting order for <code>b</code> and <code>c</code> is broken after the range condition on <code>a</code>.</li>
+<li>As a result, the database has to <strong>perform a full scan</strong> within the <code>a &gt;= 1</code> range to find rows that match <code>b = 1</code> and <code>c = 1</code>.</li>
+</ol>
+<h3><span id="case-2-using-indexb-c-a">Case 2: Using INDEX(b, c, a)</span></h3>
+<p>Now let’s change the index to INDEX(b, c, a) and adjust the query accordingly:</p>
+<div class="highlight"><pre class="code"><code><span class="hljs-attribute">SELECT</span> * FROM my_table WHERE b = <span class="hljs-number">1</span> AND c = <span class="hljs-number">1</span> AND a &gt;= <span class="hljs-number">1</span>;
+</code></pre></div>
+<p>Here’s how MySQL processes it:</p>
+<ol>
+<li>First database will find rows where <code>b = 1</code>.</li>
+<li>Within that range, it finds rows where <code>c = 1</code>.</li>
+<li>Finally, it applies the range condition on <code>a</code>.</li>
+</ol>
+<p>Because <code>b</code> and <code>c</code> are exact mathces, the database could efficiently use the index for both columns before applying the range condition on <code>a</code>.</p>
+<h2><span id="tips-how-to-choose-the-right-index-order">Tips: How to Choose the Right Index Order?</span></h2>
+<ol>
+<li><strong>Put equality conditions first</strong>: Columns that use <code>=</code> should come first in the index.</li>
+<li><strong>Put range conditions last</strong>: Columns that use <code>&gt;=</code>, <code>&gt;</code>, <code>&lt;</code>, etc., should be placed last in the index.</li>
+<li><strong>Design indexes based on your most frequent queries</strong>.</li>
+</ol>
+
+        </div>
+    
+
+    <!-- Post Tags -->
+    
+        <div class="post-meta">
+            Tags:
+            
+                <a href="/tags/index/"> / index</a>
+            
+                <a href="/tags/range-query/"> / range query</a>
+            
+        </div>
+    
+</div>
+                <div class="footer">
+    <span>Copyright © 2025 Lili Liang</span>
+    <span>Build with <a target="_blank" rel="noopener" href="https://github.com/LenChou95/hexo-theme-ZenMind">ZenMind</a></span>
+</div>
+
+<!-- Copy Code Funciton -->
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('pre').forEach((pre) => {
+            const button = document.createElement('button');
+            button.innerText = 'Copy';
+            button.className = 'copy-button';
+
+            button.addEventListener('click', () => {
+            const codeLines = pre.querySelectorAll('.hljs-ln-code');
+            const codeContent = Array.from(codeLines)
+                .map(line => line.textContent)
+                .join('\n');
+
+            navigator.clipboard.writeText(codeContent).then(() => {
+                button.innerText = '√ Copied!';
+                setTimeout(() => {
+                button.innerText = 'Copy';
+                }, 3000);
+            }).catch(err => {
+                console.error('Copy failed: ', err);
+                alert('Unable to copy code, please check browser permissions!');
+            });
+            });
+
+            pre.appendChild(button);
+        });
+    });
+</script>
+
+<!-- Change Code Style -->
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"> -->
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>
