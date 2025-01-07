@@ -164,49 +164,33 @@
 <p>在第一行中输出 Knuth 洗牌法的结果序列。数字间必须以 1 个空格分隔，行首尾不得有多余空格。</p>
 </blockquote>
 <p><strong>输入样例</strong></p>
-<div class="highlight"><pre class="code"><code><span class="hljs-number">10</span>
-<span class="hljs-symbol">7 </span><span class="hljs-number">4</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span> <span class="hljs-number">10</span> <span class="hljs-number">6</span> <span class="hljs-number">9</span> <span class="hljs-number">9</span> <span class="hljs-number">10</span> <span class="hljs-number">10</span>
-</code></pre></div>
+<pre><code>10
+7 4 4 5 10 6 9 9 10 10
+</code></pre>
 <p><strong>输出样例</strong></p>
-<div class="highlight"><pre class="code"><code><span class="hljs-symbol">7 </span><span class="hljs-number">4</span> <span class="hljs-number">2</span> <span class="hljs-number">5</span> <span class="hljs-number">10</span> <span class="hljs-number">6</span> <span class="hljs-number">9</span> <span class="hljs-number">1</span> <span class="hljs-number">3</span> <span class="hljs-number">8</span>
-</code></pre></div>
+<pre><code>7 4 2 5 10 6 9 1 3 8
+</code></pre>
 <p><strong>思路</strong></p>
 <p>水题，用三变量交换法，交换数组的值即可。</p>
 <p><strong>题解</strong></p>
-<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
-<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">#include <iostream>
+#include <cstdio>
+using namespace std;
 
-<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn = <span class="hljs-number">1e3</span> + <span class="hljs-number">5</span>;
-<span class="hljs-keyword">int</span> a[maxn] = &#123;<span class="hljs-number">0</span>&#125;, b[maxn] = &#123;<span class="hljs-number">0</span>&#125;;
+const int maxn = 1e3 + 5;
+int a[maxn] = &#123;0&#125;, b[maxn] = &#123;0&#125;;
 
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
-    <span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> ONLINE_JUDGE</span>
-    <span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span>
-    <span class="hljs-built_in">freopen</span>(<span class="hljs-string">&quot;input.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, stdin);
-    <span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span>
-    <span class="hljs-keyword">int</span> n;
-    cin &gt;&gt; n;
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;
-        cin &gt;&gt; a[i];
+int main() &#123;
+    #ifdef ONLINE_JUDGE
+    #else
+    freopen("input.txt", "r", stdin);
+    #endif
+    int n;
+    cin >> n;
+    for(int i = 1; i <= n; i++) &#123; cin>> a[i];
         b[i] = i;
     &#125;
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;
-        <span class="hljs-keyword">int</span> t1 = i, t2 = a[i];
-        <span class="hljs-keyword">int</span> temp = b[t1];
-        b[t1] = b[t2];
-        b[t2] = temp;
-    &#125;
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;
-        <span class="hljs-keyword">if</span>(i == <span class="hljs-number">1</span>) &#123;
-            cout &lt;&lt; b[i];
-        &#125; <span class="hljs-keyword">else</span> &#123;
-            cout &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; b[i];
-        &#125;
-    &#125;
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-&#125;
-</code></pre></div>
+    for(int i = 1; i <= n; i++) &#123; int t1="i," t2="a[i];" temp="b[t1];" b[t1]="b[t2];" b[t2]="temp;" &#125; for(int i="1;" <="n;" if(i="=" 1) cout << b[i]; else " return 0; <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></=></=></cstdio></iostream></code></pre>
 <h2><span id="2-三阶幸福数-20分">2 三阶幸福数 (20分)</span></h2>
 <p><strong>题目描述</strong></p>
 <blockquote>
@@ -216,73 +200,73 @@
 </blockquote>
 <p><strong>输入格式</strong></p>
 <blockquote>
-<p>输入在第一行给出一个不超过 100 的正整数 N，随后 N 行，每行给出一个不超过 <span class="markdown-them-math-inline">$10^{4}$</span>​​ 的正整数。</p>
+<p>输入在第一行给出一个不超过 100 的正整数 N，随后 N 行，每行给出一个不超过 $10^{4}$​​ 的正整数。</p>
 </blockquote>
 <p><strong>输出格式</strong></p>
 <blockquote>
 <p>对于每一个输入的数字，如果其是三阶幸福数，则在一行中输出它的幸福度；否则输出最早遇到的循环点。</p>
 </blockquote>
 <p><strong>输入样例</strong></p>
-<div class="highlight"><pre class="code"><code><span class="hljs-number">3</span>
-<span class="hljs-number">1579</span>
-<span class="hljs-number">97</span>
-<span class="hljs-number">1</span>
-</code></pre></div>
+<pre><code>3
+1579
+97
+1
+</code></pre>
 <p><strong>输出样例</strong></p>
-<div class="highlight"><pre class="code"><code>4
+<pre><code>4
 352
 0
-</code></pre></div>
+</code></pre>
 <p><strong>思路</strong></p>
 <ul>
-<li>用 <span class="markdown-them-math-inline">$set$</span> 存储每次迭代生成的数据，如果 <span class="markdown-them-math-inline">$sum$</span> 为 <span class="markdown-them-math-inline">$1$</span>，输出 <span class="markdown-them-math-inline">$ans$</span> ，跳出循环。如果找到相同的值，则输出。</li>
-<li>注意 <span class="markdown-them-math-inline">$17$</span> 行，对 <span class="markdown-them-math-inline">$st$</span> 清空操作。</li>
-<li>注意对特例 <span class="markdown-them-math-inline">$1$</span> 的处理。</li>
+<li>用 $set$ 存储每次迭代生成的数据，如果 $sum$ 为 $1$，输出 $ans$ ，跳出循环。如果找到相同的值，则输出。</li>
+<li>注意 $17$ 行，对 $st$ 清空操作。</li>
+<li>注意对特例 $1$ 的处理。</li>
 </ul>
 <p><strong>题解</strong></p>
-<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;set&gt;</span></span>
-<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">#include <iostream>
+#include <cstdio>
+#include <set>
+using namespace std;
 
-set&lt;<span class="hljs-keyword">int</span>&gt; st;
+set<int> st;
 
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
-    <span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> ONLINE_JUDGE</span>
-    <span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span>
-        <span class="hljs-built_in">freopen</span>(<span class="hljs-string">&quot;input.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, stdin);
-    <span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span>
-    <span class="hljs-keyword">int</span> n;
-    cin &gt;&gt; n;
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;
-        <span class="hljs-keyword">int</span> num, ans = <span class="hljs-number">0</span>;
-        st.<span class="hljs-built_in">clear</span>();
-        cin &gt;&gt; num;
-        <span class="hljs-keyword">if</span>(num == <span class="hljs-number">1</span>) &#123;
-            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;0\n&quot;</span>);
-            <span class="hljs-keyword">continue</span>;
+int main() &#123;
+    #ifdef ONLINE_JUDGE
+    #else
+        freopen("input.txt", "r", stdin);
+    #endif
+    int n;
+    cin >> n;
+    for(int i = 0; i < n; i++) &#123;
+        int num, ans = 0;
+        st.clear();
+        cin >> num;
+        if(num == 1) &#123;
+            printf("0\n");
+            continue;
         &#125;
-        <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>) &#123;
-            st.<span class="hljs-built_in">insert</span>(num);
-            <span class="hljs-keyword">int</span> sum = <span class="hljs-number">0</span>;
-            <span class="hljs-keyword">while</span>(num) &#123;
-                sum += (num % <span class="hljs-number">10</span>) * (num % <span class="hljs-number">10</span>) * (num % <span class="hljs-number">10</span>);
-                num /= <span class="hljs-number">10</span>;
+        while(true) &#123;
+            st.insert(num);
+            int sum = 0;
+            while(num) &#123;
+                sum += (num % 10) * (num % 10) * (num % 10);
+                num /= 10;
             &#125;
             ans++;
-            <span class="hljs-keyword">if</span>(sum == <span class="hljs-number">1</span>) &#123;
-                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, ans);
-                <span class="hljs-keyword">break</span>;
-            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(st.<span class="hljs-built_in">find</span>(sum) != st.<span class="hljs-built_in">end</span>()) &#123;
-                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, sum);
-                <span class="hljs-keyword">break</span>;
+            if(sum == 1) &#123;
+                printf("%d\n", ans);
+                break;
+            &#125; else if(st.find(sum) != st.end()) &#123;
+                printf("%d\n", sum);
+                break;
             &#125;
             num = sum;
         &#125;
     &#125;
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    return 0;
 &#125;
-</code></pre></div>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></int></set></cstdio></iostream></code></pre>
 <h2><span id="3-垃圾分类-20分">3 垃圾分类 (20分)</span></h2>
 <p><strong>题目描述</strong></p>
 <blockquote>
@@ -291,7 +275,7 @@ set&lt;<span class="hljs-keyword">int</span>&gt; st;
 </blockquote>
 <p><strong>输入格式</strong></p>
 <blockquote>
-<p>输入首先给出官方分类指南中每种物品的归属。在一行中给出一个正整数 N（≤ <span class="markdown-them-math-inline">$10​^5$</span>​​），即物品数量；随后 N 行，每行给出一个物品名称（长度不超过 10 的、由小写英文字母和下划线组成的字符串）和该物品所属的分类（1 代表干垃圾、2 代表湿垃圾、3 代表可回收物、4 代表有害垃圾）。题目保证所有物品名称无重复。<br>
+<p>输入首先给出官方分类指南中每种物品的归属。在一行中给出一个正整数 N（≤ $10​^5$​​），即物品数量；随后 N 行，每行给出一个物品名称（长度不超过 10 的、由小写英文字母和下划线组成的字符串）和该物品所属的分类（1 代表干垃圾、2 代表湿垃圾、3 代表可回收物、4 代表有害垃圾）。题目保证所有物品名称无重复。<br>
 随后每行给出一个查询物品的名称（格式与指南物品名称相同）。最后一行给出结束符<code>#</code>，表示查询终止，这一行不需要查询。</p>
 </blockquote>
 <p><strong>输出格式</strong></p>
@@ -299,60 +283,60 @@ set&lt;<span class="hljs-keyword">int</span>&gt; st;
 <p>对每个查询的物品，在一行中给出其所属分类：<code>Gan laji</code> 代表干垃圾；<code>Shi laji</code> 代表湿垃圾；<code>Ke Hui Shou</code> 代表可回收物；<code>You Hai laji</code> 代表有害垃圾。如果查询的物品不在指南中，则输出 <code>?</code> 表示不知道。</p>
 </blockquote>
 <p><strong>输入样例</strong></p>
-<div class="highlight"><pre class="code"><code><span class="hljs-number">4</span>
-<span class="hljs-keyword">bao_zhi </span><span class="hljs-number">3</span>
-<span class="hljs-keyword">dian_chi </span><span class="hljs-number">4</span>
-dan_ke <span class="hljs-number">2</span>
-<span class="hljs-keyword">bei_ke </span><span class="hljs-number">1</span>
+<pre><code>4
+bao_zhi 3
+dian_chi 4
+dan_ke 2
+bei_ke 1
 dan_ke
-<span class="hljs-keyword">dian_chi
-</span>ren_zha
-<span class="hljs-keyword">bao_zhi
-</span><span class="hljs-keyword">bei_ke
-</span>#
-</code></pre></div>
+dian_chi
+ren_zha
+bao_zhi
+bei_ke
+#
+</code></pre>
 <p><strong>输出样例</strong></p>
-<div class="highlight"><pre class="code"><code><span class="hljs-keyword">Shi </span>laji
+<pre><code>Shi laji
 You Hai laji
 ?
-Ke Hui <span class="hljs-keyword">Shou
-</span>Gan laji
-</code></pre></div>
+Ke Hui Shou
+Gan laji
+</code></pre>
 <p><strong>思路</strong></p>
 <ul>
-<li>用一个 <span class="markdown-them-math-inline">$char$</span> 数组和 <span class="markdown-them-math-inline">$map$</span> 存储，反向取值即可。</li>
-<li>注意 <span class="markdown-them-math-inline">$23$</span> 行，存在多次输入时，用 <span class="markdown-them-math-inline">$cin$</span> 会运行超时。</li>
+<li>用一个 $char$ 数组和 $map$ 存储，反向取值即可。</li>
+<li>注意 $23$ 行，存在多次输入时，用 $cin$ 会运行超时。</li>
 </ul>
 <p><strong>题解</strong></p>
-<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;map&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span>
-<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">#include <iostream>
+#include <cstdio>
+#include <map>
+#include <cstring>
+using namespace std;
 
-<span class="hljs-keyword">char</span> chr[<span class="hljs-number">5</span>][<span class="hljs-number">20</span>] = &#123;<span class="hljs-string">&quot;?&quot;</span>, <span class="hljs-string">&quot;Gan laji&quot;</span>, <span class="hljs-string">&quot;Shi laji&quot;</span>,<span class="hljs-string">&quot;Ke Hui Shou&quot;</span>,<span class="hljs-string">&quot;You Hai laji&quot;</span>&#125;;
-map&lt;string, <span class="hljs-keyword">int</span>&gt; mp;
-<span class="hljs-keyword">char</span> str[<span class="hljs-number">20</span>];
+char chr[5][20] = &#123;"?", "Gan laji", "Shi laji","Ke Hui Shou","You Hai laji"&#125;;
+map<string, int> mp;
+char str[20];
 
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
-    <span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> ONLINE_JUDGE</span>
-    <span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span>
-        <span class="hljs-built_in">freopen</span>(<span class="hljs-string">&quot;input.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, stdin);
-    <span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span>
-    <span class="hljs-keyword">int</span> n;
-    cin &gt;&gt; n;
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; n;i++)&#123;
-        <span class="hljs-keyword">int</span> num;
-        cin &gt;&gt; str &gt;&gt; num;
+int main()&#123;
+    #ifdef ONLINE_JUDGE
+    #else
+        freopen("input.txt", "r", stdin);
+    #endif
+    int n;
+    cin >> n;
+    for(int i = 0;i < n;i++)&#123;
+        int num;
+        cin >> str >> num;
         mp[str] = num;
     &#125;
-<span class="hljs-comment">//    while((cin &gt;&gt; str) &amp;&amp; (str != &quot;#&quot;))&#123;</span>
-    <span class="hljs-keyword">while</span>(<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>, str) != EOF &amp;&amp; <span class="hljs-built_in">strcmp</span>(<span class="hljs-string">&quot;#&quot;</span>, str) != <span class="hljs-number">0</span>)&#123;
-        <span class="hljs-built_in">puts</span>(chr[mp[str]]);
+//    while((cin >> str) && (str != "#"))&#123;
+    while(scanf("%s", str) != EOF && strcmp("#", str) != 0)&#123;
+        puts(chr[mp[str]]);
     &#125;
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    return 0;
 &#125;
-</code></pre></div>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></string,></cstring></map></cstdio></iostream></code></pre>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/pat-test-01.png" alt="pat-test-01"></p>
 
         </div>

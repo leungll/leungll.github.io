@@ -155,13 +155,13 @@
 <!-- tocstop -->
 <h2><span id="scenario-how-would-you-index-this-query">Scenario: How Would You Index This Query?</span></h2>
 <p>Image you have a table, and you need to optimize the following query:</p>
-<div class="highlight"><pre class="code"><code><span class="hljs-attribute">SELECT</span> * FROM my_table WHERE a &gt;= <span class="hljs-number">1</span> AND b = <span class="hljs-number">1</span> AND c = <span class="hljs-number">1</span>;
-</code></pre></div>
+<pre><code>SELECT * FROM my_table WHERE a &gt;= 1 AND b = 1 AND c = 1;
+</code></pre>
 <p>At first glance, you might think adding a multi-field index like <code>INDEX(a, b, c)</code> will solve the problem. But is that really the best choice?</p>
 <h2><span id="understanding-multi-filed-indexing">Understanding Multi-Filed Indexing</span></h2>
 <p>A multi-field index (also called a composite index) is an index that covers more than one column. For example:</p>
-<div class="highlight"><pre class="code"><code><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> index_abc <span class="hljs-keyword">ON</span> my_table (a, b, c);
-</code></pre></div>
+<pre><code>CREATE INDEX index_abc ON my_table (a, b, c);
+</code></pre>
 <p>This means the table is sorted in <u><strong>lexicographical order</strong></u> by:</p>
 <ol>
 <li>Column <code>a</code> first.</li>
@@ -171,16 +171,16 @@
 <p><u>But how does the order of column in an index affect performance in <strong>range query</strong> like <code>a &gt;= 1</code> ?</u></p>
 <h2><span id="how-does-index-order-affect-range-query">How Does Index Order Affect Range Query?</span></h2>
 <p>Let’s compare two different multi-field indexes:</p>
-<div class="highlight"><pre class="code"><code><span class="hljs-constructor">INDEX(<span class="hljs-params">a</span>, <span class="hljs-params">b</span>, <span class="hljs-params">c</span>)</span>
-<span class="hljs-constructor">INDEX(<span class="hljs-params">b</span>, <span class="hljs-params">c</span>, <span class="hljs-params">a</span>)</span>
-</code></pre></div>
+<pre><code>INDEX(a, b, c)
+INDEX(b, c, a)
+</code></pre>
 <p>And we will analyze their performance on this query:</p>
-<div class="highlight"><pre class="code"><code><span class="hljs-attribute">SELECT</span> * FROM my_table WHERE a &gt;= <span class="hljs-number">1</span> AND b = <span class="hljs-number">1</span> AND c = <span class="hljs-number">1</span>;
-</code></pre></div>
+<pre><code>SELECT * FROM my_table WHERE a &gt;= 1 AND b = 1 AND c = 1;
+</code></pre>
 <h3><span id="case-1-using-indexa-b-c">Case 1: Using INDEX(a, b, c)</span></h3>
 <p>With <code>INDEX(a, b, c)</code>, the query looks like this:</p>
-<div class="highlight"><pre class="code"><code><span class="hljs-attribute">SELECT</span> * FROM my_table WHERE a &gt;= <span class="hljs-number">1</span> AND b = <span class="hljs-number">1</span> AND c = <span class="hljs-number">1</span>;
-</code></pre></div>
+<pre><code>SELECT * FROM my_table WHERE a &gt;= 1 AND b = 1 AND c = 1;
+</code></pre>
 <p>Here’s how MySQL processes it:</p>
 <ol>
 <li>The database first finds <strong>rows where <code>a &gt;= 1</code></strong>;</li>
@@ -189,8 +189,8 @@
 </ol>
 <h3><span id="case-2-using-indexb-c-a">Case 2: Using INDEX(b, c, a)</span></h3>
 <p>Now let’s change the index to INDEX(b, c, a) and adjust the query accordingly:</p>
-<div class="highlight"><pre class="code"><code><span class="hljs-attribute">SELECT</span> * FROM my_table WHERE b = <span class="hljs-number">1</span> AND c = <span class="hljs-number">1</span> AND a &gt;= <span class="hljs-number">1</span>;
-</code></pre></div>
+<pre><code>SELECT * FROM my_table WHERE b = 1 AND c = 1 AND a &gt;= 1;
+</code></pre>
 <p>Here’s how MySQL processes it:</p>
 <ol>
 <li>First database will find rows where <code>b = 1</code>.</li>

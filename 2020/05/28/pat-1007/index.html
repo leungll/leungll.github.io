@@ -145,33 +145,33 @@
             <p><strong>题目链接：<a target="_blank" rel="noopener" href="https://pintia.cn/problem-sets/994805342720868352/problems/994805514284679168">1007 Maximum Subsequence Sum</a></strong></p>
 <h2><span id="1-题目描述">1 题目描述</span></h2>
 <blockquote>
-<p>Given a sequence of <span class="markdown-them-math-inline">$K$</span> integers {N​1​​, N​2, …, N​K​​}. A continuous subsequence is defined to be { N​i​​, N{​i+1}​​, …, Nj​​} where <span class="markdown-them-math-inline">$1 ≤ i ≤ j ≤ K$</span>. The Maximum Subsequence is the continuous subsequence which has the largest sum of its elements. For example, given sequence { <span class="markdown-them-math-inline">$-2, 11, -4, 13, -5, -2$</span> }, its maximum subsequence is { <span class="markdown-them-math-inline">$11, -4, 13$</span> } with the largest sum being <span class="markdown-them-math-inline">$20$</span>.<br>
+<p>Given a sequence of $K$ integers {N​1​​, N​2, …, N​K​​}. A continuous subsequence is defined to be { N​i​​, N{​i+1}​​, …, Nj​​} where $1 ≤ i ≤ j ≤ K$. The Maximum Subsequence is the continuous subsequence which has the largest sum of its elements. For example, given sequence { $-2, 11, -4, 13, -5, -2$ }, its maximum subsequence is { $11, -4, 13$ } with the largest sum being $20$.<br>
 Now you are supposed to find the largest sum, together with the first and the last numbers of the maximum subsequence.</p>
 </blockquote>
 <h3><span id="input-specification">Input Specification</span></h3>
 <blockquote>
-<p>Each input file contains one test case. Each case occupies two lines. The first line contains a positive integer <span class="markdown-them-math-inline">$K (≤10000)$</span>. The second line contains <span class="markdown-them-math-inline">$K$</span> numbers, separated by a space.</p>
+<p>Each input file contains one test case. Each case occupies two lines. The first line contains a positive integer $K (≤10000)$. The second line contains $K$ numbers, separated by a space.</p>
 </blockquote>
 <h3><span id="output-specification">Output Specification</span></h3>
 <blockquote>
-<p>For each test case, output in one line the largest sum, together with the first and the last numbers of the maximum subsequence. The numbers must be separated by one space, but there must be no extra space at the end of a line. In case that the maximum subsequence is not unique, output the one with the smallest indices <span class="markdown-them-math-inline">$i$</span> and <span class="markdown-them-math-inline">$j$</span> (as shown by the sample case). <strong>If all the <span class="markdown-them-math-inline">$K$</span> numbers are negative, then its maximum sum is defined to be <span class="markdown-them-math-inline">$0$</span>, and you are supposed to output the first and the last numbers of the whole sequence.</strong></p>
+<p>For each test case, output in one line the largest sum, together with the first and the last numbers of the maximum subsequence. The numbers must be separated by one space, but there must be no extra space at the end of a line. In case that the maximum subsequence is not unique, output the one with the smallest indices $i$ and $j$ (as shown by the sample case). <strong>If all the $K$ numbers are negative, then its maximum sum is defined to be $0$, and you are supposed to output the first and the last numbers of the whole sequence.</strong></p>
 </blockquote>
 <h3><span id="sample-input">Sample Input</span></h3>
-<div class="highlight"><pre class="code"><code>10
-<span class="hljs-string">-10</span> 1 2 3 4 <span class="hljs-string">-5</span> <span class="hljs-string">-23</span> 3 7 <span class="hljs-string">-21</span>
-</code></pre></div>
+<pre><code>10
+-10 1 2 3 4 -5 -23 3 7 -21
+</code></pre>
 <h3><span id="sample-output">Sample Output</span></h3>
-<div class="highlight"><pre class="code"><code><span class="hljs-symbol">10 </span><span class="hljs-number">1</span> <span class="hljs-number">4</span>
-</code></pre></div>
+<pre><code>10 1 4
+</code></pre>
 <h2><span id="2-解题思路">2 解题思路</span></h2>
 <ul>
 <li>
-<p>题目大意：求最大连续子列和，输出最大的和以及这个子序列的开始值与结束值。如果所有的数都小于 <span class="markdown-them-math-inline">$0$</span> ， 则和为 <span class="markdown-them-math-inline">$0$</span> ，输出首尾元素。</p>
+<p>题目大意：求最大连续子列和，输出最大的和以及这个子序列的开始值与结束值。如果所有的数都小于 $0$ ， 则和为 $0$ ，输出首尾元素。</p>
 </li>
 <li>
 <p>注意题中有一个坑：</p>
 <blockquote>
-<p>If all the <span class="markdown-them-math-inline">$K$</span> numbers are negative, then its maximum sum is defined to be <span class="markdown-them-math-inline">$0$</span>, and you are supposed to output the first and the last numbers of the whole sequence.</p>
+<p>If all the $K$ numbers are negative, then its maximum sum is defined to be $0$, and you are supposed to output the first and the last numbers of the whole sequence.</p>
 </blockquote>
 <ul>
 <li>如果数列为<code>5 -10  -20</code>，则输出结果应为<code>5, 5, 5</code></li>
@@ -181,39 +181,39 @@ Now you are supposed to find the largest sum, together with the first and the la
 </ul>
 <h2><span id="3-题解">3 题解</span></h2>
 <p>注意<code>int n, sum = -1, leftIndex = 0, rightIndex = n - 1;</code>中<code>n</code>与<code>rightIndex</code>不能声明在同一行。</p>
-<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
-<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">#include <iostream>
+#include <cstdio>
+using namespace std;
 
-<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn = <span class="hljs-number">1e4</span> + <span class="hljs-number">5</span>;
-<span class="hljs-keyword">int</span> arr[maxn];
+const int maxn = 1e4 + 5;
+int arr[maxn];
 
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
-    ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);
-    cin.<span class="hljs-built_in">tie</span>(<span class="hljs-number">0</span>);cout.<span class="hljs-built_in">tie</span>(<span class="hljs-number">0</span>);
+int main()&#123;
+    ios::sync_with_stdio(false);
+    cin.tie(0);cout.tie(0);
 
-    <span class="hljs-keyword">int</span> n;
-    cin &gt;&gt; n;
-    <span class="hljs-keyword">int</span> sum = <span class="hljs-number">-1</span>, leftIndex = <span class="hljs-number">0</span>, rightIndex = n - <span class="hljs-number">1</span>, temp = <span class="hljs-number">0</span>, tempIndex = <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; n;i++)&#123;
-        cin &gt;&gt; arr[i];
+    int n;
+    cin >> n;
+    int sum = -1, leftIndex = 0, rightIndex = n - 1, temp = 0, tempIndex = 0;
+    for(int i = 0;i < n;i++)&#123;
+        cin >> arr[i];
         temp += arr[i];
-        <span class="hljs-keyword">if</span>(temp &lt; <span class="hljs-number">0</span>)&#123;
-            temp = <span class="hljs-number">0</span>;
-            tempIndex = i + <span class="hljs-number">1</span>;
-        &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (sum &lt; temp)&#123;
+        if(temp < 0)&#123;
+            temp = 0;
+            tempIndex = i + 1;
+        &#125;else if (sum < temp)&#123;
             sum = temp;
             leftIndex = tempIndex;
             rightIndex = i;
         &#125;
     &#125;
-    <span class="hljs-keyword">if</span>(sum &lt; <span class="hljs-number">0</span>)&#123;
-        sum = <span class="hljs-number">0</span>;
+    if(sum < 0)&#123;
+        sum = 0;
     &#125;
-    cout &lt;&lt; sum &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; arr[leftIndex] &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; arr[rightIndex];
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    cout << sum << " " << arr[leftIndex] << " " << arr[rightIndex];
+    return 0;
 &#125;
-</code></pre></div>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></cstdio></iostream></code></pre>
 
         </div>
     

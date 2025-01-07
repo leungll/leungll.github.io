@@ -173,17 +173,17 @@ After the book information, there is a line containing a positive integer M (≤
 <p>For each query, first print the original query in a line, then output the resulting book ID’s in increasing order, each occupying a line. If no book is found, print <code>Not Found</code> instead.</p>
 </blockquote>
 <h3><span id="sample-input">Sample Input</span></h3>
-<div class="highlight"><pre class="code"><code>3
+<pre><code>3
 1111111
 The Testing Book
 Yue Chen
-<span class="hljs-keyword">test </span>code debug sort keywords
+test code debug sort keywords
 ZUCS Print
 2011
 3333333
 Another Testing Book
 Yue Chen
-<span class="hljs-keyword">test </span>code sort keywords
+test code sort keywords
 ZUCS Print2
 2012
 2222222
@@ -199,109 +199,109 @@ ZUCS Print2
 4: ZUCS Print
 5: 2011
 3: blablabla
-</code></pre></div>
+</code></pre>
 <h3><span id="sample-output">Sample Output</span></h3>
-<div class="highlight"><pre class="code"><code><span class="hljs-number">1</span>: The Testing Book
-<span class="hljs-number">1111111</span>
-<span class="hljs-number">2222222</span>
-<span class="hljs-number">2</span>: Yue Chen
-<span class="hljs-number">1111111</span>
-<span class="hljs-number">3333333</span>
-<span class="hljs-number">3</span>: keywords
-<span class="hljs-number">1111111</span>
-<span class="hljs-number">2222222</span>
-<span class="hljs-number">3333333</span>
-<span class="hljs-number">4</span>: ZUCS Print
-<span class="hljs-number">1111111</span>
-<span class="hljs-number">5</span>: <span class="hljs-number">2011</span>
-<span class="hljs-number">1111111</span>
-<span class="hljs-number">2222222</span>
-<span class="hljs-number">3</span>: blablabla
+<pre><code>1: The Testing Book
+1111111
+2222222
+2: Yue Chen
+1111111
+3333333
+3: keywords
+1111111
+2222222
+3333333
+4: ZUCS Print
+1111111
+5: 2011
+1111111
+2222222
+3: blablabla
 Not Found
-</code></pre></div>
+</code></pre>
 <h2><span id="2-解题思路">2 解题思路</span></h2>
 <ul>
-<li><strong>题目大意</strong>：模拟数字图书馆的查询功能。会给出 <span class="markdown-them-math-inline">$n$</span> 本书的信息，以及 <span class="markdown-them-math-inline">$m$</span> 个需要查询的命令，数字标号对应相应的命令，数字编号后面的字符串是查询的搜索词，要求输出这行命令以及输出满足条件的书的 <code>id</code> ，如果一个都没有找到，输出 <code>Not Found</code>。</li>
+<li><strong>题目大意</strong>：模拟数字图书馆的查询功能。会给出 $n$ 本书的信息，以及 $m$ 个需要查询的命令，数字标号对应相应的命令，数字编号后面的字符串是查询的搜索词，要求输出这行命令以及输出满足条件的书的 <code>id</code> ，如果一个都没有找到，输出 <code>Not Found</code>。</li>
 <li><strong>解题技巧</strong>：
 <ul>
-<li>使用<code>map&lt; string, set&lt;int&gt; &gt;</code>对图书信息进行存储，<code>string</code>存储关键字信息，<code>set&lt;int&gt;</code>存储图书 <span class="markdown-them-math-inline">$id$</span></li>
+<li>使用<code>map&lt; string, set&lt;int&gt; &gt;</code>对图书信息进行存储，<code>string</code>存储关键字信息，<code>set&lt;int&gt;</code>存储图书 $id$</li>
 <li>使用<code>getline(cin, ttitle)</code>快速处理多行输入数据</li>
-<li>对于关键词 <span class="markdown-them-math-inline">$keywords$</span> ：未知关键词个数，可使用<code>while(cin &gt;&gt; tkry)</code>进行判断，当<code>getchar()为'\n' </code>时，则跳出循环</li>
+<li>对于关键词 $keywords$ ：未知关键词个数，可使用<code>while(cin &gt;&gt; tkry)</code>进行判断，当<code>getchar()为'\n' </code>时，则跳出循环</li>
 <li>对于输入数据<code>1: The Testing Book</code>：可使用<code>scanf(&quot;%d: &quot;, &amp;num)</code>，对多余信息<code>:</code>进行过滤处理，以提取有效信息</li>
-<li>对于输入 <span class="markdown-them-math-inline">$7$</span> 位图书 <span class="markdown-them-math-inline">$id$</span> ：可使用<code>printf(&quot;%07d\n&quot;, *it)</code></li>
+<li>对于输入 $7$ 位图书 $id$ ：可使用<code>printf(&quot;%07d\n&quot;, *it)</code></li>
 </ul>
 </li>
 </ul>
 <h2><span id="3-题解">3 题解</span></h2>
-<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;map&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;set&gt;</span></span>
-<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">#include <iostream>
+#include <cstdio>
+#include <map>
+#include <set>
+using namespace std;
 
-map&lt;string, set&lt;<span class="hljs-keyword">int</span>&gt;&gt; title, author, key, pub, year;
+map<string, set<int>> title, author, key, pub, year;
 
-<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">query</span><span class="hljs-params">(map&lt;string, set&lt;<span class="hljs-keyword">int</span>&gt;&gt; &amp;m, string &amp;str)</span></span>&#123;
-    <span class="hljs-keyword">if</span>(m.<span class="hljs-built_in">find</span>(str) != m.<span class="hljs-built_in">end</span>())&#123;
-        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> it = m[str].<span class="hljs-built_in">begin</span>();it != m[str].<span class="hljs-built_in">end</span>();it++)&#123;
-            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%07d\n&quot;</span>, *it);
+void query(map<string, set<int>> &m, string &str)&#123;
+    if(m.find(str) != m.end())&#123;
+        for(auto it = m[str].begin();it != m[str].end();it++)&#123;
+            printf("%07d\n", *it);
         &#125;
-    &#125;<span class="hljs-keyword">else</span>&#123;
-        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Not Found\n&quot;</span>);
+    &#125;else&#123;
+        printf("Not Found\n");
     &#125;
 &#125;
 
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
-    <span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> ONLINE_JUDGE</span>
-    <span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span>
-    <span class="hljs-built_in">freopen</span>(<span class="hljs-string">&quot;input.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, stdin);
-    <span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span> <span class="hljs-comment">// ONLINE_JUDGE</span></span>
+int main()&#123;
+    #ifdef ONLINE_JUDGE
+    #else
+    freopen("input.txt", "r", stdin);
+    #endif // ONLINE_JUDGE
 
-    <span class="hljs-keyword">int</span> n;
-    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;n);
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; n;i++)&#123;
-        <span class="hljs-keyword">int</span> id;
+    int n;
+    scanf("%d", &n);
+    for(int i = 0;i < n;i++)&#123;
+        int id;
         string ttitle, tauthor, tkey, tpub, tyear;
-        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, &amp;id);
-        <span class="hljs-built_in">getline</span>(cin, ttitle);
-        title[ttitle].<span class="hljs-built_in">insert</span>(id);
-        <span class="hljs-built_in">getline</span>(cin, tauthor);
-        author[tauthor].<span class="hljs-built_in">insert</span>(id);
-        <span class="hljs-keyword">while</span>(cin &gt;&gt; tkey)&#123;
-            key[tkey].<span class="hljs-built_in">insert</span>(id);
-            <span class="hljs-keyword">char</span> c = <span class="hljs-built_in">getchar</span>();
-            <span class="hljs-keyword">if</span>(c == <span class="hljs-string">&#x27;\n&#x27;</span>)&#123;
-                <span class="hljs-keyword">break</span>;
+        scanf("%d\n", &id);
+        getline(cin, ttitle);
+        title[ttitle].insert(id);
+        getline(cin, tauthor);
+        author[tauthor].insert(id);
+        while(cin >> tkey)&#123;
+            key[tkey].insert(id);
+            char c = getchar();
+            if(c == '\n')&#123;
+                break;
             &#125;
         &#125;
-        <span class="hljs-built_in">getline</span>(cin, tpub);
-        pub[tpub].<span class="hljs-built_in">insert</span>(id);
-        <span class="hljs-built_in">getline</span>(cin, tyear);
-        year[tyear].<span class="hljs-built_in">insert</span>(id);
+        getline(cin, tpub);
+        pub[tpub].insert(id);
+        getline(cin, tyear);
+        year[tyear].insert(id);
     &#125;
-    <span class="hljs-keyword">int</span> m;
-    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;m);
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; m;i++)&#123;
-        <span class="hljs-keyword">int</span> num;
-        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d: &quot;</span>, &amp;num);
+    int m;
+    scanf("%d", &m);
+    for(int i = 0;i < m;i++)&#123;
+        int num;
+        scanf("%d: ", &num);
         string temp;
-        <span class="hljs-built_in">getline</span>(cin, temp);
-        cout &lt;&lt; num &lt;&lt; <span class="hljs-string">&quot;: &quot;</span> &lt;&lt; temp &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
-        <span class="hljs-keyword">if</span>(num == <span class="hljs-number">1</span>)&#123;
-            <span class="hljs-built_in">query</span>(title, temp);
-        &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(num == <span class="hljs-number">2</span>)&#123;
-            <span class="hljs-built_in">query</span>(author, temp);
-        &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(num == <span class="hljs-number">3</span>)&#123;
-            <span class="hljs-built_in">query</span>(key, temp);
-        &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(num == <span class="hljs-number">4</span>)&#123;
-            <span class="hljs-built_in">query</span>(pub, temp);
-        &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(num == <span class="hljs-number">5</span>)&#123;
-            <span class="hljs-built_in">query</span>(year, temp);
+        getline(cin, temp);
+        cout << num << ": " << temp << "\n";
+        if(num == 1)&#123;
+            query(title, temp);
+        &#125;else if(num == 2)&#123;
+            query(author, temp);
+        &#125;else if(num == 3)&#123;
+            query(key, temp);
+        &#125;else if(num == 4)&#123;
+            query(pub, temp);
+        &#125;else if(num == 5)&#123;
+            query(year, temp);
         &#125;
     &#125;
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    return 0;
 &#125;
-</code></pre></div>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></string,></string,></set></map></cstdio></iostream></code></pre>
 
         </div>
     

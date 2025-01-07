@@ -147,39 +147,39 @@
 <h3><span id="题目描述">题目描述</span></h3>
 <blockquote>
 <p>下图给出了一个迷宫的平面图，其中标记为 1 的为障碍，标记为 0 的为可以通行的地方。</p>
-<div class="highlight"><pre class="code"><code>010000
+<pre><code>010000
 000100
 001001
 110000
-</code></pre></div>
+</code></pre>
 <p>迷宫的入口为左上角，出口为右下角，在迷宫中，只能从一个位置走到这个它的上、下、左、右四个方向之一。<br>
 对于上面的迷宫，从入口开始，可以按 DRRURRDDDR 的顺序通过迷宫，一共 10 步。其中 D、U、L、R 分别表示向下、向上、向左、向右走。<br>
 对于下面这个更复杂的迷宫（ 30 行 50 列），请找出一种通过迷宫的方式，其使用的步数最少，在步数最少的前提下，请找出字典序最小的一个作为案。<br>
-请注意在字典序中 <span class="markdown-them-math-inline">$D&lt;L&lt;R&lt;U$</span>。</p>
+请注意在字典序中 $D&lt;L&lt;R&lt;U$。</p>
 </blockquote>
 <h3><span id="输入格式">输入格式</span></h3>
 <blockquote>
 <p>见文件：<a target="_blank" rel="noopener" href="http://oj.ecustacm.cn/upload/file/20200122/20200122134020_61830.txt">http://oj.ecustacm.cn/upload/file/20200122/20200122134020_61830.txt</a></p>
 </blockquote>
 <h2><span id="2-题解">2 题解</span></h2>
-<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;queue&gt;</span></span>
-<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">#include <iostream>
+#include <cstdio>
+#include <cstring>
+#include <queue>
+using namespace std;
 
-<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn = <span class="hljs-number">60</span>;
-<span class="hljs-keyword">char</span> mp[maxn][maxn];
-<span class="hljs-keyword">int</span> vis[maxn][maxn] = &#123;<span class="hljs-number">0</span>&#125;;
-<span class="hljs-keyword">int</span> dir[<span class="hljs-number">4</span>][<span class="hljs-number">2</span>] = &#123;
-    &#123;<span class="hljs-number">1</span>,<span class="hljs-number">0</span>&#125;, &#123;<span class="hljs-number">0</span>, <span class="hljs-number">-1</span>&#125;, &#123;<span class="hljs-number">0</span>,<span class="hljs-number">1</span>&#125;, &#123;<span class="hljs-number">-1</span>,<span class="hljs-number">0</span>&#125;&#125;;
-<span class="hljs-keyword">char</span> dirc[<span class="hljs-number">4</span>] = &#123;<span class="hljs-string">&#x27;D&#x27;</span>, <span class="hljs-string">&#x27;L&#x27;</span>, <span class="hljs-string">&#x27;R&#x27;</span>, <span class="hljs-string">&#x27;U&#x27;</span>&#125;;
-<span class="hljs-keyword">int</span> n, m;
+const int maxn = 60;
+char mp[maxn][maxn];
+int vis[maxn][maxn] = &#123;0&#125;;
+int dir[4][2] = &#123;
+    &#123;1,0&#125;, &#123;0, -1&#125;, &#123;0,1&#125;, &#123;-1,0&#125;&#125;;
+char dirc[4] = &#123;'D', 'L', 'R', 'U'&#125;;
+int n, m;
 
-<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">node</span>&#123;</span>
-    <span class="hljs-keyword">int</span> x, y, step;
+struct node&#123;
+    int x, y, step;
     string s;
-    <span class="hljs-built_in">node</span>(<span class="hljs-keyword">int</span> xx, <span class="hljs-keyword">int</span> yy, <span class="hljs-keyword">int</span> sstep, string ss)&#123;
+    node(int xx, int yy, int sstep, string ss)&#123;
         x = xx;
         y = yy;
         step = sstep;
@@ -187,51 +187,51 @@
     &#125;
 &#125;;
 
-queue&lt;node&gt; q;
+queue<node> q;
 
-<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">check</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span></span>&#123;
-    <span class="hljs-keyword">if</span>(x &lt; <span class="hljs-number">0</span> || x &gt;= n || y &lt; <span class="hljs-number">0</span> || y &gt;= m || vis[x][y] == <span class="hljs-number">1</span> || mp[x][y] == <span class="hljs-string">&#x27;1&#x27;</span>)&#123;
-        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+bool check(int x, int y)&#123;
+    if(x < 0 || x >= n || y < 0 || y >= m || vis[x][y] == 1 || mp[x][y] == '1')&#123;
+        return false;
     &#125;
-    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    return true;
 &#125;
 
-<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">bfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span></span>&#123;
-    q.<span class="hljs-built_in">push</span>(<span class="hljs-built_in">node</span>(x, y, <span class="hljs-number">0</span>, <span class="hljs-string">&quot;&quot;</span>));
-    vis[x][y] = <span class="hljs-number">1</span>;
-    <span class="hljs-keyword">while</span>(!q.<span class="hljs-built_in">empty</span>())&#123;
-        node now = q.<span class="hljs-built_in">front</span>();
-        <span class="hljs-keyword">if</span>(now.x == n - <span class="hljs-number">1</span> &amp;&amp; now.y == m - <span class="hljs-number">1</span>)&#123;
-            cout &lt;&lt; now.s &lt;&lt; endl;
-            cout &lt;&lt; now.step &lt;&lt; endl;
-            <span class="hljs-keyword">break</span>;
+void bfs(int x, int y)&#123;
+    q.push(node(x, y, 0, ""));
+    vis[x][y] = 1;
+    while(!q.empty())&#123;
+        node now = q.front();
+        if(now.x == n - 1 && now.y == m - 1)&#123;
+            cout << now.s << endl;
+            cout << now.step << endl;
+            break;
         &#125;
-        q.<span class="hljs-built_in">pop</span>();
-        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; <span class="hljs-number">4</span>;i++)&#123;
-            <span class="hljs-keyword">int</span> nx = now.x + dir[i][<span class="hljs-number">0</span>];
-            <span class="hljs-keyword">int</span> ny = now.y + dir[i][<span class="hljs-number">1</span>];
-            <span class="hljs-keyword">if</span>(<span class="hljs-built_in">check</span>(nx, ny))&#123;
-                q.<span class="hljs-built_in">push</span>(<span class="hljs-built_in">node</span>(nx, ny, now.step + <span class="hljs-number">1</span>, now.s + dirc[i]));
-                vis[nx][ny] = <span class="hljs-number">1</span>;
+        q.pop();
+        for(int i = 0;i < 4;i++)&#123;
+            int nx = now.x + dir[i][0];
+            int ny = now.y + dir[i][1];
+            if(check(nx, ny))&#123;
+                q.push(node(nx, ny, now.step + 1, now.s + dirc[i]));
+                vis[nx][ny] = 1;
             &#125;
         &#125;
     &#125;
 &#125;
 
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
-    <span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> ONLINE_JUDGE</span>
-    <span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span>
-    <span class="hljs-built_in">freopen</span>(<span class="hljs-string">&quot;input.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, stdin);
-    <span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span> <span class="hljs-comment">//ONLINE_JUDGE</span></span>
+int main()&#123;
+    #ifdef ONLINE_JUDGE
+    #else
+    freopen("input.txt", "r", stdin);
+    #endif //ONLINE_JUDGE
 
-    cin &gt;&gt; n &gt;&gt; m;
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; n;i++)&#123;
-        cin &gt;&gt; mp[i];
+    cin >> n >> m;
+    for(int i = 0;i < n;i++)&#123;
+        cin >> mp[i];
     &#125;
-    <span class="hljs-built_in">bfs</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    bfs(0, 0);
+    return 0;
 &#125;
-</code></pre></div>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></node></queue></cstring></cstdio></iostream></code></pre>
 
         </div>
     

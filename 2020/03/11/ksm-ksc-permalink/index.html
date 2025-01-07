@@ -39,12 +39,12 @@
     
   
     <!-- Open graph -->
-    <meta name="description" content="引言  在 RSA 密码中，当收到密文 C 时，可使用私钥解开，计算公式为 $$ X\ &#x3D;\ C^{e}\ mod\ n $$ 如果想让你计算 $$      20190324^{823816093931522017}\ mod\ 1001733993063167141 $$应该如何用代码实现？我们知道，在 Java 里有大数类，Python 依靠其强大的计算性能有些数据甚至可以直接计算。那么在">
+    <meta name="description" content="引言  在 RSA 密码中，当收到密文 C 时，可使用私钥解开，计算公式为 $$ X\ &#x3D;\ C^{e}\ mod\ n $$ 如果想让你计算 $$ 20190324^{823816093931522017}\ mod\ 1001733993063167141 $$ 应该如何用代码实现？我们知道，在 Java 里有大数类，Python 依靠其强大的计算性能有些数据甚至可以直接计算。那么在 C&#x2F;C+">
 <meta property="og:type" content="article">
 <meta property="og:title" content="快速幂 &amp;&amp; 快速乘取模（模拟大数模幂运算，解决乘法爆long long问题）">
 <meta property="og:url" content="https://leungll.site/2020/03/11/ksm-ksc-permalink/index.html">
 <meta property="og:site_name" content="Lili Liang">
-<meta property="og:description" content="引言  在 RSA 密码中，当收到密文 C 时，可使用私钥解开，计算公式为 $$ X\ &#x3D;\ C^{e}\ mod\ n $$ 如果想让你计算 $$      20190324^{823816093931522017}\ mod\ 1001733993063167141 $$应该如何用代码实现？我们知道，在 Java 里有大数类，Python 依靠其强大的计算性能有些数据甚至可以直接计算。那么在">
+<meta property="og:description" content="引言  在 RSA 密码中，当收到密文 C 时，可使用私钥解开，计算公式为 $$ X\ &#x3D;\ C^{e}\ mod\ n $$ 如果想让你计算 $$ 20190324^{823816093931522017}\ mod\ 1001733993063167141 $$ 应该如何用代码实现？我们知道，在 Java 里有大数类，Python 依靠其强大的计算性能有些数据甚至可以直接计算。那么在 C&#x2F;C+">
 <meta property="og:locale">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-ksc-01.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-ksc-02.png">
@@ -148,10 +148,12 @@
             <h2><span id="引言">引言</span></h2>
 <blockquote>
 <p>在 RSA 密码中，当收到密文 C 时，可使用私钥解开，计算公式为<br>
-<div class="markdown-them-math-block">$$ X\ =\ C^{e}\ mod\ n $$</div><br>
-如果想让你计算</p>
-<div class="markdown-them-math-block">$$      20190324^{823816093931522017}\ mod\ 1001733993063167141
-$$</div><p>应该如何用代码实现？我们知道，在 Java 里有大数类，Python 依靠其强大的计算性能有些数据甚至可以直接计算。那么在 C/C++ 中应该如何处理？单独用快速幂也会爆 long long ，我们可以采取快速幂调用快速乘进行取模的方法得到结果。<br>
+$$ X\ =\ C^{e}\ mod\ n $$<br>
+如果想让你计算<br>
+$$<br>
+20190324^{823816093931522017}\ mod\ 1001733993063167141<br>
+$$<br>
+应该如何用代码实现？我们知道，在 Java 里有大数类，Python 依靠其强大的计算性能有些数据甚至可以直接计算。那么在 C/C++ 中应该如何处理？单独用快速幂也会爆 long long ，我们可以采取快速幂调用快速乘进行取模的方法得到结果。<br>
 关于快速幂与快速乘的具体原理，可在此博客了解：<a href="https://leungll.site/2021/05/24/ksm-permalink/">快速幂 &amp; 快速乘原理讲解（模板）</a></p>
 </blockquote>
 <h2><span id="1-原因分析">1 原因分析</span></h2>
@@ -160,73 +162,73 @@ $$</div><p>应该如何用代码实现？我们知道，在 Java 里有大数类
 <p>不出意料，结果直接溢出。</p>
 <h2><span id="2-快速幂取模大数模幂模拟">2 快速幂取模（大数模幂模拟）</span></h2>
 <p>因为数据实在是太大了，取模和开 long long 也没办法解决问题，于是可以对快速幂中的乘法运算</p>
-<div class="highlight"><pre class="code"><code>ans = (ans * base) % mod;
+<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">ans = (ans * base) % mod;
 base = (base * base) % mod;
-</code></pre></div>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>进行优化，改为<strong>快速乘求结果</strong></p>
-<div class="highlight"><pre class="code"><code><span class="hljs-function">ll <span class="hljs-title">ksc</span><span class="hljs-params">(ll a, ll b, ll mod)</span> </span>&#123;
-    ll ans = <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">while</span>(b) &#123;
-	<span class="hljs-keyword">if</span>(b &amp; <span class="hljs-number">1</span>) &#123;
+<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">ll ksc(ll a, ll b, ll mod) &#123;
+    ll ans = 0;
+    while(b) &#123;
+	if(b & 1) &#123;
 		ans = (ans + a) % mod;
 	&#125;
 	a = (a + a) % mod;
-	b &gt;&gt;= <span class="hljs-number">1</span>;
+	b >>= 1;
     &#125;
-    <span class="hljs-keyword">return</span> ans;
+    return ans;
 &#125;
 
-<span class="hljs-function">ll <span class="hljs-title">ksm</span><span class="hljs-params">(ll a, ll b, ll mod)</span> </span>&#123;
-    ll ans = <span class="hljs-number">1</span>, base = a;
-    <span class="hljs-keyword">while</span>(b) &#123;
-	<span class="hljs-keyword">if</span>(b &amp; <span class="hljs-number">1</span>) &#123;
-		<span class="hljs-comment">//优化1</span>
-		ans = <span class="hljs-built_in">ksc</span>(ans, base, mod) % mod;
+ll ksm(ll a, ll b, ll mod) &#123;
+    ll ans = 1, base = a;
+    while(b) &#123;
+	if(b & 1) &#123;
+		//优化1
+		ans = ksc(ans, base, mod) % mod;
 	&#125;
-	<span class="hljs-comment">//优化2</span>
-	base = <span class="hljs-built_in">ksc</span>(base, base, mod) % mod;
-	b &gt;&gt;= <span class="hljs-number">1</span>;
+	//优化2
+	base = ksc(base, base, mod) % mod;
+	b >>= 1;
     &#125;
-    <span class="hljs-keyword">return</span> ans;
+    return ans;
 &#125;
-</code></pre></div>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2><span id="3-验证">3 验证</span></h2>
 <p>完整代码：</p>
-<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
-<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">#include <bits stdc++.h>
+using namespace std;
  
-<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ll;
-<span class="hljs-keyword">const</span> ll mod = <span class="hljs-number">1001733993063167141</span>;
+typedef long long ll;
+const ll mod = 1001733993063167141;
 
-<span class="hljs-function">ll <span class="hljs-title">ksc</span><span class="hljs-params">(ll a, ll b, ll mod)</span> </span>&#123;
-    ll ans = <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">while</span>(b) &#123;
-	<span class="hljs-keyword">if</span>(b &amp; <span class="hljs-number">1</span>) &#123;
+ll ksc(ll a, ll b, ll mod) &#123;
+    ll ans = 0;
+    while(b) &#123;
+	if(b & 1) &#123;
 		ans = (ans + a) % mod;
 	&#125;
 	a = (a + a) % mod;
-	b &gt;&gt;= <span class="hljs-number">1</span>;
+	b >>= 1;
     &#125;
-    <span class="hljs-keyword">return</span> ans;
+    return ans;
 &#125;
 
-<span class="hljs-function">ll <span class="hljs-title">ksm</span><span class="hljs-params">(ll a, ll b, ll mod)</span> </span>&#123;
-    ll ans = <span class="hljs-number">1</span>, base = a;
-    <span class="hljs-keyword">while</span>(b) &#123;
-	<span class="hljs-keyword">if</span>(b &amp; <span class="hljs-number">1</span>) &#123;
-		ans = <span class="hljs-built_in">ksc</span>(ans, base, mod) % mod;
+ll ksm(ll a, ll b, ll mod) &#123;
+    ll ans = 1, base = a;
+    while(b) &#123;
+	if(b & 1) &#123;
+		ans = ksc(ans, base, mod) % mod;
 	&#125;
-	base = <span class="hljs-built_in">ksc</span>(base, base, mod) % mod;
-	b &gt;&gt;= <span class="hljs-number">1</span>;
+	base = ksc(base, base, mod) % mod;
+	b >>= 1;
     &#125;
-    <span class="hljs-keyword">return</span> ans;
+    return ans;
 &#125;
  
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
-    cout &lt;&lt; <span class="hljs-string">&quot;20190324 ^ 823816093931522017 = &quot;</span> &lt;&lt; <span class="hljs-built_in">ksm</span>(<span class="hljs-number">20190324</span>, <span class="hljs-number">823816093931522017</span>, mod) &lt;&lt; endl;
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+int main() &#123;
+    cout << "20190324 ^ 823816093931522017 = " << ksm(20190324, 823816093931522017, mod) << endl;
+    return 0;
 &#125;
-</code></pre></div>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></bits></code></pre>
 <p>运行结果：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-ksc-02.png" alt="ksm-ksc-02"></p>
 <p>可以看到数据溢出的问题得到解决，达到了大数模拟的效果。</p>

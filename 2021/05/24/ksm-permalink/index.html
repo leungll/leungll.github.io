@@ -160,12 +160,12 @@
 <!-- tocstop -->
 <h2><span id="1-问题描述">1 问题描述</span></h2>
 <blockquote>
-<p>我们发现，在 <span class="markdown-them-math-inline">$int$</span> 型下使用 <span class="markdown-them-math-inline">$pow$</span> 函数求 <span class="markdown-them-math-inline">$5^{3}$</span>，结果为 <span class="markdown-them-math-inline">$124$</span> 。</p>
+<p>我们发现，在 $int$ 型下使用 $pow$ 函数求 $5^{3}$，结果为 $124$ 。</p>
 </blockquote>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-1.png" alt="ksm-1"></p>
 <h2><span id="2-原因分析">2 原因分析</span></h2>
 <blockquote>
-<p><span class="markdown-them-math-inline">$pow$</span> 函数的返回值为 <code>double</code> 型 ，因浮点数长度问题，存在截断误差。</p>
+<p>$pow$ 函数的返回值为 <code>double</code> 型 ，因浮点数长度问题，存在截断误差。</p>
 </blockquote>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-2.png" alt="ksm-2"></p>
 <h2><span id="3-解决方法">3 解决方法</span></h2>
@@ -176,30 +176,30 @@
 <p><strong>有没有更快求幂的方法？</strong></p>
 <h2><span id="4-快速幂讲解">4 快速幂讲解</span></h2>
 <blockquote>
-<p>假设我们要求 <span class="markdown-them-math-inline">$a^{b}$</span> ，按照朴素算法就是把 a 连乘 b 次，这样一来时间复杂度是 <span class="markdown-them-math-inline">$O(b)$</span> ，即是 <span class="markdown-them-math-inline">$O(n)$</span> 级别。但快速幂能做到 <span class="markdown-them-math-inline">$O(logn)$</span> 的复杂度。</p>
+<p>假设我们要求 $a^{b}$ ，按照朴素算法就是把 a 连乘 b 次，这样一来时间复杂度是 $O(b)$ ，即是 $O(n)$ 级别。但快速幂能做到 $O(logn)$ 的复杂度。</p>
 </blockquote>
 <p>快速幂：<br>
 <img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-4.png" alt="ksm-4"></p>
 <p>对于二进制的位运算，我们需要用到 <code>&amp;</code> 与 <code>&gt;&gt;</code> 运算符，详见 <a target="_blank" rel="noopener" href="https://blog.csdn.net/liangllhahaha/article/details/79382094">位运算符的应用</a></p>
 <p><strong>先上实现快速幂运算的具体代码：</strong></p>
-<div class="highlight"><pre class="code"><code><span class="hljs-function"><span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> <span class="hljs-title">ksm</span><span class="hljs-params">(<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> a, <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> b)</span> </span>&#123;
-    <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ans = <span class="hljs-number">1</span>, base = a;
-    <span class="hljs-keyword">while</span>(b != <span class="hljs-number">0</span>) &#123;
-	<span class="hljs-keyword">if</span>(b &amp; <span class="hljs-number">1</span> != <span class="hljs-number">0</span>) &#123;
+<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">long long ksm(long long a, long long b) &#123;
+    long long ans = 1, base = a;
+    while(b != 0) &#123;
+	if(b & 1 != 0) &#123;
 	    ans *= base;
 	&#125;
 	base *= base;
-	b &gt;&gt;= <span class="hljs-number">1</span>;
+	b >>= 1;
     &#125;
-    <span class="hljs-keyword">return</span> ans;
+    return ans;
 &#125;
-</code></pre></div>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>其中 <code>b &amp; 1</code> 指取 b 的二进制数的最末位，如 <code>11</code> 的二进制数为 <code>1011</code> ，第一次循环，取的是最右边的 <code>1</code> ，以此类推。</p>
 <p>而 <code>b &gt;&gt;= 1</code> 等效于 <code>b = b &gt;&gt; 1</code>，即右移 <code>1</code> 位，删去最低位。</p>
-<p><strong>以 <span class="markdown-them-math-inline">$a ^ {11}$</span> 为例：</strong></p>
-<p><code>b</code> 的二进制数为 <code>1011</code>，二进制从右向左算，但乘出来的顺序是 <span class="markdown-them-math-inline">$a^{2^{0}} * a^{2^{1}} * a^{2^{3}}$</span> ，是从左向右的。我们不断的让 <span class="markdown-them-math-inline">$base\,*=\,base$</span> 目的是累乘，以便随时对 <code>ans</code> 做出贡献。</p>
+<p><strong>以 $a ^ {11}$ 为例：</strong></p>
+<p><code>b</code> 的二进制数为 <code>1011</code>，二进制从右向左算，但乘出来的顺序是 $a^{2^{0}} * a^{2^{1}} * a^{2^{3}}$ ，是从左向右的。我们不断的让 $base,*=,base$ 目的是累乘，以便随时对 <code>ans</code> 做出贡献。</p>
 <blockquote>
-<p>要理解 <span class="markdown-them-math-inline">$base*=base$</span> 这一步：因为 <span class="markdown-them-math-inline">$base\,*\,base == base^{2}$</span>，下一步再乘，就是 <span class="markdown-them-math-inline">$base^{2} * base^{2} == base^{4}$</span>，然后同理 <span class="markdown-them-math-inline">$base^{4} * base^{4} == base^{8}$</span>，由此可以做到 <span class="markdown-them-math-inline">$base→ base^{2} → base^{4} → base^{8} → base^{16} → base^{32}$</span> … 指数正好是 <span class="markdown-them-math-inline">$2^{i}$</span>。再看上面的例子，<span class="markdown-them-math-inline">$a^{11} = a^{1}\,*\,a^{2}\,*\,a^{8}$</span> ，这三项就可以完美解决了，快速幂就是这样。</p>
+<p>要理解 $base*=base$ 这一步：因为 $base,<em>,base == base^{2}$，下一步再乘，就是 $base^{2} * base^{2} == base^{4}$，然后同理 $base^{4} * base^{4} == base^{8}$，由此可以做到 $base→ base^{2} → base^{4} → base^{8} → base^{16} → base^{32}$ … 指数正好是 $2^{i}$。再看上面的例子，$a^{11} = a^{1},</em>,a^{2},*,a^{8}$ ，这三项就可以完美解决了，快速幂就是这样。</p>
 </blockquote>
 <p>如还有不明白的地方，建议手动模拟代码的运行过程。</p>
 <h2><span id="5-快速乘讲解">5 快速乘讲解</span></h2>
@@ -207,63 +207,63 @@
 <p>我们知道，在计算机中做加法运算会比乘法快得多（参考模电中的加法器），做乘法运算往往会溢出，即使用 long long 类型也拯救不了。因此需要寻找一种能高效完成乘法运算且不会溢出的算法，这就是快速乘算法。</p>
 </blockquote>
 <p>快速乘与快速幂原理相似，也是将运算转换为二进制处理.</p>
-<p>以 <span class="markdown-them-math-inline">$a * 11$</span> 为例:  <code>11</code> 的二进制数为 <code>1011</code>，则有 <span class="markdown-them-math-inline">$a * 11 = a * 2^{0}\,+\,a * 2^{1}\,+\,a * 2^{3}$</span></p>
+<p>以 $a * 11$ 为例:  <code>11</code> 的二进制数为 <code>1011</code>，则有 $a * 11 = a * 2^{0},+,a * 2^{1},+,a * 2^{3}$</p>
 <p>就是把快速幂中的 <code>*</code> 号改为 <code>＋</code> 号</p>
-<div class="highlight"><pre class="code"><code><span class="hljs-function"><span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> <span class="hljs-title">ksc</span><span class="hljs-params">(<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> a, <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> b)</span> </span>&#123;
-    <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ans = <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">while</span>(b != <span class="hljs-number">0</span>) &#123;
-	<span class="hljs-keyword">if</span>(b &amp; <span class="hljs-number">1</span> != <span class="hljs-number">0</span>) &#123;
+<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">long long ksc(long long a, long long b) &#123;
+    long long ans = 0;
+    while(b != 0) &#123;
+	if(b & 1 != 0) &#123;
 	    ans += a;
 	&#125;
 	a += a;
-	b &gt;&gt;= <span class="hljs-number">1</span>;
+	b >>= 1;
     &#125;
-    <span class="hljs-keyword">return</span> ans;
+    return ans;
 &#125;
-</code></pre></div>
-<p>此版本的复杂度和快速幂一样，也是 <span class="markdown-them-math-inline">$O(logn)$</span> 。如果需要特别卡常数，可以去了解 <span class="markdown-them-math-inline">$O(1)$</span> 版本的快速乘。</p>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>此版本的复杂度和快速幂一样，也是 $O(logn)$ 。如果需要特别卡常数，可以去了解 $O(1)$ 版本的快速乘。</p>
 <h2><span id="6-完整代码">6 完整代码</span></h2>
 <blockquote>
-<p>为了防止溢出，一般快速幂和快速乘的算法会在 <span class="markdown-them-math-inline">$mod$</span> 下运用，下面给出取模运算代码。</p>
+<p>为了防止溢出，一般快速幂和快速乘的算法会在 $mod$ 下运用，下面给出取模运算代码。</p>
 </blockquote>
-<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
-<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<pre class="line-numbers language-language-c++"><code class="language-language-c++">#include <bits stdc++.h>
+using namespace std;
  
-<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ll;
-<span class="hljs-keyword">const</span> ll mod = <span class="hljs-number">1e7</span>;
+typedef long long ll;
+const ll mod = 1e7;
  
-<span class="hljs-comment">//a ^ b</span>
-<span class="hljs-function">ll <span class="hljs-title">ksm</span><span class="hljs-params">(ll a, ll b, ll mod)</span> </span>&#123;
-    ll ans = <span class="hljs-number">1</span>, base = a;
-    <span class="hljs-keyword">while</span>(b != <span class="hljs-number">0</span>) &#123;
-	<span class="hljs-keyword">if</span>(b &amp; <span class="hljs-number">1</span> != <span class="hljs-number">0</span>) &#123;
+//a ^ b
+ll ksm(ll a, ll b, ll mod) &#123;
+    ll ans = 1, base = a;
+    while(b != 0) &#123;
+	if(b & 1 != 0) &#123;
 	    ans = (ans * base) % mod;
 	&#125;
 	base = (base * base) % mod;
-	b &gt;&gt;= <span class="hljs-number">1</span>;
+	b >>= 1;
     &#125;
-    <span class="hljs-keyword">return</span> ans;
+    return ans;
 &#125;
  
-<span class="hljs-comment">//a * b</span>
-<span class="hljs-function">ll <span class="hljs-title">ksc</span><span class="hljs-params">(ll a, ll b, ll mod)</span> </span>&#123;
-    ll ans = <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">while</span>(b != <span class="hljs-number">0</span>) &#123;
-	<span class="hljs-keyword">if</span>(b &amp; <span class="hljs-number">1</span> != <span class="hljs-number">0</span>) &#123;
+//a * b
+ll ksc(ll a, ll b, ll mod) &#123;
+    ll ans = 0;
+    while(b != 0) &#123;
+	if(b & 1 != 0) &#123;
 	    ans = (ans + a) % mod;
 	&#125;
 	a = (a + a) % mod;
-	b &gt;&gt;= <span class="hljs-number">1</span>;
+	b >>= 1;
     &#125;
-    <span class="hljs-keyword">return</span> ans;
+    return ans;
 &#125;
  
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
-    cout &lt;&lt; <span class="hljs-string">&quot;5 ^ 3 = &quot;</span> &lt;&lt; <span class="hljs-built_in">ksm</span>(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>, mod) &lt;&lt; endl;
-    cout &lt;&lt; <span class="hljs-string">&quot;345352 * 11 = &quot;</span> &lt;&lt; <span class="hljs-built_in">ksc</span>(<span class="hljs-number">345352</span>, <span class="hljs-number">11</span>, mod) &lt;&lt; endl;
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+int main() &#123;
+    cout << "5 ^ 3 = " << ksm(5, 3, mod) << endl;
+    cout << "345352 * 11 = " << ksc(345352, 11, mod) << endl;
+    return 0;
 &#125;
-</code></pre></div>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></bits></code></pre>
 <p><strong>运算结果：</strong></p>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-5.png" alt="ksm-5"></p>
 <h2><span id="7-references">7 References</span></h2>

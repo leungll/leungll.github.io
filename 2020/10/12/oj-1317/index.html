@@ -148,7 +148,7 @@
 <blockquote>
 <p>X 星球的一处迷宫游乐场建在某个小山坡上。它是由 10x10 相互连通的小房间组成的。房间的地板上写着一个很大的字母。我们假设玩家是面朝上坡的方向站立，则：L 表示走到左边的房间，R 表示走到右边的房间，U 表示走到上坡方向的房间，D 表示走到下坡方向的房间。X 星球的居民有点懒，不愿意费力思考。他们更喜欢玩运气类的游戏。这个游戏也是如此！开始的时候，直升机把 100 名玩家放入一个个小房间内。玩家一定要按照地上的字母移动。</p>
 <p>迷宫地图如下：</p>
-<div class="highlight"><pre class="code"><code><span class="hljs-attribute">UDDLUULRUL
+<pre><code>UDDLUULRUL
 UURLLLRRRU
 RRUURLDLRD
 RUDDDDUUUU
@@ -157,8 +157,8 @@ DURLRLDLRL
 ULLURLLRDU
 RDLULLRDDD
 UUDDUDUDLL
-ULRDLUURRR</span>
-</code></pre></div>
+ULRDLUURRR
+</code></pre>
 <p>请你计算一下，最后，有多少玩家会走出迷宫? 而不是在里边兜圈子。</p>
 </blockquote>
 <h3><span id="输出格式">输出格式</span></h3>
@@ -166,57 +166,57 @@ ULRDLUURRR</span>
 <p>输出一个整数表示答案</p>
 </blockquote>
 <h2><span id="2-题解">2 题解</span></h2>
-<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span>
-<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">#include <iostream>
+#include <cstdio>
+#include <cstring>
+using namespace std;
 
-<span class="hljs-keyword">char</span> c[<span class="hljs-number">15</span>][<span class="hljs-number">15</span>];
-<span class="hljs-keyword">bool</span> vis[<span class="hljs-number">15</span>][<span class="hljs-number">15</span>];
-<span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;
+char c[15][15];
+bool vis[15][15];
+int ans = 0;
 
-<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i, <span class="hljs-keyword">int</span> j)</span></span>&#123;
-    <span class="hljs-keyword">if</span>(i &lt; <span class="hljs-number">0</span> || j &lt; <span class="hljs-number">0</span> || i &gt; <span class="hljs-number">9</span> || j &gt; <span class="hljs-number">9</span>)&#123;
+void dfs(int i, int j)&#123;
+    if(i < 0 || j < 0 || i > 9 || j > 9)&#123;
         ans++;
-        <span class="hljs-keyword">return</span>;
-    &#125;<span class="hljs-keyword">else</span>&#123;
-        <span class="hljs-keyword">if</span>(vis[i][j])&#123;
-            <span class="hljs-keyword">return</span>;
+        return;
+    &#125;else&#123;
+        if(vis[i][j])&#123;
+            return;
         &#125;
-        vis[i][j] = <span class="hljs-number">1</span>;
-        <span class="hljs-keyword">if</span>(c[i][j] == <span class="hljs-string">&#x27;U&#x27;</span>)&#123;
-            <span class="hljs-built_in">dfs</span>(i - <span class="hljs-number">1</span>, j);
-        &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(c[i][j] == <span class="hljs-string">&#x27;D&#x27;</span>)&#123;
-            <span class="hljs-built_in">dfs</span>(i + <span class="hljs-number">1</span>, j);
-        &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(c[i][j] == <span class="hljs-string">&#x27;L&#x27;</span>)&#123;
-            <span class="hljs-built_in">dfs</span>(i, j - <span class="hljs-number">1</span>);
-        &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(c[i][j] == <span class="hljs-string">&#x27;R&#x27;</span>)&#123;
-            <span class="hljs-built_in">dfs</span>(i, j + <span class="hljs-number">1</span>);
+        vis[i][j] = 1;
+        if(c[i][j] == 'U')&#123;
+            dfs(i - 1, j);
+        &#125;else if(c[i][j] == 'D')&#123;
+            dfs(i + 1, j);
+        &#125;else if(c[i][j] == 'L')&#123;
+            dfs(i, j - 1);
+        &#125;else if(c[i][j] == 'R')&#123;
+            dfs(i, j + 1);
         &#125;
     &#125;
 &#125;
 
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
-    <span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> ONLINE_JUDGE</span>
-    <span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span>
-    <span class="hljs-built_in">freopen</span>(<span class="hljs-string">&quot;input.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, stdin);
-    <span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span>
+int main()&#123;
+    #ifdef ONLINE_JUDGE
+    #else
+    freopen("input.txt", "r", stdin);
+    #endif
 
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; <span class="hljs-number">10</span>;i++)&#123;
-        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>;j &lt; <span class="hljs-number">10</span>;j++)&#123;
-            cin &gt;&gt; c[i][j];
+    for(int i = 0;i < 10;i++)&#123;
+        for(int j = 0;j < 10;j++)&#123;
+            cin >> c[i][j];
         &#125;
     &#125;
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; <span class="hljs-number">10</span>;i++)&#123;
-        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>;j &lt; <span class="hljs-number">10</span>;j++)&#123;
-            <span class="hljs-built_in">memset</span>(vis, <span class="hljs-number">0</span>, <span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(vis));
-            <span class="hljs-built_in">dfs</span>(i, j);
+    for(int i = 0;i < 10;i++)&#123;
+        for(int j = 0;j < 10;j++)&#123;
+            memset(vis, 0, sizeof(vis));
+            dfs(i, j);
         &#125;
     &#125;
-    cout &lt;&lt; ans &lt;&lt; endl;
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    cout << ans << endl;
+    return 0;
 &#125;
-</code></pre></div>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></cstring></cstdio></iostream></code></pre>
 
         </div>
     

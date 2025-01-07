@@ -161,17 +161,17 @@
 <p>T 行，为每组数据的答案。</p>
 </blockquote>
 <h3><span id="样例输入">样例输入</span></h3>
-<div class="highlight"><pre class="code"><code><span class="hljs-number">2</span>
-<span class="hljs-symbol">8 </span><span class="hljs-number">1</span>
-<span class="hljs-number">3</span>
-<span class="hljs-symbol">20 </span><span class="hljs-number">3</span>
-<span class="hljs-symbol">3 </span><span class="hljs-number">6</span> <span class="hljs-number">14</span>
-</code></pre></div>
+<pre><code>2
+8 1
+3
+20 3
+3 6 14
+</code></pre>
 <h3><span id="样例输出">样例输出</span></h3>
-<div class="highlight"><pre class="code"><code><span class="hljs-attribute">T</span> = <span class="hljs-number">10</span>
-<span class="hljs-attribute">N</span> &lt;= <span class="hljs-number">10000</span>
-<span class="hljs-attribute">M</span> &lt;= <span class="hljs-number">100</span>
-</code></pre></div>
+<pre><code>T = 10
+N &lt;= 10000
+M &lt;= 100
+</code></pre>
 <h2><span id="2-分析">2 分析</span></h2>
 <blockquote>
 <p>这题可用 <strong>区间dp</strong> 解决。</p>
@@ -200,123 +200,110 @@
 </ul>
 <p><strong>2. 回到题目中：</strong></p>
 <blockquote>
-<p>首先给出<strong>状态转移方程</strong>：</p>
-<div class="markdown-them-math-block">$$  dp[l][r] = min\{ \, dp[l][r], \,\, dp[l][i - 1] + dp[i + 1][r] + (arr[r + 1] - arr[l - 1] - 2) \, \}
-$$</div></blockquote>
+<p>首先给出<strong>状态转移方程</strong>：<br>
+$$<br>
+dp[l][r] = min{ , dp[l][r], ,, dp[l][i - 1] + dp[i + 1][r] + (arr[r + 1] - arr[l - 1] - 2) , }<br>
+$$</p>
+</blockquote>
 <ul>
 <li>
-<p>数组 <span class="markdown-them-math-inline">$arr[i]$</span> 存储被杀羊的<strong>号码</strong>，而 <span class="markdown-them-math-inline">$i$</span> 表示羊在数组 <span class="markdown-them-math-inline">$arr$</span> 中的<strong>编号</strong>，例如在第2个样例中，一共有3只羊被杀，羊的号码分别为<span class="markdown-them-math-inline">$3,6,14$</span> ，则数组存储的规则为：<span class="markdown-them-math-inline">$arr[1]=3,arr[2]=6,arr[3]=14$</span>。</p>
+<p>数组 $arr[i]$ 存储被杀羊的<strong>号码</strong>，而 $i$ 表示羊在数组 $arr$ 中的<strong>编号</strong>，例如在第2个样例中，一共有3只羊被杀，羊的号码分别为$3,6,14$ ，则数组存储的规则为：$arr[1]=3,arr[2]=6,arr[3]=14$。</p>
 </li>
 <li>
-<p><span class="markdown-them-math-inline">$dp[l][r]$</span> 表示杀掉 <span class="markdown-them-math-inline">$arr[l] \sim arr[r]$</span> 只羊所花费的<strong>最小代价</strong>。这个表达可能有些拗口，举个栗子：<span class="markdown-them-math-inline">$dp[1][3]$</span> 表示杀掉<strong>数组编号</strong>为 <span class="markdown-them-math-inline">$1,2,3$</span> 的羊花费的最小代价，即 <span class="markdown-them-math-inline">$arr[1],arr[2],arr[3]$</span> 这三只羊。</p>
+<p>$dp[l][r]$ 表示杀掉 $arr[l] \sim arr[r]$ 只羊所花费的<strong>最小代价</strong>。这个表达可能有些拗口，举个栗子：$dp[1][3]$ 表示杀掉<strong>数组编号</strong>为 $1,2,3$ 的羊花费的最小代价，即 $arr[1],arr[2],arr[3]$ 这三只羊。</p>
 </li>
 </ul>
 <p><strong>3. 为什么要用 dp 求解：</strong></p>
 <p>再来看一下题意，题目有两点关键信息：</p>
 <ul>
-<li>羊圈<strong>排成一排</strong>，标号为 <span class="markdown-them-math-inline">$1\sim N$</span>。（也就是说，羊圈的<strong>羊头和羊尾</strong>不会再传播下去）</li>
+<li>羊圈<strong>排成一排</strong>，标号为 $1\sim N$。（也就是说，羊圈的<strong>羊头和羊尾</strong>不会再传播下去）</li>
 <li>炫炫每吃掉一只羊，这只羊的邻居就会引起恐慌，接着这只羊的邻居们会继续告诉他们的邻居，一直传播下去，什么时候传播恐慌结束？（划重点！），<strong>当某个邻居已经被杀掉时</strong>。</li>
 </ul>
-<p>我们可以看出，其实求 <span class="markdown-them-math-inline">$dp[l][r]$</span> 可以缩小问题规模，变成求 <span class="markdown-them-math-inline">$dp[l][k] + dp[k + 1][r]$</span> 的最小代价，对吧？如果你认为没问题，好，通过不断地拆分区间求解，问题的规模得到了缩小，这里符合dp基本性质之一“<strong>最优子结构</strong>”。</p>
+<p>我们可以看出，其实求 $dp[l][r]$ 可以缩小问题规模，变成求 $dp[l][k] + dp[k + 1][r]$ 的最小代价，对吧？如果你认为没问题，好，通过不断地拆分区间求解，问题的规模得到了缩小，这里符合dp基本性质之一“<strong>最优子结构</strong>”。</p>
 <p>而我们知道，在动态规划算法中，利用问题的最优子结构性质，是以<strong>自底向上</strong>的方式递归地从<strong>子问题</strong>的最优解逐步构造出<strong>整个问题的最优解</strong>。</p>
 <p>在本题中，从<strong>子问题 → 整个问题</strong>的求解，可以这样做，区间以<strong>每只即将被杀掉的羊为结点</strong>划分：</p>
 <ul>
-<li>按照区间长度<strong>由小到大</strong>的规则，计算最小代价，即我们先从长度为 <span class="markdown-them-math-inline">$1$</span> 的区间开始计算最小代价，再计算区间长度为 <span class="markdown-them-math-inline">$2→3→4→5→…$</span> 的最小代价。最后当区间长度为 <span class="markdown-them-math-inline">$m$</span> 时，就是问题的<strong>求解结果</strong>。</li>
-<li>当区间长度 ＞ 1时，这时需要<strong>逐个遍历</strong>区间中每只即将被杀掉的 <span class="markdown-them-math-inline">$arr[i]$</span> 羊，通过 dp 方程去计算最小代价。</li>
+<li>按照区间长度<strong>由小到大</strong>的规则，计算最小代价，即我们先从长度为 $1$ 的区间开始计算最小代价，再计算区间长度为 $2→3→4→5→…$ 的最小代价。最后当区间长度为 $m$ 时，就是问题的<strong>求解结果</strong>。</li>
+<li>当区间长度 ＞ 1时，这时需要<strong>逐个遍历</strong>区间中每只即将被杀掉的 $arr[i]$ 羊，通过 dp 方程去计算最小代价。</li>
 </ul>
-<p>在本题中，从区间的角度，我们要求的最小代价 <span class="markdown-them-math-inline">$dp[1][m]$</span> ，可以表示成：</p>
-<div class="markdown-them-math-block">$$    dp[1][m] = dp[1] [k - 1] + arr[k] + dp[k + 1] [m]
-$$</div><p>即杀掉所有羊的代价可以变成求杀掉 <span class="markdown-them-math-inline">$arr[1] \sim arr[k - 1]$</span> 只羊的最小代价与 <span class="markdown-them-math-inline">$arr[k + 1] \sim arr[m]$</span> 只羊，再加上杀掉 <span class="markdown-them-math-inline">$arr[k]$</span> 的最小代价。</p>
-<p>好了，到这一步应该没有太难理解的地方，那么应该如何求杀掉 <span class="markdown-them-math-inline">$arr[k]$</span> 的最小代价？</p>
-<p><strong>4. 如何求杀掉 <span class="markdown-them-math-inline">$arr[k]$</span> 的最小代价：</strong>：</p>
+<p>在本题中，从区间的角度，我们要求的最小代价 $dp[1][m]$ ，可以表示成：</p>
+<p>$$<br>
+dp[1][m] = dp[1] [k - 1] + arr[k] + dp[k + 1] [m]<br>
+$$</p>
+<p>即杀掉所有羊的代价可以变成求杀掉 $arr[1] \sim arr[k - 1]$ 只羊的最小代价与 $arr[k + 1] \sim arr[m]$ 只羊，再加上杀掉 $arr[k]$ 的最小代价。</p>
+<p>好了，到这一步应该没有太难理解的地方，那么应该如何求杀掉 $arr[k]$ 的最小代价？</p>
+<p><strong>4. 如何求杀掉 $arr[k]$ 的最小代价：</strong>：</p>
 <blockquote>
-<p>通过上面列出的 dp 方程中可以看到</p>
-<div class="markdown-them-math-block">$$  arr[k]=arr[r + 1] - arr[l - 1] - 2
-$$</div></blockquote>
+<p>通过上面列出的 dp 方程中可以看到<br>
+$$<br>
+arr[k]=arr[r + 1] - arr[l - 1] - 2<br>
+$$</p>
+</blockquote>
 <p>为啥？</p>
 <p>我们改一下第 1 个样例中的数据，再举个栗子：</p>
 <blockquote>
 <p>羊   圈：1 <strong><code>2</code></strong> <strong><code>3</code></strong> 4 <strong><code>5</code></strong> 6 7 8<br>
-待杀羊号码：2 3 5  <span class="markdown-them-math-inline">$（arr[1]=2, arr[2]=3, arr[3]=5）$</span><br>
-考虑区间：{ <span class="markdown-them-math-inline">$2$</span> }，<span class="markdown-them-math-inline">$2$</span> 表示待杀羊在数组中的<strong>编号</strong>。</p>
+待杀羊号码：2 3 5  $（arr[1]=2, arr[2]=3, arr[3]=5）$<br>
+考虑区间：{ $2$ }，$2$ 表示待杀羊在数组中的<strong>编号</strong>。</p>
 </blockquote>
-<p>即我们要杀掉号码为 <span class="markdown-them-math-inline">$3$</span>（<span class="markdown-them-math-inline">$arr[2]=3$</span>）的这只羊，也就是要求杀掉 <span class="markdown-them-math-inline">$arr[2]$</span> 的代价，这时候3号羊的邻居得到了消息，它们开始传播消息，什么时候传播停止？<strong>遇到了号码为2与号码为5的羊</strong>！</p>
+<p>即我们要杀掉号码为 $3$（$arr[2]=3$）的这只羊，也就是要求杀掉 $arr[2]$ 的代价，这时候3号羊的邻居得到了消息，它们开始传播消息，什么时候传播停止？<strong>遇到了号码为2与号码为5的羊</strong>！</p>
 <p>换句话说，我们在杀死号码为3的这只羊时，它的左右邻居肯定被影响，也就是区间外的羊也会被影响，而<strong>传播停止是在遇到被杀死的羊的时候。</strong></p>
-<p>再来看公式：</p>
-<div class="markdown-them-math-block">$$    arr[k]=arr[r + 1] - arr[l - 1] - 2
-$$</div><p>是将区间扩展到<strong>左右边界外第一只</strong>待杀死的羊，为啥是 <span class="markdown-them-math-inline">$－2$</span> ？</p>
+<p>再来看公式：<br>
+$$<br>
+arr[k]=arr[r + 1] - arr[l - 1] - 2<br>
+$$</p>
+<p>是将区间扩展到<strong>左右边界外第一只</strong>待杀死的羊，为啥是 $－2$ ？</p>
 <ul>
-<li>公式中已经将区间扩展到了 <span class="markdown-them-math-inline">$arr[r + 1]与arr[l - 1]$</span> ，即{ <strong><code>2</code>, <code>3</code>, 4, <code>5</code></strong> }，就是例子中羊的号码为 <span class="markdown-them-math-inline">$2$</span> 与号码为 <span class="markdown-them-math-inline">$5$</span> 的位置，这两只羊是要被杀死的，此时区间中有 <span class="markdown-them-math-inline">$5-2-1$</span> 只羊。</li>
-<li>而号码 <span class="markdown-them-math-inline">$3$</span>（即<span class="markdown-them-math-inline">$arr[2]$</span>）是我们最开始要杀的羊，所以最小代价为 <span class="markdown-them-math-inline">$5 - 2 - 1 - 1$</span>，即<span class="markdown-them-math-inline">$5 - 2 - 2 = 1$</span>，我们需要给一块巧克力去安慰号码为 <span class="markdown-them-math-inline">$4$</span> 这只羊。</li>
+<li>公式中已经将区间扩展到了 $arr[r + 1]与arr[l - 1]$ ，即{ <strong><code>2</code>, <code>3</code>, 4, <code>5</code></strong> }，就是例子中羊的号码为 $2$ 与号码为 $5$ 的位置，这两只羊是要被杀死的，此时区间中有 $5-2-1$ 只羊。</li>
+<li>而号码 $3$（即$arr[2]$）是我们最开始要杀的羊，所以最小代价为 $5 - 2 - 1 - 1$，即$5 - 2 - 2 = 1$，我们需要给一块巧克力去安慰号码为 $4$ 这只羊。</li>
 </ul>
 <p>接下来<strong>验证</strong>一下这个公式是否合理：</p>
 <ul>
 <li>
-<p>考虑区间：{ <span class="markdown-them-math-inline">$2$</span> }，此时区间长度为 <span class="markdown-them-math-inline">$1$</span>，区间左部 <span class="markdown-them-math-inline">$l$</span> 与区间右部 <span class="markdown-them-math-inline">$r$</span> 相等，所以 <span class="markdown-them-math-inline">$l=r=2$</span>（前面约定，区间是以<strong>每只即将被杀掉的羊为结点</strong>划分，在这个例子中，羊的结点编号为 <span class="markdown-them-math-inline">$2$</span> ）</p>
+<p>考虑区间：{ $2$ }，此时区间长度为 $1$，区间左部 $l$ 与区间右部 $r$ 相等，所以 $l=r=2$（前面约定，区间是以<strong>每只即将被杀掉的羊为结点</strong>划分，在这个例子中，羊的结点编号为 $2$ ）</p>
 </li>
 <li>
-<p>代入公式：</p>
-<div class="markdown-them-math-block">$$    arr[2]=arr[2 + 1] - arr[2 - 1] - 2=1
-$$</div></li>
+<p>代入公式：<br>
+$$<br>
+arr[2]=arr[2 + 1] - arr[2 - 1] - 2=1<br>
+$$</p>
+</li>
 <li>
-<p>公式结果表明，杀掉 <span class="markdown-them-math-inline">$arr[2]$</span> 这只羊，最小代价是 <span class="markdown-them-math-inline">$1$</span>。</p>
+<p>公式结果表明，杀掉 $arr[2]$ 这只羊，最小代价是 $1$。</p>
 </li>
 </ul>
 <p><strong>5. 考虑边界值：</strong></p>
 <ul>
-<li>题意说到，羊圈是排成一排的，即羊首与羊尾不会再传播给它的邻居，因此为了处理方便，我们设 <span class="markdown-them-math-inline">$arr[0] = 0，arr[m + 1] = n + 1$</span> 。</li>
-<li>当区间长度为1时，此时区间里只有一只待杀的羊，这时不需要再进行区间划分，直接计算杀掉 <span class="markdown-them-math-inline">$arr[k]$</span> 的代价即可。即：<br>
-<div class="markdown-them-math-block">$$dp[l][r] = arr[r + 1] - arr[l - 1] - 2$$</div></li>
+<li>题意说到，羊圈是排成一排的，即羊首与羊尾不会再传播给它的邻居，因此为了处理方便，我们设 $arr[0] = 0，arr[m + 1] = n + 1$ 。</li>
+<li>当区间长度为1时，此时区间里只有一只待杀的羊，这时不需要再进行区间划分，直接计算杀掉 $arr[k]$ 的代价即可。即：<br>
+$$dp[l][r] = arr[r + 1] - arr[l - 1] - 2$$</li>
 </ul>
 <h2><span id="3-题解">3 题解</span></h2>
-<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span>
-<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">#include <iostream>
+#include <cstdio>
+#include <cstring>
+#include <algorithm>
+using namespace std;
 
-<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn = <span class="hljs-number">1e4</span> + <span class="hljs-number">5</span>;
-<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> INF = <span class="hljs-number">0x3f3f3f</span>;
-<span class="hljs-keyword">int</span> arr[maxn] = &#123;<span class="hljs-number">0</span>&#125;, dp[maxn][maxn] = &#123;<span class="hljs-number">0</span>&#125;;
+const int maxn = 1e4 + 5;
+const int INF = 0x3f3f3f;
+int arr[maxn] = &#123;0&#125;, dp[maxn][maxn] = &#123;0&#125;;
 
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span></span>&#123;
-    <span class="hljs-comment">//freopen(&quot;input.txt&quot;, &quot;r&quot;, stdin);</span>
-    <span class="hljs-keyword">int</span> t;
-    cin &gt;&gt; t;
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> x = <span class="hljs-number">0</span>;x &lt; t;x++)&#123;
-        <span class="hljs-keyword">int</span> n, m;
-        cin &gt;&gt; n &gt;&gt; m;
-        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>;i &lt;= m;i++)&#123;
-            cin &gt;&gt; arr[i];
+int main ()&#123;
+    //freopen("input.txt", "r", stdin);
+    int t;
+    cin >> t;
+    for(int x = 0;x < t;x++)&#123;
+        int n, m;
+        cin >> n >> m;
+        for(int i = 1;i <= m;i++)&#123; cin>> arr[i];
         &#125;
-        <span class="hljs-comment">//处理边界值 </span>
-        arr[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>, arr[m + <span class="hljs-number">1</span>] = n + <span class="hljs-number">1</span>;
-        <span class="hljs-comment">//区间长度由小到大 </span>
-        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> len = <span class="hljs-number">1</span>;len &lt;= m;len++)&#123;
-            <span class="hljs-comment">//考虑区间情况 l → r </span>
-            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> l = <span class="hljs-number">1</span>;l + len &lt;= m + <span class="hljs-number">1</span>;l++)&#123;
-                <span class="hljs-comment">//计算区间的右边界 r</span>
-                <span class="hljs-keyword">int</span> r = l + len - <span class="hljs-number">1</span>;
-                <span class="hljs-comment">//区间长度为 1 的特殊情况 </span>
-                <span class="hljs-keyword">if</span>(len == <span class="hljs-number">1</span>)&#123;
-                    dp[l][r] = arr[r + <span class="hljs-number">1</span>] - arr[l - <span class="hljs-number">1</span>] - <span class="hljs-number">2</span>;
-                &#125;<span class="hljs-keyword">else</span>&#123;
-                    <span class="hljs-comment">//赋初值 </span>
-                    dp[l][r] = INF;
-                    <span class="hljs-comment">//逐个遍历区间内每只待杀的羊 </span>
-                    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = l;i &lt;= r;i++)&#123;
-                        dp[l][r] = <span class="hljs-built_in">min</span>( dp[l][r], dp[l][i - <span class="hljs-number">1</span>] + dp[i + <span class="hljs-number">1</span>][r] + arr[r + <span class="hljs-number">1</span>] - arr[l - <span class="hljs-number">1</span>] - <span class="hljs-number">2</span> );
-                    &#125;
-                &#125;
-            &#125;
-        &#125;
-        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, dp[<span class="hljs-number">1</span>][m]);
-    &#125;
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-&#125;
-</code></pre></div>
+        //处理边界值 
+        arr[0] = 0, arr[m + 1] = n + 1;
+        //区间长度由小到大 
+        for(int len = 1;len <= 1 2 m;len++)&#123; 考虑区间情况 l → r for(int + len <="m" 1;l++)&#123; 计算区间的右边界 int - 1; 区间长度为 的特殊情况 if(len="=" 1)&#123; dp[l][r]="arr[r" 1] arr[l 2; &#125;else&#123; 赋初值 逐个遍历区间内每只待杀的羊 i="l;i" dp[l][r], dp[l][i dp[i 1][r] arr[r ); &#125; printf("%d\n", dp[1][m]); return 0; <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></=></=></algorithm></cstring></cstdio></iostream></code></pre>
 <p>如果你还是有一些疑惑，建议在代码中进行调试，输出各数据的运行情况，这可能有利于你理解。<br>
-另外如果你想进一步了解<strong>区间 dp 原理</strong>，可以查看 <span class="markdown-them-math-inline">$References$</span> 链接中的第一个。</p>
+另外如果你想进一步了解<strong>区间 dp 原理</strong>，可以查看 $References$ 链接中的第一个。</p>
 <h2><span id="4-references">4 References</span></h2>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40772692/article/details/80183248">https://blog.csdn.net/qq_40772692/article/details/80183248</a></li>

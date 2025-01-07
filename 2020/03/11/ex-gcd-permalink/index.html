@@ -181,47 +181,49 @@
 </blockquote>
 <h2><span id="1-逆元定义">1 逆元定义</span></h2>
 <blockquote>
-<p>若 <span class="markdown-them-math-inline">$a\ *\ x\ ≡\ 1\ (mod\ b)$</span> ，且 a 与 b 互斥，那么就能定义 x 为 a 的逆元，记为 <span class="markdown-them-math-inline">$a^{-1}$</span>，也可称为 x 为 a 的倒数。</p>
+<p>若 $a\ *\ x\ ≡\ 1\ (mod\ b)$ ，且 a 与 b 互斥，那么就能定义 x 为 a 的逆元，记为 $a^{-1}$，也可称为 x 为 a 的倒数。</p>
 </blockquote>
 <h2><span id="2-欧几里得算法求最大公约数">2 欧几里得算法（求最大公约数）</span></h2>
 <blockquote>
 <p>首先介绍古老而又强大的欧几里得算法（又称辗转相除法）：<br>
 两个数 a 和 b 的<strong>最大公因子</strong>（greatest common divisior）是能整除它们两者的最大整数。欧几里德算法用于计算两个整数 a，b 的最大因子。记 <strong>gcd(a, b)</strong> 为自然数 a 与 b 的最大公因子。特别的，有 gcd(0, n) = 0，因为任何整数都能整除 0。</p>
 </blockquote>
-<p><strong>内容：</strong></p>
-<div class="markdown-them-math-block">$$gcd(a, b) = \left\{
-\begin{array}{ll}
-a, &amp; \text{if} \ b = 0 \\
-gcd(b, a \mod b), &amp; \text{if} \ b \neq 0
-\end{array}
-\right.
-$$</div><p><strong>代码</strong>：</p>
-<div class="highlight"><pre class="code"><code><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">gcd</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b)</span></span>&#123;   
-    <span class="hljs-keyword">return</span> b == <span class="hljs-number">0</span> ? a : <span class="hljs-built_in">gcd</span>(b, a % b);     
+<p><strong>内容：</strong><br>
+$$<br>
+gcd(a, b) = \left{<br>
+\begin{array}{ll}<br>
+a, &amp; \text{if} \ b = 0 \<br>
+gcd(b, a \mod b), &amp; \text{if} \ b \neq 0<br>
+\end{array}<br>
+\right.<br>
+$$</p>
+<p><strong>代码</strong>：</p>
+<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">int gcd(int a, int b)&#123;   
+    return b == 0 ? a : gcd(b, a % b);     
 &#125;
-</code></pre></div>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <h2><span id="3-扩展欧几里得算法">3 扩展欧几里得算法</span></h2>
 <h3><span id="31-预备知识">3.1 预备知识</span></h3>
 <p><strong>1. 取模运算</strong>：</p>
-<div class="highlight"><pre class="code"><code>(a + b) % c = (a % c + b % c) % <span class="hljs-built_in">c</span>
+<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">(a + b) % c = (a % c + b % c) % c
 (a * b) % c = (a % c * b % c) % c
-</code></pre></div>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>取模运算对除法不成立，当要求 <strong>(a / b) % c</strong> 时，可转化为逆元来求：</p>
-<p><div class="markdown-them-math-block">$$ 
-(a\,/\,b)\,\%\,c\,=\,(a\,*\,b^{-1})\,\%\,c\,=\,(a\,\%\,c\,\,*\,\,b^{-1}\,\%\,c)\,\%\,c
-$$</div></p>
+<p>$$<br>
+(a,/,b),%,c,=,(a,<em>,b^{-1}),%,c,=,(a,%,c,,</em>,,b^{-1},%,c),%,c<br>
+$$</p>
 <p>这就是逆元的作用。</p>
 <p><strong>2. 裴蜀定理：</strong></p>
-<p>给予两个整数 a，b，必存在整数 x，y 使得 <div class="markdown-them-math-block">$$ax+by=gcd(a,\,b)$$</div></p>
-<p>即如若 <span class="markdown-them-math-inline">$ax+by=c$</span> 有解，那么有 <span class="markdown-them-math-inline">$gcd(a,\,b)\,|\,c$</span>（c 一定是 <span class="markdown-them-math-inline">$gcd(a,\,b)$</span> 的若干倍）</p>
-<p>特例：当 <span class="markdown-them-math-inline">$c = 1$</span> 时，如果 <span class="markdown-them-math-inline">$ax+by=1$</span> 有解，那么 <span class="markdown-them-math-inline">$gcd(a,\,b)\,=\,1$</span></p>
+<p>给予两个整数 a，b，必存在整数 x，y 使得 $$ax+by=gcd(a,,b)$$</p>
+<p>即如若 $ax+by=c$ 有解，那么有 $gcd(a,,b),|,c$（c 一定是 $gcd(a,,b)$ 的若干倍）</p>
+<p>特例：当 $c = 1$ 时，如果 $ax+by=1$ 有解，那么 $gcd(a,,b),=,1$</p>
 <h3><span id="32-关于扩展欧几里得算法">3.2 关于扩展欧几里得算法</span></h3>
 <ul>
 <li>
-<p><strong>扩展欧几里得算法</strong>（Extended Euclidean algorithm）是欧几里得算法的扩展。它可用来求解形如 <span class="markdown-them-math-inline">$ax+by=c\,(a,b,c\,\in Z)$</span> 方程的一组整数解。</p>
+<p><strong>扩展欧几里得算法</strong>（Extended Euclidean algorithm）是欧几里得算法的扩展。它可用来求解形如 $ax+by=c,(a,b,c,\in Z)$ 方程的一组整数解。</p>
 </li>
 <li>
-<p>对于求解方程 <span class="markdown-them-math-inline">$ax+by=c\,(gcd(a,\,b)\,|\,c)$</span> ，只需求解出方程 <div class="markdown-them-math-block">$$ax+by=gcd(a,\,b)$$</div> 的一组解，将 <span class="markdown-them-math-inline">$x,y$</span> 分别乘上  <span class="markdown-them-math-inline">$\frac {c}{gcd(a,b)}$</span> 即可得到方程 <span class="markdown-them-math-inline">$ax+by=c\,(gcd(a,\,b)\,|\,c)$</span> 的一组解。</p>
+<p>对于求解方程 $ax+by=c,(gcd(a,,b),|,c)$ ，只需求解出方程 $$ax+by=gcd(a,,b)$$ 的一组解，将 $x,y$ 分别乘上  $\frac {c}{gcd(a,b)}$ 即可得到方程 $ax+by=c,(gcd(a,,b),|,c)$ 的一组解。</p>
 </li>
 <li>
 <p>扩展欧几里得算法可以用来计算模反元素(也叫模逆元)，而模反元素在 RSA 加密算法中有举足轻重的地位。</p>
@@ -229,172 +231,198 @@ $$</div></p>
 </ul>
 <h3><span id="33-模板">3.3 模板</span></h3>
 <p>(思考了一下该先放模板，还是先放算法的证明过程，最后决定先放模板，然后就着模板理解算法的证明过程)</p>
-<div class="highlight"><pre class="code"><code><span class="hljs-function">ll <span class="hljs-title">ex_gcd</span><span class="hljs-params">(ll a, ll b, ll &amp;x, ll &amp;y)</span></span>&#123;
-    <span class="hljs-comment">//标记1</span>
-    <span class="hljs-keyword">if</span>(b == <span class="hljs-number">0</span>)&#123;
-        x = <span class="hljs-number">1</span>, y = <span class="hljs-number">0</span>;
-        <span class="hljs-keyword">return</span> a;
+<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">ll ex_gcd(ll a, ll b, ll &x, ll &y)&#123;
+    //标记1
+    if(b == 0)&#123;
+        x = 1, y = 0;
+        return a;
     &#125;
-    ll d = <span class="hljs-built_in">ex_gcd</span>(b, a % b, x, y);
+    ll d = ex_gcd(b, a % b, x, y);
     ll temp = y;
-    <span class="hljs-comment">//标记2</span>
+    //标记2
     y = x - (a / b) * y;
     x = temp;
-    <span class="hljs-comment">//标记3</span>
-    <span class="hljs-keyword">return</span> d;
+    //标记3
+    return d;
 &#125;
-</code></pre></div>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3><span id="34-算法推导过程">3.4 算法推导过程</span></h3>
 <blockquote>
-<p>现有方程：</p>
-<div class="markdown-them-math-block">$$  ax+by=gcd(a,\,b)
-$$</div><p>记 <strong>ex_gcd(a, b, x, y)</strong> 为求解上述方程的函数，函数返回的是 <span class="markdown-them-math-inline">$gcd(a,b)$</span> 的<strong>最大公约数</strong>(对应模板代码<code>标记3</code>），其中形参 <span class="markdown-them-math-inline">$x,y$</span> 为<strong>引用参数</strong>(全局变量)，也是上述<strong>方程的解</strong>。</p>
+<p>现有方程：<br>
+$$<br>
+ax+by=gcd(a,,b)<br>
+$$<br>
+记 <strong>ex_gcd(a, b, x, y)</strong> 为求解上述方程的函数，函数返回的是 $gcd(a,b)$ 的<strong>最大公约数</strong>(对应模板代码<code>标记3</code>），其中形参 $x,y$ 为<strong>引用参数</strong>(全局变量)，也是上述<strong>方程的解</strong>。</p>
 </blockquote>
 <ol>
 <li>
 <p>边界情况(对应模板代码<code>标记1</code>）：<br>
-当 <span class="markdown-them-math-inline">$b=0$</span> 时，方程为 <span class="markdown-them-math-inline">$ax=gcd(a,0)$</span> ，解得</p>
-<div class="markdown-them-math-block">$$    \left\{
-        \begin{array}{l}
-                x=1 \\  y=0
-            \end{array}
-    \right.
-$$</div><p>此时 a 就是 <span class="markdown-them-math-inline">$gcd(a,0)$</span> 的最大公约数，因此函数<strong>return a</strong>。</p>
+当 $b=0$ 时，方程为 $ax=gcd(a,0)$ ，解得<br>
+$$<br>
+\left{<br>
+\begin{array}{l}<br>
+x=1 \  y=0<br>
+\end{array}<br>
+\right.<br>
+$$</p>
+<p>此时 a 就是 $gcd(a,0)$ 的最大公约数，因此函数<strong>return a</strong>。</p>
 </li>
 <li>
 <p>一般情况(对应模板代码<code>标记2</code>）：<br>
-当 <span class="markdown-them-math-inline">$b\neq0$</span> 时，有欧几里得算法</p>
-<div class="markdown-them-math-block">$$    gcd(a\,,b)\,=\,gcd(b^\prime\,,\,a^\prime\,\%\,b^\prime)
-$$</div><p>则有方程</p>
-<div class="markdown-them-math-block">$$    ax+by=gcd(a,\,b)=gcd(b^\prime\,,\,a^\prime\,\%\,b^\prime)
-$$</div><p>另外有等式（不是啥公式，一个运算技巧）：</p>
-<div class="markdown-them-math-block">$$    a\,\%\,b=a-(a/b)*b
-$$</div><p>则方程可化为</p>
-<div class="markdown-them-math-block">$$    gcd(b^\prime\,,\,a^\prime\,\%\,b^\prime)=b^\prime x^\prime+(a^\prime\,\%\,b^\prime)y^\prime=b^\prime x^\prime+(a^\prime-(a^\prime/b^\prime)*b^\prime)y^\prime
-$$</div><p>上式化简得：</p>
-<div class="markdown-them-math-block">$$    b^\prime x^\prime+a^\prime y^\prime-(a^\prime / b^\prime)*b^\prime*y^\prime=a^\prime y^\prime+b^\prime*(x^\prime-a^\prime /\,b^\prime*y^\prime)
-$$</div><p>于是可以得到关于方程解 <span class="markdown-them-math-inline">$x,y$</span> 的递推关系：</p>
-<div class="markdown-them-math-block">$$    \left\{
-        \begin{array}{l}
-                x=y^\prime \\  y=x^\prime-a^\prime /\,b^\prime*y^\prime
-            \end{array}
-    \right.
-$$</div></li>
+当 $b\neq0$ 时，有欧几里得算法</p>
+<p>$$<br>
+gcd(a,,b),=,gcd(b^\prime,,,a^\prime,%,b^\prime)<br>
+$$</p>
+<p>则有方程<br>
+$$<br>
+ax+by=gcd(a,,b)=gcd(b^\prime,,,a^\prime,%,b^\prime)<br>
+$$</p>
+<p>另外有等式（不是啥公式，一个运算技巧）：<br>
+$$<br>
+a,%,b=a-(a/b)*b<br>
+$$</p>
+<p>则方程可化为<br>
+$$<br>
+gcd(b^\prime,,,a^\prime,%,b^\prime)=b^\prime x^\prime+(a^\prime,%,b^\prime)y^\prime=b^\prime x^\prime+(a^\prime-(a^\prime/b^\prime)*b^\prime)y^\prime<br>
+$$</p>
+<p>上式化简得：<br>
+$$<br>
+b^\prime x^\prime+a^\prime y^\prime-(a^\prime / b^\prime)<em>b^\prime</em>y^\prime=a^\prime y^\prime+b^\prime*(x^\prime-a^\prime /,b^\prime*y^\prime)<br>
+$$</p>
+<p>于是可以得到关于方程解 $x,y$ 的递推关系：<br>
+$$<br>
+\left{<br>
+\begin{array}{l}<br>
+x=y^\prime \  y=x^\prime-a^\prime /,b^\prime*y^\prime<br>
+\end{array}<br>
+\right.<br>
+$$</p>
+</li>
 <li>
-<p>由此我们得到了边界条件以及递归式，即每次递归<code>ex_gcd(b, a mod b, x, y)</code>，稍加处理，即可求得方程 <span class="markdown-them-math-inline">$ax+by=gcd(a,\,b)$</span> 的一组解 <span class="markdown-them-math-inline">$x,y$</span> 。</p>
+<p>由此我们得到了边界条件以及递归式，即每次递归<code>ex_gcd(b, a mod b, x, y)</code>，稍加处理，即可求得方程 $ax+by=gcd(a,,b)$ 的一组解 $x,y$ 。</p>
 </li>
 </ol>
 <h3><span id="35-利用拓展欧几里得算法求逆元">3.5 利用拓展欧几里得算法求逆元</span></h3>
 <blockquote>
-<p>那么问题来了，我们通过函数<code>ex_gcd(a, b, x, y)</code>，求得 <span class="markdown-them-math-inline">$gcd(a,b)$</span>（即最大公约数）的结果，以及一组方程解 <span class="markdown-them-math-inline">$(x,y)$</span>，对求逆元有什么作用？</p>
+<p>那么问题来了，我们通过函数<code>ex_gcd(a, b, x, y)</code>，求得 $gcd(a,b)$（即最大公约数）的结果，以及一组方程解 $(x,y)$，对求逆元有什么作用？</p>
 </blockquote>
 <ol>
 <li>
-<p>根据逆元定义 <span class="markdown-them-math-inline">$a\,*\,x\,≡\,1\,(mod\,b)$</span><br>
-当我们求 <span class="markdown-them-math-inline">$a$</span> 在 <span class="markdown-them-math-inline">$mod\,b$</span> 情况下的逆元时，假设逆元为 x ，即<br>
-<div class="markdown-them-math-block">$$ 
-     ax\equiv1(mod\,b)
- $$</div></p>
-<p>转化等式：</p>
-<div class="markdown-them-math-block">$$    ax\equiv1+by(\,\,(b * y)|(a *x),\ 即\ a * x\ 是\ b * y\ 的若干倍)
-$$</div><p>移项<br>
-<div class="markdown-them-math-block">$$ 
-     ax+by\equiv1
- $$</div></p>
-<p>则最小的 <span class="markdown-them-math-inline">$x$</span> 即为 <span class="markdown-them-math-inline">$a$</span> 在 <span class="markdown-them-math-inline">$mod\,b$</span> 情况下的一个逆元。</p>
+<p>根据逆元定义 $a,*,x,≡,1,(mod,b)$<br>
+当我们求 $a$ 在 $mod,b$ 情况下的逆元时，假设逆元为 x ，即<br>
+$$<br>
+ax\equiv1(mod,b)<br>
+$$</p>
+<p>转化等式：<br>
+$$<br>
+ax\equiv1+by(,,(b * y)|(a *x),\ 即\ a * x\ 是\ b * y\ 的若干倍)<br>
+$$</p>
+<p>移项<br>
+$$<br>
+ax+by\equiv1<br>
+$$</p>
+<p>则最小的 $x$ 即为 $a$ 在 $mod,b$ 情况下的一个逆元。</p>
 </li>
 <li>
-<p>由裴蜀定理：</p>
-<div class="markdown-them-math-block">$$    ax+by=gcd(a,\,b)
-$$</div><p>当 <span class="markdown-them-math-inline">$gcd(a,\,b)=1$</span> 时，由扩展欧几里得函数<code>ex_gcd(a, b, x, y)</code>求得的方程解 <span class="markdown-them-math-inline">$x$</span> 即为我们所求的<strong>最小乘法逆元</strong>。</p>
+<p>由裴蜀定理：<br>
+$$<br>
+ax+by=gcd(a,,b)<br>
+$$</p>
+<p>当 $gcd(a,,b)=1$ 时，由扩展欧几里得函数<code>ex_gcd(a, b, x, y)</code>求得的方程解 $x$ 即为我们所求的<strong>最小乘法逆元</strong>。</p>
 </li>
 <li>
 <p>因此下面代码中的<code>标记4</code>得到解释：</p>
 </li>
 </ol>
-<div class="highlight"><pre class="code"><code><span class="hljs-comment">//拓展欧几里得算法</span>
-<span class="hljs-function">ll <span class="hljs-title">ex_gcd</span><span class="hljs-params">(ll a, ll b, ll &amp;x, ll &amp;y)</span></span>&#123;
-    <span class="hljs-comment">//标记1</span>
-    <span class="hljs-keyword">if</span>(b == <span class="hljs-number">0</span>)&#123;
-        x = <span class="hljs-number">1</span>, y = <span class="hljs-number">0</span>;
-        <span class="hljs-keyword">return</span> a;
+<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">//拓展欧几里得算法
+ll ex_gcd(ll a, ll b, ll &x, ll &y)&#123;
+    //标记1
+    if(b == 0)&#123;
+        x = 1, y = 0;
+        return a;
     &#125;
-    ll d = <span class="hljs-built_in">ex_gcd</span>(b, a % b, x, y);
+    ll d = ex_gcd(b, a % b, x, y);
     ll temp = y;
-    <span class="hljs-comment">//标记2</span>
+    //标记2
     y = x - (a / b) * y;
     x = temp;
-    <span class="hljs-comment">//标记3</span>
-    <span class="hljs-keyword">return</span> d;
+    //标记3
+    return d;
 &#125;
 
-<span class="hljs-comment">//求a在mod下的逆元x</span>
-<span class="hljs-function">ll <span class="hljs-title">getInv</span><span class="hljs-params">(ll a, ll mod)</span></span>&#123;
+//求a在mod下的逆元x
+ll getInv(ll a, ll mod)&#123;
     ll x, y;
-    ll d = <span class="hljs-built_in">ex_gcd</span>(a, mod, x, y);
-    <span class="hljs-comment">//标记4</span>
-    <span class="hljs-keyword">return</span> d == <span class="hljs-number">1</span> ? (x + mod) % mod : <span class="hljs-number">-1</span>;
+    ll d = ex_gcd(a, mod, x, y);
+    //标记4
+    return d == 1 ? (x + mod) % mod : -1;
 &#125;
-</code></pre></div>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
-<li>当扩展欧几里得函数<code>ex_gcd(a, b, x, y)</code>返回的最大公约数 <span class="markdown-them-math-inline">$d = 1$</span> 时，<span class="markdown-them-math-inline">$x$</span> 即为 <span class="markdown-them-math-inline">$a\,mod\,b$</span> 下的最小乘法逆元，<code>(x + mod) % mod</code>是为了将 <span class="markdown-them-math-inline">$x$</span> 调整到 0 ~ (b - 1)的范围中；</li>
-<li>当函数的返回值 <span class="markdown-them-math-inline">$d\neq 1$</span> 时，即说明逆元不存在，返回 <span class="markdown-them-math-inline">$-1$</span>；</li>
-<li>拓展欧几里得求逆元的<strong>时间复杂度</strong>：<span class="markdown-them-math-inline">$O(logn)$</span>；</li>
+<li>当扩展欧几里得函数<code>ex_gcd(a, b, x, y)</code>返回的最大公约数 $d = 1$ 时，$x$ 即为 $a,mod,b$ 下的最小乘法逆元，<code>(x + mod) % mod</code>是为了将 $x$ 调整到 0 ~ (b - 1)的范围中；</li>
+<li>当函数的返回值 $d\neq 1$ 时，即说明逆元不存在，返回 $-1$；</li>
+<li>拓展欧几里得求逆元的<strong>时间复杂度</strong>：$O(logn)$；</li>
 <li><strong>适用范围</strong>：只要存在逆元即可求，适用于个数不多但是 mod 很大的时候，也是<strong>最常见</strong>的一种求逆元的方法；</li>
 </ul>
 <h2><span id="4-费马小定理">4 费马小定理</span></h2>
 <h3><span id="41-定义">4.1 定义</span></h3>
 <blockquote>
-<p>如果 <span class="markdown-them-math-inline">$p$</span> 是一个质数，且整数 <span class="markdown-them-math-inline">$a$</span> 不是 <span class="markdown-them-math-inline">$p$</span> 的倍数，则有：<span class="markdown-them-math-inline">$a^{p-1}\equiv1(mod\,p)$</span></p>
+<p>如果 $p$ 是一个质数，且整数 $a$ 不是 $p$ 的倍数，则有：$a^{p-1}\equiv1(mod,p)$</p>
 </blockquote>
 <ul>
 <li>
-<p>由公式得：</p>
-<div class="markdown-them-math-block">$$    a^{p-2}\,*\,a\equiv1(mod\,p)
-$$</div><p>因此 <span class="markdown-them-math-inline">$a^{p-2}$</span> 即为 <span class="markdown-them-math-inline">$a$</span> 在 <span class="markdown-them-math-inline">$mod\,p$</span> 意义下的逆元。</p>
+<p>由公式得：<br>
+$$<br>
+a^{p-2},*,a\equiv1(mod,p)<br>
+$$<br>
+因此 $a^{p-2}$ 即为 $a$ 在 $mod,p$ 意义下的逆元。</p>
 </li>
 <li>
-<p>而 <span class="markdown-them-math-inline">$a^{p-2}$</span> 可用<strong>快速幂</strong>求解（关于快速幂原理可在此博客了解：<a href="https://leungll.site/2021/05/24/ksm-permalink/">快速幂 &amp; 快速乘原理讲解（模板）</a>）</p>
+<p>而 $a^{p-2}$ 可用<strong>快速幂</strong>求解（关于快速幂原理可在此博客了解：<a href="https://leungll.site/2021/05/24/ksm-permalink/">快速幂 &amp; 快速乘原理讲解（模板）</a>）</p>
 </li>
 </ul>
 <h3><span id="42-模板">4.2 模板</span></h3>
-<div class="highlight"><pre class="code"><code><span class="hljs-comment">//快速幂</span>
-<span class="hljs-function">ll <span class="hljs-title">ksm</span><span class="hljs-params">(ll a, ll p, ll mod)</span> </span>&#123;
-    ll ans = <span class="hljs-number">1</span>, base = a % mod;
-    <span class="hljs-keyword">while</span>(p) &#123;
-        <span class="hljs-keyword">if</span>(p &amp; <span class="hljs-number">1</span>) &#123;
+<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">//快速幂
+ll ksm(ll a, ll p, ll mod) &#123;
+    ll ans = 1, base = a % mod;
+    while(p) &#123;
+        if(p & 1) &#123;
             ans = (ans * base) % mod;
         &#125;
         base = (base * base) % mod;
-        p &gt;&gt;= <span class="hljs-number">1</span>;
+        p >>= 1;
     &#125;
-    <span class="hljs-keyword">return</span> ans;
+    return ans;
 &#125;
-<span class="hljs-comment">//求逆元</span>
-<span class="hljs-function">ll <span class="hljs-title">getInv</span><span class="hljs-params">(ll a, ll mod)</span></span>&#123;
-    <span class="hljs-keyword">return</span> <span class="hljs-built_in">ksm</span>(a, p - <span class="hljs-number">2</span>, mod);
+//求逆元
+ll getInv(ll a, ll mod)&#123;
+    return ksm(a, p - 2, mod);
 &#125;
-</code></pre></div>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
-<li>费马小定理求逆元的<strong>时间复杂度</strong>：<span class="markdown-them-math-inline">$O(logmod)$</span></li>
-<li><strong>适用范围</strong>：根据费马小定理，<span class="markdown-them-math-inline">$mod\,p$</span> 为<strong>质数</strong>时适用。并且比扩展欧几里得算法好写一些。</li>
+<li>费马小定理求逆元的<strong>时间复杂度</strong>：$O(logmod)$</li>
+<li><strong>适用范围</strong>：根据费马小定理，$mod,p$ 为<strong>质数</strong>时适用。并且比扩展欧几里得算法好写一些。</li>
 </ul>
 <h2><span id="5-欧拉定理">5 欧拉定理</span></h2>
 <blockquote>
-<p>欧拉定理（也称费马-欧拉定理），是一个关于同余的性质。欧拉定理表明，若 <span class="markdown-them-math-inline">$p,\,a$</span> 为正整数，且 <span class="markdown-them-math-inline">$p,\,a$</span> 互质，则：</p>
-<div class="markdown-them-math-block">$$  a^{\varphi (p)}\equiv1(mod\ p)
-$$</div></blockquote>
+<p>欧拉定理（也称费马-欧拉定理），是一个关于同余的性质。欧拉定理表明，若 $p,,a$ 为正整数，且 $p,,a$ 互质，则：<br>
+$$<br>
+a^{\varphi (p)}\equiv1(mod\ p)<br>
+$$</p>
+</blockquote>
 <ul>
 <li>
-<p>由公式得：</p>
-<div class="markdown-them-math-block">$$    a^{\varphi (p)-1}\,*\,a\equiv1(mod\,p)
-$$</div><p>因此 <span class="markdown-them-math-inline">$a^{\varphi (p)-1}$</span> 即为 <span class="markdown-them-math-inline">$a$</span> 在 <span class="markdown-them-math-inline">$mod\,p$</span> 意义下的逆元。</p>
+<p>由公式得：<br>
+$$<br>
+a^{\varphi (p)-1},*,a\equiv1(mod,p)<br>
+$$<br>
+因此 $a^{\varphi (p)-1}$ 即为 $a$ 在 $mod,p$ 意义下的逆元。</p>
 </li>
 <li>
-<p>可以看到，费马小定理是欧拉定理的特例，当 <span class="markdown-them-math-inline">$p$</span> 为质数时，<span class="markdown-them-math-inline">$\varphi (p)=\,p-1$</span>，<span class="markdown-them-math-inline">$\varphi (p)-1=\,p-2$</span></p>
+<p>可以看到，费马小定理是欧拉定理的特例，当 $p$ 为质数时，$\varphi (p)=,p-1$，$\varphi (p)-1=,p-2$</p>
 </li>
 <li>
-<p>欧拉定理比费马小定理适用范围更广，因为模数 <span class="markdown-them-math-inline">$p$</span> 可以不是质数。</p>
+<p>欧拉定理比费马小定理适用范围更广，因为模数 $p$ 可以不是质数。</p>
 </li>
 <li>
 <p>一般很少有人直接用欧拉定理求逆元（偷个懒，板子就不贴上来了）</p>
@@ -407,111 +435,80 @@ $$</div><p>因此 <span class="markdown-them-math-inline">$a^{\varphi (p)-1}$</s
 <h3><span id="61-题目描述">6.1 题目描述</span></h3>
 <blockquote>
 <p>RSA 是一种经典的加密算法。它的基本加密过程如下：<br>
-首先生成两个质数 <span class="markdown-them-math-inline">$p, q$</span>，令 <span class="markdown-them-math-inline">$n = p * q$</span>，设 <span class="markdown-them-math-inline">$d$</span> 与 <span class="markdown-them-math-inline">$(p - 1) * (q - 1)$</span> 互质，则可找到 <span class="markdown-them-math-inline">$e$</span> 使得 <span class="markdown-them-math-inline">$d * e$</span> 除 <span class="markdown-them-math-inline">$(p - 1) * (q - 1)$</span> 的余数为 1。<br>
-<span class="markdown-them-math-inline">$n, d, e$</span> 组成了私钥，<span class="markdown-them-math-inline">$n, d$</span> 组成了公钥。<br>
-当使用公钥加密一个整数 <span class="markdown-them-math-inline">$X$</span> 时(小于 <span class="markdown-them-math-inline">$n$</span> )，计算 <span class="markdown-them-math-inline">$C = X^{d}\,mod\,n$</span> ，则 <span class="markdown-them-math-inline">$C$</span> 是加密后的密文。<br>
-当收到密文 <span class="markdown-them-math-inline">$C$</span> 时，可使用私钥解开，计算公式为 <span class="markdown-them-math-inline">$X=C^{e}\,mod\,n$</span>。<br>
-例如，当 <span class="markdown-them-math-inline">$p = 5, q = 11, d = 3$</span> 时，<span class="markdown-them-math-inline">$n = 55,\,e = 27$</span>。<br>
-若加密数字 <span class="markdown-them-math-inline">$24$</span> ，得 <span class="markdown-them-math-inline">$24^{3}\,mod\,55 = 19$</span> 。<br>
-解密数字 <span class="markdown-them-math-inline">$19$</span> ，得 <span class="markdown-them-math-inline">$19^{27}\,mod\,55 = 24$</span> 。<br>
-现在你知道公钥中 <span class="markdown-them-math-inline">$n = 1001733993063167141, \,d = 212353$</span>，同时你截获了别人发送的密文 <span class="markdown-them-math-inline">$C = 20190324$</span> 。请问：原文是多少?</p>
+首先生成两个质数 $p, q$，令 $n = p * q$，设 $d$ 与 $(p - 1) * (q - 1)$ 互质，则可找到 $e$ 使得 $d * e$ 除 $(p - 1) * (q - 1)$ 的余数为 1。<br>
+$n, d, e$ 组成了私钥，$n, d$ 组成了公钥。<br>
+当使用公钥加密一个整数 $X$ 时(小于 $n$ )，计算 $C = X^{d},mod,n$ ，则 $C$ 是加密后的密文。<br>
+当收到密文 $C$ 时，可使用私钥解开，计算公式为 $X=C^{e},mod,n$。<br>
+例如，当 $p = 5, q = 11, d = 3$ 时，$n = 55,,e = 27$。<br>
+若加密数字 $24$ ，得 $24^{3},mod,55 = 19$ 。<br>
+解密数字 $19$ ，得 $19^{27},mod,55 = 24$ 。<br>
+现在你知道公钥中 $n = 1001733993063167141, ,d = 212353$，同时你截获了别人发送的密文 $C = 20190324$ 。请问：原文是多少?</p>
 </blockquote>
 <h3><span id="62-分析">6.2 分析</span></h3>
 <ul>
 <li>
-<p>由题目已知 <span class="markdown-them-math-inline">$n,\,d,\,C\,$</span> ，根据解密公式 <span class="markdown-them-math-inline">$X=C^{e}\,mod\,n$</span>，只需求得私钥 <span class="markdown-them-math-inline">$e$</span> ，即可解得原文 <span class="markdown-them-math-inline">$X$</span>。</p>
+<p>由题目已知 $n,,d,,C,$ ，根据解密公式 $X=C^{e},mod,n$，只需求得私钥 $e$ ，即可解得原文 $X$。</p>
 </li>
 <li>
-<p>根据题目信息：<span class="markdown-them-math-inline">$d$</span> 与 <span class="markdown-them-math-inline">$(p-1)*(q-1)$</span> 互质，则可找到 <span class="markdown-them-math-inline">$e$</span> 使得 <span class="markdown-them-math-inline">$d * e$</span> 除 <span class="markdown-them-math-inline">$(p - 1) * (q - 1)$</span> 的余数为 1，翻译成 <s>人话</s>（公式）就是：</p>
-<div class="markdown-them-math-block">$$    d * e\equiv1(mod\,\,(p - 1) * (q - 1)\,)
-$$</div></li>
-<li>
-<p>设 <span class="markdown-them-math-inline">$k = (p - 1) * (q - 1)$</span>，即：</p>
-<div class="markdown-them-math-block">$$    d\,*\,e\equiv1(mod\,k)
-$$</div></li>
-<li>
-<p>由上述公式可得 <strong><span class="markdown-them-math-inline">$e$</span> 即为 <span class="markdown-them-math-inline">$d$</span> 在 <span class="markdown-them-math-inline">$mod\,k$</span>意思下的乘法逆元</strong>。在这里我们用<strong>拓展欧几里得算法</strong>求解。</p>
+<p>根据题目信息：$d$ 与 $(p-1)*(q-1)$ 互质，则可找到 $e$ 使得 $d * e$ 除 $(p - 1) * (q - 1)$ 的余数为 1，翻译成 <s>人话</s>（公式）就是：<br>
+$$<br>
+d * e\equiv1(mod,,(p - 1) * (q - 1),)<br>
+$$</p>
 </li>
 <li>
-<p>最后一个问题：关于 <span class="markdown-them-math-inline">$k$</span> 即<span class="markdown-them-math-inline">$(p - 1) * (q - 1)$</span>应该如何求解。这里用到<strong>质因数分解</strong>，由题目可知 <span class="markdown-them-math-inline">$n = p * q$</span>，且 <span class="markdown-them-math-inline">$p,\,q$</span> 均为质数。我们先找到一个小于 <span class="markdown-them-math-inline">$n$</span> 的质数 <span class="markdown-them-math-inline">$p$</span>，再用 <span class="markdown-them-math-inline">$n / p$</span> 即可得到 <span class="markdown-them-math-inline">$q$</span> 。</p>
+<p>设 $k = (p - 1) * (q - 1)$，即：<br>
+$$<br>
+d,*,e\equiv1(mod,k)<br>
+$$</p>
+</li>
+<li>
+<p>由上述公式可得 <strong>$e$ 即为 $d$ 在 $mod,k$意思下的乘法逆元</strong>。在这里我们用<strong>拓展欧几里得算法</strong>求解。</p>
+</li>
+<li>
+<p>最后一个问题：关于 $k$ 即$(p - 1) * (q - 1)$应该如何求解。这里用到<strong>质因数分解</strong>，由题目可知 $n = p * q$，且 $p,,q$ 均为质数。我们先找到一个小于 $n$ 的质数 $p$，再用 $n / p$ 即可得到 $q$ 。</p>
 </li>
 </ul>
 <h3><span id="63-题解">6.3 题解</span></h3>
-<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
-<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">#include <iostream>
+#include <cstdio>
+using namespace std;
 
-<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ll;
+typedef long long ll;
 
-ll n = <span class="hljs-number">1001733993063167141</span>, d = <span class="hljs-number">212353</span>, c = <span class="hljs-number">20190324</span>;
+ll n = 1001733993063167141, d = 212353, c = 20190324;
 
-<span class="hljs-comment">//判断质数 </span>
-<span class="hljs-function">ll <span class="hljs-title">isPrime</span><span class="hljs-params">(ll x)</span></span>&#123;
-    <span class="hljs-keyword">for</span>(ll i = <span class="hljs-number">2</span>;i &lt;= x;i++)&#123;
-        <span class="hljs-keyword">if</span>(x % i == <span class="hljs-number">0</span>)&#123;
-            <span class="hljs-keyword">return</span> i;
+//判断质数 
+ll isPrime(ll x)&#123;
+    for(ll i = 2;i <= 1 x;i++)&#123; if(x % i="=" 0)&#123; return i; &#125; 扩展欧几里得算法 ll ex_gcd(ll a, b, &x, &y)&#123; if(b="=" x="1," y="0;" a; d="ex_gcd(b," a x, y); temp="y;" - (a b) * y; d; 求a在mod下的乘法逆元x getinv(ll mod)&#123; mod, ? (x + mod) mod : -1; 快速乘 ksc(ll &#123; ans="0;" while(b) & 1) a) mod; b>>= 1;
+    &#125;
+    return ans;
+&#125;
+
+//快速幂 
+ll ksm(ll a, ll b, ll mod) &#123;
+    ll ans = 1, base = a;
+    while(b) &#123;
+        if(b & 1) &#123;
+            ans = ksc(ans, base, mod) % mod;
         &#125;
+        base = ksc(base, base, mod) % mod;
+        b >>= 1;
     &#125;
+    return ans;
 &#125;
 
-<span class="hljs-comment">//扩展欧几里得算法 </span>
-<span class="hljs-function">ll <span class="hljs-title">ex_gcd</span><span class="hljs-params">(ll a, ll b, ll &amp;x, ll &amp;y)</span></span>&#123;
-    <span class="hljs-keyword">if</span>(b == <span class="hljs-number">0</span>)&#123;
-        x = <span class="hljs-number">1</span>, y = <span class="hljs-number">0</span>;
-        <span class="hljs-keyword">return</span> a;
-    &#125;
-    ll d = <span class="hljs-built_in">ex_gcd</span>(b, a % b, x, y);
-    ll temp = y;
-    y = x - (a / b) * y;
-    x = temp;
-    <span class="hljs-keyword">return</span> d;
+int main()&#123;
+    ll p = isPrime(n), q = n / p, k = (p - 1) * (q - 1);
+    ll e = getInv(d, k);
+    //	printf("e is %lld\n", e);
+    ll x = ksm(c, e, n);
+    printf("%lld\n", x);
+    return 0;
 &#125;
-
-<span class="hljs-comment">//求a在mod下的乘法逆元x</span>
-<span class="hljs-function">ll <span class="hljs-title">getInv</span><span class="hljs-params">(ll a, ll mod)</span></span>&#123;
-    ll x, y;
-    ll d = <span class="hljs-built_in">ex_gcd</span>(a, mod, x, y);
-    <span class="hljs-keyword">return</span> d == <span class="hljs-number">1</span> ? (x + mod) % mod : <span class="hljs-number">-1</span>;
-&#125;
-
-<span class="hljs-comment">//快速乘 </span>
-<span class="hljs-function">ll <span class="hljs-title">ksc</span><span class="hljs-params">(ll a, ll b, ll mod)</span> </span>&#123;
-    ll ans = <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">while</span>(b) &#123;
-        <span class="hljs-keyword">if</span>(b &amp; <span class="hljs-number">1</span>) &#123;
-            ans = (ans + a) % mod;
-        &#125;
-        a = (a + a) % mod;
-        b &gt;&gt;= <span class="hljs-number">1</span>;
-    &#125;
-    <span class="hljs-keyword">return</span> ans;
-&#125;
-
-<span class="hljs-comment">//快速幂 </span>
-<span class="hljs-function">ll <span class="hljs-title">ksm</span><span class="hljs-params">(ll a, ll b, ll mod)</span> </span>&#123;
-    ll ans = <span class="hljs-number">1</span>, base = a;
-    <span class="hljs-keyword">while</span>(b) &#123;
-        <span class="hljs-keyword">if</span>(b &amp; <span class="hljs-number">1</span>) &#123;
-            ans = <span class="hljs-built_in">ksc</span>(ans, base, mod) % mod;
-        &#125;
-        base = <span class="hljs-built_in">ksc</span>(base, base, mod) % mod;
-        b &gt;&gt;= <span class="hljs-number">1</span>;
-    &#125;
-    <span class="hljs-keyword">return</span> ans;
-&#125;
-
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
-    ll p = <span class="hljs-built_in">isPrime</span>(n), q = n / p, k = (p - <span class="hljs-number">1</span>) * (q - <span class="hljs-number">1</span>);
-    ll e = <span class="hljs-built_in">getInv</span>(d, k);
-    <span class="hljs-comment">//	printf(&quot;e is %lld\n&quot;, e);</span>
-    ll x = <span class="hljs-built_in">ksm</span>(c, e, n);
-    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>, x);
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-&#125;
-</code></pre></div>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></=></cstdio></iostream></code></pre>
 <ul>
 <li>
-<p>注意到题目中的数据实在是太大了，单独用快速幂求解 <span class="markdown-them-math-inline">$X=C^{e}\,mod\,n$</span> 会导致数据溢出，因此我们对快速幂优化了一下（用快速乘求每次 <span class="markdown-them-math-inline">$a$</span> 的余数，再快速幂对余数进行幂运算），达到模拟大数模幂运算的效果。</p>
+<p>注意到题目中的数据实在是太大了，单独用快速幂求解 $X=C^{e},mod,n$ 会导致数据溢出，因此我们对快速幂优化了一下（用快速乘求每次 $a$ 的余数，再快速幂对余数进行幂运算），达到模拟大数模幂运算的效果。</p>
 </li>
 <li>
 <p>相关博客可参考：<a href="https://leungll.site/2020/03/12/ksm-ksc-permalink/">快速幂 &amp; 快速乘取模（模拟大数模幂运算，解决乘法爆long long问题）</a></p>
@@ -521,7 +518,7 @@ ll n = <span class="hljs-number">1001733993063167141</span>, d = <span class="hl
 <img src="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/ex-gcd-01.png" alt="ex-gcd-01"></p>
 <ul>
 <li>答案：<code>579706994112328949</code></li>
-<li>RSA 是非对称加密算法，基于大数分解，题目只是模拟了一下 RSA 解密的过程，可以看到当 <span class="markdown-them-math-inline">$n = 1001733993063167141$</span> 时，我的电脑跑出结果就花了十几秒。而真正 RSA 密码中，<span class="markdown-them-math-inline">$n$</span> 一般而言可达到 <span class="markdown-them-math-inline">$1024\sim2048$</span> 比特，普通的计算机跑出结果要十年左右，量子计算机需一周。</li>
+<li>RSA 是非对称加密算法，基于大数分解，题目只是模拟了一下 RSA 解密的过程，可以看到当 $n = 1001733993063167141$ 时，我的电脑跑出结果就花了十几秒。而真正 RSA 密码中，$n$ 一般而言可达到 $1024\sim2048$ 比特，普通的计算机跑出结果要十年左右，量子计算机需一周。</li>
 </ul>
 <h2><span id="references">References</span></h2>
 <ul>

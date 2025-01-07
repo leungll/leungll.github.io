@@ -149,13 +149,13 @@
 <h3><span id="input-specification">Input Specification</span></h3>
 <blockquote>
 <p>Each input file contains one test case. Each case occupies 2 lines, and each line contains the information of a polynomial:<br>
-<span class="markdown-them-math-inline">$K\ N_1\ a_{​N​1}​​​​ N_2\ a_{​N​2}​​​​...\ N_K​\ a_{​N​K}​​​​$</span><br>
-where <span class="markdown-them-math-inline">$K$</span> is the number of nonzero terms in the polynomial, <span class="markdown-them-math-inline">$N​_i$</span>​​ and <span class="markdown-them-math-inline">$a​_{N​i}​​​​(i=1,2,⋯,K)$</span> are the exponents and coefficients, respectively. It is given that<br>
-<span class="markdown-them-math-inline">$1 ≤ K ≤ 10，0 ≤ N​_K ​​&lt; ⋯ &lt; N_2 ​​&lt; N​_1 ≤ 1000$</span>.</p>
+$K\ N_1\ a_{​N​1}​​​​ N_2\ a_{​N​2}​​​​…\ N_K​\ a_{​N​K}​​​​$<br>
+where $K$ is the number of nonzero terms in the polynomial, $N​_i$​​ and $a​_{N​i}​​​​(i=1,2,⋯,K)$ are the exponents and coefficients, respectively. It is given that<br>
+$1 ≤ K ≤ 10，0 ≤ N​_K ​​&lt; ⋯ &lt; N_2 ​​&lt; N​_1 ≤ 1000$.</p>
 </blockquote>
 <h3><span id="output-specification">Output Specification</span></h3>
 <blockquote>
-<p>For each test case you should output the sum of <span class="markdown-them-math-inline">$A$</span> and <span class="markdown-them-math-inline">$B$</span> in one line, with the same format as the input. Notice that there must be <strong>NO</strong> extra space at the end of each line. Please be accurate to 1 decimal place.</p>
+<p>For each test case you should output the sum of $A$ and $B$ in one line, with the same format as the input. Notice that there must be <strong>NO</strong> extra space at the end of each line. Please be accurate to 1 decimal place.</p>
 </blockquote>
 <h3><span id="sample-input">Sample Input</span></h3>
 <blockquote>
@@ -175,67 +175,67 @@ where <span class="markdown-them-math-inline">$K$</span> is the number of nonzer
 <li>最后<strong>没有空格</strong></li>
 </ul>
 <h3><span id="题解">题解</span></h3>
-<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
-<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">#include <iostream>
+#include <cstdio>
+using namespace std;
 
-<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn = <span class="hljs-number">1e3</span> + <span class="hljs-number">5</span>;
-<span class="hljs-keyword">double</span> a[maxn] = &#123;<span class="hljs-number">0</span>&#125;;
+const int maxn = 1e3 + 5;
+double a[maxn] = &#123;0&#125;;
 
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
-    <span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> ONLINE_JUDGE</span>
-    <span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span>
-        <span class="hljs-built_in">freopen</span>(<span class="hljs-string">&quot;input.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, stdin);
-    <span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span> <span class="hljs-comment">// ONLINE_JUDGE</span></span>
-    <span class="hljs-keyword">int</span> k;
-    cin &gt;&gt; k;
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; k;i++)&#123;
-        <span class="hljs-keyword">int</span> exp;
-        <span class="hljs-keyword">double</span> coe;
-        cin &gt;&gt; exp &gt;&gt; coe;
+int main()&#123;
+    #ifdef ONLINE_JUDGE
+    #else
+        freopen("input.txt", "r", stdin);
+    #endif // ONLINE_JUDGE
+    int k;
+    cin >> k;
+    for(int i = 0;i < k;i++)&#123;
+        int exp;
+        double coe;
+        cin >> exp >> coe;
         a[exp] = coe;
     &#125;
-    cin &gt;&gt; k;
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; k;i++)&#123;
-        <span class="hljs-keyword">int</span> exp;
-        <span class="hljs-keyword">double</span> coe;
-        cin &gt;&gt; exp &gt;&gt; coe;
+    cin >> k;
+    for(int i = 0;i < k;i++)&#123;
+        int exp;
+        double coe;
+        cin >> exp >> coe;
         a[exp] += coe;
     &#125;
-    <span class="hljs-keyword">int</span> cnt = <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; maxn;i++)&#123;
-        <span class="hljs-keyword">if</span>(a[i])&#123;
+    int cnt = 0;
+    for(int i = 0;i < maxn;i++)&#123;
+        if(a[i])&#123;
             cnt++;
         &#125;
     &#125;
-    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, cnt);
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = maxn;i &gt;= <span class="hljs-number">0</span>;i--)&#123;
-        <span class="hljs-comment">//负数也需要输出</span>
-        <span class="hljs-keyword">if</span>(a[i] != <span class="hljs-number">0</span>)&#123;
-			<span class="hljs-comment">//cout &lt;&lt; &quot; &quot; &lt;&lt; i &lt;&lt; &quot; &quot; &lt;&lt; a[i];</span>
-            <span class="hljs-comment">//coe精确到小数点后一位</span>
-            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; %d %.1f&quot;</span>, i, a[i]);
+    printf("%d", cnt);
+    for(int i = maxn;i >= 0;i--)&#123;
+        //负数也需要输出
+        if(a[i] != 0)&#123;
+			//cout << " " << i << " " << a[i];
+            //coe精确到小数点后一位
+            printf(" %d %.1f", i, a[i]);
         &#125;
     &#125;
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    return 0;
 &#125;
 
-</code></pre></div>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></cstdio></iostream></code></pre>
 <h2><span id="2-product-of-polynomials">2 Product of Polynomials</span></h2>
 <p><strong>题目链接：<a target="_blank" rel="noopener" href="https://pintia.cn/problem-sets/994805342720868352/problems/994805509540921344">1009 Product of Polynomials</a></strong></p>
 <blockquote>
-<p>This time, you are supposed to find <span class="markdown-them-math-inline">$A×B$</span> where <span class="markdown-them-math-inline">$A$</span> and <span class="markdown-them-math-inline">$B$</span> are two polynomials.</p>
+<p>This time, you are supposed to find $A×B$ where $A$ and $B$ are two polynomials.</p>
 </blockquote>
 <h3><span id="input-specification">Input Specification</span></h3>
 <blockquote>
 <p>Each input file contains one test case. Each case occupies 2 lines, and each line contains the information of a polynomial:<br>
-<span class="markdown-them-math-inline">$K\ N_1\ a_{​N​1}​​​​ N_2\ a_{​N​2}​​​​...\ N_K​\ a_{​N​K}​​​​$</span><br>
-where <span class="markdown-them-math-inline">$K$</span> is the number of nonzero terms in the polynomial, <span class="markdown-them-math-inline">$N​_i$</span>​​ and <span class="markdown-them-math-inline">$a​_{N​i}​​​​(i=1,2,⋯,K)$</span> are the exponents and coefficients, respectively. It is given that<br>
-<span class="markdown-them-math-inline">$1 ≤ K ≤ 10，0 ≤ N​_K​ ​&lt; ⋯ &lt; N_2 ​​&lt; N​_1 ≤ 1000$</span>.</p>
+$K\ N_1\ a_{​N​1}​​​​ N_2\ a_{​N​2}​​​​…\ N_K​\ a_{​N​K}​​​​$<br>
+where $K$ is the number of nonzero terms in the polynomial, $N​_i$​​ and $a​_{N​i}​​​​(i=1,2,⋯,K)$ are the exponents and coefficients, respectively. It is given that<br>
+$1 ≤ K ≤ 10，0 ≤ N​_K​ ​&lt; ⋯ &lt; N_2 ​​&lt; N​_1 ≤ 1000$.</p>
 </blockquote>
 <h3><span id="output-specification">Output Specification</span></h3>
 <blockquote>
-<p>For each test case you should output the sum of <span class="markdown-them-math-inline">$A$</span> and <span class="markdown-them-math-inline">$B$</span> in one line, with the same format as the input. Notice that there must be <strong>NO</strong> extra space at the end of each line. Please be accurate to 1 decimal place.</p>
+<p>For each test case you should output the sum of $A$ and $B$ in one line, with the same format as the input. Notice that there must be <strong>NO</strong> extra space at the end of each line. Please be accurate to 1 decimal place.</p>
 </blockquote>
 <h3><span id="sample-input">Sample Input</span></h3>
 <blockquote>
@@ -247,51 +247,51 @@ where <span class="markdown-them-math-inline">$K$</span> is the number of nonzer
 <p>3 3 3.6 2 6.0 1 1.6</p>
 </blockquote>
 <h3><span id="解题思路">解题思路</span></h3>
-<p>注意一个坑：作为输出结果的 <span class="markdown-them-math-inline">$C[maxn2]$</span> 数组，范围需要开到 <span class="markdown-them-math-inline">$2000$</span> 以上才可。</p>
+<p>注意一个坑：作为输出结果的 $C[maxn2]$ 数组，范围需要开到 $2000$ 以上才可。</p>
 <h3><span id="题解">题解</span></h3>
-<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
-<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">#include <iostream>
+#include <cstdio>
+using namespace std;
 
-<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn = <span class="hljs-number">1005</span>, maxn2 = <span class="hljs-number">2010</span>;
-<span class="hljs-keyword">double</span> a[maxn] = &#123;<span class="hljs-number">0</span>&#125;, b[maxn] = &#123;<span class="hljs-number">0</span>&#125;, c[maxn2] = &#123;<span class="hljs-number">0</span>&#125;;
+const int maxn = 1005, maxn2 = 2010;
+double a[maxn] = &#123;0&#125;, b[maxn] = &#123;0&#125;, c[maxn2] = &#123;0&#125;;
 
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
-    <span class="hljs-keyword">int</span> k;
-    cin &gt;&gt; k;
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; k;i++)&#123;
-        <span class="hljs-keyword">int</span> exp;
-        <span class="hljs-keyword">double</span> coe;
-        cin &gt;&gt; exp &gt;&gt; coe;
+int main()&#123;
+    int k;
+    cin >> k;
+    for(int i = 0;i < k;i++)&#123;
+        int exp;
+        double coe;
+        cin >> exp >> coe;
         a[exp] = coe;
     &#125;
-    cin &gt;&gt; k;
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; k;i++)&#123;
-        <span class="hljs-keyword">int</span> exp;
-        <span class="hljs-keyword">double</span> coe;
-        cin &gt;&gt; exp &gt;&gt; coe;
+    cin >> k;
+    for(int i = 0;i < k;i++)&#123;
+        int exp;
+        double coe;
+        cin >> exp >> coe;
         b[exp] = coe;
     &#125;
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; maxn;i++)&#123;
-        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>;j &lt; maxn;j++)&#123;
+    for(int i = 0;i < maxn;i++)&#123;
+        for(int j = 0;j < maxn;j++)&#123;
             c[i + j] += a[i] * b[j];
         &#125;
     &#125;
-    <span class="hljs-keyword">int</span> cnt = <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; maxn2;i++)&#123;
-        <span class="hljs-keyword">if</span>(c[i])&#123;
+    int cnt = 0;
+    for(int i = 0;i < maxn2;i++)&#123;
+        if(c[i])&#123;
             cnt++;
         &#125;
     &#125;
-    cout &lt;&lt; cnt;
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = maxn2;i &gt;= <span class="hljs-number">0</span>;i--)&#123;
-        <span class="hljs-keyword">if</span>(c[i] != <span class="hljs-number">0</span>)&#123;
-            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; %d %.1f&quot;</span>, i, c[i]);
+    cout << cnt;
+    for(int i = maxn2;i >= 0;i--)&#123;
+        if(c[i] != 0)&#123;
+            printf(" %d %.1f", i, c[i]);
         &#125;
     &#125;
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    return 0;
 &#125;
-</code></pre></div>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></cstdio></iostream></code></pre>
 
         </div>
     
