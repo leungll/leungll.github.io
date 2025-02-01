@@ -149,11 +149,11 @@
 </blockquote>
 <h3><span id="input-specification">Input Specification</span></h3>
 <blockquote>
-<p>Each input file contains one test case. Each case starts with a line containing $0 &lt; N &lt; 100$, the number of nodes in a tree, and $M (&lt; N)$, the number of non-leaf nodes. Then $M$ lines follow, each in the format:</p>
-<pre><code>ID K ID[1] ID[2] ... ID[K]
-</code></pre>
+<p>Each input file contains one test case. Each case starts with a line containing <span class="markdown-them-math-inline">$0 &lt; N &lt; 100$</span>, the number of nodes in a tree, and <span class="markdown-them-math-inline">$M (&lt; N)$</span>, the number of non-leaf nodes. Then <span class="markdown-them-math-inline">$M$</span> lines follow, each in the format:</p>
+<div class="highlight"><pre class="code"><code>ID K ID<span class="hljs-selector-attr">[1]</span> ID<span class="hljs-selector-attr">[2]</span> ... ID<span class="hljs-selector-attr">[K]</span>
+</code></pre></div>
 <p>where <code>ID</code> is a two-digit number representing a given non-leaf node, <code>K</code> is the number of its children, followed by a sequence of two-digit <code>ID</code>’s of its children. For the sake of simplicity, let us fix the root ID to be <code>01</code>.<br>
-The input ends with $N$ being 0. That case must NOT be processed.</p>
+The input ends with <span class="markdown-them-math-inline">$N$</span> being 0. That case must NOT be processed.</p>
 </blockquote>
 <h3><span id="output-specification">Output Specification</span></h3>
 <blockquote>
@@ -161,69 +161,74 @@ The input ends with $N$ being 0. That case must NOT be processed.</p>
 The sample case represents a tree with only 2 nodes, where <code>01</code> is the root and <code>02</code> is its only child. Hence on the root <code>01</code> level, there is <code>0</code> leaf node; and on the next level, there is <code>1</code> leaf node. Then we should output <code>0 1</code> in a line.</p>
 </blockquote>
 <h3><span id="sample-input">Sample Input</span></h3>
-<pre><code>2 1
-01 1 02
-</code></pre>
+<div class="highlight"><pre class="code"><code><span class="hljs-symbol">2 </span><span class="hljs-number">1</span>
+<span class="hljs-symbol">01 </span><span class="hljs-number">1</span> <span class="hljs-number">02</span>
+</code></pre></div>
 <h3><span id="sample-output">Sample Output</span></h3>
-<pre><code>0 1
-</code></pre>
+<div class="highlight"><pre class="code"><code><span class="hljs-symbol">0 </span><span class="hljs-number">1</span>
+</code></pre></div>
 <h2><span id="2-解题思路">2 解题思路</span></h2>
 <ul>
-<li>给你一个家谱，找到没有孩子的人。即需要统计树中的叶子结点数量，可用 $dfs$ 进行树的遍历操作。</li>
+<li>给你一个家谱，找到没有孩子的人。即需要统计树中的叶子结点数量，可用 <span class="markdown-them-math-inline">$dfs$</span> 进行树的遍历操作。</li>
 <li>采用<code>vector</code>进行存储树的结构，遍历<code>vector</code>，当<code>vector[i].size()==0</code>时，表明该结点没有叶子结点，所以它本身即为叶子结点。</li>
 </ul>
 <h2><span id="3-题解">3 题解</span></h2>
-<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">#include <iostream>
-#include <cstdio>
-#include <vector>
-using namespace std;
+<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
 
-const int maxn = 105;
-vector<int> v[maxn];
-int arr[maxn];
-int maxDepth = -1;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn = <span class="hljs-number">105</span>;
+vector&lt;<span class="hljs-keyword">int</span>&gt; v[maxn];
+<span class="hljs-keyword">int</span> arr[maxn];
+<span class="hljs-keyword">int</span> maxDepth = <span class="hljs-number">-1</span>;
 
-void dfs(int index, int depth)&#123;
-    //统计index节点是否为叶子结点
-    if(v[index].size() == 0)&#123;
-        //叶子结点数量加1
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> index, <span class="hljs-keyword">int</span> depth)</span></span>&#123;
+    <span class="hljs-comment">//统计index节点是否为叶子结点</span>
+    <span class="hljs-keyword">if</span>(v[index].<span class="hljs-built_in">size</span>() == <span class="hljs-number">0</span>)&#123;
+        <span class="hljs-comment">//叶子结点数量加1</span>
         arr[depth]++;
-        //找出该树的最大层次
-        maxDepth = max(maxDepth, depth);
-        return;
+        <span class="hljs-comment">//找出该树的最大层次</span>
+        maxDepth = <span class="hljs-built_in">max</span>(maxDepth, depth);
+        <span class="hljs-keyword">return</span>;
     &#125;
-    //如果index结点不是叶子结点，则遍历index的叶子结点
-    for(int i = 0;i < v[index].size();i++)&#123;
-        dfs(v[index][i], depth + 1);
+    <span class="hljs-comment">//如果index结点不是叶子结点，则遍历index的叶子结点</span>
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; v[index].<span class="hljs-built_in">size</span>();i++)&#123;
+        <span class="hljs-built_in">dfs</span>(v[index][i], depth + <span class="hljs-number">1</span>);
     &#125;
 &#125;
 
-int main()&#123;
-    #ifdef ONLINE_JUDGE
-    #else
-    freopen("input.txt", "r", stdin);
-    #endif // ONLINE_JUDGE
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
+    <span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> ONLINE_JUDGE</span>
+    <span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span>
+    <span class="hljs-built_in">freopen</span>(<span class="hljs-string">&quot;input.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, stdin);
+    <span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span> <span class="hljs-comment">// ONLINE_JUDGE</span></span>
 
-    ios::sync_with_stdio(false);
-    cin.tie();cout.tie();
+    ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);
+    cin.<span class="hljs-built_in">tie</span>();cout.<span class="hljs-built_in">tie</span>();
 
-    int n, m;
-    while(cin >> n >> m)&#123;
-        for(int i = 0;i < m;i++)&#123;
-            int node, k;
-            cin >> node >> k;
-            for(int j = 0;j < k;j++)&#123;
-                int temp;
-                cin >> temp;
-                v[node].push_back(temp);
+    <span class="hljs-keyword">int</span> n, m;
+    <span class="hljs-keyword">while</span>(cin &gt;&gt; n &gt;&gt; m)&#123;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; m;i++)&#123;
+            <span class="hljs-keyword">int</span> node, k;
+            cin &gt;&gt; node &gt;&gt; k;
+            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>;j &lt; k;j++)&#123;
+                <span class="hljs-keyword">int</span> temp;
+                cin &gt;&gt; temp;
+                v[node].<span class="hljs-built_in">push_back</span>(temp);
             &#125;
         &#125;
     &#125;
 
-    dfs(1, 0);
+    <span class="hljs-built_in">dfs</span>(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>);
 
-    cout << arr[0];
-    for(int i = 1;i <= maxdepth;i++)&#123; cout << " arr[i]; &#125; return 0; <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></=></int></vector></cstdio></iostream></code></pre>
+    cout &lt;&lt; arr[<span class="hljs-number">0</span>];
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>;i &lt;= maxDepth;i++)&#123;
+        cout &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; arr[i];
+    &#125;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+</code></pre></div>
 
         </div>
     

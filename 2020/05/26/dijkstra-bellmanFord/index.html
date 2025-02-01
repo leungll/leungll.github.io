@@ -188,37 +188,71 @@
 <p>适用范围：不能解决带有负边的图</p>
 </blockquote>
 <h3><span id="11-算法模板">1.1 算法模板</span></h3>
-<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">#include <iosream>
-#include <cstdio>
-using namespace std;
+<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iosream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
 
-#define maxn 205
-#define inf 1e18
-#define eps 0.00001
-typedef long long ll;
-const ll mod = 1e9 + 7;
-const double pi = acos(-1);
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> maxn 205</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> inf 1e18</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> eps 0.00001</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ll;
+<span class="hljs-keyword">const</span> ll mod = <span class="hljs-number">1e9</span> + <span class="hljs-number">7</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> pi = <span class="hljs-built_in">acos</span>(<span class="hljs-number">-1</span>);
 
 ll n, vis[maxn][maxn], dis[maxn];
-bool flag[maxn];
+<span class="hljs-keyword">bool</span> flag[maxn];
 
-void dij() &#123;
-    ll now = 1;
-    for(ll i = 2; i <= 0 n; i++) &#123; dis[i]="inf;" &#125; flag[1]="1;" for(ll i="1;" <="n;" ll temp="inf;" 找到当前轮次最小的dis[j]顶点即为now j="1" ; j++) if(flag[j]="=" && dis[j] temp) now="j;" flag[now]="1;" 更新与now相连顶点的dis值 j++)&#123; dis[now] + vis[now][j]); int main() ios::sync_with_stdio(false); cin.tie(0); cout.tie(0); cin>> n;
-    for(ll i = 1; i <= n; i++)&#123; for(ll j="1;" <="n;" j++)&#123; vis[i][j]="inf;" &#125; i="1;" - 1; i++) &#123; i; j++) ll temp; cin>> temp;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dij</span><span class="hljs-params">()</span> </span>&#123;
+    ll now = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">for</span>(ll i = <span class="hljs-number">2</span>; i &lt;= n; i++) &#123;
+        dis[i] = inf;
+    &#125;
+    flag[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">for</span>(ll i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;
+        ll temp = inf;
+        <span class="hljs-comment">//找到当前轮次最小的dis[j]顶点即为now</span>
+        <span class="hljs-keyword">for</span>(ll j = <span class="hljs-number">1</span> ; j &lt;= n; j++) &#123;
+            <span class="hljs-keyword">if</span>(flag[j] == <span class="hljs-number">0</span> &amp;&amp; dis[j] &lt; temp) &#123;
+                temp = dis[j];
+                now = j;
+            &#125;
+        &#125;
+        flag[now] = <span class="hljs-number">1</span>;
+        <span class="hljs-comment">//更新与now相连顶点的dis值</span>
+        <span class="hljs-keyword">for</span>(ll j = <span class="hljs-number">1</span>; j &lt;= n; j++)&#123;
+            dis[j] = <span class="hljs-built_in">min</span>(dis[j], dis[now] + vis[now][j]);
+        &#125;
+    &#125;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+    ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);
+    cin.<span class="hljs-built_in">tie</span>(<span class="hljs-number">0</span>);
+    cout.<span class="hljs-built_in">tie</span>(<span class="hljs-number">0</span>);
+
+    cin &gt;&gt; n;
+    <span class="hljs-keyword">for</span>(ll i = <span class="hljs-number">1</span>; i &lt;= n; i++)&#123;
+        <span class="hljs-keyword">for</span>(ll j = <span class="hljs-number">1</span>; j &lt;= n; j++)&#123;
+            vis[i][j] = inf;
+        &#125;
+    &#125;
+    <span class="hljs-keyword">for</span>(ll i = <span class="hljs-number">1</span>; i &lt;= n - <span class="hljs-number">1</span>; i++) &#123;
+        <span class="hljs-keyword">for</span>(ll j = <span class="hljs-number">1</span>; j &lt;= n - i; j++) &#123;
+            ll temp;
+            cin &gt;&gt; temp;
             vis[i][i + j] = temp;
-            if(i == j)&#123;
-                vis[i][j] = 0;
+            <span class="hljs-keyword">if</span>(i == j)&#123;
+                vis[i][j] = <span class="hljs-number">0</span>;
             &#125;
         &#125;
     &#125;
 
-    dij();
+    <span class="hljs-built_in">dij</span>();
 
-    cout << dis[n] << endl;
-    return 0;
+    cout &lt;&lt; dis[n] &lt;&lt; endl;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 &#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></=></=></cstdio></iosream></code></pre>
+</code></pre></div>
 <h3><span id="12-例题">1.2 例题</span></h3>
 <blockquote>
 <p><strong>题目链接：<a target="_blank" rel="noopener" href="https://pintia.cn/problem-sets/994805342720868352/problems/994805523835109376">1003 Emergency (25分)</a></strong></p>
@@ -229,66 +263,66 @@ void dij() &#123;
 </blockquote>
 <h4><span id="input-specification">Input Specification</span></h4>
 <blockquote>
-<p>Each input file contains one test case. For each test case, the first line contains $4$ positive integers: $N (≤500)$ - the number of cities (and the cities are numbered from $0$ to $N−1$), $M$ - the number of roads, $C​1$​​ and $C​2$​​ - the cities that you are currently in and that you must save, respectively. The next line contains $N$ integers, where the i-th integer is the number of rescue teams in the $i$-th city. Then $M$ lines follow, each describes a road with three integers $c​1$​​, $c​2$​​ and $L$, which are the pair of cities connected by a road and the length of that road, respectively. It is guaranteed that there exists at least one path from $C​1$​​ to $C​2$​​.</p>
+<p>Each input file contains one test case. For each test case, the first line contains <span class="markdown-them-math-inline">$4$</span> positive integers: <span class="markdown-them-math-inline">$N (≤500)$</span> - the number of cities (and the cities are numbered from <span class="markdown-them-math-inline">$0$</span> to <span class="markdown-them-math-inline">$N−1$</span>), <span class="markdown-them-math-inline">$M$</span> - the number of roads, <span class="markdown-them-math-inline">$C​1$</span>​​ and <span class="markdown-them-math-inline">$C​2$</span>​​ - the cities that you are currently in and that you must save, respectively. The next line contains <span class="markdown-them-math-inline">$N$</span> integers, where the i-th integer is the number of rescue teams in the <span class="markdown-them-math-inline">$i$</span>-th city. Then <span class="markdown-them-math-inline">$M$</span> lines follow, each describes a road with three integers <span class="markdown-them-math-inline">$c​1$</span>​​, <span class="markdown-them-math-inline">$c​2$</span>​​ and <span class="markdown-them-math-inline">$L$</span>, which are the pair of cities connected by a road and the length of that road, respectively. It is guaranteed that there exists at least one path from <span class="markdown-them-math-inline">$C​1$</span>​​ to <span class="markdown-them-math-inline">$C​2$</span>​​.</p>
 </blockquote>
 <h4><span id="output-specification">Output Specification</span></h4>
 <blockquote>
-<p>For each test case, print in one line two numbers: the number of different shortest paths between $C​1$​​ and $C​2​​$, and the maximum amount of rescue teams you can possibly gather. All the numbers in a line must be separated by exactly one space, and there is no extra space allowed at the end of a line.</p>
+<p>For each test case, print in one line two numbers: the number of different shortest paths between <span class="markdown-them-math-inline">$C​1$</span>​​ and <span class="markdown-them-math-inline">$C​2​​$</span>, and the maximum amount of rescue teams you can possibly gather. All the numbers in a line must be separated by exactly one space, and there is no extra space allowed at the end of a line.</p>
 </blockquote>
 <h4><span id="sample-input">Sample Input</span></h4>
-<pre><code>5 6 0 2
-1 2 1 5 3
-0 1 1
-0 2 2
-0 3 1
-1 2 1
-2 4 1
-3 4 1
-</code></pre>
+<div class="highlight"><pre class="code"><code><span class="hljs-symbol">5 </span><span class="hljs-number">6</span> <span class="hljs-number">0</span> <span class="hljs-number">2</span>
+<span class="hljs-symbol">1 </span><span class="hljs-number">2</span> <span class="hljs-number">1</span> <span class="hljs-number">5</span> <span class="hljs-number">3</span>
+<span class="hljs-symbol">0 </span><span class="hljs-number">1</span> <span class="hljs-number">1</span>
+<span class="hljs-symbol">0 </span><span class="hljs-number">2</span> <span class="hljs-number">2</span>
+<span class="hljs-symbol">0 </span><span class="hljs-number">3</span> <span class="hljs-number">1</span>
+<span class="hljs-symbol">1 </span><span class="hljs-number">2</span> <span class="hljs-number">1</span>
+<span class="hljs-symbol">2 </span><span class="hljs-number">4</span> <span class="hljs-number">1</span>
+<span class="hljs-symbol">3 </span><span class="hljs-number">4</span> <span class="hljs-number">1</span>
+</code></pre></div>
 <h4><span id="sample-output">Sample Output</span></h4>
-<pre><code>2 4
-</code></pre>
+<div class="highlight"><pre class="code"><code><span class="hljs-symbol">2 </span><span class="hljs-number">4</span>
+</code></pre></div>
 <h4><span id="题目大意">题目大意</span></h4>
-<p>给出 $N$ 个城市，及每个城市的救援队数量，你在 $C1$ 点，需要去救援 $C2$ 点，目标是找出权重最小的不同路径数及能召集到最多救援队的数量。</p>
+<p>给出 <span class="markdown-them-math-inline">$N$</span> 个城市，及每个城市的救援队数量，你在 <span class="markdown-them-math-inline">$C1$</span> 点，需要去救援 <span class="markdown-them-math-inline">$C2$</span> 点，目标是找出权重最小的不同路径数及能召集到最多救援队的数量。</p>
 <h4><span id="解题思路">解题思路</span></h4>
-<p>用 $Dijkstra$ 求出最小路径数，并增加救援队数量以及不同路径数的条件判断即可。</p>
+<p>用 <span class="markdown-them-math-inline">$Dijkstra$</span> 求出最小路径数，并增加救援队数量以及不同路径数的条件判断即可。</p>
 <h4><span id="题解">题解</span></h4>
-<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">#include <iostream>
-#include <cstdio>
-#include <cstring>
-using namespace std;
+<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
 
-const int maxn = 510, INF = 0X3f3f3f3f;
-//城市救援队数量，不同的路径数，边的权重
-int arr[maxn] = &#123;0&#125;, ans[maxn], num[maxn], cost[maxn][maxn], dis[maxn], vis[maxn];
-int n, m, c1, c2;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn = <span class="hljs-number">510</span>, INF = <span class="hljs-number">0X3f3f3f3f</span>;
+<span class="hljs-comment">//城市救援队数量，不同的路径数，边的权重</span>
+<span class="hljs-keyword">int</span> arr[maxn] = &#123;<span class="hljs-number">0</span>&#125;, ans[maxn], num[maxn], cost[maxn][maxn], dis[maxn], vis[maxn];
+<span class="hljs-keyword">int</span> n, m, c1, c2;
 
-void dij()&#123;
-    //初始化
-    dis[c1] = 0;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dij</span><span class="hljs-params">()</span></span>&#123;
+    <span class="hljs-comment">//初始化</span>
+    dis[c1] = <span class="hljs-number">0</span>;
     num[c1] = arr[c1];
-    ans[c1] = 1;
-    for(int i = 0;i < n;i++)&#123;
-        int now, temp = INF;
-        for(int j = 0;j < n;j++)&#123;
-            if(!vis[j] && dis[j] < temp)&#123;
+    ans[c1] = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; n;i++)&#123;
+        <span class="hljs-keyword">int</span> now, temp = INF;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>;j &lt; n;j++)&#123;
+            <span class="hljs-keyword">if</span>(!vis[j] &amp;&amp; dis[j] &lt; temp)&#123;
                 temp = dis[j];
                 now = j;
             &#125;
         &#125;
-        //找到最小距离
-        vis[now] = 1;
-        for(int j = 0;j < n;j++)&#123;
-            //如果遍历的顶点与找到最小距离的顶点重复，跳过，否则答案有误
-            if(j == now)&#123;
-                continue;
+        <span class="hljs-comment">//找到最小距离</span>
+        vis[now] = <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>;j &lt; n;j++)&#123;
+            <span class="hljs-comment">//如果遍历的顶点与找到最小距离的顶点重复，跳过，否则答案有误</span>
+            <span class="hljs-keyword">if</span>(j == now)&#123;
+                <span class="hljs-keyword">continue</span>;
             &#125;
-            //最短距离相同时，累加
-            if(dis[j] == dis[now] + cost[now][j])&#123;
+            <span class="hljs-comment">//最短距离相同时，累加</span>
+            <span class="hljs-keyword">if</span>(dis[j] == dis[now] + cost[now][j])&#123;
                 ans[j] += ans[now];
-                num[j] = max(num[j], num[now] + arr[j]);
+                num[j] = <span class="hljs-built_in">max</span>(num[j], num[now] + arr[j]);
             &#125;
-            if(dis[j] > dis[now] + cost[now][j])&#123;
+            <span class="hljs-keyword">if</span>(dis[j] &gt; dis[now] + cost[now][j])&#123;
                 dis[j] = dis[now] + cost[now][j];
                 ans[j] = ans[now];
                 num[j] = num[now] + arr[j];
@@ -297,44 +331,44 @@ void dij()&#123;
     &#125;
 &#125;
 
-int main()&#123;
-    ios::sync_with_stdio(false);
-    cin.tie(0);cout.tie(0);
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
+    ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);
+    cin.<span class="hljs-built_in">tie</span>(<span class="hljs-number">0</span>);cout.<span class="hljs-built_in">tie</span>(<span class="hljs-number">0</span>);
 
-    #ifdef ONLINE_JUDGE
-    #else
-        freopen("input.txt", "r", stdin);
-    #endif
+    <span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> ONLINE_JUDGE</span>
+    <span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span>
+        <span class="hljs-built_in">freopen</span>(<span class="hljs-string">&quot;input.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, stdin);
+    <span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span>
 
-    memset(dis, INF, sizeof(dis));
-    memset(vis, 0, sizeof(vis));
-    memset(num, 0, sizeof(num));
-    memset(ans, 0, sizeof(ans));
+    <span class="hljs-built_in">memset</span>(dis, INF, <span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(dis));
+    <span class="hljs-built_in">memset</span>(vis, <span class="hljs-number">0</span>, <span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(vis));
+    <span class="hljs-built_in">memset</span>(num, <span class="hljs-number">0</span>, <span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(num));
+    <span class="hljs-built_in">memset</span>(ans, <span class="hljs-number">0</span>, <span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(ans));
 
-    cin >> n >> m >> c1 >> c2;
-    for(int i = 0;i < n;i++)&#123;
-        cin >> arr[i];
+    cin &gt;&gt; n &gt;&gt; m &gt;&gt; c1 &gt;&gt; c2;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; n;i++)&#123;
+        cin &gt;&gt; arr[i];
     &#125;
-    for(int i = 0; i < n; i++) &#123;
-        for(int j = 0; j < n; j++) &#123;
-            if(i == j)
-                cost[i][j] = 0;
-            else
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; n; j++) &#123;
+            <span class="hljs-keyword">if</span>(i == j)
+                cost[i][j] = <span class="hljs-number">0</span>;
+            <span class="hljs-keyword">else</span>
                 cost[i][j] = INF;
         &#125;
     &#125;
-    for(int i = 0;i < m;i++)&#123;
-        int a, b, l;
-        cin >> a >> b >> l;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; m;i++)&#123;
+        <span class="hljs-keyword">int</span> a, b, l;
+        cin &gt;&gt; a &gt;&gt; b &gt;&gt; l;
         cost[a][b] = cost[b][a] = l;
     &#125;
 
-    dij();
+    <span class="hljs-built_in">dij</span>();
 
-    cout << ans[c2] << " " << num[c2];
-    return 0;
+    cout &lt;&lt; ans[c2] &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; num[c2];
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 &#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></cstring></cstdio></iostream></code></pre>
+</code></pre></div>
 <h2><span id="2-bellmanford">2 BellmanFord</span></h2>
 <h3><span id="21-讲解">2.1 讲解</span></h3>
 <ul>
@@ -368,15 +402,15 @@ int main()&#123;
 <p>共 n - 1 行，第 i 行表示 1 号点到 i + 1 号点的最短路。</p>
 </blockquote>
 <h4><span id="样例输入">样例输入</span></h4>
-<pre><code>3 3
-1 2 -1
-2 3 -1
-3 1 2 
-</code></pre>
+<div class="highlight"><pre class="code"><code><span class="hljs-symbol">3 </span><span class="hljs-number">3</span>
+<span class="hljs-symbol">1 </span><span class="hljs-number">2</span> -<span class="hljs-number">1</span>
+<span class="hljs-symbol">2 </span><span class="hljs-number">3</span> -<span class="hljs-number">1</span>
+<span class="hljs-symbol">3 </span><span class="hljs-number">1</span> <span class="hljs-number">2</span> 
+</code></pre></div>
 <h4><span id="样例输出">样例输出</span></h4>
-<pre><code>-1
--2 
-</code></pre>
+<div class="highlight"><pre class="code"><code><span class="hljs-deletion">-1</span>
+<span class="hljs-deletion">-2 </span>
+</code></pre></div>
 <h4><span id="数据规模与约定">数据规模与约定</span></h4>
 <blockquote>
 <p>对于 10% 的数据，n = 2，m = 2。<br>
@@ -384,27 +418,55 @@ int main()&#123;
 对于 100% 的数据，1 &lt;= n &lt;= 20000，1 &lt;= m &lt;= 200000，-10000 &lt;= l &lt;= 10000，保证从任意顶点都能到达其他所有顶点。</p>
 </blockquote>
 <h4><span id="解题思路">解题思路</span></h4>
-<p>求图的最短路径，但是图中有负边，且图的规模很大，因此考虑使用 $Bellman-Ford$ 算法。</p>
+<p>求图的最短路径，但是图中有负边，且图的规模很大，因此考虑使用 <span class="markdown-them-math-inline">$Bellman-Ford$</span> 算法。</p>
 <h4><span id="题解">题解</span></h4>
-<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">#include <iostream>
-#include <cstdio>
-using namespace std;
+<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
 
-const int INF = 0x3f3f3f;
-const int maxn = 200005;
-int u[maxn], v[maxn], w[maxn], dis[maxn], path[maxn];
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> INF = <span class="hljs-number">0x3f3f3f</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn = <span class="hljs-number">200005</span>;
+<span class="hljs-keyword">int</span> u[maxn], v[maxn], w[maxn], dis[maxn], path[maxn];
 
-int main()&#123;
-	int n, m;
-	cin >> n >> m;
-	for(int i = 1;i <= m;i++)&#123; cin>> u[i] >> v[i] >> w[i];
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
+	<span class="hljs-keyword">int</span> n, m;
+	cin &gt;&gt; n &gt;&gt; m;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>;i &lt;= m;i++)&#123;
+		cin &gt;&gt; u[i] &gt;&gt; v[i] &gt;&gt; w[i];
 	&#125;
-	for(int i = 1;i <= n;i++)&#123; dis[i]="INF;" &#125; 将一号顶点置为0 dis[1]="0;" 从 dist(0)[u] 递推出 dist(n-1)[u] 循环n-1次 for(int i="1;i" <="n" - 1;i++)&#123; int flag="0;" x="1;x" path[x]="dis[x];" j="1;j" 顶点到 v[j]顶点的路径> u[j]顶点到 v[j] 的距离 + u[j]到 v[j]边的权值
-			if(dis[v[j]] > dis[u[j]] + w[j])&#123;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>;i &lt;= n;i++)&#123;
+		dis[i] = INF;
+	&#125;
+	<span class="hljs-comment">//将一号顶点置为0</span>
+	dis[<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>;
+	<span class="hljs-comment">//从 dist(0)[u] 递推出 dist(n-1)[u] 循环n-1次</span>
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>;i &lt;= n - <span class="hljs-number">1</span>;i++)&#123;
+		<span class="hljs-keyword">int</span> flag = <span class="hljs-number">0</span>;
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> x = <span class="hljs-number">1</span>;x &lt;= n;x++)&#123;
+			path[x] = dis[x];
+		&#125;
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>;j &lt;= m;j++)&#123;
+			<span class="hljs-comment">//顶点到 v[j]顶点的路径 &gt; u[j]顶点到 v[j] 的距离 + u[j]到 v[j]边的权值</span>
+			<span class="hljs-keyword">if</span>(dis[v[j]] &gt; dis[u[j]] + w[j])&#123;
 				dis[v[j]] = dis[u[j]] + w[j];
 			&#125;
 		&#125;
-		for(int a = 1;a <= n;a++)&#123; if(path[a] !="dis[a])&#123;" flag="1;" break; &#125; if(!flag)&#123; for(int i="2;i" <="n;i++)&#123;" printf("%d\n", dis[i]); return 0; <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></=></=></=></cstdio></iostream></code></pre>
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> a = <span class="hljs-number">1</span>;a &lt;= n;a++)&#123;
+			<span class="hljs-keyword">if</span>(path[a] != dis[a])&#123;
+				flag = <span class="hljs-number">1</span>;
+				<span class="hljs-keyword">break</span>;
+			&#125;
+		&#125;
+		<span class="hljs-keyword">if</span>(!flag)&#123;
+			<span class="hljs-keyword">break</span>;
+		&#125;
+	&#125;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">2</span>;i &lt;= n;i++)&#123;
+		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, dis[i]);
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125; 
+</code></pre></div>
 
         </div>
     

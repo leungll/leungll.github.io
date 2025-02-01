@@ -148,13 +148,13 @@
 <h3><span id="input-specification">Input Specification</span></h3>
 <blockquote>
 <p>Each input file contains one test case. Each case occupies 2 lines, and each line contains the information of a polynomial:<br>
-$K\ N_1\ a_{​N​1}​​​​ N_2\ a_{​N​2}​​​​…\ N_K​\ a_{​N​K}​​​​$<br>
-where $K$ is the number of nonzero terms in the polynomial, $N​_i$​​ and $a​_{N​i}​​​​(i=1,2,⋯,K)$ are the exponents and coefficients, respectively. It is given that<br>
-$1 ≤ K ≤ 10，0 ≤ N​_K​ ​&lt; ⋯ &lt; N_2 ​​&lt; N​_1 ≤ 1000$.</p>
+<span class="markdown-them-math-inline">$K\ N_1\ a_{​N​1}​​​​ N_2\ a_{​N​2}​​​​...\ N_K​\ a_{​N​K}​​​​$</span><br>
+where <span class="markdown-them-math-inline">$K$</span> is the number of nonzero terms in the polynomial, <span class="markdown-them-math-inline">$N​_i$</span>​​ and <span class="markdown-them-math-inline">$a​_{N​i}​​​​(i=1,2,⋯,K)$</span> are the exponents and coefficients, respectively. It is given that<br>
+<span class="markdown-them-math-inline">$1 ≤ K ≤ 10，0 ≤ N​_K​ ​&lt; ⋯ &lt; N_2 ​​&lt; N​_1 ≤ 1000$</span>.</p>
 </blockquote>
 <h3><span id="output-specification">Output Specification</span></h3>
 <blockquote>
-<p>For each test case you should output the sum of $A$ and $B$ in one line, with the same format as the input. Notice that there must be NO extra space at the end of each line. Please be accurate to 1 decimal place.</p>
+<p>For each test case you should output the sum of <span class="markdown-them-math-inline">$A$</span> and <span class="markdown-them-math-inline">$B$</span> in one line, with the same format as the input. Notice that there must be NO extra space at the end of each line. Please be accurate to 1 decimal place.</p>
 </blockquote>
 <h3><span id="sample-input">Sample Input</span></h3>
 <blockquote>
@@ -174,52 +174,52 @@ $1 ≤ K ≤ 10，0 ≤ N​_K​ ​&lt; ⋯ &lt; N_2 ​​&lt; N​_1 ≤ 100
 <li>最后<strong>没有空格</strong></li>
 </ul>
 <h2><span id="3-题解">3 题解</span></h2>
-<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">#include <iostream>
-#include <cstdio>
-using namespace std;
+<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
 
-const int maxn = 1e3 + 5;
-double a[maxn] = &#123;0&#125;;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn = <span class="hljs-number">1e3</span> + <span class="hljs-number">5</span>;
+<span class="hljs-keyword">double</span> a[maxn] = &#123;<span class="hljs-number">0</span>&#125;;
 
-int main()&#123;
-    #ifdef ONLINE_JUDGE
-    #else
-        freopen("input.txt", "r", stdin);
-    #endif // ONLINE_JUDGE
-    int k;
-    cin >> k;
-    for(int i = 0;i < k;i++)&#123;
-        int exp;
-        double coe;
-        cin >> exp >> coe;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
+    <span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> ONLINE_JUDGE</span>
+    <span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span>
+        <span class="hljs-built_in">freopen</span>(<span class="hljs-string">&quot;input.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, stdin);
+    <span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span> <span class="hljs-comment">// ONLINE_JUDGE</span></span>
+    <span class="hljs-keyword">int</span> k;
+    cin &gt;&gt; k;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; k;i++)&#123;
+        <span class="hljs-keyword">int</span> exp;
+        <span class="hljs-keyword">double</span> coe;
+        cin &gt;&gt; exp &gt;&gt; coe;
         a[exp] = coe;
     &#125;
-    cin >> k;
-    for(int i = 0;i < k;i++)&#123;
-        int exp;
-        double coe;
-        cin >> exp >> coe;
+    cin &gt;&gt; k;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; k;i++)&#123;
+        <span class="hljs-keyword">int</span> exp;
+        <span class="hljs-keyword">double</span> coe;
+        cin &gt;&gt; exp &gt;&gt; coe;
         a[exp] += coe;
     &#125;
-    int cnt = 0;
-    for(int i = 0;i < maxn;i++)&#123;
-        if(a[i])&#123;
+    <span class="hljs-keyword">int</span> cnt = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; maxn;i++)&#123;
+        <span class="hljs-keyword">if</span>(a[i])&#123;
             cnt++;
         &#125;
     &#125;
-    printf("%d", cnt);
-    for(int i = maxn;i >= 0;i--)&#123;
-        //负数也需要输出
-        if(a[i] != 0)&#123;
-            //cout << " " << i << " " << a[i];
-            //coe精确到小数点后一位
-            printf(" %d %.1f", i, a[i]);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, cnt);
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = maxn;i &gt;= <span class="hljs-number">0</span>;i--)&#123;
+        <span class="hljs-comment">//负数也需要输出</span>
+        <span class="hljs-keyword">if</span>(a[i] != <span class="hljs-number">0</span>)&#123;
+            <span class="hljs-comment">//cout &lt;&lt; &quot; &quot; &lt;&lt; i &lt;&lt; &quot; &quot; &lt;&lt; a[i];</span>
+            <span class="hljs-comment">//coe精确到小数点后一位</span>
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; %d %.1f&quot;</span>, i, a[i]);
         &#125;
     &#125;
-    return 0;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 &#125;
 
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></cstdio></iostream></code></pre>
+</code></pre></div>
 
         </div>
     

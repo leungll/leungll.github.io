@@ -209,55 +209,55 @@
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-5.png" alt="mysql-navicat-install-5"></p>
 <p><strong>3. 配置初始化的 my.ini 文件</strong></p>
 <p>发现解压后的目录并没有 <code>my.ini</code> 文件，没关系可以自行创建。在安装包的<strong>根目录</strong>下添加 <code>my.ini</code>（新建文本文件，将文件类型改为 <code>.ini</code> ），写入基本配置：</p>
-<pre><code>[mysqld]
-# 设置3306端口
-port=3306
-# 设置mysql的安装目录
-basedir=D:\\Program Files\\mysql-8.0.15-winx64  
-# 设置mysql数据库的数据的存放目录
-datadir=D:\\Program Files\\mysql-8.0.15-winx64\\Data  
-# 允许最大连接数
-max_connections=200
-# 允许连接失败的次数。这是为了防止有人从该主机试图攻击数据库系统
-max_connect_errors=10
-# 服务端使用的字符集默认为UTF8
-character-set-server=utf8
-# 创建新表时将使用的默认存储引擎
-default-storage-engine=INNODB
-# 默认使用“mysql_native_password”插件认证
-default_authentication_plugin=mysql_native_password
-[mysql]
-# 设置mysql客户端默认字符集
-default-character-set=utf8
-[client]
-# 设置mysql客户端连接服务端时默认使用的端口
-port=3306
-default-character-set=utf8
-</code></pre>
+<div class="highlight"><pre class="code"><code><span class="hljs-section">[mysqld]</span>
+<span class="hljs-comment"># 设置3306端口</span>
+<span class="hljs-attr">port</span>=<span class="hljs-number">3306</span>
+<span class="hljs-comment"># 设置mysql的安装目录</span>
+<span class="hljs-attr">basedir</span>=D:\\Program Files\\mysql-<span class="hljs-number">8.0</span>.<span class="hljs-number">15</span>-winx64  
+<span class="hljs-comment"># 设置mysql数据库的数据的存放目录</span>
+<span class="hljs-attr">datadir</span>=D:\\Program Files\\mysql-<span class="hljs-number">8.0</span>.<span class="hljs-number">15</span>-winx64\\Data  
+<span class="hljs-comment"># 允许最大连接数</span>
+<span class="hljs-attr">max_connections</span>=<span class="hljs-number">200</span>
+<span class="hljs-comment"># 允许连接失败的次数。这是为了防止有人从该主机试图攻击数据库系统</span>
+<span class="hljs-attr">max_connect_errors</span>=<span class="hljs-number">10</span>
+<span class="hljs-comment"># 服务端使用的字符集默认为UTF8</span>
+<span class="hljs-attr">character-set-server</span>=utf8
+<span class="hljs-comment"># 创建新表时将使用的默认存储引擎</span>
+<span class="hljs-attr">default-storage-engine</span>=INNODB
+<span class="hljs-comment"># 默认使用“mysql_native_password”插件认证</span>
+<span class="hljs-attr">default_authentication_plugin</span>=mysql_native_password
+<span class="hljs-section">[mysql]</span>
+<span class="hljs-comment"># 设置mysql客户端默认字符集</span>
+<span class="hljs-attr">default-character-set</span>=utf8
+<span class="hljs-section">[client]</span>
+<span class="hljs-comment"># 设置mysql客户端连接服务端时默认使用的端口</span>
+<span class="hljs-attr">port</span>=<span class="hljs-number">3306</span>
+<span class="hljs-attr">default-character-set</span>=utf8
+</code></pre></div>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-6.png" alt="mysql-navicat-install-6"></p>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-7.png" alt="mysql-navicat-install-7"></p>
 <h3><span id="13-启动mysql服务">1.3 启动MySQL服务</span></h3>
 <p><strong>1. 以管理员身份运行 cmd（否则在安装时会报错，会导致安装失败的情况）</strong></p>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-8.png" alt="mysql-navicat-install-8"></p>
 <p><strong>2. 命令行进入 mysql 安装包的 bin 文件：</strong></p>
-<pre><code>cd/d D:\Program Files\mysql-8.0.15-winx64\bin
-</code></pre>
+<div class="highlight"><pre class="code"><code><span class="hljs-attribute">cd</span>/d D:\Program Files\mysql-<span class="hljs-number">8</span>.<span class="hljs-number">0</span>.<span class="hljs-number">15</span>-winx<span class="hljs-number">64</span>\bin
+</code></pre></div>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-9.png" alt="mysql-navicat-install-9"></p>
 <p><strong>3. 初始化数据库：</strong></p>
-<pre><code>mysqld --initialize --console
-</code></pre>
+<div class="highlight"><pre class="code"><code><span class="hljs-comment">mysqld</span> --<span class="hljs-comment">initialize</span> --<span class="hljs-comment">console</span>
+</code></pre></div>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-10.png" alt="mysql-navicat-install-10"></p>
 <p>执行完成后，会打印 <strong>root 用户的初始默认密码</strong>（即 mysql 密码），例如我的：</p>
 <p><strong>注意</strong>：一定要记住 mysql 的初始密码，以便之后 navicat 连接 mysql 输入密码（及修改密码）用。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-11.png" alt="mysql-navicat-install-11"></p>
 <p><strong>3. 安装服务：</strong></p>
-<pre><code>mysqld --install [服务名]
-</code></pre>
+<div class="highlight"><pre class="code"><code>mysqld <span class="hljs-comment">--install [服务名]</span>
+</code></pre></div>
 <p>后面的服务名可以不写，默认的名字为 mysql 。当然，如果你的电脑上需要安装多个 MySQL 服务，就可以用不同的名字区分，比如 mysql5 和 mysql8 。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-12.png" alt="mysql-navicat-install-12"></p>
 <p><strong>4. 启动服务：</strong></p>
-<pre><code>net start mysql
-</code></pre>
+<div class="highlight"><pre class="code"><code><span class="hljs-built_in">net</span> <span class="hljs-built_in">start</span> mysql
+</code></pre></div>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/mysql-navicat-install-13.png" alt="mysql-navicat-install-13"></p>
 <h2><span id="2-navicat安装">2 Navicat安装</span></h2>
 <h3><span id="21-安装包下载">2.1 安装包下载</span></h3>

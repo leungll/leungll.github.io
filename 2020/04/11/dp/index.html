@@ -182,41 +182,39 @@
 要求 n 个物品中，任取若干个装入箱内，使箱子的剩余空间为最小。</p>
 </blockquote>
 <p><strong>解题思路</strong>：</p>
-<p>最经典的 $dp$ 问题，直接上手</p>
+<p>最经典的 <span class="markdown-them-math-inline">$dp$</span> 问题，直接上手</p>
 <ul>
-<li>$dp[j]$：当体积为 $j$ 时，最大填充为 $dp[j]$</li>
-<li>$dp$ 方程：<br>
-$$<br>
-dp[j] = max(dp[j], dp[, j - w[i] ,] + w[i])<br>
-$$</li>
+<li><span class="markdown-them-math-inline">$dp[j]$</span>：当体积为 <span class="markdown-them-math-inline">$j$</span> 时，最大填充为 <span class="markdown-them-math-inline">$dp[j]$</span></li>
+<li><span class="markdown-them-math-inline">$dp$</span> 方程：</li>
 </ul>
-<p><strong>题解</strong>：</p>
-<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">#include <iostream>
-#include <cstdio>
-using namespace std;
+<div class="markdown-them-math-block">$$dp[j] = max(dp[j], dp[\, j - w[i] \,] + w[i])
+$$</div><p><strong>题解</strong>：</p>
+<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
 
-const int maxn = 20010;
-//dp[j]：当体积为j时，最大填充为dp[j] 
-int dp[maxn], w[35];
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn = <span class="hljs-number">20010</span>;
+<span class="hljs-comment">//dp[j]：当体积为j时，最大填充为dp[j] </span>
+<span class="hljs-keyword">int</span> dp[maxn], w[<span class="hljs-number">35</span>];
 
-int main()&#123;
-    // freopen("input.txt", "r", stdin);
-    int v, n;
-    cin >> v >> n;
-    for(int i = 0;i < n;i++)&#123;
-        cin >> w[i];
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
+    <span class="hljs-comment">// freopen(&quot;input.txt&quot;, &quot;r&quot;, stdin);</span>
+    <span class="hljs-keyword">int</span> v, n;
+    cin &gt;&gt; v &gt;&gt; n;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; n;i++)&#123;
+        cin &gt;&gt; w[i];
     &#125;
-    //n个物品 
-    for(int i = 0;i < n;i++)&#123;
-        //总体积为v 
-        for(int j = v;j >= w[i];j--)&#123;
-            dp[j] = max(dp[j], dp[j - w[i]] + w[i]);
+    <span class="hljs-comment">//n个物品 </span>
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; n;i++)&#123;
+        <span class="hljs-comment">//总体积为v </span>
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = v;j &gt;= w[i];j--)&#123;
+            dp[j] = <span class="hljs-built_in">max</span>(dp[j], dp[j - w[i]] + w[i]);
         &#125;
     &#125;
-    printf("%d\n", v - dp[v]);
-    return 0;
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, v - dp[v]);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 &#125;
-/*
+<span class="hljs-comment">/*
 24
 6
 8
@@ -227,54 +225,55 @@ int main()&#123;
 7
 
 0
-*/
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></cstdio></iostream></code></pre>
+*/</span>
+</code></pre></div>
 <h2><span id="3-开心的金明01背包">3 开心的金明(0/1背包)</span></h2>
 <p><strong>题目链接：</strong><a target="_blank" rel="noopener" href="http://lx.lanqiao.cn/problem.page?gpid=T93">http://lx.lanqiao.cn/problem.page?gpid=T93</a></p>
 <p><strong>题目大意</strong>：</p>
 <blockquote>
-<p>在不超过 $N$ 元（可以等于 $N$ 元）的前提 下，使每件物品的价格与重要度的乘积的总和最大。</p>
+<p>在不超过 <span class="markdown-them-math-inline">$N$</span> 元（可以等于 <span class="markdown-them-math-inline">$N$</span> 元）的前提 下，使每件物品的价格与重要度的乘积的总和最大。</p>
 </blockquote>
 <p><strong>解题思路</strong>：</p>
-<p>约定，$dp[i][j]$ 表示判定了 $i$ 件物品，剩余钱数为 $j$ 时，每件物品的价格与重要度的乘积的总和最大。</p>
+<p>约定，<span class="markdown-them-math-inline">$dp[i][j]$</span> 表示判定了 <span class="markdown-them-math-inline">$i$</span> 件物品，剩余钱数为 <span class="markdown-them-math-inline">$j$</span> 时，每件物品的价格与重要度的乘积的总和最大。</p>
 <ul>
 <li>
-<p>典型的 <strong>$0/1$ 背包</strong>问题</p>
+<p>典型的 <strong><span class="markdown-them-math-inline">$0/1$</span> 背包</strong>问题</p>
 </li>
 <li>
-<p>$dp$ 方程：<br>
-$$<br>
-dp[i][j] = max( dp[i - 1][j], ,dp[i - 1][j - v] + v * p)<br>
-$$<br>
-其中，$v$ 表示物品的价格，$p$ 表示该物品的重要度。</p>
+<p><span class="markdown-them-math-inline">$dp$</span> 方程：</p>
+<div class="markdown-them-math-block">$$    dp[i][j] = max( dp[i - 1][j], \,dp[i - 1][j - v] + v * p)
+$$</div><p>其中，<span class="markdown-them-math-inline">$v$</span> 表示物品的价格，<span class="markdown-them-math-inline">$p$</span> 表示该物品的重要度。</p>
 </li>
 </ul>
 <p><strong>题解</strong>：</p>
-<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">#include <iostream>
-#include <cstdio>
-using namespace std;
+<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
 
-const int maxn = 30005;
-//dp[i][j]表示判定了i件物品，剩余钱数为j时，每件物品的价格与重要度的乘积的总和最大
-int dp[30][maxn] = &#123;0&#125;;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn = <span class="hljs-number">30005</span>;
+<span class="hljs-comment">//dp[i][j]表示判定了i件物品，剩余钱数为j时，每件物品的价格与重要度的乘积的总和最大</span>
+<span class="hljs-keyword">int</span> dp[<span class="hljs-number">30</span>][maxn] = &#123;<span class="hljs-number">0</span>&#125;;
 
-int main()&#123;
-    int n, m;
-    cin >> n >> m;
-    //物品件数
-    for(int i = 1;i <= m;i++)&#123; int v, p; cin>> v >> p;
-        //总钱数
-        for(int j = 1;j <= n;j++)&#123; if(j>= v)&#123;
-                dp[i][j] = max( dp[i - 1][j], dp[i - 1][j - v] + v * p);
-            &#125;else&#123;
-                dp[i][j] = dp[i - 1][j];
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
+    <span class="hljs-keyword">int</span> n, m;
+    cin &gt;&gt; n &gt;&gt; m;
+    <span class="hljs-comment">//物品件数</span>
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>;i &lt;= m;i++)&#123;
+        <span class="hljs-keyword">int</span> v, p;
+        cin &gt;&gt; v &gt;&gt; p;
+        <span class="hljs-comment">//总钱数</span>
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>;j &lt;= n;j++)&#123;
+            <span class="hljs-keyword">if</span>(j &gt;= v)&#123;
+                dp[i][j] = <span class="hljs-built_in">max</span>( dp[i - <span class="hljs-number">1</span>][j], dp[i - <span class="hljs-number">1</span>][j - v] + v * p);
+            &#125;<span class="hljs-keyword">else</span>&#123;
+                dp[i][j] = dp[i - <span class="hljs-number">1</span>][j];
             &#125;
         &#125;
     &#125;
-    printf("%d\n", dp[m][n]);
-    return 0;
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, dp[m][n]);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 &#125;
-/*
+<span class="hljs-comment">/*
 1000 5
 800 2
 400 5
@@ -283,8 +282,8 @@ int main()&#123;
 200 2
 
 3900
-*/
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></=></=></cstdio></iostream></code></pre>
+*/</span>
+</code></pre></div>
 <h2><span id="4-数的划分分类讨论dfs实现">4 数的划分(分类讨论，dfs实现）</span></h2>
 <p><strong>题目链接：</strong><a target="_blank" rel="noopener" href="http://lx.lanqiao.cn/problem.page?gpid=T84">http://lx.lanqiao.cn/problem.page?gpid=T84</a></p>
 <p><strong>题目大意：</strong></p>
@@ -297,40 +296,40 @@ int main()&#123;
 <p><strong>解题思路：</strong></p>
 <p>考虑四种情况：</p>
 <ul>
-<li>至少存在一个 $1$ 的情况：总数 $- 1$， 个数 $- 1$</li>
-<li>不存在 $1$ 的情况：每个数分别 $-1$ ，则总数 $-(k*1)$ ，个数不变</li>
-<li>当 $n=k$ 或 $k=1$ 时，只能有 $1$ 种划分方法，边界条件，返回 $1$</li>
-<li>另外当 $n&lt;k$ 时，无法划分，此时返回 $0$</li>
+<li>至少存在一个 <span class="markdown-them-math-inline">$1$</span> 的情况：总数 <span class="markdown-them-math-inline">$- 1$</span>， 个数 <span class="markdown-them-math-inline">$- 1$</span></li>
+<li>不存在 <span class="markdown-them-math-inline">$1$</span> 的情况：每个数分别 <span class="markdown-them-math-inline">$-1$</span> ，则总数 <span class="markdown-them-math-inline">$-(k*1)$</span> ，个数不变</li>
+<li>当 <span class="markdown-them-math-inline">$n=k$</span> 或 <span class="markdown-them-math-inline">$k=1$</span> 时，只能有 <span class="markdown-them-math-inline">$1$</span> 种划分方法，边界条件，返回 <span class="markdown-them-math-inline">$1$</span></li>
+<li>另外当 <span class="markdown-them-math-inline">$n&lt;k$</span> 时，无法划分，此时返回 <span class="markdown-them-math-inline">$0$</span></li>
 </ul>
 <p><strong>题解：</strong></p>
-<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">#include <iostream>
-#include <cstdio>
-using namespace std;
+<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
 
-int dfs(int n, int k)&#123;
-    if(n == k || k == 1)&#123;
-        return 1;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n, <span class="hljs-keyword">int</span> k)</span></span>&#123;
+    <span class="hljs-keyword">if</span>(n == k || k == <span class="hljs-number">1</span>)&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
     &#125; 
-    if(n < k)&#123;
-        return 0;
+    <span class="hljs-keyword">if</span>(n &lt; k)&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
     &#125;
-    //至少存在一个1的情况：总数 - 1， 个数 - 1
-    //一定不存在1的情况： k个数均≥2，则每个数都 - 1，总数 - k * 1，个数不变 
-    return dfs(n - 1, k - 1) + dfs(n - k, k);
+    <span class="hljs-comment">//至少存在一个1的情况：总数 - 1， 个数 - 1</span>
+    <span class="hljs-comment">//一定不存在1的情况： k个数均≥2，则每个数都 - 1，总数 - k * 1，个数不变 </span>
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">dfs</span>(n - <span class="hljs-number">1</span>, k - <span class="hljs-number">1</span>) + <span class="hljs-built_in">dfs</span>(n - k, k);
 &#125;
 
-int main()&#123;
-    int n, k;
-    cin >> n >> k;
-    printf("%d\n", dfs(n, k));
-    return 0;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
+    <span class="hljs-keyword">int</span> n, k;
+    cin &gt;&gt; n &gt;&gt; k;
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, <span class="hljs-built_in">dfs</span>(n, k));
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 &#125;
-/*
+<span class="hljs-comment">/*
 7 3
 
 4
-*/
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></cstdio></iostream></code></pre>
+*/</span>
+</code></pre></div>
 <h2><span id="5-摆动序列dfs实现">5 摆动序列(dfs实现）</span></h2>
 <p><strong>题目链接：</strong><a target="_blank" rel="noopener" href="http://lx.lanqiao.cn/problem.page?gpid=T44">http://lx.lanqiao.cn/problem.page?gpid=T44</a></p>
 <p><strong>题目大意：</strong></p>
@@ -359,88 +358,118 @@ int main()&#123;
 </li>
 </ul>
 <p>比如，当 k = 3 时，有下面几个这样的序列：</p>
-<pre><code>1 2
-1 3
-2 1
-2 1 3
-2 3
-2 3 1
-3 1
-3 2
-</code></pre>
+<div class="highlight"><pre class="code"><code><span class="hljs-symbol">1 </span><span class="hljs-number">2</span>
+<span class="hljs-symbol">1 </span><span class="hljs-number">3</span>
+<span class="hljs-symbol">2 </span><span class="hljs-number">1</span>
+<span class="hljs-symbol">2 </span><span class="hljs-number">1</span> <span class="hljs-number">3</span>
+<span class="hljs-symbol">2 </span><span class="hljs-number">3</span>
+<span class="hljs-symbol">2 </span><span class="hljs-number">3</span> <span class="hljs-number">1</span>
+<span class="hljs-symbol">3 </span><span class="hljs-number">1</span>
+<span class="hljs-symbol">3 </span><span class="hljs-number">2</span>
+</code></pre></div>
 <p>一共有 8 种，给定 k ，请求出满足上面要求的序列的个数。</p>
 </blockquote>
 <p><strong>解题思路：</strong></p>
 <ul>
-<li>本题用 $dfs$ 实现，其中条件 $1$ 与条件 $2$ 很容易满足。</li>
-<li>条件 $3$ 与条件 $4$ ，用下列方程即可满足：<br>
-$$<br>
-(arr[x - 2] - arr[x - 3]) * (arr[x - 1] - arr[x - 3]) &lt; 0<br>
-$$</li>
+<li>本题用 <span class="markdown-them-math-inline">$dfs$</span> 实现，其中条件 <span class="markdown-them-math-inline">$1$</span> 与条件 <span class="markdown-them-math-inline">$2$</span> 很容易满足。</li>
+<li>条件 <span class="markdown-them-math-inline">$3$</span> 与条件 <span class="markdown-them-math-inline">$4$</span> ，用下列方程即可满足：<div class="markdown-them-math-block">$$    (arr[x - 2] - arr[x - 3]) * (arr[x - 1] - arr[x - 3]) &lt; 0
+$$</div></li>
 </ul>
 <p><strong>题解：</strong></p>
-<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">#include <iostream>
-#include <cstdio>
-#include <cstring>
-using namespace std;
+<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
 
-const int maxn = 30;
-int arr[maxn], vis[maxn];
-int ans = 0, n;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn = <span class="hljs-number">30</span>;
+<span class="hljs-keyword">int</span> arr[maxn], vis[maxn];
+<span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>, n;
 
-void dfs(int x)&#123;
-    if(x > 1)&#123;
-        if(x == 2)&#123;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span></span>&#123;
+    <span class="hljs-keyword">if</span>(x &gt; <span class="hljs-number">1</span>)&#123;
+        <span class="hljs-keyword">if</span>(x == <span class="hljs-number">2</span>)&#123;
             ans++;
-        //公式满足条件3与条件4 
-        &#125;else if( (arr[x - 2] - arr[x - 3]) * (arr[x - 1] - arr[x - 3]) < 0)&#123;
+        <span class="hljs-comment">//公式满足条件3与条件4 </span>
+        &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>( (arr[x - <span class="hljs-number">2</span>] - arr[x - <span class="hljs-number">3</span>]) * (arr[x - <span class="hljs-number">1</span>] - arr[x - <span class="hljs-number">3</span>]) &lt; <span class="hljs-number">0</span>)&#123;
             ans++;
-        &#125;else&#123;
-            return;
+        &#125;<span class="hljs-keyword">else</span>&#123;
+            <span class="hljs-keyword">return</span>;
         &#125;
     &#125;
-    for(int i = 1;i <= n;i++)&#123; if(!vis[i])&#123; vis[i]="1;" arr[x]="i;" dfs(x + 1); &#125; int main()&#123; memset(vis, 0, sizeof(vis)); cin>> n;
-    dfs(0);
-    printf("%d", ans);
-    return 0;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>;i &lt;= n;i++)&#123;
+        <span class="hljs-keyword">if</span>(!vis[i])&#123;
+            vis[i] = <span class="hljs-number">1</span>;
+            arr[x] = i;
+            <span class="hljs-built_in">dfs</span>(x + <span class="hljs-number">1</span>);
+            vis[i] = <span class="hljs-number">0</span>;
+        &#125;
+    &#125;
 &#125;
-/*
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
+    <span class="hljs-built_in">memset</span>(vis, <span class="hljs-number">0</span>, <span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(vis));
+    cin &gt;&gt; n;
+    <span class="hljs-built_in">dfs</span>(<span class="hljs-number">0</span>);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, ans);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+<span class="hljs-comment">/*
 3
 
 8
-*/
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></=></cstring></cstdio></iostream></code></pre>
+*/</span>
+</code></pre></div>
 <h2><span id="6-传球游戏环形dp">6 传球游戏(环形dp)</span></h2>
 <p><strong>题目链接：</strong><a target="_blank" rel="noopener" href="http://lx.lanqiao.cn/problem.page?gpid=T97">http://lx.lanqiao.cn/problem.page?gpid=T97</a></p>
 <p><strong>题目大意：</strong></p>
 <blockquote>
-<p>有 $n$ 个同学围成一圈，小蛮传了 $m$ 次球后，球又回到自己手中，问有多少种传球方法？</p>
+<p>有 <span class="markdown-them-math-inline">$n$</span> 个同学围成一圈，小蛮传了 <span class="markdown-them-math-inline">$m$</span> 次球后，球又回到自己手中，问有多少种传球方法？</p>
 </blockquote>
 <p><strong>解题思路：</strong></p>
-<p>约定，$dp[i][j]$ 表示传了 $i$ 次球，到第 $j$ 个人手上的传球方法。</p>
+<p>约定，<span class="markdown-them-math-inline">$dp[i][j]$</span> 表示传了 <span class="markdown-them-math-inline">$i$</span> 次球，到第 <span class="markdown-them-math-inline">$j$</span> 个人手上的传球方法。</p>
 <ul>
-<li>因为是环形传球，因此需要考虑两个边界，第 $1$ 个人和第 $n$ 个人的情况。</li>
-<li>当前同学的传球次数，为左右同学(传了 $i-1$ 次球)的传球方法相加<br>
-$$<br>
-dp[i][j] = dp[i - 1][x] + dp[i - 1][y]<br>
-$$<br>
-其中 $x=j-1,y=j+1$</li>
+<li>因为是环形传球，因此需要考虑两个边界，第 <span class="markdown-them-math-inline">$1$</span> 个人和第 <span class="markdown-them-math-inline">$n$</span> 个人的情况。</li>
+<li>当前同学的传球次数，为左右同学(传了 <span class="markdown-them-math-inline">$i-1$</span> 次球)的传球方法相加<div class="markdown-them-math-block">$$    dp[i][j] = dp[i - 1][x] + dp[i - 1][y]
+$$</div>其中 <span class="markdown-them-math-inline">$x=j-1,y=j+1$</span></li>
 </ul>
 <p><strong>题解：</strong></p>
-<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">#include <iostream>
-#include <cstdio>
-using namespace std;
+<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
 
-const int maxn = 40;
-//dp[i][j]表示传了i次球，到第j个人的次数 
-int dp[maxn][maxn] = &#123;0&#125;;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn = <span class="hljs-number">40</span>;
+<span class="hljs-comment">//dp[i][j]表示传了i次球，到第j个人的次数 </span>
+<span class="hljs-keyword">int</span> dp[maxn][maxn] = &#123;<span class="hljs-number">0</span>&#125;;
 
-int main()&#123;
-    int n, m;
-    cin >> n >> m;
-    //传了0次球，到第一个人的次数，自然为1 
-    dp[0][1] = 1;
-    for(int i = 1;i <= 2 3 m;i++)&#123; for(int j="1;j" <="n;j++)&#123;" int x="j" - 1, y="j" + 1; 考虑第1个人的情况 if(j="=" 1)&#123; &#125; 考虑第n个人的情况 n)&#123; 当前的情况等于左右传了i 1次球的情况相加 dp[i][j]="dp[i" 1][x] dp[i 1][y]; printf("%d\n", dp[m][1]); return 0; * <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></=></cstdio></iostream></code></pre>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
+    <span class="hljs-keyword">int</span> n, m;
+    cin &gt;&gt; n &gt;&gt; m;
+    <span class="hljs-comment">//传了0次球，到第一个人的次数，自然为1 </span>
+    dp[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>;i &lt;= m;i++)&#123;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>;j &lt;= n;j++)&#123;
+            <span class="hljs-keyword">int</span> x = j - <span class="hljs-number">1</span>, y = j + <span class="hljs-number">1</span>;
+            <span class="hljs-comment">//考虑第1个人的情况 </span>
+            <span class="hljs-keyword">if</span>(j == <span class="hljs-number">1</span>)&#123;
+                x = n;
+            &#125;
+            <span class="hljs-comment">//考虑第n个人的情况</span>
+            <span class="hljs-keyword">if</span>(j == n)&#123;
+                y = <span class="hljs-number">1</span>;
+            &#125;
+            <span class="hljs-comment">//当前的情况等于左右传了i - 1次球的情况相加 </span>
+            dp[i][j] = dp[i - <span class="hljs-number">1</span>][x] + dp[i - <span class="hljs-number">1</span>][y];
+        &#125;
+    &#125;
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, dp[m][<span class="hljs-number">1</span>]);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+<span class="hljs-comment">/*
+3 3
+
+2
+*/</span>
+</code></pre></div>
 <h2><span id="7-方格取数多线程dp">7 方格取数(多线程dp）</span></h2>
 <p><strong>题目链接：</strong><a target="_blank" rel="noopener" href="http://lx.lanqiao.cn/problem.page?gpid=T79">http://lx.lanqiao.cn/problem.page?gpid=T79</a></p>
 <p><strong>题目大意：</strong></p>
@@ -451,104 +480,160 @@ int main()&#123;
 </blockquote>
 <p><strong>解题思路：</strong></p>
 <ul>
-<li>可模拟两个人同时从 $(1,1)$ 走到 $(N,N)$</li>
-<li>$dp$ 方程：<br>
-$$<br>
-dp[x1][x2][y1][y2] = max(dp[x1 - 1][y1][x2 - 1][y2],<br>
-$$</li>
+<li>可模拟两个人同时从 <span class="markdown-them-math-inline">$(1,1)$</span> 走到 <span class="markdown-them-math-inline">$(N,N)$</span></li>
+<li><span class="markdown-them-math-inline">$dp$</span> 方程：</li>
 </ul>
-<p>$$<br>
-dp[x1][y1 - 1][x2][y2 - 1],<br>
-$$</p>
-<p>$$<br>
-dp[x1 - 1][y1][x2][y2 - 1],<br>
-$$</p>
-<p>$$<br>
-dp[x1][y1 - 1][x2 - 1][y2])<br>
-$$</p>
-<ul>
+<div class="markdown-them-math-block">$$dp[x1][x2][y1][y2] = max(dp[x1 - 1][y1][x2 - 1][y2],
+$$</div><p><div class="markdown-them-math-block">$$ 
+dp[x1][y1 - 1][x2][y2 - 1], 
+$$</div></p>
+<div class="markdown-them-math-block">$$dp[x1 - 1][y1][x2][y2 - 1], 
+$$</div><div class="markdown-them-math-block">$$dp[x1][y1 - 1][x2 - 1][y2]) 
+$$</div><ul>
 <li>考虑两人走到同一点的特殊情况，只能加一次权值。</li>
 </ul>
 <p><strong>题解：</strong></p>
-<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">/*
+<div class="highlight"><pre class="code"><code><span class="hljs-comment">/*
 模拟两个人同时从(1,1)走到(N,N)，
 转移方程:dp[x1][x2][y1][y2] = max(dp[x1 - 1][y1][x2 - 1][y2], 
                                  dp[x1][y1 - 1][x2][y2 - 1], 
                                  dp[x1 - 1][y1][x2][y2 - 1], 
                                  dp[x1][y1 - 1][x2 - 1][y2]) 
 考虑两人走到同一点的特殊情况，只能加一次权值。 
-*/
-#include <iostream>
-#include <cstdio>
-using namespace std;
+*/</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
 
-const int maxn = 20;
-int g[maxn][maxn] = &#123;0&#125;, dp[maxn][maxn][maxn][maxn] = &#123;0&#125;;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn = <span class="hljs-number">20</span>;
+<span class="hljs-keyword">int</span> g[maxn][maxn] = &#123;<span class="hljs-number">0</span>&#125;, dp[maxn][maxn][maxn][maxn] = &#123;<span class="hljs-number">0</span>&#125;;
 
-int main() &#123;
-    // freopen("input.txt", "r", stdin);
-    int n;
-    cin >> n;
-    while(true)&#123;
-        int x, y, value;
-        cin >> x >> y >> value;
-        if(x == 0 && y == 0 && value == 0)&#123;
-            break;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+    <span class="hljs-comment">// freopen(&quot;input.txt&quot;, &quot;r&quot;, stdin);</span>
+    <span class="hljs-keyword">int</span> n;
+    cin &gt;&gt; n;
+    <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;
+        <span class="hljs-keyword">int</span> x, y, value;
+        cin &gt;&gt; x &gt;&gt; y &gt;&gt; value;
+        <span class="hljs-keyword">if</span>(x == <span class="hljs-number">0</span> &amp;&amp; y == <span class="hljs-number">0</span> &amp;&amp; value == <span class="hljs-number">0</span>)&#123;
+            <span class="hljs-keyword">break</span>;
         &#125;
         g[x][y] = value;
     &#125;
-    for(int x1 = 1;x1 <= 0 2 3 4 5 6 7 8 13 14 15 21 67 n;x1++)&#123; for(int y1="1;y1" <="n;y1++)&#123;" x2="1;x2" y2="1;y2" int temp="max(dp[x1" - 1][y1][x2 1][y2], dp[x1][y1 1][x2][y2 1]); dp[x1 1][y1][x2][y2 1][x2 1][y2]); if(x1="=" && y2)&#123; dp[x1][y1][x2][y2]="temp" + g[x1][y1]; &#125;else&#123; g[x1][y1] g[x2][y2]; &#125; printf("%d\n", dp[n][n][n][n]); return 0; * <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></=></cstdio></iostream></code></pre>
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> x1 = <span class="hljs-number">1</span>;x1 &lt;= n;x1++)&#123;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> y1 = <span class="hljs-number">1</span>;y1 &lt;= n;y1++)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> x2 = <span class="hljs-number">1</span>;x2 &lt;= n;x2++)&#123;
+                <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> y2 = <span class="hljs-number">1</span>;y2 &lt;= n;y2++)&#123;
+                    <span class="hljs-keyword">int</span> temp = <span class="hljs-built_in">max</span>(dp[x1 - <span class="hljs-number">1</span>][y1][x2 - <span class="hljs-number">1</span>][y2], dp[x1][y1 - <span class="hljs-number">1</span>][x2][y2 - <span class="hljs-number">1</span>]);
+                    temp = <span class="hljs-built_in">max</span>(temp, dp[x1 - <span class="hljs-number">1</span>][y1][x2][y2 - <span class="hljs-number">1</span>]);
+                    temp = <span class="hljs-built_in">max</span>(temp, dp[x1][y1 - <span class="hljs-number">1</span>][x2 - <span class="hljs-number">1</span>][y2]);
+                    <span class="hljs-keyword">if</span>(x1 == x2 &amp;&amp; y1 == y2)&#123;
+                        dp[x1][y1][x2][y2] = temp + g[x1][y1];
+                    &#125;<span class="hljs-keyword">else</span>&#123;
+                        dp[x1][y1][x2][y2] = temp + g[x1][y1] + g[x2][y2];
+                    &#125;
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, dp[n][n][n][n]);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+<span class="hljs-comment">/*
+8
+2 3 13
+2 6 6
+3 5 7
+4 4 14
+5 2 21
+5 6 4
+6 3 15
+7 2 14
+0 0 0
+
+67
+*/</span>
+</code></pre></div>
 <h2><span id="8-k好数">8 K好数</span></h2>
 <p><strong>题目链接：</strong><a target="_blank" rel="noopener" href="http://lx.lanqiao.cn/problem.page?gpid=T13">http://lx.lanqiao.cn/problem.page?gpid=T13</a></p>
 <p><strong>题目大意：</strong></p>
 <blockquote>
-<p>$K$ 好数定义：一个自然数 $N$ 的 $K$进制表示中任意的相邻的两位都不是相邻的数字。求 $L$ 位 $K$ 进制数中 $K$ 好数的数目。输出它对 $1000000007$ 取模后的值。</p>
+<p><span class="markdown-them-math-inline">$K$</span> 好数定义：一个自然数 <span class="markdown-them-math-inline">$N$</span> 的 <span class="markdown-them-math-inline">$K$</span>进制表示中任意的相邻的两位都不是相邻的数字。求 <span class="markdown-them-math-inline">$L$</span> 位 <span class="markdown-them-math-inline">$K$</span> 进制数中 <span class="markdown-them-math-inline">$K$</span> 好数的数目。输出它对 <span class="markdown-them-math-inline">$1000000007$</span> 取模后的值。</p>
 </blockquote>
 <p><strong>解题思路：</strong></p>
-<p>我们约定，$dp[i][j]$ 表示长度为 $i$ ，以 $j$ 开头的 $K$ 好数个数。</p>
+<p>我们约定，<span class="markdown-them-math-inline">$dp[i][j]$</span> 表示长度为 <span class="markdown-them-math-inline">$i$</span> ，以 <span class="markdown-them-math-inline">$j$</span> 开头的 <span class="markdown-them-math-inline">$K$</span> 好数个数。</p>
 <ul>
 <li>
-<p>$K$ 好数中<strong>除开头外</strong>，每位数的取值为：$0 \sim K-1$；</p>
+<p><span class="markdown-them-math-inline">$K$</span> 好数中<strong>除开头外</strong>，每位数的取值为：<span class="markdown-them-math-inline">$0 \sim K-1$</span>；</p>
 </li>
 <li>
-<p>以 $K=3，L=3$ 为例：<br>
-$$ans = dp[3][0]+dp[3][1]+dp[3][2]$$<br>
-其中 $dp[3][0]=dp[2][0]+dp[2][2]$<br>
-   $dp[3][1]=dp[2][1]$<br>
-   $dp[3][2]=dp[2][2]+dp[2][0]$</p>
+<p>以 <span class="markdown-them-math-inline">$K=3，L=3$</span> 为例：<br>
+<div class="markdown-them-math-block">$$ans = dp[3][0]+dp[3][1]+dp[3][2]$$</div><br>
+其中 <span class="markdown-them-math-inline">$dp[3][0]=dp[2][0]+dp[2][2]$</span><br>
+   <span class="markdown-them-math-inline">$dp[3][1]=dp[2][1]$</span><br>
+   <span class="markdown-them-math-inline">$dp[3][2]=dp[2][2]+dp[2][0]$</span></p>
 </li>
 <li>
-<p>以此类推<strong>长度为 $2$ ，长度为 $1$</strong> 的情况；</p>
+<p>以此类推<strong>长度为 <span class="markdown-them-math-inline">$2$</span> ，长度为 <span class="markdown-them-math-inline">$1$</span></strong> 的情况；</p>
 </li>
 <li>
-<p>因此可推出 $dp$ 方程：<br>
-$$dp[i][j]=dp[i][j]+dp[i-1][x]$$<br>
-其中 $x$ 取值为 $0 \sim K-1$</p>
+<p>因此可推出 <span class="markdown-them-math-inline">$dp$</span> 方程：<br>
+<div class="markdown-them-math-block">$$dp[i][j]=dp[i][j]+dp[i-1][x]$$</div><br>
+其中 <span class="markdown-them-math-inline">$x$</span> 取值为 <span class="markdown-them-math-inline">$0 \sim K-1$</span></p>
 </li>
 <li>
-<p>另外要注意，$K$ 好数开头不能为 $0$ ；</p>
+<p>另外要注意，<span class="markdown-them-math-inline">$K$</span> 好数开头不能为 <span class="markdown-them-math-inline">$0$</span> ；</p>
 </li>
 </ul>
 <p><strong>题解：</strong></p>
-<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">#include <iostream>
-#include <cstdio>
-using namespace std;
+<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
 
-#define MOD 1000000007
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MOD 1000000007</span>
 
-const int maxn = 105;
-//dp[i][j]表示长度为i，以j开头的K好数个数 
-int dp[maxn][maxn];
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn = <span class="hljs-number">105</span>;
+<span class="hljs-comment">//dp[i][j]表示长度为i，以j开头的K好数个数 </span>
+<span class="hljs-keyword">int</span> dp[maxn][maxn];
 
-int main()&#123;
-    int k, l;
-    cin >> k >> l;
-    //dp[1][i]表示长度为1，以i开头的K好数个数，此时个数均为 1 
-    for(int i = 0;i < k;i++)&#123;
-        dp[1][i] = 1;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
+    <span class="hljs-keyword">int</span> k, l;
+    cin &gt;&gt; k &gt;&gt; l;
+    <span class="hljs-comment">//dp[1][i]表示长度为1，以i开头的K好数个数，此时个数均为 1 </span>
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; k;i++)&#123;
+        dp[<span class="hljs-number">1</span>][i] = <span class="hljs-number">1</span>;
     &#125;
-    //长度由2 → l 
-    for(int i = 2;i <= 1 2 4 7 l;i++)&#123; 表示以j开头的个数，因为是k进制，所以k的范围为0 ~ k - for(int j="0;j" < k;j++)&#123; 枚举以j为开头时的所有情况 x="0;x" k;x++)&#123; 符号k好数要求的数 if(x !="j" + && 1)&#123; dp方程 dp[i][j] 1][x]; 注意取模 %="MOD;" &#125; int ans="0;" 开头不能为o,所以开头i的范围为1 i="1;i" k;i++)&#123; printf("%d\n", ans); return 0; * <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></=></cstdio></iostream></code></pre>
+    <span class="hljs-comment">//长度由2 → l </span>
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">2</span>;i &lt;= l;i++)&#123;
+        <span class="hljs-comment">//表示以j开头的个数，因为是K进制，所以K的范围为0 ~ K - 1 </span>
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>;j &lt; k;j++)&#123;
+            <span class="hljs-comment">//枚举以j为开头时的所有情况 </span>
+            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> x = <span class="hljs-number">0</span>;x &lt; k;x++)&#123;
+                <span class="hljs-comment">//符号K好数要求的数 </span>
+                <span class="hljs-keyword">if</span>(x != j + <span class="hljs-number">1</span> &amp;&amp; x != j - <span class="hljs-number">1</span>)&#123;
+                    <span class="hljs-comment">//dp方程 </span>
+                    dp[i][j] += dp[i - <span class="hljs-number">1</span>][x];
+                    <span class="hljs-comment">//注意取模 </span>
+                    dp[i][j] %= MOD;
+                &#125;
+            &#125;
+        &#125;
+    &#125; 
+    <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;
+    <span class="hljs-comment">//开头不能为O,所以开头i的范围为1 ~ K - 1 </span>
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>;i &lt; k;i++)&#123;
+        ans += dp[l][i];
+        ans %= MOD;
+    &#125; 
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, ans);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+<span class="hljs-comment">/*
+4 2 
+
+7
+*/</span>
+</code></pre></div>
 
         </div>
     

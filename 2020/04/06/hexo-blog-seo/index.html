@@ -244,8 +244,8 @@
 <p>刚开始我选择的是<strong>文件验证</strong>方式，但一直提示验证文件内容不符，因此选择了 <strong>HTML 标签验证</strong>：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/hexo-blog-seo-06.png" alt="hexo-blog-seo-06"></p>
 <p>将标签放在 Hexo 文件主题目录下<code>\themes\Chic\layout\_partial</code>的<code>head.ejs</code>的<code>&lt;head&gt;</code>与 <code>&lt;/head&gt; </code>标签之间（文件路径供参考）</p>
-<pre class="line-numbers language-language-css"><code class="language-language-css"><meta name="baidu-site-verification" content="XXXXXXXXXX">
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<div class="highlight"><pre class="code"><code>&lt;meta name=&quot;baidu-site-verification&quot; <span class="hljs-attribute">content</span>=&quot;XXXXXXXXXX&quot; /&gt;
+</code></pre></div>
 <p><strong>6. 点击完成验证，并等待审核：</strong></p>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/hexo-blog-seo-07.png" alt="hexo-blog-seo-07"></p>
 <p>几小时过后，站长平台会提示你审核结果：</p>
@@ -347,24 +347,24 @@
 <li><strong>保护原创</strong>：对于网站的最新原创内容，使用主动推送功能可以快速通知到百度，使内容可以在转发之前被百度发现</li>
 </ul>
 <p><strong>2. 在博客根目录安装插件 ：</strong></p>
-<pre class="line-numbers language-language-bash"><code class="language-language-bash">npm install hexo-baidu-url-submit --save
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<div class="highlight"><pre class="code"><code>npm install hexo-baidu-url-submit --save
+</code></pre></div>
 <p>然后在根目录 <code>_config.yml</code> 文件里写入以下配置：</p>
-<pre class="line-numbers language-language-yaml"><code class="language-language-yaml">baidu_url_submit:
-  count: 10                           # 提交最新的多少个链接
-  host: https://yourname.gitee.io/    # 在百度站长平台中添加的域名
-  token: your_token                   # 秘钥
-  path: baidu_urls.txt                # 文本文档的地址,新链接会保存在此文本文档里
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<div class="highlight"><pre class="code"><code><span class="hljs-attr">baidu_url_submit:</span>
+  <span class="hljs-attr">count:</span> <span class="hljs-number">10</span>                           <span class="hljs-comment"># 提交最新的多少个链接</span>
+  <span class="hljs-attr">host:</span> <span class="hljs-string">https://yourname.gitee.io/</span>    <span class="hljs-comment"># 在百度站长平台中添加的域名</span>
+  <span class="hljs-attr">token:</span> <span class="hljs-string">your_token</span>                   <span class="hljs-comment"># 秘钥</span>
+  <span class="hljs-attr">path:</span> <span class="hljs-string">baidu_urls.txt</span>                <span class="hljs-comment"># 文本文档的地址,新链接会保存在此文本文档里</span>
+</code></pre></div>
 <ul>
 <li>
 <p>记得查看 Hexo 根目录<code>_config.yml</code>文件中<code>url</code>的值，必须包含是百度站长平台注册的域名， 比如:</p>
-<pre class="line-numbers language-language-yaml"><code class="language-language-yaml"># URL
-## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://yourname.gitee.io/
-root: /
-permalink: :year/:month/:day/:urlname/
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<div class="highlight"><pre class="code"><code><span class="hljs-comment"># URL</span>
+<span class="hljs-comment">## If your site is put in a subdirectory, set url as &#x27;http://yoursite.com/child&#x27; and root as &#x27;/child/&#x27;</span>
+<span class="hljs-attr">url:</span> <span class="hljs-string">https://yourname.gitee.io/</span>
+<span class="hljs-attr">root:</span> <span class="hljs-string">/</span>
+<span class="hljs-attr">permalink:</span> <span class="hljs-string">:year/:month/:day/:urlname/</span>
+</code></pre></div>
 </li>
 <li>
 <p><code>token</code> 可以在<strong>链接提交</strong>  →  <strong>自动提交</strong>  →  <strong>主动推送</strong>下面看到，接口调用地址最后面 <code>token=xxxxx</code> 即为你的 <code>token</code>：</p>
@@ -372,18 +372,18 @@ permalink: :year/:month/:day/:urlname/
 </li>
 </ul>
 <p><strong>3. 在根目录 <code>_config.yml</code> 修改 <code>deployer</code>：</strong></p>
-<pre class="line-numbers language-language-yaml"><code class="language-language-yaml"># Deployment
-## Docs: https://hexo.io/docs/deployment.html
-deploy:
-- type: git 			## 这是原来的deployer
-  repo:
-  branch:
-- type: baidu_url_submitter 	## 在这里添加新内容即可
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<div class="highlight"><pre class="code"><code><span class="hljs-comment"># Deployment</span>
+<span class="hljs-comment">## Docs: https://hexo.io/docs/deployment.html</span>
+<span class="hljs-attr">deploy:</span>
+<span class="hljs-bullet">-</span> <span class="hljs-attr">type:</span> <span class="hljs-string">git</span> 			<span class="hljs-comment">## 这是原来的deployer</span>
+  <span class="hljs-attr">repo:</span>
+  <span class="hljs-attr">branch:</span>
+<span class="hljs-bullet">-</span> <span class="hljs-attr">type:</span> <span class="hljs-string">baidu_url_submitter</span> 	<span class="hljs-comment">## 在这里添加新内容即可</span>
+</code></pre></div>
 <p><strong>4. 最后执行 <code>hexo g -d</code> 部署一遍即可实现主动推送，推送成功的标志是：在执行部署命令</strong>最后<strong>会显示类似如下代码</strong></p>
-<pre class="line-numbers language-language-bash"><code class="language-language-bash">&#123;"remain":2992,"success":7&#125;
-INFO  Deploy done:  baidu_url_submitter
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<div class="highlight"><pre class="code"><code>&#123;<span class="hljs-string">&quot;remain&quot;</span>:2992,<span class="hljs-string">&quot;success&quot;</span>:7&#125;
+INFO  Deploy <span class="hljs-keyword">done</span>:  baidu_url_submitter
+</code></pre></div>
 <p><strong>5. 查看推送反馈：</strong></p>
 <ul>
 <li>你可以通过推送后返回的状态码和字段来判断数据是否推送成功。</li>
@@ -426,13 +426,13 @@ INFO  Deploy done:  baidu_url_submitter
 </tbody>
 </table>
 <ul>
-<li>成功返回示例：<pre class="line-numbers language-language-bash"><code class="language-language-bash">&#123;
-   "remain":4999998,
-   "success":2,
-   "not_same_site":[],
-   "not_valid":[]
+<li>成功返回示例：<div class="highlight"><pre class="code"><code>&#123;
+   <span class="hljs-string">&quot;remain&quot;</span>:4999998,
+   <span class="hljs-string">&quot;success&quot;</span>:2,
+   <span class="hljs-string">&quot;not_same_site&quot;</span>:[],
+   <span class="hljs-string">&quot;not_valid&quot;</span>:[]
 &#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre></div>
 </li>
 </ul>
 <p><strong>6. 同时在<code>hexo\.deploy_git\</code>路径下会生成一个<code>baidu_urls.txt</code>文件，其中包含了你站点中的 URL 链接：</strong></p>
@@ -458,22 +458,22 @@ INFO  Deploy done:  baidu_url_submitter
 </li>
 <li>
 <p>代码：</p>
-<pre class="line-numbers language-language-javascript"><code class="language-language-javascript"><script>
-(function()&#123;
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') &#123;
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+<div class="highlight"><pre class="code"><code>&lt;script&gt;
+(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+    <span class="hljs-keyword">var</span> bp = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&#x27;script&#x27;</span>);
+    <span class="hljs-keyword">var</span> curProtocol = <span class="hljs-built_in">window</span>.location.protocol.split(<span class="hljs-string">&#x27;:&#x27;</span>)[<span class="hljs-number">0</span>];
+    <span class="hljs-keyword">if</span> (curProtocol === <span class="hljs-string">&#x27;https&#x27;</span>) &#123;
+        bp.src = <span class="hljs-string">&#x27;https://zz.bdstatic.com/linksubmit/push.js&#x27;</span>;
     &#125;
-    else &#123;
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    <span class="hljs-keyword">else</span> &#123;
+        bp.src = <span class="hljs-string">&#x27;http://push.zhanzhang.baidu.com/push.js&#x27;</span>;
     &#125;
-    var s = document.getElementsByTagName("script")[0];
+    <span class="hljs-keyword">var</span> s = <span class="hljs-built_in">document</span>.getElementsByTagName(<span class="hljs-string">&quot;script&quot;</span>)[<span class="hljs-number">0</span>];
     s.parentNode.insertBefore(bp, s);
 &#125;)();
-</script>
+&lt;/script&gt;
 
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre></div>
 </li>
 </ul>
 <ul>
@@ -483,17 +483,17 @@ INFO  Deploy done:  baidu_url_submitter
 <ul>
 <li>
 <p>生成一个网站地图：</p>
-<pre class="line-numbers language-language-bash"><code class="language-language-bash">npm install hexo-generator-baidu-sitemap --save
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<div class="highlight"><pre class="code"><code>npm install hexo-generator-baidu-sitemap --save
+</code></pre></div>
 </li>
 <li>
 <p>记得查看 Hexo 根目录<code>_config.yml</code>文件中<code>url</code>的值，必须包含是百度站长平台注册的域名， 比如:</p>
-<pre class="line-numbers language-language-yaml"><code class="language-language-yaml"># URL
-## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://yourname.gitee.io/
-root: /
-permalink: :year/:month/:day/:urlname/
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<div class="highlight"><pre class="code"><code><span class="hljs-comment"># URL</span>
+<span class="hljs-comment">## If your site is put in a subdirectory, set url as &#x27;http://yoursite.com/child&#x27; and root as &#x27;/child/&#x27;</span>
+<span class="hljs-attr">url:</span> <span class="hljs-string">https://yourname.gitee.io/</span>
+<span class="hljs-attr">root:</span> <span class="hljs-string">/</span>
+<span class="hljs-attr">permalink:</span> <span class="hljs-string">:year/:month/:day/:urlname/</span>
+</code></pre></div>
 </li>
 <li>
 <p>使用命令 <code>hexo g -d</code> 将网站部署上去，然后访问 <code>你的域名/baidusitemap.xml</code> 就可以看到网站地图</p>

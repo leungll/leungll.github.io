@@ -218,24 +218,24 @@
 <ul>
 <li>
 <p>新建一篇博客：</p>
-<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">hexo new post "article title"
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<div class="highlight"><pre class="code"><code>hexo <span class="hljs-keyword">new</span> post <span class="hljs-string">&quot;article title&quot;</span>
+</code></pre></div>
 </li>
 <li>
 <p>部署至本地服务器（本地服务器端口：<code>http://localhost:4000</code>)：</p>
-<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">hexo s
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<div class="highlight"><pre class="code"><code>hexo s
+</code></pre></div>
 </li>
 <li>
 <p>运行生成、部署命令：</p>
-<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">hexo g   // 生成
-hexo d   // 部署
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<div class="highlight"><pre class="code"><code>hexo g   <span class="hljs-comment">// 生成</span>
+hexo d   <span class="hljs-comment">// 部署</span>
+</code></pre></div>
 </li>
 <li>
 <p>在部署前生成:</p>
-<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">hexo d -g 
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<div class="highlight"><pre class="code"><code>hexo d -g 
+</code></pre></div>
 </li>
 </ul>
 <h2><span id="6-解决github博客访问过慢问题的方案">6 解决Github博客访问过慢问题的方案</span></h2>
@@ -268,18 +268,18 @@ hexo d   // 部署
 </li>
 <li>
 <p>修改<strong>本地 Hexo 根目录下</strong>的 <strong>_config.yml</strong> 文件，将 <strong>Deployment</strong> 及 <strong>URL</strong> 更改为相应的 gitee 链接</p>
-<pre><code># URL
-## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yourname.gitee.io/
-root: /
-</code></pre>
-<pre><code># Deployment
-## Docs: https://hexo.io/docs/deployment.html
-deploy:
-  type: git
-  repo: https://gitee.com/yourname/yourname.git
-  branch: master
-</code></pre>
+<div class="highlight"><pre class="code"><code># URL
+## If your site <span class="hljs-keyword">is</span> <span class="hljs-keyword">put</span> in <span class="hljs-keyword">a</span> subdirectory, <span class="hljs-keyword">set</span> url <span class="hljs-keyword">as</span> <span class="hljs-string">&#x27;http://yoursite.com/child&#x27;</span> <span class="hljs-built_in">and</span> root <span class="hljs-keyword">as</span> <span class="hljs-string">&#x27;/child/&#x27;</span>
+ur<span class="hljs-variable">l:</span> http://yourname.gitee.io/
+roo<span class="hljs-variable">t:</span> /
+</code></pre></div>
+<div class="highlight"><pre class="code"><code><span class="hljs-meta"># Deployment</span>
+<span class="hljs-meta">## Docs: https:<span class="hljs-comment">//hexo.io/docs/deployment.html</span></span>
+<span class="hljs-symbol">deploy:</span>
+<span class="hljs-symbol">  type:</span> git
+<span class="hljs-symbol">  repo:</span> https:<span class="hljs-comment">//gitee.com/yourname/yourname.git</span>
+<span class="hljs-symbol">  branch:</span> master
+</code></pre></div>
 </li>
 </ul>
 </li>

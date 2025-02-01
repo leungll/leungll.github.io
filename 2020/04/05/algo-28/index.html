@@ -148,21 +148,21 @@
 火星人用一种非常简单的方式来表示数字：掰手指。火星人只有一只手，但这只手上有成千上万的手指，这些手指排成一列，分别编号为 1，2，3 ……。火星人的任意两根手指都能随意交换位置，他们就是通过这方法计数的。<br>
 一个火星人用一个人类的手演示了如何用手指计数。如果把五根手指：拇指、食指、中指、无名指和小指分别编号为 1，2，3，4 和 5 ，当它们按正常顺序排列时，形成了 5 位数 12345 ，当你交换无名指和小指的位置时，会形成 5 位数 12354 ，当你把五个手指的顺序完全颠倒时，会形成 54321 ，在所有能够形成的 120 个 5 位数中，12345 最小，它表示 1 ；12354 第二小，它表示 2 ；54321 最大，它表示 120 。下表展示了只有 3 根手指时能够形成的 6 个 3 位数和它们代表的数字：<br>
 三进制数：</p>
-<pre><code>　　123
+<div class="highlight"><pre class="code"><code>　　123
 　　132
 　　213
 　　231
 　　312
 　　321
-</code></pre>
+</code></pre></div>
 <p>代表的数字：</p>
-<pre><code>　　1
+<div class="highlight"><pre class="code"><code>　　1
 　　2
 　　3
 　　4
 　　5
 　　6
-</code></pre>
+</code></pre></div>
 <p>现在你有幸成为了第一个和火星人交流的地球人。一个火星人会让你看他的手指，科学家会告诉你要加上去的很小的数。你的任务是，把火星人用手指表示的数与科学家告诉你的数相加，并根据相加的结果改变火星人手指的排列顺序。输入数据保证这个结果不会超出火星人手指能表示的范围。</p>
 </blockquote>
 <h3><span id="输入格式">输入格式</span></h3>
@@ -197,28 +197,28 @@
 <li><code>next_permutation()</code>所在库文件：<code>#include &lt;algorithm&gt;</code>。</li>
 </ul>
 <h2><span id="3-题解">3 题解</span></h2>
-<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">#include <iostream>
-#include <cstdio>
-#include <algorithm>
-using namespace std;
+<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
 
-const int maxn = 1e4 + 5;
-int arr[maxn];
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn = <span class="hljs-number">1e4</span> + <span class="hljs-number">5</span>;
+<span class="hljs-keyword">int</span> arr[maxn];
 
-int main()&#123;
-    int n, m;
-    cin >> n >> m;
-    for(int i = 0;i < n;i++)&#123;
-        cin >> arr[i];
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
+    <span class="hljs-keyword">int</span> n, m;
+    cin &gt;&gt; n &gt;&gt; m;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; n;i++)&#123;
+        cin &gt;&gt; arr[i];
     &#125;
-    int cnt = 0;
-    while(next_permutation(arr, arr + n) && ++cnt < m);
-    for(int i = 0;i < n;i++)&#123;
-        printf("%d ", arr[i]);
+    <span class="hljs-keyword">int</span> cnt = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">while</span>(<span class="hljs-built_in">next_permutation</span>(arr, arr + n) &amp;&amp; ++cnt &lt; m);
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; n;i++)&#123;
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>, arr[i]);
     &#125;
-    return 0;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 &#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></algorithm></cstdio></iostream></code></pre>
+</code></pre></div>
 
         </div>
     

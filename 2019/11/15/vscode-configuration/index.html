@@ -247,34 +247,34 @@
 <p>在 vscode 文件下创建<code>launch.json</code>文件：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/vscode-conf-013.png" alt="vscode-conf-013"></p>
 <p>在<code>launch.json</code>下粘贴如下代码：</p>
-<pre class="line-numbers language-language-powershell"><code class="language-language-powershell">&#123;
-    "version": "0.2.0",
-    "configurations": [
+<div class="highlight"><pre class="code"><code>&#123;
+    <span class="hljs-string">&quot;version&quot;</span>: <span class="hljs-string">&quot;0.2.0&quot;</span>,
+    <span class="hljs-string">&quot;configurations&quot;</span>: [
         &#123;
-            "name": "(gdb) Launch",	// 配置名称，将会在启动配置的下拉菜单中显示
-            "type": "cppdbg", 		// 配置类型，这里只能为cppdbg
-            "request": "launch",	// 请求配置类型，可以为launch（启动）或attach（附加）
-            "program": "$&#123;fileDirname&#125;/$&#123;fileBasenameNoExtension&#125;.exe",// 将要进行调试的程序的路径
-            "args": [],				// 程序调试时传递给程序的命令行参数，一般设为空即可
-            "stopAtEntry": false, 	// 设为true时程序将暂停在程序入口处，一般设置为false
-            "cwd": "$&#123;workspaceRoot&#125;",// 调试程序时的工作目录，一般为$&#123;workspaceRoot&#125;即代码所在目录
-            "environment": [],
-            "externalConsole": true,// 调试时是否显示控制台窗口，一般设置为true显示控制台
-            "MIMode": "gdb",
-            "miDebuggerPath": "D:/MinGW/bin/gdb.exe",// miDebugger的路径，注意这里要与MinGw的路径对应
-            "preLaunchTask": "g++",	// 调试会话开始前执行的任务，一般为编译程序，c++为g++, c为gcc
-            "setupCommands": [
+            <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;(gdb) Launch&quot;</span>,	// 配置名称，将会在启动配置的下拉菜单中显示
+            <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;cppdbg&quot;</span>, 		// 配置类型，这里只能为<span class="hljs-type">cppdbg</span>
+            <span class="hljs-string">&quot;request&quot;</span>: <span class="hljs-string">&quot;launch&quot;</span>,	// 请求配置类型，可以为<span class="hljs-type">launch</span>（启动）或<span class="hljs-type">attach</span>（附加）
+            <span class="hljs-string">&quot;program&quot;</span>: <span class="hljs-string">&quot;<span class="hljs-variable">$</span>&#123;fileDirname&#125;/<span class="hljs-variable">$</span>&#123;fileBasenameNoExtension&#125;.exe&quot;</span>,// 将要进行调试的程序的路径
+            <span class="hljs-string">&quot;args&quot;</span>: [],				// 程序调试时传递给程序的命令行参数，一般设为空即可
+            <span class="hljs-string">&quot;stopAtEntry&quot;</span>: <span class="hljs-type">false</span>, 	// 设为<span class="hljs-type">true</span>时程序将暂停在程序入口处，一般设置为<span class="hljs-type">false</span>
+            <span class="hljs-string">&quot;cwd&quot;</span>: <span class="hljs-string">&quot;<span class="hljs-variable">$</span>&#123;workspaceRoot&#125;&quot;</span>,// 调试程序时的工作目录，一般为<span class="hljs-variable">$</span>&#123;<span class="hljs-type">workspaceRoot</span>&#125;即代码所在目录
+            <span class="hljs-string">&quot;environment&quot;</span>: [],
+            <span class="hljs-string">&quot;externalConsole&quot;</span>: <span class="hljs-type">true</span>,// 调试时是否显示控制台窗口，一般设置为<span class="hljs-type">true</span>显示控制台
+            <span class="hljs-string">&quot;MIMode&quot;</span>: <span class="hljs-string">&quot;gdb&quot;</span>,
+            <span class="hljs-string">&quot;miDebuggerPath&quot;</span>: <span class="hljs-string">&quot;D:/MinGW/bin/gdb.exe&quot;</span>,// <span class="hljs-type">miDebugger</span>的路径，注意这里要与<span class="hljs-type">MinGw</span>的路径对应
+            <span class="hljs-string">&quot;preLaunchTask&quot;</span>: <span class="hljs-string">&quot;g++&quot;</span>,	// 调试会话开始前执行的任务，一般为编译程序，<span class="hljs-type">c</span>++为<span class="hljs-type">g</span>++, <span class="hljs-type">c</span>为<span class="hljs-type">gcc</span>
+            <span class="hljs-string">&quot;setupCommands&quot;</span>: [
                 &#123;
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
+                    <span class="hljs-string">&quot;description&quot;</span>: <span class="hljs-string">&quot;Enable pretty-printing for gdb&quot;</span>,
+                    <span class="hljs-string">&quot;text&quot;</span>: <span class="hljs-string">&quot;-enable-pretty-printing&quot;</span>,
+                    <span class="hljs-string">&quot;ignoreFailures&quot;</span>: <span class="hljs-type">true</span>
                 &#125;
             ]
         &#125;
     ]
 &#125;
 
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre></div>
 <p><strong>需要根据你的电脑环境进行修改的选项是</strong><code>&quot;miDebuggerPath&quot;</code>，注意路径中斜杠的问题：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/vscode-conf-014.png" alt="vscode-conf-014"></p>
 <p><strong>注意</strong>：有朋友指出在路径中用单斜杠不行，应该和系统有关，建议大家单斜杠和双斜杠都试试，哪个可以用哪个。</p>
@@ -282,25 +282,25 @@
 <p>在 VScode 文件下创建<code>tasks.json</code>文件：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/vscode-conf-015.png" alt="vscode-conf-015"></p>
 <p>在<code>tasks.json</code>中粘贴如下代码:</p>
-<pre class="line-numbers language-language-powershell"><code class="language-language-powershell">&#123;
-    "version": "2.0.0",
-    "command": "g++",
-    "args": ["-g","$&#123;file&#125;","-o","$&#123;fileDirname&#125;/$&#123;fileBasenameNoExtension&#125;.exe"], // 编译命令参数
-    "problemMatcher": &#123;
-        "owner": "cpp",
-        "fileLocation": ["relative", "$&#123;workspaceRoot&#125;"],
-        "pattern": &#123;
-            "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
-            "file": 1,
-            "line": 2,
-            "column": 3,
-            "severity": 4,
-            "message": 5
+<div class="highlight"><pre class="code"><code>&#123;
+    <span class="hljs-string">&quot;version&quot;</span>: <span class="hljs-string">&quot;2.0.0&quot;</span>,
+    <span class="hljs-string">&quot;command&quot;</span>: <span class="hljs-string">&quot;g++&quot;</span>,
+    <span class="hljs-string">&quot;args&quot;</span>: [<span class="hljs-string">&quot;-g&quot;</span>,<span class="hljs-string">&quot;<span class="hljs-variable">$</span>&#123;file&#125;&quot;</span>,<span class="hljs-string">&quot;-o&quot;</span>,<span class="hljs-string">&quot;<span class="hljs-variable">$</span>&#123;fileDirname&#125;/<span class="hljs-variable">$</span>&#123;fileBasenameNoExtension&#125;.exe&quot;</span>], // 编译命令参数
+    <span class="hljs-string">&quot;problemMatcher&quot;</span>: &#123;
+        <span class="hljs-string">&quot;owner&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,
+        <span class="hljs-string">&quot;fileLocation&quot;</span>: [<span class="hljs-string">&quot;relative&quot;</span>, <span class="hljs-string">&quot;<span class="hljs-variable">$</span>&#123;workspaceRoot&#125;&quot;</span>],
+        <span class="hljs-string">&quot;pattern&quot;</span>: &#123;
+            <span class="hljs-string">&quot;regexp&quot;</span>: <span class="hljs-string">&quot;^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)<span class="hljs-variable">$</span>&quot;</span>,
+            <span class="hljs-string">&quot;file&quot;</span>: <span class="hljs-number">1</span>,
+            <span class="hljs-string">&quot;line&quot;</span>: <span class="hljs-number">2</span>,
+            <span class="hljs-string">&quot;column&quot;</span>: <span class="hljs-number">3</span>,
+            <span class="hljs-string">&quot;severity&quot;</span>: <span class="hljs-number">4</span>,
+            <span class="hljs-string">&quot;message&quot;</span>: <span class="hljs-number">5</span>
         &#125;
     &#125;
 &#125;
 
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre></div>
 <p><strong>直接粘贴即可，不需修改</strong>。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/vscode-conf-016.png" alt="vscode-conf-016"></p>
 <h4><span id="324-关于launchjson与tasksjson的说明">3.2.4 关于launch.json与tasks.json的说明</span></h4>
@@ -317,14 +317,14 @@
 <p>因为 VScode 不像 IDE（比如 CB，VS 等）在调试的时候黑框下面有点击任意键返回，所以需要手动加一个断点，或者程序最后加一个 system(“pause”) 等，命令窗口才能停留。</p>
 </blockquote>
 <h3><span id="41-编写代码">4.1 编写代码</span></h3>
-<pre class="line-numbers language-language-powershell"><code class="language-language-powershell">#include <bits stdc++.h>
-using namespace std;
+<div class="highlight"><pre class="code"><code><span class="hljs-comment">#include &lt;bits/stdc++.h&gt;</span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
 int main()&#123;
-    cout << "hello world" << endl;
-    system("pause");
-    return 0;
+    cout &lt;&lt; <span class="hljs-string">&quot;hello world&quot;</span> &lt;&lt; endl;
+    system(<span class="hljs-string">&quot;pause&quot;</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 &#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></bits></code></pre>
+</code></pre></div>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/vscode-conf-018.png" alt="vscode-conf-018"></p>
 <h3><span id="42-运行程序">4.2 运行程序</span></h3>
 <p>快捷键 F5，或点击左边面板的绿色小箭头。</p>

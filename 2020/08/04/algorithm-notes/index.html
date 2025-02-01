@@ -157,21 +157,21 @@
 <h3><span id="1-输入输出处理">1 输入输出处理</span></h3>
 <ul>
 <li>
-<p>$scanf$ 函数</p>
+<p><span class="markdown-them-math-inline">$scanf$</span> 函数</p>
 <ul>
 <li>字符数组使用 <code>%s</code>读入时，以 <strong>空格</strong> 跟 <strong>换行</strong> 为读入结束标志</li>
 <li><code>%c</code> 格式可读入 <strong>空格</strong> 跟 <strong>换行</strong></li>
 </ul>
 </li>
 <li>
-<p>$getchar$ 用来输入单个字符，可 <strong>识别换行符</strong>；$putchar$ 用来输出单个字符</p>
-<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">char c;
-getchar();
-putchar(c);
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><span class="markdown-them-math-inline">$getchar$</span> 用来输入单个字符，可 <strong>识别换行符</strong>；<span class="markdown-them-math-inline">$putchar$</span> 用来输出单个字符</p>
+<div class="highlight"><pre class="code"><code><span class="hljs-keyword">char</span> c;
+<span class="hljs-built_in">getchar</span>();
+<span class="hljs-built_in">putchar</span>(c);
+</code></pre></div>
 </li>
 <li>
-<p>不要同时在一个程序中使用 $cout$ 和 $printf$</p>
+<p>不要同时在一个程序中使用 <span class="markdown-them-math-inline">$cout$</span> 和 <span class="markdown-them-math-inline">$printf$</span></p>
 </li>
 </ul>
 <h3><span id="2-数据类型应用">2 数据类型应用</span></h3>
@@ -181,24 +181,24 @@ putchar(c);
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/algorithm-notes-01.jpg" alt="algorithm-notes-01"></p>
 </li>
 <li>
-<p>对于浮点型，不要使用 $float$</p>
+<p>对于浮点型，不要使用 <span class="markdown-them-math-inline">$float$</span></p>
 </li>
 </ul>
 <h3><span id="3-字符串">3 字符串</span></h3>
 <ul>
 <li>
-<p>$sscanf$ 与 $sprintf$</p>
+<p><span class="markdown-them-math-inline">$sscanf$</span> 与 <span class="markdown-them-math-inline">$sprintf$</span></p>
 <ul>
-<li>假设定义一个 $char$  数组 $str[100]$
+<li>假设定义一个 <span class="markdown-them-math-inline">$char$</span>  数组 <span class="markdown-them-math-inline">$str[100]$</span>
 <ul>
-<li>$sscanf$：<code>sscanf(str, &quot;%d&quot;, &amp;n);</code></li>
-<li>$sprintf$：<code>sprintf(str, &quot;%d&quot;, n;</code></li>
+<li><span class="markdown-them-math-inline">$sscanf$</span>：<code>sscanf(str, &quot;%d&quot;, &amp;n);</code></li>
+<li><span class="markdown-them-math-inline">$sprintf$</span>：<code>sprintf(str, &quot;%d&quot;, n;</code></li>
 </ul>
 </li>
 </ul>
 </li>
 <li>
-<p>$strcmp$ 函数的返回值不一定是 $-1$ 或 $+1$（与编译器有关）</p>
+<p><span class="markdown-them-math-inline">$strcmp$</span> 函数的返回值不一定是 <span class="markdown-them-math-inline">$-1$</span> 或 <span class="markdown-them-math-inline">$+1$</span>（与编译器有关）</p>
 <ul>
 <li>类似 <code>return strcmp(a.name, b.name) == -1</code>（字典序小的排在前面）的写法是错误的</li>
 <li>正确写法：<code>return strcmp(a.name, b.name) &lt; 0</code></li>
@@ -219,18 +219,18 @@ putchar(c);
 <h3><span id="5-进制转换">5 进制转换</span></h3>
 <ul>
 <li>
-<p>$P$ 进制数 $x$ 转换为十进制数 $y$</p>
+<p><span class="markdown-them-math-inline">$P$</span> 进制数 <span class="markdown-them-math-inline">$x$</span> 转换为十进制数 <span class="markdown-them-math-inline">$y$</span></p>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/algorithm-notes-04.jpg" alt="algorithm-notes-04"></p>
 </li>
 <li>
-<p>十进制数 $y$ 转换为 $Q$ 进制数 $z$ （除基取余法）</p>
-<pre class="line-numbers language-language-cpp"><code class="language-language-cpp">int z[40], num = 0;    //数组z存放Q进制数y的每一位，num为位数
-do&#123;
-	z[num++] = y % Q;  //除基取余
+<p>十进制数 <span class="markdown-them-math-inline">$y$</span> 转换为 <span class="markdown-them-math-inline">$Q$</span> 进制数 <span class="markdown-them-math-inline">$z$</span> （除基取余法）</p>
+<div class="highlight"><pre class="code"><code><span class="hljs-keyword">int</span> z[<span class="hljs-number">40</span>], num = <span class="hljs-number">0</span>;    <span class="hljs-comment">//数组z存放Q进制数y的每一位，num为位数</span>
+<span class="hljs-keyword">do</span>&#123;
+	z[num++] = y % Q;  <span class="hljs-comment">//除基取余</span>
 	y /= Q;
-&#125;while(y != 0);        //当商不为0时进行循环
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>$z$ 数组从高位 $z[num - 1]$ 到低位 $z[0]$ 即为 $Q$ 进制 $z$</p>
+&#125;<span class="hljs-keyword">while</span>(y != <span class="hljs-number">0</span>);        <span class="hljs-comment">//当商不为0时进行循环</span>
+</code></pre></div>
+<p><span class="markdown-them-math-inline">$z$</span> 数组从高位 <span class="markdown-them-math-inline">$z[num - 1]$</span> 到低位 <span class="markdown-them-math-inline">$z[0]$</span> 即为 <span class="markdown-them-math-inline">$Q$</span> 进制 <span class="markdown-them-math-inline">$z$</span></p>
 </li>
 </ul>
 <h3><span id="6-其他">6 其他</span></h3>
@@ -239,16 +239,16 @@ do&#123;
 <p>闰年表示：<code>(year % 4 == 0 &amp;&amp; year % 100 != 0) || (year % 400  == 0)</code></p>
 </li>
 <li>
-<p>$ASCII$：小写字母的值比大写字母大 $32$</p>
+<p><span class="markdown-them-math-inline">$ASCII$</span>：小写字母的值比大写字母大 <span class="markdown-them-math-inline">$32$</span></p>
 </li>
 <li>
 <p>注释技巧：</p>
-<pre><code>#define LOCAL
+<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> LOCAL</span>
 
-#ifdef LOCAL
+<span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> LOCAL</span>
     cout &lt;&lt; endl;
-#endif
-</code></pre>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span>
+</code></pre></div>
 </li>
 </ul>
 
