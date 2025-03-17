@@ -39,19 +39,19 @@
     
   
     <!-- Open graph -->
-    <meta name="description" content="CHAPTER 1 Reliable, Scalable, and Maintainable Applications  Thinking About Data Systems Reliability  Human Errors   Scalability  Describing Load     CHAPTER 2 Data Models and Query Languages  Relat">
+    <meta name="description" content="CHAPTER 1 Reliable, Scalable, and Maintainable Applications  Thinking About Data Systems Reliability  Human Errors   Scalability  Describing Load Approaches for Coping with Load   Maintainability">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Designing Data-Intensive Applications - Part I Foundations of Data Systems">
 <meta property="og:url" content="https://leungll.site/2024/12/23/DDIA-Part-1/index.html">
 <meta property="og:site_name" content="Lili Liang">
-<meta property="og:description" content="CHAPTER 1 Reliable, Scalable, and Maintainable Applications  Thinking About Data Systems Reliability  Human Errors   Scalability  Describing Load     CHAPTER 2 Data Models and Query Languages  Relat">
+<meta property="og:description" content="CHAPTER 1 Reliable, Scalable, and Maintainable Applications  Thinking About Data Systems Reliability  Human Errors   Scalability  Describing Load Approaches for Coping with Load   Maintainability">
 <meta property="og:locale">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/DDIA-Part1-C1-01.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/DDIA-Part1-C1-02.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/DDIA-Part1-C1-03.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/DDIA-Part1-C1-04.png">
 <meta property="article:published_time" content="2024-12-23T16:11:42.000Z">
-<meta property="article:modified_time" content="2025-01-05T08:12:31.219Z">
+<meta property="article:modified_time" content="2025-03-17T05:44:46.378Z">
 <meta property="article:author" content="Lili Liang 梁莉莉">
 <meta property="article:tag" content="System Design">
 <meta property="article:tag" content="Distributed System">
@@ -135,7 +135,7 @@
 
             <!-- Show Last Updated Date -->
             
-                Last updated: Jan 5, 2025 ｜ 
+                Last updated: Mar 17, 2025 ｜ 
             
 
             <!-- Show Post Categories -->
@@ -159,8 +159,10 @@
 <li><a href="#scalability">Scalability</a>
 <ul>
 <li><a href="#describing-load">Describing Load</a></li>
+<li><a href="#approaches-for-coping-with-load">Approaches for Coping with Load</a></li>
 </ul>
 </li>
+<li><a href="#maintainability">Maintainability</a></li>
 </ul>
 </li>
 <li><a href="#chapter-2-data-models-and-query-languages">CHAPTER 2 Data Models and Query Languages</a>
@@ -168,7 +170,7 @@
 <li><a href="#relational-model-versus-document-model">Relational Model Versus Document Model</a></li>
 <li><a href="#query-languages-for-data">Query Languages for Data</a>
 <ul>
-<li><a href="#declarative-queries-on">Declarative Queries on</a></li>
+<li><a href="#declarative-queries-on-web">Declarative Queries on Web</a></li>
 <li><a href="#mapreduce-querying">MapReduce Querying</a></li>
 </ul>
 </li>
@@ -225,13 +227,39 @@
 <p>The first version of Twitter used approach 1, but the systems struggled to keep up with the load of home timeline queries, so the company switched to approach 2. This works better because <strong>the average rate of published tweets is almost two orders of magnitude lower than the rate of home timeline reads</strong>, and so in this case it’s preferable to do more work at write time and less at read time.</p>
 <p>In the example of Twitter, <strong>the distribution of followers per user (maybe weighted by how often those users tweet) is a key load parameter for discussing scalability</strong>, since it determines the fan-out load.</p>
 <p>The final twist of the Twitter anecdote: now that approach 2 is robustly implemented, <strong>Twitter is moving to a hybrid of both approaches</strong>. <strong>Most users’ tweets continue to be fanned out to home timelines</strong> at the time when they are posted, but a small number of users with a very large number of followers (i.e., celebrities) are excepted from this fan-out. <strong>Tweets from any celebrities that a user may follow are fetched separately and merged with that user’s home timeline when it is read, like in approach 1</strong>.</p>
+<h3><span id="approaches-for-coping-with-load">Approaches for Coping with Load</span></h3>
+<p>People often talk of a dichotomy between <strong>scaling up</strong> (vertical scaling, moving to a more powerful machine) and <strong>scaling out</strong> (horizontal scaling, distributing the load across multiple smaller machines).</p>
+<h2><span id="maintainability">Maintainability</span></h2>
+<p>We will pay attention to three design principles for software systems:</p>
+<ul>
+<li>
+<p>Operability</p>
+<ul>
+<li>Make it easy for <strong>operations teams</strong> to <strong>keep the system running smoothly</strong>.</li>
+</ul>
+</li>
+<li>
+<p>Simplicity</p>
+<ul>
+<li>Make it easy for <strong>new engineers</strong> to <strong>understand the system</strong>, by removing as much complexity as possible from the system.</li>
+</ul>
+</li>
+<li>
+<p>Evolvability</p>
+<ul>
+<li>Make it easy for <strong>engineers</strong> to <strong>make changes</strong> to the system in the future.</li>
+</ul>
+</li>
+</ul>
 <h1><span id="chapter-2-data-models-and-query-languages">CHAPTER 2 Data Models and Query Languages</span></h1>
 <h2><span id="relational-model-versus-document-model">Relational Model Versus Document Model</span></h2>
 <p>Document Model: The main arguments in favor of the document data model are <strong>schema flexibility</strong>, <strong>better performance due to locality</strong>, and that for some applications it is closer to the data structures used by the application.<br>
 Relational model: The relational model counters by providing <strong>better support for joins, and many-to-one and many-to-many relationships</strong>.</p>
 <h2><span id="query-languages-for-data">Query Languages for Data</span></h2>
-<h3><span id="declarative-queries-on">Declarative Queries on</span></h3>
-<p>In a web browser, <strong>using declarative CSS styling is much better than manipulating styles imperatively in JavaScript</strong>. Similarly, in databases, <strong>declarative query languages like SQL turned out to be much better than imperative query APIs</strong>.</p>
+<p><strong>Declarative languages</strong>, like SQL, have a better chance of getting faster in parallel execution because they <strong>specify only the pattern of the results</strong>, not the algorithm that is used to determine the resules.</p>
+<p><strong>Imperaive code</strong> is very hard to parallelize across multiple cores and multiple machines, because it <strong>specifies instructions that must be performed in a particular code</strong>.</p>
+<h3><span id="declarative-queries-on-web">Declarative Queries on Web</span></h3>
+<p>In a web browser, <strong>using declarative CSS styling</strong> is much better than manipulating styles imperatively in JavaScript. Similarly, in databases, <strong>declarative query languages like SQL turned out to be much better than imperative query APIs</strong>.</p>
 <h3><span id="mapreduce-querying">MapReduce Querying</span></h3>
 <p>MapReduce is a <strong>programming model</strong> for <strong>processing large amounts of data in bulk across many machines</strong>, popularized by Google. <strong>A limited form of MapReduce is supported by some NoSQL datastores, including MongoDB and CouchDB</strong>, as a mechanism for <strong>performing read-only queries</strong> across many documents.</p>
 <p><strong>MapReduce is neither a declarative query language nor a fully imperative query API, but somewhere in between</strong>: the logic of the query is expressed with snippets of code, which are called repeatedly by the processing framework. <strong>It is based on the map (also known as collect) and reduce (also known as fold or inject) functions</strong> that exist in many functional programming languages.</p>
