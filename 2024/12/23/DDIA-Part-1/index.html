@@ -52,7 +52,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/DDIA-Part1-C1-04.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/DDIA-Part1-C2-01.png">
 <meta property="article:published_time" content="2024-12-23T16:11:42.000Z">
-<meta property="article:modified_time" content="2025-03-18T07:11:15.005Z">
+<meta property="article:modified_time" content="2025-03-25T07:07:21.145Z">
 <meta property="article:author" content="Lili Liang 梁莉莉">
 <meta property="article:tag" content="System Design">
 <meta property="article:tag" content="Distributed System">
@@ -136,7 +136,7 @@
 
             <!-- Show Last Updated Date -->
             
-                Last updated: Mar 18, 2025 ｜ 
+                Last updated: Mar 25, 2025 ｜ 
             
 
             <!-- Show Post Categories -->
@@ -175,6 +175,7 @@
 <li><a href="#mapreduce-querying">MapReduce Querying</a></li>
 </ul>
 </li>
+<li><a href="#graph-like-data-models">Graph-Like Data Models</a></li>
 </ul>
 </li>
 </ul>
@@ -262,10 +263,13 @@ Relational model: The relational model counters by providing <strong>better supp
 <h3><span id="declarative-queries-on-web">Declarative Queries on Web</span></h3>
 <p>In a web browser, <strong>using declarative CSS styling</strong> is much better than manipulating styles imperatively in JavaScript. Similarly, in databases, <strong>declarative query languages like SQL turned out to be much better than imperative query APIs</strong>.</p>
 <h3><span id="mapreduce-querying">MapReduce Querying</span></h3>
-<p>MapReduce is a <strong>programming model</strong> for <strong>processing large amounts of data in bulk across many machines</strong>, popularized by Google. <strong>A limited form of MapReduce is supported by some NoSQL datastores, including MongoDB and CouchDB</strong>, as a mechanism for performing read-only queries across many documents.</p>
-<p><strong>MapReduce is neither a declarative query language nor a fully imperative query API, but somewhere in between</strong>: the logic of the query is expressed with snippets of code, which are called repeatedly by the processing framework. <strong>It is based on the map (also known as collect) and reduce (also known as fold or inject) functions</strong> that exist in many functional programming languages.</p>
+<p>MapReduce is a <strong>programming model</strong> for <strong>processing large amounts of data in bulk across many machines</strong>, popularized by Google. A limited form of MapReduce is supported by some NoSQL datastores, including MongoDB and CouchDB, as a mechanism for performing read-only queries across many documents.</p>
+<p>MapReduce is neither a declarative query language nor a fully imperative query API, but somewhere in between: the logic of the query is expressed with snippets of code, which are called repeatedly by the processing framework. <strong>It is based on the map (also known as <u>collect</u>) and reduce (also known as <u>fold or inject</u>) functions</strong> that exist in many functional programming languages.</p>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/DDIA-Part1-C2-01.png" alt="DDIA-Part1-C2-01"></p>
 <p>The <code>map</code> function would be called once for each document, resulting in emit(“1995-12”, 3) and emit (“1995-12”, 4). Subsequently, the reduce function would be called with reduce(“1995-12”, [3, 4]), returning 7.</p>
+<p>MapReduce is a fairly <u>low-level programming model</u> for <u>distributed execution</u> on a cluster of machines. Higher-level query languages like SQL can be implemented as a pipeline of MapReduce operations.</p>
+<p>A declarative query language offers more opportunities for a query optimizer to improve the performance of a query.</p>
+<h2><span id="graph-like-data-models">Graph-Like Data Models</span></h2>
 
         </div>
     
