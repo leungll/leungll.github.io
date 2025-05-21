@@ -52,8 +52,10 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/DDIA-Part1-C1-04.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/DDIA-Part1-C2-01.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/DDIA-Part1-C3-01.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/DDIA-Part1-C3-02.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/DDIA-Part1-C3-04.png">
 <meta property="article:published_time" content="2024-12-23T16:11:42.000Z">
-<meta property="article:modified_time" content="2025-05-20T06:43:08.845Z">
+<meta property="article:modified_time" content="2025-05-21T06:37:24.261Z">
 <meta property="article:author" content="Lili Liang 梁莉莉">
 <meta property="article:tag" content="System Design">
 <meta property="article:tag" content="Distributed System">
@@ -137,7 +139,7 @@
 
             <!-- Show Last Updated Date -->
             
-                Last updated: May 20, 2025 ｜ 
+                Last updated: May 21, 2025 ｜ 
             
 
             <!-- Show Post Categories -->
@@ -188,7 +190,13 @@
 <li><a href="#comparing-b-trees-and-lsm-trees">Comparing B-Trees and LSM-Trees</a></li>
 </ul>
 </li>
-<li><a href="#transaction-processing-or-analytics">Transaction Processing or Analytics?</a></li>
+<li><a href="#transaction-processing-or-analytics">Transaction Processing or Analytics?</a>
+<ul>
+<li><a href="#data-warehousing">Data Warehousing</a></li>
+<li><a href="#stars-and-snowflakes-schemas-for-analytics">Stars and Snowflakes: Schemas for Analytics</a></li>
+</ul>
+</li>
+<li><a href="#column-oriented-storage">Column-Oriented Storage</a></li>
 </ul>
 </li>
 </ul>
@@ -374,6 +382,15 @@ A <strong>B-tree index</strong> must write every piece of data <strong>at least 
 A <strong>downside of log-structured storage</strong> is that the <u>compaction process can sometims interfere with the performance of ongoing reads and writes</u>.</p>
 <p>An <strong>advantage of B-trees</strong> is that <u>each key exists in exactly one place in the index</u>, whereas a log-structured storage engine may have multiple copies of the same key in different segments. This aspect <u>makes B-trees attractive in database that want to offer strong transactional semantics</u>: in many relational databases, transaction isolation is implemented using locks on range of keys, and <u>in a B-tree index, those locks can be directly attached to the tree</u>.</p>
 <h2><span id="transaction-processing-or-analytics">Transaction Processing or Analytics?</span></h2>
+<p>OLTP System: online transaction processing, OLTP System: online analytic processing.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/DDIA-Part1-C3-02.png" alt="DDIA-Part1-C3-02"></p>
+<h3><span id="data-warehousing">Data Warehousing</span></h3>
+<p>A data warehouse, by contrast, is a separate database that analysts can query to their hearts’ content, without affecting OLTP operations. <u>The data warehouse contains a <strong>read-only copy</strong> of the data in all the various OLTP systems</u> in the company. Data is extracted from OLTP databases (using either <u>a periodic data dump</u> or <u>a continuous stream of updates</u>), transformed into an analysis-friendly schema, cleaned up, and then loaded into the data warehouse. This process of getting data into the warehouse is known as <strong>Extract–Transform–Load (ETL)</strong>.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/DDIA-Part1-C3-04.png" alt="DDIA-Part1-C3-04"></p>
+<h3><span id="stars-and-snowflakes-schemas-for-analytics">Stars and Snowflakes: Schemas for Analytics</span></h3>
+<p>The name “<strong>star schema</strong>” comes from the fact that when the table relationships are visualized, the fact table is in the middle, surrounded by its dimension tables; the connections to these tables are like the rays of a star.</p>
+<p>A variation of this template is known as the <strong>snowflake schema</strong>, where dimensions are further broken down into subdimensions.</p>
+<h2><span id="column-oriented-storage">Column-Oriented Storage</span></h2>
 
         </div>
     
