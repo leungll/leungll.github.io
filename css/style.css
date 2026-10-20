@@ -50,6 +50,17 @@ a
     background: #fff;
 }
 
+/* 宽屏下所有页面共用一个居中的内容栏，宽度一致，切换页面时不跳动。
+   两侧各留出至少 300px（目录 224px + 间距 40px + 边距），文章页的目录挂在这片留白里，左侧对称留白。 */
+@media (min-width: 1180px)
+{
+    .paper-main
+    {
+        max-width: min(880px, calc(100vw - 600px));
+        padding-inline: 0;
+    }
+}
+
 .header
 {
     padding-bottom: 48px;

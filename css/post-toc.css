@@ -130,16 +130,15 @@
     outline: none;
 }
 @media (min-width: 1180px) {
-    .has-post-toc .paper-main {
-        max-width: 1380px;
-        padding-inline: 48px;
-    }
+    /* 目录列宽为 0，目录本身向右溢出到内容栏外侧的留白里，正文占满内容栏 */
     .post-layout.has-toc {
         grid-template-areas: "article toc";
-        grid-template-columns: minmax(0, 1fr) 244px;
-        gap: 56px;
+        grid-template-columns: minmax(0, 1fr) 0;
+        gap: 0;
     }
     .post-toc {
+        width: 224px;
+        margin-left: 40px;
         top: 32px;
         z-index: 1;
         padding-top: 4px;
