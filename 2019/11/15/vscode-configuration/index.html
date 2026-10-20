@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="default">
     <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
@@ -38,13 +38,15 @@
         <title>VScode 配置 C/C++ 环境(MinGW) &amp;&amp; 编写运行 C/C++ 程序 | Lili Liang</title>
     
   
+    
+
     <!-- Open graph -->
-    <meta name="description" content="1 关于VScode 2 配置MinGW环境变量  2.1 MinGW下载 2.2 配置环境变量 2.3 测试是否配置成功   3 VScode相关插件配置  3.1 安装C&#x2F;C++插件 3.2 配置.vscode相关文件  3.2.1 创建.vscode文件夹 3.2.2 创建launch.json文件 3.2.3 创建tasks.json文件 3.2.4 关于launch.json与tas">
+    <meta name="description" content="装好 VS Code 和 C&#x2F;C++ 插件，并不代表已经具备编译与调试环境。沿着 MinGW 安装、环境变量验证和工作区配置，把编辑器、编译器与调试器连接起来；结合 launch.json 和 tasks.json 的路径设置，说明 Windows 下一个 C&#x2F;C++ 程序怎样完成构建和调试。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="VScode 配置 C&#x2F;C++ 环境(MinGW) &amp;&amp; 编写运行 C&#x2F;C++ 程序">
 <meta property="og:url" content="https://leungll.site/2019/11/15/vscode-configuration/index.html">
 <meta property="og:site_name" content="Lili Liang">
-<meta property="og:description" content="1 关于VScode 2 配置MinGW环境变量  2.1 MinGW下载 2.2 配置环境变量 2.3 测试是否配置成功   3 VScode相关插件配置  3.1 安装C&#x2F;C++插件 3.2 配置.vscode相关文件  3.2.1 创建.vscode文件夹 3.2.2 创建launch.json文件 3.2.3 创建tasks.json文件 3.2.4 关于launch.json与tas">
+<meta property="og:description" content="装好 VS Code 和 C&#x2F;C++ 插件，并不代表已经具备编译与调试环境。沿着 MinGW 安装、环境变量验证和工作区配置，把编辑器、编译器与调试器连接起来；结合 launch.json 和 tasks.json 的路径设置，说明 Windows 下一个 C&#x2F;C++ 程序怎样完成构建和调试。">
 <meta property="og:locale">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/vscode-conf-01.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/vscode-conf-02.png">
@@ -66,10 +68,10 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/vscode-conf-019.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/vscode-conf-020.png">
 <meta property="article:published_time" content="2019-11-16T06:33:08.000Z">
-<meta property="article:modified_time" content="2025-01-05T07:07:12.167Z">
+<meta property="article:modified_time" content="2026-10-20T06:26:42.700Z">
 <meta property="article:author" content="Lili Liang 梁莉莉">
-<meta property="article:tag" content="VScode">
 <meta property="article:tag" content="Configuration">
+<meta property="article:tag" content="VScode">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/vscode-conf-01.png">
 
@@ -90,8 +92,16 @@
 <link rel="stylesheet" href="/css/style.css">
 
     
+<link rel="stylesheet" href="/css/atom-one-light.css">
+
+    
 <link rel="stylesheet" href="/css/markdown.css">
 
+    
+        
+<link rel="stylesheet" href="/css/post-toc.css">
+
+    
     
 <link rel="stylesheet" href="/css/fonts.css">
 
@@ -115,7 +125,7 @@
 <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Lili Liang" type="application/atom+xml">
 </head>
 
-    <body>
+    <body class="post-page">
         <div class="paper">
             <div class="paper-main">
                 
@@ -135,12 +145,17 @@
 </div>
 
                 
-                <div class="post-main">
+                
+<div class="post-layout" data-post-layout>
+
+<div class="post-main">
     
         <!-- Post Title -->
         <div class="post-main-title">
             VScode 配置 C/C++ 环境(MinGW) &amp;&amp; 编写运行 C/C++ 程序
         </div>
+
+        
 
         <!-- Post Meta Information -->
         <div class="post-meta">
@@ -149,7 +164,7 @@
 
             <!-- Show Last Updated Date -->
             
-                Last updated: Jan 5, 2025 ｜ 
+                Last updated: Oct 20, 2026 ｜ 
             
 
             <!-- Show Post Categories -->
@@ -158,40 +173,20 @@
             
         </div>
 
+        
+
+        
+    
+    <aside class="post-summary" aria-label="摘要">
+        <span class="post-summary-label">摘要</span>
+        <p>装好 VS Code 和 C/C++ 插件，并不代表已经具备编译与调试环境。沿着 MinGW 安装、环境变量验证和工作区配置，把编辑器、编译器与调试器连接起来；结合 launch.json 和 tasks.json 的路径设置，说明 Windows 下一个 C/C++ 程序怎样完成构建和调试。</p>
+    </aside>
+
+
+
         <!-- Post Content -->
         <div class="post-md">
-            <!-- toc -->
-<ul>
-<li><a href="#1-%E5%85%B3%E4%BA%8Evscode">1 关于VScode</a></li>
-<li><a href="#2-%E9%85%8D%E7%BD%AEmingw%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F">2 配置MinGW环境变量</a>
-<ul>
-<li><a href="#21-mingw%E4%B8%8B%E8%BD%BD">2.1 MinGW下载</a></li>
-<li><a href="#22-%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F">2.2 配置环境变量</a></li>
-<li><a href="#23-%E6%B5%8B%E8%AF%95%E6%98%AF%E5%90%A6%E9%85%8D%E7%BD%AE%E6%88%90%E5%8A%9F">2.3 测试是否配置成功</a></li>
-</ul>
-</li>
-<li><a href="#3-vscode%E7%9B%B8%E5%85%B3%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE">3 VScode相关插件配置</a>
-<ul>
-<li><a href="#31-%E5%AE%89%E8%A3%85cc%E6%8F%92%E4%BB%B6">3.1 安装C/C++插件</a></li>
-<li><a href="#32-%E9%85%8D%E7%BD%AEvscode%E7%9B%B8%E5%85%B3%E6%96%87%E4%BB%B6">3.2 配置.vscode相关文件</a>
-<ul>
-<li><a href="#321-%E5%88%9B%E5%BB%BAvscode%E6%96%87%E4%BB%B6%E5%A4%B9">3.2.1 创建.vscode文件夹</a></li>
-<li><a href="#322-%E5%88%9B%E5%BB%BAlaunchjson%E6%96%87%E4%BB%B6">3.2.2 创建launch.json文件</a></li>
-<li><a href="#323-%E5%88%9B%E5%BB%BAtasksjson%E6%96%87%E4%BB%B6">3.2.3 创建tasks.json文件</a></li>
-<li><a href="#324-%E5%85%B3%E4%BA%8Elaunchjson%E4%B8%8Etasksjson%E7%9A%84%E8%AF%B4%E6%98%8E">3.2.4 关于launch.json与tasks.json的说明</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#4-%E8%B0%83%E8%AF%95cpp%E7%A8%8B%E5%BA%8F">4 调试cpp程序</a>
-<ul>
-<li><a href="#41-%E7%BC%96%E5%86%99%E4%BB%A3%E7%A0%81">4.1 编写代码</a></li>
-<li><a href="#42-%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F">4.2 运行程序</a></li>
-</ul>
-</li>
-</ul>
-<!-- tocstop -->
-<blockquote>
+            <blockquote>
 <p>之前 C/C++ 的 IDE 一直用的是 cb，但是感觉 cb 版本太老并且高亮效果太差，而 Devc++ 使用体验差（尤其是代码补全功能），大一的时候还用过<code>宇宙第一IDE</code> —— Visual Studio，奈何太臃肿了。而以前用 VScode 的主要功能就是预览各种类型的文件以及编写 markdown 文档，不由感叹 VScode 真的太好用！酷炫的各种主题以及高亮显示，还有便捷的代码替换功能，预览功能等等。于是决定在 IDE 方面要抛弃 cb ，选择 VScode。</p>
 </blockquote>
 <p><strong>安装思路</strong>：VScode 上有 C/C++ 的拓展插件，但是没有配有 C/C++ 的编译器，需要安装者自行下载，这里我选择的是 Windows 环境下最常见的 MinGW 编译器。MinGW 需配置环境变量，供 VScode 调用。在 VScode 中需创建配置文件（json），设置运行 C/C++ 程序的相关参数。</p>
@@ -247,34 +242,34 @@
 <p>在 vscode 文件下创建<code>launch.json</code>文件：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/vscode-conf-013.png" alt="vscode-conf-013"></p>
 <p>在<code>launch.json</code>下粘贴如下代码：</p>
-<div class="highlight"><pre class="code"><code>&#123;
-    <span class="hljs-string">&quot;version&quot;</span>: <span class="hljs-string">&quot;0.2.0&quot;</span>,
-    <span class="hljs-string">&quot;configurations&quot;</span>: [
+<pre><code class="language-powershell">&#123;
+    &quot;version&quot;: &quot;0.2.0&quot;,
+    &quot;configurations&quot;: [
         &#123;
-            <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;(gdb) Launch&quot;</span>,	// 配置名称，将会在启动配置的下拉菜单中显示
-            <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;cppdbg&quot;</span>, 		// 配置类型，这里只能为<span class="hljs-type">cppdbg</span>
-            <span class="hljs-string">&quot;request&quot;</span>: <span class="hljs-string">&quot;launch&quot;</span>,	// 请求配置类型，可以为<span class="hljs-type">launch</span>（启动）或<span class="hljs-type">attach</span>（附加）
-            <span class="hljs-string">&quot;program&quot;</span>: <span class="hljs-string">&quot;<span class="hljs-variable">$</span>&#123;fileDirname&#125;/<span class="hljs-variable">$</span>&#123;fileBasenameNoExtension&#125;.exe&quot;</span>,// 将要进行调试的程序的路径
-            <span class="hljs-string">&quot;args&quot;</span>: [],				// 程序调试时传递给程序的命令行参数，一般设为空即可
-            <span class="hljs-string">&quot;stopAtEntry&quot;</span>: <span class="hljs-type">false</span>, 	// 设为<span class="hljs-type">true</span>时程序将暂停在程序入口处，一般设置为<span class="hljs-type">false</span>
-            <span class="hljs-string">&quot;cwd&quot;</span>: <span class="hljs-string">&quot;<span class="hljs-variable">$</span>&#123;workspaceRoot&#125;&quot;</span>,// 调试程序时的工作目录，一般为<span class="hljs-variable">$</span>&#123;<span class="hljs-type">workspaceRoot</span>&#125;即代码所在目录
-            <span class="hljs-string">&quot;environment&quot;</span>: [],
-            <span class="hljs-string">&quot;externalConsole&quot;</span>: <span class="hljs-type">true</span>,// 调试时是否显示控制台窗口，一般设置为<span class="hljs-type">true</span>显示控制台
-            <span class="hljs-string">&quot;MIMode&quot;</span>: <span class="hljs-string">&quot;gdb&quot;</span>,
-            <span class="hljs-string">&quot;miDebuggerPath&quot;</span>: <span class="hljs-string">&quot;D:/MinGW/bin/gdb.exe&quot;</span>,// <span class="hljs-type">miDebugger</span>的路径，注意这里要与<span class="hljs-type">MinGw</span>的路径对应
-            <span class="hljs-string">&quot;preLaunchTask&quot;</span>: <span class="hljs-string">&quot;g++&quot;</span>,	// 调试会话开始前执行的任务，一般为编译程序，<span class="hljs-type">c</span>++为<span class="hljs-type">g</span>++, <span class="hljs-type">c</span>为<span class="hljs-type">gcc</span>
-            <span class="hljs-string">&quot;setupCommands&quot;</span>: [
+            &quot;name&quot;: &quot;(gdb) Launch&quot;,	// 配置名称，将会在启动配置的下拉菜单中显示
+            &quot;type&quot;: &quot;cppdbg&quot;, 		// 配置类型，这里只能为cppdbg
+            &quot;request&quot;: &quot;launch&quot;,	// 请求配置类型，可以为launch（启动）或attach（附加）
+            &quot;program&quot;: &quot;$&#123;fileDirname&#125;/$&#123;fileBasenameNoExtension&#125;.exe&quot;,// 将要进行调试的程序的路径
+            &quot;args&quot;: [],				// 程序调试时传递给程序的命令行参数，一般设为空即可
+            &quot;stopAtEntry&quot;: false, 	// 设为true时程序将暂停在程序入口处，一般设置为false
+            &quot;cwd&quot;: &quot;$&#123;workspaceRoot&#125;&quot;,// 调试程序时的工作目录，一般为$&#123;workspaceRoot&#125;即代码所在目录
+            &quot;environment&quot;: [],
+            &quot;externalConsole&quot;: true,// 调试时是否显示控制台窗口，一般设置为true显示控制台
+            &quot;MIMode&quot;: &quot;gdb&quot;,
+            &quot;miDebuggerPath&quot;: &quot;D:/MinGW/bin/gdb.exe&quot;,// miDebugger的路径，注意这里要与MinGw的路径对应
+            &quot;preLaunchTask&quot;: &quot;g++&quot;,	// 调试会话开始前执行的任务，一般为编译程序，c++为g++, c为gcc
+            &quot;setupCommands&quot;: [
                 &#123;
-                    <span class="hljs-string">&quot;description&quot;</span>: <span class="hljs-string">&quot;Enable pretty-printing for gdb&quot;</span>,
-                    <span class="hljs-string">&quot;text&quot;</span>: <span class="hljs-string">&quot;-enable-pretty-printing&quot;</span>,
-                    <span class="hljs-string">&quot;ignoreFailures&quot;</span>: <span class="hljs-type">true</span>
+                    &quot;description&quot;: &quot;Enable pretty-printing for gdb&quot;,
+                    &quot;text&quot;: &quot;-enable-pretty-printing&quot;,
+                    &quot;ignoreFailures&quot;: true
                 &#125;
             ]
         &#125;
     ]
 &#125;
 
-</code></pre></div>
+</code></pre>
 <p><strong>需要根据你的电脑环境进行修改的选项是</strong><code>&quot;miDebuggerPath&quot;</code>，注意路径中斜杠的问题：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/vscode-conf-014.png" alt="vscode-conf-014"></p>
 <p><strong>注意</strong>：有朋友指出在路径中用单斜杠不行，应该和系统有关，建议大家单斜杠和双斜杠都试试，哪个可以用哪个。</p>
@@ -282,25 +277,25 @@
 <p>在 VScode 文件下创建<code>tasks.json</code>文件：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/vscode-conf-015.png" alt="vscode-conf-015"></p>
 <p>在<code>tasks.json</code>中粘贴如下代码:</p>
-<div class="highlight"><pre class="code"><code>&#123;
-    <span class="hljs-string">&quot;version&quot;</span>: <span class="hljs-string">&quot;2.0.0&quot;</span>,
-    <span class="hljs-string">&quot;command&quot;</span>: <span class="hljs-string">&quot;g++&quot;</span>,
-    <span class="hljs-string">&quot;args&quot;</span>: [<span class="hljs-string">&quot;-g&quot;</span>,<span class="hljs-string">&quot;<span class="hljs-variable">$</span>&#123;file&#125;&quot;</span>,<span class="hljs-string">&quot;-o&quot;</span>,<span class="hljs-string">&quot;<span class="hljs-variable">$</span>&#123;fileDirname&#125;/<span class="hljs-variable">$</span>&#123;fileBasenameNoExtension&#125;.exe&quot;</span>], // 编译命令参数
-    <span class="hljs-string">&quot;problemMatcher&quot;</span>: &#123;
-        <span class="hljs-string">&quot;owner&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,
-        <span class="hljs-string">&quot;fileLocation&quot;</span>: [<span class="hljs-string">&quot;relative&quot;</span>, <span class="hljs-string">&quot;<span class="hljs-variable">$</span>&#123;workspaceRoot&#125;&quot;</span>],
-        <span class="hljs-string">&quot;pattern&quot;</span>: &#123;
-            <span class="hljs-string">&quot;regexp&quot;</span>: <span class="hljs-string">&quot;^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)<span class="hljs-variable">$</span>&quot;</span>,
-            <span class="hljs-string">&quot;file&quot;</span>: <span class="hljs-number">1</span>,
-            <span class="hljs-string">&quot;line&quot;</span>: <span class="hljs-number">2</span>,
-            <span class="hljs-string">&quot;column&quot;</span>: <span class="hljs-number">3</span>,
-            <span class="hljs-string">&quot;severity&quot;</span>: <span class="hljs-number">4</span>,
-            <span class="hljs-string">&quot;message&quot;</span>: <span class="hljs-number">5</span>
+<pre><code class="language-powershell">&#123;
+    &quot;version&quot;: &quot;2.0.0&quot;,
+    &quot;command&quot;: &quot;g++&quot;,
+    &quot;args&quot;: [&quot;-g&quot;,&quot;$&#123;file&#125;&quot;,&quot;-o&quot;,&quot;$&#123;fileDirname&#125;/$&#123;fileBasenameNoExtension&#125;.exe&quot;], // 编译命令参数
+    &quot;problemMatcher&quot;: &#123;
+        &quot;owner&quot;: &quot;cpp&quot;,
+        &quot;fileLocation&quot;: [&quot;relative&quot;, &quot;$&#123;workspaceRoot&#125;&quot;],
+        &quot;pattern&quot;: &#123;
+            &quot;regexp&quot;: &quot;^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$&quot;,
+            &quot;file&quot;: 1,
+            &quot;line&quot;: 2,
+            &quot;column&quot;: 3,
+            &quot;severity&quot;: 4,
+            &quot;message&quot;: 5
         &#125;
     &#125;
 &#125;
 
-</code></pre></div>
+</code></pre>
 <p><strong>直接粘贴即可，不需修改</strong>。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/vscode-conf-016.png" alt="vscode-conf-016"></p>
 <h4><span id="324-关于launchjson与tasksjson的说明">3.2.4 关于launch.json与tasks.json的说明</span></h4>
@@ -317,14 +312,14 @@
 <p>因为 VScode 不像 IDE（比如 CB，VS 等）在调试的时候黑框下面有点击任意键返回，所以需要手动加一个断点，或者程序最后加一个 system(“pause”) 等，命令窗口才能停留。</p>
 </blockquote>
 <h3><span id="41-编写代码">4.1 编写代码</span></h3>
-<div class="highlight"><pre class="code"><code><span class="hljs-comment">#include &lt;bits/stdc++.h&gt;</span>
-<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<pre><code class="language-powershell">#include &lt;bits/stdc++.h&gt;
+using namespace std;
 int main()&#123;
-    cout &lt;&lt; <span class="hljs-string">&quot;hello world&quot;</span> &lt;&lt; endl;
-    system(<span class="hljs-string">&quot;pause&quot;</span>);
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    cout &lt;&lt; &quot;hello world&quot; &lt;&lt; endl;
+    system(&quot;pause&quot;);
+    return 0;
 &#125;
-</code></pre></div>
+</code></pre>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/vscode-conf-018.png" alt="vscode-conf-018"></p>
 <h3><span id="42-运行程序">4.2 运行程序</span></h3>
 <p>快捷键 F5，或点击左边面板的绿色小箭头。</p>
@@ -341,13 +336,34 @@ int main()&#123;
         <div class="post-meta">
             Tags:
             
-                <a href="/tags/VScode/"> / VScode</a>
-            
                 <a href="/tags/Configuration/"> / Configuration</a>
+            
+                <a href="/tags/VScode/"> / VScode</a>
             
         </div>
     
 </div>
+
+    <aside class="post-toc" data-post-toc aria-label="Article contents" hidden>
+    <details class="post-toc-panel" open>
+        <summary class="post-toc-summary">
+            <span class="post-toc-title">On this page</span>
+            <span class="post-toc-current" aria-hidden="true"></span>
+            <svg class="post-toc-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </summary>
+        <nav class="post-toc-nav" aria-label="Table of contents" tabindex="0">
+            <ol class="post-toc-list"></ol>
+        </nav>
+    </details>
+</aside>
+
+</div>
+<script src="/js/post-toc.js" defer></script>
+<script src="/js/post-images.js" defer></script>
+
+
                 <div class="footer">
     <span>Copyright © 2026 Lili Liang</span>
     <span>Build with <a target="_blank" rel="noopener" href="https://github.com/LenChou95/hexo-theme-ZenMind">ZenMind</a></span>
@@ -363,9 +379,10 @@ int main()&#123;
 
             button.addEventListener('click', () => {
             const codeLines = pre.querySelectorAll('.hljs-ln-code');
-            const codeContent = Array.from(codeLines)
-                .map(line => line.textContent)
-                .join('\n');
+            // 单行代码块不会生成行号表格，此时直接取 <code> 的文本
+            const codeContent = codeLines.length
+                ? Array.from(codeLines).map(line => line.textContent).join('\n')
+                : (pre.querySelector('code') || pre).textContent;
 
             navigator.clipboard.writeText(codeContent).then(() => {
                 button.innerText = '√ Copied!';
@@ -378,16 +395,20 @@ int main()&#123;
             });
             });
 
-            pre.appendChild(button);
+            // 右上角工具栏：复制按钮（悬停显示）+ 语言标签
+            const tools = document.createElement('div');
+            tools.className = 'code-tools';
+            tools.appendChild(button);
+            if (pre.dataset.lang) {
+                const tag = document.createElement('span');
+                tag.className = 'code-lang';
+                tag.innerText = pre.dataset.lang;
+                tools.appendChild(tag);
+            }
+            pre.appendChild(tools);
         });
     });
 </script>
-
-<!-- Change Code Style -->
-
-<link rel="stylesheet" href="/css/a11y-dark.min.css">
-
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"> -->
 
 
 <script src="/js/highlight.min.js"></script>
@@ -397,7 +418,28 @@ int main()&#123;
 
 
 <script>
-    hljs.initHighlightingOnLoad();
+    // 代码块右上角显示的语言名，没列出的直接显示大写
+    const LANG_NAMES = {
+        cpp: 'C++', 'c++': 'C++', c: 'C', java: 'Java', python: 'Python',
+        javascript: 'JavaScript', js: 'JavaScript', typescript: 'TypeScript', ts: 'TypeScript',
+        bash: 'Bash', shell: 'Shell', sh: 'Shell', powershell: 'PowerShell', cmd: 'CMD', bat: 'CMD',
+        sql: 'SQL', cypher: 'Cypher', yaml: 'YAML', yml: 'YAML', json: 'JSON', ini: 'INI',
+        html: 'HTML', xml: 'XML', css: 'CSS', markdown: 'Markdown', md: 'Markdown',
+        text: 'Text', txt: 'Text', plaintext: 'Text'
+    };
+
+    document.querySelectorAll('pre > code').forEach((code) => {
+        const match = code.className.match(/\blanguage-(\S+)/);
+        let lang = match ? match[1].toLowerCase() : 'text';
+        code.parentElement.dataset.lang = LANG_NAMES[lang] || lang.toUpperCase();
+
+        // highlight.js 从 "language-c++" 只能解析出 "c"；不认识的语言（如 cypher）和没写语言的块按纯文本处理，避免自动识别乱上色
+        if (lang === 'c++') lang = 'cpp';
+        if (!hljs.getLanguage(lang)) lang = 'plaintext';
+        code.className = 'language-' + lang;
+    });
+
+    hljs.highlightAll();
     hljs.initLineNumbersOnLoad();
 </script>
 

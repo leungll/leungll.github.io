@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="default">
     <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
@@ -38,19 +38,21 @@
         <title>基于Hexo + Github &amp;&amp; Gitee 搭建个人 Blog | Lili Liang</title>
     
   
+    
+
     <!-- Open graph -->
-    <meta name="description" content="1 关于GitHub Pages 2 关于Hexo 3 Hexo环境搭建 4 Hexo主题更换 5 Hexo常用命令 6 解决Github博客访问过慢问题的方案 7 关于Gitee     一年前使用 Hexo + Github 搭过一个博客，但是当时事情多，搭好之后也没有后续维护，导致最后不了了之。现在闲下来，重新打开当时搭的博客，发现实在是太花哨了，因此决定重新搭一个，并记录一下采坑的过程">
+    <meta name="description" content="个人博客可以用 Markdown 维护内容，由 Hexo 生成静态网页，再交给托管平台发布。这份搭建记录串起环境准备、SSH 连接、主题更换和文章部署，并记录 GitHub 与 Gitee 双站点发布时的配置差异，帮助理解本地写作如何衔接到线上访问。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于Hexo + Github &amp;&amp; Gitee 搭建个人 Blog">
 <meta property="og:url" content="https://leungll.site/2020/04/02/hexo-github-gitee-permalink/index.html">
 <meta property="og:site_name" content="Lili Liang">
-<meta property="og:description" content="1 关于GitHub Pages 2 关于Hexo 3 Hexo环境搭建 4 Hexo主题更换 5 Hexo常用命令 6 解决Github博客访问过慢问题的方案 7 关于Gitee     一年前使用 Hexo + Github 搭过一个博客，但是当时事情多，搭好之后也没有后续维护，导致最后不了了之。现在闲下来，重新打开当时搭的博客，发现实在是太花哨了，因此决定重新搭一个，并记录一下采坑的过程">
+<meta property="og:description" content="个人博客可以用 Markdown 维护内容，由 Hexo 生成静态网页，再交给托管平台发布。这份搭建记录串起环境准备、SSH 连接、主题更换和文章部署，并记录 GitHub 与 Gitee 双站点发布时的配置差异，帮助理解本地写作如何衔接到线上访问。">
 <meta property="og:locale">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/hexo-github-gitee-01.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/hexo-github-gitee-02.jpg">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/hexo-github-gitee-03.png">
 <meta property="article:published_time" content="2020-04-02T12:15:19.000Z">
-<meta property="article:modified_time" content="2025-01-05T07:21:24.113Z">
+<meta property="article:modified_time" content="2026-10-20T06:26:42.696Z">
 <meta property="article:author" content="Lili Liang 梁莉莉">
 <meta property="article:tag" content="Hexo">
 <meta property="article:tag" content="Gitee">
@@ -77,8 +79,16 @@
 <link rel="stylesheet" href="/css/style.css">
 
     
+<link rel="stylesheet" href="/css/atom-one-light.css">
+
+    
 <link rel="stylesheet" href="/css/markdown.css">
 
+    
+        
+<link rel="stylesheet" href="/css/post-toc.css">
+
+    
     
 <link rel="stylesheet" href="/css/fonts.css">
 
@@ -102,7 +112,7 @@
 <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Lili Liang" type="application/atom+xml">
 </head>
 
-    <body>
+    <body class="post-page">
         <div class="paper">
             <div class="paper-main">
                 
@@ -122,12 +132,17 @@
 </div>
 
                 
-                <div class="post-main">
+                
+<div class="post-layout" data-post-layout>
+
+<div class="post-main">
     
         <!-- Post Title -->
         <div class="post-main-title">
             基于Hexo + Github &amp;&amp; Gitee 搭建个人 Blog
         </div>
+
+        
 
         <!-- Post Meta Information -->
         <div class="post-meta">
@@ -136,7 +151,7 @@
 
             <!-- Show Last Updated Date -->
             
-                Last updated: Jan 5, 2025 ｜ 
+                Last updated: Oct 20, 2026 ｜ 
             
 
             <!-- Show Post Categories -->
@@ -145,20 +160,20 @@
             
         </div>
 
+        
+
+        
+    
+    <aside class="post-summary" aria-label="摘要">
+        <span class="post-summary-label">摘要</span>
+        <p>个人博客可以用 Markdown 维护内容，由 Hexo 生成静态网页，再交给托管平台发布。这份搭建记录串起环境准备、SSH 连接、主题更换和文章部署，并记录 GitHub 与 Gitee 双站点发布时的配置差异，帮助理解本地写作如何衔接到线上访问。</p>
+    </aside>
+
+
+
         <!-- Post Content -->
         <div class="post-md">
-            <!-- toc -->
-<ul>
-<li><a href="#1-%E5%85%B3%E4%BA%8Egithub-pages">1 关于GitHub Pages</a></li>
-<li><a href="#2-%E5%85%B3%E4%BA%8Ehexo">2 关于Hexo</a></li>
-<li><a href="#3-hexo%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA">3 Hexo环境搭建</a></li>
-<li><a href="#4-hexo%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2">4 Hexo主题更换</a></li>
-<li><a href="#5-hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4">5 Hexo常用命令</a></li>
-<li><a href="#6-%E8%A7%A3%E5%86%B3github%E5%8D%9A%E5%AE%A2%E8%AE%BF%E9%97%AE%E8%BF%87%E6%85%A2%E9%97%AE%E9%A2%98%E7%9A%84%E6%96%B9%E6%A1%88">6 解决Github博客访问过慢问题的方案</a></li>
-<li><a href="#7-%E5%85%B3%E4%BA%8Egitee">7 关于Gitee</a></li>
-</ul>
-<!-- tocstop -->
-<p><img src="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/hexo-github-gitee-01.png" alt="hexo-github-gitee-01"></p>
+            <p><img src="https://cdn.jsdelivr.net/gh/leungll/MyImgHosting/img/hexo-github-gitee-01.png" alt="hexo-github-gitee-01"></p>
 <blockquote>
 <p>一年前使用 Hexo + Github 搭过一个博客，但是当时事情多，搭好之后也没有后续维护，导致最后不了了之。现在闲下来，重新打开当时搭的博客，发现实在是太花哨了，因此决定重新搭一个，并记录一下采坑的过程，以便后续更新。</p>
 </blockquote>
@@ -218,24 +233,24 @@
 <ul>
 <li>
 <p>新建一篇博客：</p>
-<div class="highlight"><pre class="code"><code>hexo <span class="hljs-keyword">new</span> post <span class="hljs-string">&quot;article title&quot;</span>
-</code></pre></div>
+<pre><code class="language-cpp">hexo new post &quot;article title&quot;
+</code></pre>
 </li>
 <li>
 <p>部署至本地服务器（本地服务器端口：<code>http://localhost:4000</code>)：</p>
-<div class="highlight"><pre class="code"><code>hexo s
-</code></pre></div>
+<pre><code class="language-cpp">hexo s
+</code></pre>
 </li>
 <li>
 <p>运行生成、部署命令：</p>
-<div class="highlight"><pre class="code"><code>hexo g   <span class="hljs-comment">// 生成</span>
-hexo d   <span class="hljs-comment">// 部署</span>
-</code></pre></div>
+<pre><code class="language-cpp">hexo g   // 生成
+hexo d   // 部署
+</code></pre>
 </li>
 <li>
 <p>在部署前生成:</p>
-<div class="highlight"><pre class="code"><code>hexo d -g 
-</code></pre></div>
+<pre><code class="language-cpp">hexo d -g 
+</code></pre>
 </li>
 </ul>
 <h2><span id="6-解决github博客访问过慢问题的方案">6 解决Github博客访问过慢问题的方案</span></h2>
@@ -268,18 +283,18 @@ hexo d   <span class="hljs-comment">// 部署</span>
 </li>
 <li>
 <p>修改<strong>本地 Hexo 根目录下</strong>的 <strong>_config.yml</strong> 文件，将 <strong>Deployment</strong> 及 <strong>URL</strong> 更改为相应的 gitee 链接</p>
-<div class="highlight"><pre class="code"><code># URL
-## If your site <span class="hljs-keyword">is</span> <span class="hljs-keyword">put</span> in <span class="hljs-keyword">a</span> subdirectory, <span class="hljs-keyword">set</span> url <span class="hljs-keyword">as</span> <span class="hljs-string">&#x27;http://yoursite.com/child&#x27;</span> <span class="hljs-built_in">and</span> root <span class="hljs-keyword">as</span> <span class="hljs-string">&#x27;/child/&#x27;</span>
-ur<span class="hljs-variable">l:</span> http://yourname.gitee.io/
-roo<span class="hljs-variable">t:</span> /
-</code></pre></div>
-<div class="highlight"><pre class="code"><code><span class="hljs-meta"># Deployment</span>
-<span class="hljs-meta">## Docs: https:<span class="hljs-comment">//hexo.io/docs/deployment.html</span></span>
-<span class="hljs-symbol">deploy:</span>
-<span class="hljs-symbol">  type:</span> git
-<span class="hljs-symbol">  repo:</span> https:<span class="hljs-comment">//gitee.com/yourname/yourname.git</span>
-<span class="hljs-symbol">  branch:</span> master
-</code></pre></div>
+<pre><code class="language-yaml"># URL
+## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
+url: http://yourname.gitee.io/
+root: /
+</code></pre>
+<pre><code class="language-yaml"># Deployment
+## Docs: https://hexo.io/docs/deployment.html
+deploy:
+  type: git
+  repo: https://gitee.com/yourname/yourname.git
+  branch: master
+</code></pre>
 </li>
 </ul>
 </li>
@@ -316,6 +331,27 @@ roo<span class="hljs-variable">t:</span> /
         </div>
     
 </div>
+
+    <aside class="post-toc" data-post-toc aria-label="Article contents" hidden>
+    <details class="post-toc-panel" open>
+        <summary class="post-toc-summary">
+            <span class="post-toc-title">On this page</span>
+            <span class="post-toc-current" aria-hidden="true"></span>
+            <svg class="post-toc-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </summary>
+        <nav class="post-toc-nav" aria-label="Table of contents" tabindex="0">
+            <ol class="post-toc-list"></ol>
+        </nav>
+    </details>
+</aside>
+
+</div>
+<script src="/js/post-toc.js" defer></script>
+<script src="/js/post-images.js" defer></script>
+
+
                 <div class="footer">
     <span>Copyright © 2026 Lili Liang</span>
     <span>Build with <a target="_blank" rel="noopener" href="https://github.com/LenChou95/hexo-theme-ZenMind">ZenMind</a></span>
@@ -331,9 +367,10 @@ roo<span class="hljs-variable">t:</span> /
 
             button.addEventListener('click', () => {
             const codeLines = pre.querySelectorAll('.hljs-ln-code');
-            const codeContent = Array.from(codeLines)
-                .map(line => line.textContent)
-                .join('\n');
+            // 单行代码块不会生成行号表格，此时直接取 <code> 的文本
+            const codeContent = codeLines.length
+                ? Array.from(codeLines).map(line => line.textContent).join('\n')
+                : (pre.querySelector('code') || pre).textContent;
 
             navigator.clipboard.writeText(codeContent).then(() => {
                 button.innerText = '√ Copied!';
@@ -346,16 +383,20 @@ roo<span class="hljs-variable">t:</span> /
             });
             });
 
-            pre.appendChild(button);
+            // 右上角工具栏：复制按钮（悬停显示）+ 语言标签
+            const tools = document.createElement('div');
+            tools.className = 'code-tools';
+            tools.appendChild(button);
+            if (pre.dataset.lang) {
+                const tag = document.createElement('span');
+                tag.className = 'code-lang';
+                tag.innerText = pre.dataset.lang;
+                tools.appendChild(tag);
+            }
+            pre.appendChild(tools);
         });
     });
 </script>
-
-<!-- Change Code Style -->
-
-<link rel="stylesheet" href="/css/a11y-dark.min.css">
-
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"> -->
 
 
 <script src="/js/highlight.min.js"></script>
@@ -365,7 +406,28 @@ roo<span class="hljs-variable">t:</span> /
 
 
 <script>
-    hljs.initHighlightingOnLoad();
+    // 代码块右上角显示的语言名，没列出的直接显示大写
+    const LANG_NAMES = {
+        cpp: 'C++', 'c++': 'C++', c: 'C', java: 'Java', python: 'Python',
+        javascript: 'JavaScript', js: 'JavaScript', typescript: 'TypeScript', ts: 'TypeScript',
+        bash: 'Bash', shell: 'Shell', sh: 'Shell', powershell: 'PowerShell', cmd: 'CMD', bat: 'CMD',
+        sql: 'SQL', cypher: 'Cypher', yaml: 'YAML', yml: 'YAML', json: 'JSON', ini: 'INI',
+        html: 'HTML', xml: 'XML', css: 'CSS', markdown: 'Markdown', md: 'Markdown',
+        text: 'Text', txt: 'Text', plaintext: 'Text'
+    };
+
+    document.querySelectorAll('pre > code').forEach((code) => {
+        const match = code.className.match(/\blanguage-(\S+)/);
+        let lang = match ? match[1].toLowerCase() : 'text';
+        code.parentElement.dataset.lang = LANG_NAMES[lang] || lang.toUpperCase();
+
+        // highlight.js 从 "language-c++" 只能解析出 "c"；不认识的语言（如 cypher）和没写语言的块按纯文本处理，避免自动识别乱上色
+        if (lang === 'c++') lang = 'cpp';
+        if (!hljs.getLanguage(lang)) lang = 'plaintext';
+        code.className = 'language-' + lang;
+    });
+
+    hljs.highlightAll();
     hljs.initLineNumbersOnLoad();
 </script>
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="default">
     <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
@@ -38,16 +38,18 @@
         <title>【蓝桥杯 2017初赛 C/C++大学A组】迷宫（dfs模板） | Lili Liang</title>
     
   
+    
+
     <!-- Open graph -->
-    <meta name="description" content="题目链接：http:&#x2F;&#x2F;oj.ecustacm.cn&#x2F;problem.php?id&#x3D;1317 1 题目 题目描述  X 星球的一处迷宫游乐场建在某个小山坡上。它是由 10x10 相互连通的小房间组成的。房间的地板上写着一个很大的字母。我们假设玩家是面朝上坡的方向站立，则：L 表示走到左边的房间，R 表示走到右边的房间，U 表示走到上坡方向的房间，D 表示走到下坡方向的房间。X 星球的居民有点懒，不">
+    <meta name="description" content="每个房间只允许沿字母指定的方向前进，玩家的路线便由起点唯一确定。逐个起点进行 DFS，越过边界说明能够离开，再次访问同一房间则说明陷入循环。用这两个终止条件统计逃出人数，重点在于区分走出地图与路径重复，而无需搜索所有方向。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【蓝桥杯 2017初赛 C&#x2F;C++大学A组】迷宫（dfs模板）">
 <meta property="og:url" content="https://leungll.site/2020/10/12/oj-1317/index.html">
 <meta property="og:site_name" content="Lili Liang">
-<meta property="og:description" content="题目链接：http:&#x2F;&#x2F;oj.ecustacm.cn&#x2F;problem.php?id&#x3D;1317 1 题目 题目描述  X 星球的一处迷宫游乐场建在某个小山坡上。它是由 10x10 相互连通的小房间组成的。房间的地板上写着一个很大的字母。我们假设玩家是面朝上坡的方向站立，则：L 表示走到左边的房间，R 表示走到右边的房间，U 表示走到上坡方向的房间，D 表示走到下坡方向的房间。X 星球的居民有点懒，不">
+<meta property="og:description" content="每个房间只允许沿字母指定的方向前进，玩家的路线便由起点唯一确定。逐个起点进行 DFS，越过边界说明能够离开，再次访问同一房间则说明陷入循环。用这两个终止条件统计逃出人数，重点在于区分走出地图与路径重复，而无需搜索所有方向。">
 <meta property="og:locale">
 <meta property="article:published_time" content="2020-10-12T11:38:14.000Z">
-<meta property="article:modified_time" content="2024-05-03T13:37:10.439Z">
+<meta property="article:modified_time" content="2026-10-20T06:26:42.697Z">
 <meta property="article:author" content="Lili Liang 梁莉莉">
 <meta property="article:tag" content="C&#x2F;C++">
 <meta property="article:tag" content="蓝桥杯">
@@ -72,8 +74,16 @@
 <link rel="stylesheet" href="/css/style.css">
 
     
+<link rel="stylesheet" href="/css/atom-one-light.css">
+
+    
 <link rel="stylesheet" href="/css/markdown.css">
 
+    
+        
+<link rel="stylesheet" href="/css/post-toc.css">
+
+    
     
 <link rel="stylesheet" href="/css/fonts.css">
 
@@ -97,7 +107,7 @@
 <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Lili Liang" type="application/atom+xml">
 </head>
 
-    <body>
+    <body class="post-page">
         <div class="paper">
             <div class="paper-main">
                 
@@ -117,12 +127,17 @@
 </div>
 
                 
-                <div class="post-main">
+                
+<div class="post-layout" data-post-layout>
+
+<div class="post-main">
     
         <!-- Post Title -->
         <div class="post-main-title">
             【蓝桥杯 2017初赛 C/C++大学A组】迷宫（dfs模板）
         </div>
+
+        
 
         <!-- Post Meta Information -->
         <div class="post-meta">
@@ -131,7 +146,7 @@
 
             <!-- Show Last Updated Date -->
             
-                Last updated: May 3, 2024 ｜ 
+                Last updated: Oct 20, 2026 ｜ 
             
 
             <!-- Show Post Categories -->
@@ -139,6 +154,17 @@
                 <a href="/categories/%E7%AE%97%E6%B3%95/"># 算法</a>
             
         </div>
+
+        
+
+        
+    
+    <aside class="post-summary" aria-label="摘要">
+        <span class="post-summary-label">摘要</span>
+        <p>每个房间只允许沿字母指定的方向前进，玩家的路线便由起点唯一确定。逐个起点进行 DFS，越过边界说明能够离开，再次访问同一房间则说明陷入循环。用这两个终止条件统计逃出人数，重点在于区分走出地图与路径重复，而无需搜索所有方向。</p>
+    </aside>
+
+
 
         <!-- Post Content -->
         <div class="post-md">
@@ -148,7 +174,7 @@
 <blockquote>
 <p>X 星球的一处迷宫游乐场建在某个小山坡上。它是由 10x10 相互连通的小房间组成的。房间的地板上写着一个很大的字母。我们假设玩家是面朝上坡的方向站立，则：L 表示走到左边的房间，R 表示走到右边的房间，U 表示走到上坡方向的房间，D 表示走到下坡方向的房间。X 星球的居民有点懒，不愿意费力思考。他们更喜欢玩运气类的游戏。这个游戏也是如此！开始的时候，直升机把 100 名玩家放入一个个小房间内。玩家一定要按照地上的字母移动。</p>
 <p>迷宫地图如下：</p>
-<div class="highlight"><pre class="code"><code><span class="hljs-attribute">UDDLUULRUL
+<pre><code>UDDLUULRUL
 UURLLLRRRU
 RRUURLDLRD
 RUDDDDUUUU
@@ -157,8 +183,8 @@ DURLRLDLRL
 ULLURLLRDU
 RDLULLRDDD
 UUDDUDUDLL
-ULRDLUURRR</span>
-</code></pre></div>
+ULRDLUURRR
+</code></pre>
 <p>请你计算一下，最后，有多少玩家会走出迷宫? 而不是在里边兜圈子。</p>
 </blockquote>
 <h3><span id="输出格式">输出格式</span></h3>
@@ -166,57 +192,57 @@ ULRDLUURRR</span>
 <p>输出一个整数表示答案</p>
 </blockquote>
 <h2><span id="2-题解">2 题解</span></h2>
-<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span>
-<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+using namespace std;
 
-<span class="hljs-keyword">char</span> c[<span class="hljs-number">15</span>][<span class="hljs-number">15</span>];
-<span class="hljs-keyword">bool</span> vis[<span class="hljs-number">15</span>][<span class="hljs-number">15</span>];
-<span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;
+char c[15][15];
+bool vis[15][15];
+int ans = 0;
 
-<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i, <span class="hljs-keyword">int</span> j)</span></span>&#123;
-    <span class="hljs-keyword">if</span>(i &lt; <span class="hljs-number">0</span> || j &lt; <span class="hljs-number">0</span> || i &gt; <span class="hljs-number">9</span> || j &gt; <span class="hljs-number">9</span>)&#123;
+void dfs(int i, int j)&#123;
+    if(i &lt; 0 || j &lt; 0 || i &gt; 9 || j &gt; 9)&#123;
         ans++;
-        <span class="hljs-keyword">return</span>;
-    &#125;<span class="hljs-keyword">else</span>&#123;
-        <span class="hljs-keyword">if</span>(vis[i][j])&#123;
-            <span class="hljs-keyword">return</span>;
+        return;
+    &#125;else&#123;
+        if(vis[i][j])&#123;
+            return;
         &#125;
-        vis[i][j] = <span class="hljs-number">1</span>;
-        <span class="hljs-keyword">if</span>(c[i][j] == <span class="hljs-string">&#x27;U&#x27;</span>)&#123;
-            <span class="hljs-built_in">dfs</span>(i - <span class="hljs-number">1</span>, j);
-        &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(c[i][j] == <span class="hljs-string">&#x27;D&#x27;</span>)&#123;
-            <span class="hljs-built_in">dfs</span>(i + <span class="hljs-number">1</span>, j);
-        &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(c[i][j] == <span class="hljs-string">&#x27;L&#x27;</span>)&#123;
-            <span class="hljs-built_in">dfs</span>(i, j - <span class="hljs-number">1</span>);
-        &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(c[i][j] == <span class="hljs-string">&#x27;R&#x27;</span>)&#123;
-            <span class="hljs-built_in">dfs</span>(i, j + <span class="hljs-number">1</span>);
+        vis[i][j] = 1;
+        if(c[i][j] == 'U')&#123;
+            dfs(i - 1, j);
+        &#125;else if(c[i][j] == 'D')&#123;
+            dfs(i + 1, j);
+        &#125;else if(c[i][j] == 'L')&#123;
+            dfs(i, j - 1);
+        &#125;else if(c[i][j] == 'R')&#123;
+            dfs(i, j + 1);
         &#125;
     &#125;
 &#125;
 
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
-    <span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> ONLINE_JUDGE</span>
-    <span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span>
-    <span class="hljs-built_in">freopen</span>(<span class="hljs-string">&quot;input.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, stdin);
-    <span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span>
+int main()&#123;
+    #ifdef ONLINE_JUDGE
+    #else
+    freopen(&quot;input.txt&quot;, &quot;r&quot;, stdin);
+    #endif
 
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; <span class="hljs-number">10</span>;i++)&#123;
-        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>;j &lt; <span class="hljs-number">10</span>;j++)&#123;
+    for(int i = 0;i &lt; 10;i++)&#123;
+        for(int j = 0;j &lt; 10;j++)&#123;
             cin &gt;&gt; c[i][j];
         &#125;
     &#125;
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; <span class="hljs-number">10</span>;i++)&#123;
-        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>;j &lt; <span class="hljs-number">10</span>;j++)&#123;
-            <span class="hljs-built_in">memset</span>(vis, <span class="hljs-number">0</span>, <span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(vis));
-            <span class="hljs-built_in">dfs</span>(i, j);
+    for(int i = 0;i &lt; 10;i++)&#123;
+        for(int j = 0;j &lt; 10;j++)&#123;
+            memset(vis, 0, sizeof(vis));
+            dfs(i, j);
         &#125;
     &#125;
     cout &lt;&lt; ans &lt;&lt; endl;
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    return 0;
 &#125;
-</code></pre></div>
+</code></pre>
 
         </div>
     
@@ -237,6 +263,27 @@ ULRDLUURRR</span>
         </div>
     
 </div>
+
+    <aside class="post-toc" data-post-toc aria-label="Article contents" hidden>
+    <details class="post-toc-panel" open>
+        <summary class="post-toc-summary">
+            <span class="post-toc-title">On this page</span>
+            <span class="post-toc-current" aria-hidden="true"></span>
+            <svg class="post-toc-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </summary>
+        <nav class="post-toc-nav" aria-label="Table of contents" tabindex="0">
+            <ol class="post-toc-list"></ol>
+        </nav>
+    </details>
+</aside>
+
+</div>
+<script src="/js/post-toc.js" defer></script>
+<script src="/js/post-images.js" defer></script>
+
+
                 <div class="footer">
     <span>Copyright © 2026 Lili Liang</span>
     <span>Build with <a target="_blank" rel="noopener" href="https://github.com/LenChou95/hexo-theme-ZenMind">ZenMind</a></span>
@@ -252,9 +299,10 @@ ULRDLUURRR</span>
 
             button.addEventListener('click', () => {
             const codeLines = pre.querySelectorAll('.hljs-ln-code');
-            const codeContent = Array.from(codeLines)
-                .map(line => line.textContent)
-                .join('\n');
+            // 单行代码块不会生成行号表格，此时直接取 <code> 的文本
+            const codeContent = codeLines.length
+                ? Array.from(codeLines).map(line => line.textContent).join('\n')
+                : (pre.querySelector('code') || pre).textContent;
 
             navigator.clipboard.writeText(codeContent).then(() => {
                 button.innerText = '√ Copied!';
@@ -267,16 +315,20 @@ ULRDLUURRR</span>
             });
             });
 
-            pre.appendChild(button);
+            // 右上角工具栏：复制按钮（悬停显示）+ 语言标签
+            const tools = document.createElement('div');
+            tools.className = 'code-tools';
+            tools.appendChild(button);
+            if (pre.dataset.lang) {
+                const tag = document.createElement('span');
+                tag.className = 'code-lang';
+                tag.innerText = pre.dataset.lang;
+                tools.appendChild(tag);
+            }
+            pre.appendChild(tools);
         });
     });
 </script>
-
-<!-- Change Code Style -->
-
-<link rel="stylesheet" href="/css/a11y-dark.min.css">
-
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"> -->
 
 
 <script src="/js/highlight.min.js"></script>
@@ -286,7 +338,28 @@ ULRDLUURRR</span>
 
 
 <script>
-    hljs.initHighlightingOnLoad();
+    // 代码块右上角显示的语言名，没列出的直接显示大写
+    const LANG_NAMES = {
+        cpp: 'C++', 'c++': 'C++', c: 'C', java: 'Java', python: 'Python',
+        javascript: 'JavaScript', js: 'JavaScript', typescript: 'TypeScript', ts: 'TypeScript',
+        bash: 'Bash', shell: 'Shell', sh: 'Shell', powershell: 'PowerShell', cmd: 'CMD', bat: 'CMD',
+        sql: 'SQL', cypher: 'Cypher', yaml: 'YAML', yml: 'YAML', json: 'JSON', ini: 'INI',
+        html: 'HTML', xml: 'XML', css: 'CSS', markdown: 'Markdown', md: 'Markdown',
+        text: 'Text', txt: 'Text', plaintext: 'Text'
+    };
+
+    document.querySelectorAll('pre > code').forEach((code) => {
+        const match = code.className.match(/\blanguage-(\S+)/);
+        let lang = match ? match[1].toLowerCase() : 'text';
+        code.parentElement.dataset.lang = LANG_NAMES[lang] || lang.toUpperCase();
+
+        // highlight.js 从 "language-c++" 只能解析出 "c"；不认识的语言（如 cypher）和没写语言的块按纯文本处理，避免自动识别乱上色
+        if (lang === 'c++') lang = 'cpp';
+        if (!hljs.getLanguage(lang)) lang = 'plaintext';
+        code.className = 'language-' + lang;
+    });
+
+    hljs.highlightAll();
     hljs.initLineNumbersOnLoad();
 </script>
 

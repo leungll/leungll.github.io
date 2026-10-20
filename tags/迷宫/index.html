@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="default">
     <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
@@ -38,6 +38,8 @@
         <title>迷宫 | Lili Liang</title>
     
   
+    
+
     <!-- Open graph -->
     <meta name="description" content="Lili Liang 梁莉莉">
 <meta property="og:type" content="website">
@@ -66,8 +68,12 @@
 <link rel="stylesheet" href="/css/style.css">
 
     
+<link rel="stylesheet" href="/css/atom-one-light.css">
+
+    
 <link rel="stylesheet" href="/css/markdown.css">
 
+    
     
 <link rel="stylesheet" href="/css/fonts.css">
 
@@ -147,9 +153,10 @@
 
             button.addEventListener('click', () => {
             const codeLines = pre.querySelectorAll('.hljs-ln-code');
-            const codeContent = Array.from(codeLines)
-                .map(line => line.textContent)
-                .join('\n');
+            // 单行代码块不会生成行号表格，此时直接取 <code> 的文本
+            const codeContent = codeLines.length
+                ? Array.from(codeLines).map(line => line.textContent).join('\n')
+                : (pre.querySelector('code') || pre).textContent;
 
             navigator.clipboard.writeText(codeContent).then(() => {
                 button.innerText = '√ Copied!';
@@ -162,16 +169,20 @@
             });
             });
 
-            pre.appendChild(button);
+            // 右上角工具栏：复制按钮（悬停显示）+ 语言标签
+            const tools = document.createElement('div');
+            tools.className = 'code-tools';
+            tools.appendChild(button);
+            if (pre.dataset.lang) {
+                const tag = document.createElement('span');
+                tag.className = 'code-lang';
+                tag.innerText = pre.dataset.lang;
+                tools.appendChild(tag);
+            }
+            pre.appendChild(tools);
         });
     });
 </script>
-
-<!-- Change Code Style -->
-
-<link rel="stylesheet" href="/css/a11y-dark.min.css">
-
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"> -->
 
 
 <script src="/js/highlight.min.js"></script>
@@ -181,7 +192,28 @@
 
 
 <script>
-    hljs.initHighlightingOnLoad();
+    // 代码块右上角显示的语言名，没列出的直接显示大写
+    const LANG_NAMES = {
+        cpp: 'C++', 'c++': 'C++', c: 'C', java: 'Java', python: 'Python',
+        javascript: 'JavaScript', js: 'JavaScript', typescript: 'TypeScript', ts: 'TypeScript',
+        bash: 'Bash', shell: 'Shell', sh: 'Shell', powershell: 'PowerShell', cmd: 'CMD', bat: 'CMD',
+        sql: 'SQL', cypher: 'Cypher', yaml: 'YAML', yml: 'YAML', json: 'JSON', ini: 'INI',
+        html: 'HTML', xml: 'XML', css: 'CSS', markdown: 'Markdown', md: 'Markdown',
+        text: 'Text', txt: 'Text', plaintext: 'Text'
+    };
+
+    document.querySelectorAll('pre > code').forEach((code) => {
+        const match = code.className.match(/\blanguage-(\S+)/);
+        let lang = match ? match[1].toLowerCase() : 'text';
+        code.parentElement.dataset.lang = LANG_NAMES[lang] || lang.toUpperCase();
+
+        // highlight.js 从 "language-c++" 只能解析出 "c"；不认识的语言（如 cypher）和没写语言的块按纯文本处理，避免自动识别乱上色
+        if (lang === 'c++') lang = 'cpp';
+        if (!hljs.getLanguage(lang)) lang = 'plaintext';
+        code.className = 'language-' + lang;
+    });
+
+    hljs.highlightAll();
     hljs.initLineNumbersOnLoad();
 </script>
 

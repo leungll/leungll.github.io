@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="robots" content="index, follow">
+
+    <!-- Baidu Site SEO -->
+    <meta name="baidu-site-verification" content="codeva-Fn6WoXLOMw" />
+    <!-- <meta name="baidu-site-verification" content="codeva-mdLm33TTHY" /> -->
+
+    <!-- Baidu analytics -->
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?1a364896f028f8093396007dc78eb0a0";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WF4EY3839B"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-WF4EY3839B');
+    </script>
+
+    <!-- Bing Site SEO -->
+    <meta name="msvalidate.01" content="85648BC2E966622B7CC9FF6BCB04E326" />
+
+    <!-- title -->
+    
+        <title>Shortest-Path Algorithms: Dijkstra and Bellman–Ford | Lili Liang</title>
+    
+  
+    
+        <link rel="alternate" hreflang="en" href="https://leungll.site/2020/05/26/choosing-shortest-path-algorithms/">
+    
+        <link rel="alternate" hreflang="zh-CN" href="https://leungll.site/2020/05/26/dijkstra-bellmanFord/">
+    
+
+    <!-- Open graph -->
+    <meta name="description" content="Choosing a shortest-path algorithm starts with its assumptions about edge weights. Dijkstra&#39;s finalization step relies on nonnegative weights; Bellman–Ford allows negative edges and detects reachable">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Shortest-Path Algorithms: Dijkstra and Bellman–Ford">
+<meta property="og:url" content="https://leungll.site/2020/05/26/choosing-shortest-path-algorithms/index.html">
+<meta property="og:site_name" content="Lili Liang">
+<meta property="og:description" content="Choosing a shortest-path algorithm starts with its assumptions about edge weights. Dijkstra&#39;s finalization step relies on nonnegative weights; Bellman–Ford allows negative edges and detects reachable">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://leungll.site/images/english-editions/edge-relaxation.svg">
+<meta property="article:published_time" content="2020-05-26T13:21:06.000Z">
+<meta property="article:modified_time" content="2026-10-19T04:00:00.000Z">
+<meta property="article:author" content="Lili Liang 梁莉莉">
+<meta property="article:tag" content="Dijkstra">
+<meta property="article:tag" content="BellmanFord">
+<meta property="article:tag" content="Algorithms">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://leungll.site/images/english-editions/edge-relaxation.svg">
+
+    <!-- Canonical -->
+    
+        <link rel="canonical" href="https://leungll.site/2020/05/26/choosing-shortest-path-algorithms/">
+    
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/logo.png">
+
+    <!-- CSS -->
+    
+<link rel="stylesheet" href="/css/reset.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/atom-one-light.css">
+
+    
+<link rel="stylesheet" href="/css/markdown.css">
+
+    
+        
+<link rel="stylesheet" href="/css/post-toc.css">
+
+    
+    
+<link rel="stylesheet" href="/css/fonts.css">
+
+
+    <script>
+        MathJax = {
+          tex: {
+            packages: ['base', 'ams'],
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true
+          },
+          options: {
+            ignoreHtmlClass: "tex2jax_ignore",
+            processHtmlClass: "tex2jax_process"
+          }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Lili Liang" type="application/atom+xml">
+</head>
+
+    <body class="post-page">
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">Lili Liang 梁莉莉</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Blogs</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+            <li><a href="/about">About</a></li>
+            
+        </ul>
+    </a>
+</div>
+
+                
+                
+<div class="post-layout" data-post-layout>
+
+<div class="post-main has-translations">
+    
+        <!-- Post Title -->
+        <div class="post-main-title">
+            Shortest-Path Algorithms: Dijkstra and Bellman–Ford
+        </div>
+
+        
+
+        <!-- Post Meta Information -->
+        <div class="post-meta">
+            <!-- Show Creation Date -->
+            Created: May 26, 2020 ｜ 
+
+            <!-- Show Last Updated Date -->
+            
+                Last updated: Oct 19, 2026 ｜ 
+            
+
+            <!-- Show Post Categories -->
+            
+                <a href="/categories/Algorithms/"># Algorithms</a>
+            
+        </div>
+
+        
+    <nav class="post-language-switch" aria-label="Article language">
+        <span>Also available in</span>
+        
+            <a href="/2020/05/26/dijkstra-bellmanFord/" lang="zh-CN" hreflang="zh-CN">中文原文</a>
+        
+    </nav>
+
+
+        
+    
+    <aside class="post-summary" aria-label="Summary">
+        <span class="post-summary-label">Summary</span>
+        <p>Choosing a shortest-path algorithm starts with its assumptions about edge weights. Dijkstra&#39;s finalization step relies on nonnegative weights; Bellman–Ford allows negative edges and detects reachable negative cycles. Reusable C++ templates, an emergency-rescue problem, and a negative-edge example connect those assumptions to implementation, including how to count shortest routes and maximize rescue teams without confusing those goals with distance alone.</p>
+    </aside>
+
+
+
+        <!-- Post Content -->
+        <div class="post-md">
+            <p>Dijkstra and Bellman–Ford both compute shortest paths from a source vertex, but they rely on different assumptions about edge weights. Dijkstra requires nonnegative weights. Bellman–Ford permits negative edges and can detect a negative cycle reachable from the source.</p>
+<p>We will use a reusable Dijkstra template, apply it to an emergency-rescue problem, and then work through Bellman–Ford with a directed graph containing negative edges.</p>
+<span id="more"></span>
+<h2><span id="1-dijkstras-algorithm">1. Dijkstra’s algorithm</span></h2>
+<p>Dijkstra maintains a tentative distance for each vertex. At each step, it selects the unvisited vertex with the smallest distance, finalizes that distance, and uses its outgoing edges to improve neighboring distances.</p>
+<p>The finalization step depends on nonnegative edge weights. Once a vertex has the smallest tentative distance, a path through a later vertex cannot make it cheaper. A negative edge invalidates that argument.</p>
+<h3><span id="11-an-adjacency-matrix-template">1.1 An adjacency-matrix template</span></h3>
+<p>The matrix below stores <code>cost[u][v]</code>, with <code>INF</code> meaning that no edge exists. Set the diagonal to zero. For an undirected graph, store each edge in both directions. Vertices are numbered from <code>0</code> to <code>n - 1</code>.</p>
+<pre><code class="language-cpp">#pragma once
+#include &lt;limits&gt;
+#include &lt;stdexcept&gt;
+#include &lt;vector&gt;
+
+namespace matrix_paths &#123;
+using Distance = long long;
+constexpr Distance INF = std::numeric_limits&lt;Distance&gt;::max() / 4;
+using Matrix = std::vector&lt;std::vector&lt;Distance&gt;&gt;;
+
+// INF means no edge. Finite weights and path costs must be below INF.
+inline std::vector&lt;Distance&gt; dijkstra(const Matrix&amp; cost, int source) &#123;
+    const int n = static_cast&lt;int&gt;(cost.size());
+    if (source &lt; 0 || source &gt;= n)
+        throw std::invalid_argument(&quot;invalid source&quot;);
+    for (const auto&amp; row : cost) &#123;
+        if (static_cast&lt;int&gt;(row.size()) != n)
+            throw std::invalid_argument(&quot;matrix must be square&quot;);
+        for (auto weight : row)
+            if (weight &lt; 0 || weight &gt; INF)
+                throw std::invalid_argument(&quot;invalid nonnegative edge weight&quot;);
+    &#125;
+    std::vector&lt;Distance&gt; distance(n, INF);
+    std::vector&lt;bool&gt; visited(n, false);
+    distance[source] = 0;
+    for (int step = 0; step &lt; n; ++step) &#123;
+        int u = -1;
+        for (int v = 0; v &lt; n; ++v)
+            if (!visited[v] &amp;&amp; (u == -1 || distance[v] &lt; distance[u])) u = v;
+        if (u == -1 || distance[u] == INF) break;
+        visited[u] = true;
+        for (int v = 0; v &lt; n; ++v) &#123;
+            if (visited[v] || cost[u][v] == INF) continue;
+            if (distance[u] &gt;= INF - cost[u][v])
+                throw std::overflow_error(&quot;candidate distance reaches INF&quot;);
+            const auto candidate = distance[u] + cost[u][v];
+            if (candidate &lt; distance[v]) distance[v] = candidate;
+        &#125;
+    &#125;
+    return distance;
+&#125;
+&#125;  // namespace matrix_paths
+</code></pre>
+<p>Save the <a href="/downloads/english-editions/dijkstra_matrix.hpp">complete template</a> as <code>dijkstra_matrix.hpp</code> and call <code>matrix_paths::dijkstra(cost, source)</code> after building the matrix. A returned <code>INF</code> means that the vertex is unreachable. The loop stops when no unvisited reachable vertex remains, so an uninitialized vertex index is never used.</p>
+<p>The template takes <code>O(n²)</code> time and space. That is convenient for small dense graphs and for the rescue problem below, where <code>n ≤ 500</code>. For a large sparse graph, an adjacency list with a priority queue avoids scanning all possible edges. Finite edge weights and candidate path sums must remain below the template’s <code>INF</code> sentinel; the code rejects invalid weights and out-of-range candidate sums.</p>
+<h3><span id="12-example-emergency-rescue">1.2 Example: Emergency rescue</span></h3>
+<p>Problem: <a target="_blank" rel="noopener" href="https://pintia.cn/problem-sets/994805342720868352/problems/994805523835109376">PAT 1003 — Emergency</a>.</p>
+<p>A map contains cities connected by roads. Each city has a number of rescue teams, and each road has a length. Starting at city <code>C1</code>, we must reach city <code>C2</code> along a shortest route. Among those shortest routes, we want the largest total number of rescue teams that can be gathered along the way.</p>
+<p>The output has two values: the number of distinct shortest routes from <code>C1</code> to <code>C2</code>, and the largest rescue-team total along one of them.</p>
+<h4><span id="input">Input</span></h4>
+<p>The first line contains four integers:</p>
+<pre><code class="language-text">N M C1 C2
+</code></pre>
+<p><code>N ≤ 500</code> is the number of cities, numbered <code>0</code> through <code>N - 1</code>; <code>M</code> is the number of roads. The next line contains <code>N</code> rescue-team counts. Each of the following <code>M</code> lines contains <code>a b L</code>, describing an undirected road of length <code>L</code> between cities <code>a</code> and <code>b</code>. At least one route exists between <code>C1</code> and <code>C2</code>.</p>
+<p>The counting recurrence below assumes strictly positive road lengths. Every predecessor on a shortest route then has a smaller distance than its successor, so its route count is known before it contributes to the successor.</p>
+<h4><span id="output">Output</span></h4>
+<p>Print the number of shortest routes and the maximum rescue-team total, separated by one space.</p>
+<h4><span id="sample-input">Sample input</span></h4>
+<pre><code class="language-text">5 6 0 2
+1 2 1 5 3
+0 1 1
+0 2 2
+0 3 1
+1 2 1
+2 4 1
+3 4 1
+</code></pre>
+<h4><span id="sample-output">Sample output</span></h4>
+<pre><code class="language-text">2 4
+</code></pre>
+<p>There are two shortest routes from city <code>0</code> to city <code>2</code>: the direct road and the route through city <code>1</code>. Both have total length <code>2</code>. The route through city <code>1</code> collects <code>1 + 2 + 1 = 4</code> rescue teams.</p>
+<h4><span id="approach">Approach</span></h4>
+<p>Along with <code>distance[v]</code>, maintain <code>ways[v]</code>, the number of shortest routes currently known, and <code>best_teams[v]</code>, the largest rescue-team total among those routes.</p>
+<p>For an edge from the selected city <code>u</code> to <code>v</code>:</p>
+<ul>
+<li>If the candidate distance is smaller, replace <code>distance[v]</code>, copy <code>ways[u]</code> into <code>ways[v]</code>, and set the team total to <code>best_teams[u] + teams[v]</code>.</li>
+<li>If the distance is equal, add <code>ways[u]</code> to <code>ways[v]</code> and keep the larger team total.</li>
+</ul>
+<p>Initialize the source with distance <code>0</code>, one route, and its own rescue-team count. These updates preserve Dijkstra’s distance computation while tracking the two quantities the problem asks for.</p>
+<h4><span id="complete-solution">Complete solution</span></h4>
+<pre><code class="language-cpp">#include &lt;algorithm&gt;
+#include &lt;iostream&gt;
+#include &lt;limits&gt;
+#include &lt;stdexcept&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int main() &#123;
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int n, m, source, target;
+    if (!(cin &gt;&gt; n &gt;&gt; m &gt;&gt; source &gt;&gt; target)) return 0;
+    const long long INF = numeric_limits&lt;long long&gt;::max() / 4;
+    vector&lt;long long&gt; teams(n), best_teams(n, 0), distance(n, INF);
+    for (auto&amp; count : teams) cin &gt;&gt; count;
+    vector&lt;vector&lt;long long&gt;&gt; cost(n, vector&lt;long long&gt;(n, INF));
+    for (int i = 0; i &lt; n; ++i) cost[i][i] = 0;
+    for (int i = 0; i &lt; m; ++i) &#123;
+        int a, b;
+        long long length;
+        cin &gt;&gt; a &gt;&gt; b &gt;&gt; length;
+        if (length &lt;= 0 || length &gt;= INF)
+            throw invalid_argument(&quot;road lengths must be positive and below INF&quot;);
+        cost[a][b] = cost[b][a] = min(cost[a][b], length);
+    &#125;
+    vector&lt;unsigned long long&gt; ways(n, 0);
+    vector&lt;bool&gt; visited(n, false);
+    distance[source] = 0;
+    best_teams[source] = teams[source];
+    ways[source] = 1;
+    for (int step = 0; step &lt; n; ++step) &#123;
+        int u = -1;
+        for (int v = 0; v &lt; n; ++v)
+            if (!visited[v] &amp;&amp; (u == -1 || distance[v] &lt; distance[u])) u = v;
+        if (u == -1 || distance[u] == INF) break;
+        visited[u] = true;
+        for (int v = 0; v &lt; n; ++v) &#123;
+            if (visited[v] || cost[u][v] == INF) continue;
+            if (distance[u] &gt;= INF - cost[u][v])
+                throw overflow_error(&quot;candidate distance reaches INF&quot;);
+            const auto candidate = distance[u] + cost[u][v];
+            if (candidate &lt; distance[v]) &#123;
+                distance[v] = candidate;
+                ways[v] = ways[u];
+                best_teams[v] = best_teams[u] + teams[v];
+            &#125; else if (candidate == distance[v]) &#123;
+                if (ways[v] &gt; numeric_limits&lt;unsigned long long&gt;::max() - ways[u])
+                    throw overflow_error(&quot;shortest-path count exceeds 64 bits&quot;);
+                ways[v] += ways[u];
+                best_teams[v] = max(best_teams[v], best_teams[u] + teams[v]);
+            &#125;
+        &#125;
+    &#125;
+    cout &lt;&lt; ways[target] &lt;&lt; ' ' &lt;&lt; best_teams[target] &lt;&lt; '\n';
+&#125;
+</code></pre>
+<p>The <a href="/downloads/english-editions/emergency.cpp">standalone C++ solution</a> can be compiled with:</p>
+<pre><code class="language-bash">c++ -std=c++17 -O2 emergency.cpp -o emergency
+./emergency &lt; input.txt
+</code></pre>
+<p>The matrix keeps the shortest road between a pair of cities, treating a route as a sequence of cities. The route counter uses an unsigned 64-bit integer and reports overflow instead of silently wrapping. Rescue-team totals must fit a signed 64-bit integer. Zero-weight roads require separate reasoning for route counting even though they are valid for computing ordinary Dijkstra distances.</p>
+<h2><span id="2-bellmanford">2. Bellman–Ford</span></h2>
+<h3><span id="21-edge-relaxation">2.1 Edge relaxation</span></h3>
+<p>Bellman–Ford works with negative edge weights by repeatedly relaxing the edges. For an edge <code>u → v</code> of weight <code>w</code>, relaxation means checking whether a known route to <code>u</code> followed by that edge improves the current distance to <code>v</code>:</p>
+<pre><code class="language-text">if distance[u] is finite:
+    distance[v] = min(distance[v], distance[u] + w)
+</code></pre>
+<p><img src="/images/english-editions/edge-relaxation.svg" alt="An edge relaxation improves the distance to a vertex"></p>
+<p><em>The route to u costs 5 and the edge u → v costs −2. Their combined cost, 3, improves v’s tentative distance from 9 to 3.</em></p>
+<p>A shortest path can be chosen with at most <code>n - 1</code> edges if no reachable negative cycle exists. Scanning every edge <code>n - 1</code> times is therefore sufficient. In-place updates may propagate through several edges in one pass; the bound does not require exactly one edge of progress per pass.</p>
+<p>A complete pass with no changes allows an early stop. If an edge can still improve a distance after the usual passes, a negative cycle is reachable from the source. Repeating that cycle can decrease the cost without bound for vertices reachable from it. A disconnected negative cycle does not affect this source’s distances.</p>
+<h3><span id="22-example-shortest-paths-with-negative-edges">2.2 Example: Shortest paths with negative edges</span></h3>
+<p>Problem: <a target="_blank" rel="noopener" href="http://lx.lanqiao.cn/problem.page?gpid=T15">Lanqiao shortest-path exercise</a>.</p>
+<p>Given a directed graph with <code>n</code> vertices and <code>m</code> edges, some of which have negative weights, compute the shortest distances from vertex <code>1</code> to every other vertex. Vertices are numbered <code>1</code> through <code>n</code>. The graph has no negative cycle, and every vertex is reachable from every other vertex.</p>
+<h4><span id="input">Input</span></h4>
+<p>The first line contains <code>n m</code>. Each of the next <code>m</code> lines contains <code>u v w</code>, describing an edge from <code>u</code> to <code>v</code> with weight <code>w</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Data subset</th>
+<th>Vertex count</th>
+<th>Edge count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10%</td>
+<td><code>n = 2</code></td>
+<td><code>m = 2</code></td>
+</tr>
+<tr>
+<td>30%</td>
+<td><code>n ≤ 5</code></td>
+<td><code>m ≤ 10</code></td>
+</tr>
+<tr>
+<td>Full input</td>
+<td><code>1 ≤ n ≤ 20,000</code></td>
+<td><code>1 ≤ m ≤ 200,000</code></td>
+</tr>
+</tbody>
+</table>
+<p>For the full input, <code>−10,000 ≤ w ≤ 10,000</code>.</p>
+<h4><span id="output">Output</span></h4>
+<p>Print <code>n - 1</code> lines. Line <code>i</code> contains the shortest distance from vertex <code>1</code> to vertex <code>i + 1</code>.</p>
+<h4><span id="sample-input">Sample input</span></h4>
+<pre><code class="language-text">3 3
+1 2 -1
+2 3 -1
+3 1 2
+</code></pre>
+<h4><span id="sample-output">Sample output</span></h4>
+<pre><code class="language-text">-1
+-2
+</code></pre>
+<p>The distance to vertex <code>2</code> is <code>−1</code>; following <code>1 → 2 → 3</code> gives distance <code>−2</code> to vertex <code>3</code>. The cycle through all three vertices has total weight <code>0</code>, so it does not violate the no-negative-cycle assumption.</p>
+<h4><span id="approach">Approach</span></h4>
+<p>Store the directed edges in a list. Set the source distance to zero and all other distances to <code>INF</code>. During each pass, relax an edge only when its source is reachable. Stop after a pass with no changes, or after <code>n - 1</code> passes.</p>
+<p>Use <code>long long</code> for distances. Under the stated vertex, edge, and weight bounds, the finite values produced by these passes remain well within that type’s range. Checking reachability before addition avoids treating <code>INF</code> plus a negative edge weight as a real path.</p>
+<h4><span id="complete-solution">Complete solution</span></h4>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;limits&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+struct Edge &#123; int from, to; long long weight; &#125;;
+
+int main() &#123;
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int n, m;
+    if (!(cin &gt;&gt; n &gt;&gt; m)) return 0;
+    vector&lt;Edge&gt; edges(m);
+    for (auto&amp; edge : edges) cin &gt;&gt; edge.from &gt;&gt; edge.to &gt;&gt; edge.weight;
+    const long long INF = numeric_limits&lt;long long&gt;::max() / 4;
+    vector&lt;long long&gt; distance(n + 1, INF);
+    distance[1] = 0;
+    for (int pass = 1; pass &lt; n; ++pass) &#123;
+        bool changed = false;
+        for (const auto&amp; edge : edges) &#123;
+            if (distance[edge.from] == INF) continue;
+            const auto candidate = distance[edge.from] + edge.weight;
+            if (candidate &lt; distance[edge.to]) &#123;
+                distance[edge.to] = candidate;
+                changed = true;
+            &#125;
+        &#125;
+        if (!changed) break;
+    &#125;
+    for (const auto&amp; edge : edges) &#123;
+        if (distance[edge.from] != INF &amp;&amp;
+            distance[edge.from] + edge.weight &lt; distance[edge.to]) &#123;
+            cout &lt;&lt; &quot;NEGATIVE CYCLE\n&quot;;
+            return 0;
+        &#125;
+    &#125;
+    for (int vertex = 2; vertex &lt;= n; ++vertex) &#123;
+        if (distance[vertex] == INF) cout &lt;&lt; &quot;UNREACHABLE\n&quot;;
+        else cout &lt;&lt; distance[vertex] &lt;&lt; '\n';
+    &#125;
+&#125;
+</code></pre>
+<p>The <a href="/downloads/english-editions/bellman_ford.cpp">standalone Bellman–Ford solution</a> follows the problem’s input and output format. It also reports <code>NEGATIVE CYCLE</code> or <code>UNREACHABLE</code> if input violates the corresponding graph assumptions; neither branch is taken for a valid problem instance.</p>
+<pre><code class="language-bash">c++ -std=c++17 -O2 bellman_ford.cpp -o bellman_ford
+./bellman_ford &lt; input.txt
+</code></pre>
+<p>Bellman–Ford takes <code>O(nm)</code> time in the worst case and <code>O(n + m)</code> space. With <code>n = 20,000</code> and <code>m = 200,000</code>, a full run approaches four billion edge examinations. Negative-edge support explains why the algorithm applies, but does not guarantee that this bound fits a particular time limit. Early stopping improves some cases without changing the worst case.</p>
+
+        </div>
+    
+
+    <!-- Post Tags -->
+    
+        <div class="post-meta">
+            Tags:
+            
+                <a href="/tags/Dijkstra/"> / Dijkstra</a>
+            
+                <a href="/tags/BellmanFord/"> / BellmanFord</a>
+            
+                <a href="/tags/Algorithms/"> / Algorithms</a>
+            
+                <a href="/tags/C/"> / C++</a>
+            
+        </div>
+    
+</div>
+
+    <aside class="post-toc" data-post-toc aria-label="Article contents" hidden>
+    <details class="post-toc-panel" open>
+        <summary class="post-toc-summary">
+            <span class="post-toc-title">On this page</span>
+            <span class="post-toc-current" aria-hidden="true"></span>
+            <svg class="post-toc-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </summary>
+        <nav class="post-toc-nav" aria-label="Table of contents" tabindex="0">
+            <ol class="post-toc-list"></ol>
+        </nav>
+    </details>
+</aside>
+
+</div>
+<script src="/js/post-toc.js" defer></script>
+<script src="/js/post-images.js" defer></script>
+
+
+                <div class="footer">
+    <span>Copyright © 2026 Lili Liang</span>
+    <span>Build with <a target="_blank" rel="noopener" href="https://github.com/LenChou95/hexo-theme-ZenMind">ZenMind</a></span>
+</div>
+
+<!-- Copy Code Funciton -->
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('pre').forEach((pre) => {
+            const button = document.createElement('button');
+            button.innerText = 'Copy';
+            button.className = 'copy-button';
+
+            button.addEventListener('click', () => {
+            const codeLines = pre.querySelectorAll('.hljs-ln-code');
+            // 单行代码块不会生成行号表格，此时直接取 <code> 的文本
+            const codeContent = codeLines.length
+                ? Array.from(codeLines).map(line => line.textContent).join('\n')
+                : (pre.querySelector('code') || pre).textContent;
+
+            navigator.clipboard.writeText(codeContent).then(() => {
+                button.innerText = '√ Copied!';
+                setTimeout(() => {
+                button.innerText = 'Copy';
+                }, 3000);
+            }).catch(err => {
+                console.error('Copy failed: ', err);
+                alert('Unable to copy code, please check browser permissions!');
+            });
+            });
+
+            // 右上角工具栏：复制按钮（悬停显示）+ 语言标签
+            const tools = document.createElement('div');
+            tools.className = 'code-tools';
+            tools.appendChild(button);
+            if (pre.dataset.lang) {
+                const tag = document.createElement('span');
+                tag.className = 'code-lang';
+                tag.innerText = pre.dataset.lang;
+                tools.appendChild(tag);
+            }
+            pre.appendChild(tools);
+        });
+    });
+</script>
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+<script>
+    // 代码块右上角显示的语言名，没列出的直接显示大写
+    const LANG_NAMES = {
+        cpp: 'C++', 'c++': 'C++', c: 'C', java: 'Java', python: 'Python',
+        javascript: 'JavaScript', js: 'JavaScript', typescript: 'TypeScript', ts: 'TypeScript',
+        bash: 'Bash', shell: 'Shell', sh: 'Shell', powershell: 'PowerShell', cmd: 'CMD', bat: 'CMD',
+        sql: 'SQL', cypher: 'Cypher', yaml: 'YAML', yml: 'YAML', json: 'JSON', ini: 'INI',
+        html: 'HTML', xml: 'XML', css: 'CSS', markdown: 'Markdown', md: 'Markdown',
+        text: 'Text', txt: 'Text', plaintext: 'Text'
+    };
+
+    document.querySelectorAll('pre > code').forEach((code) => {
+        const match = code.className.match(/\blanguage-(\S+)/);
+        let lang = match ? match[1].toLowerCase() : 'text';
+        code.parentElement.dataset.lang = LANG_NAMES[lang] || lang.toUpperCase();
+
+        // highlight.js 从 "language-c++" 只能解析出 "c"；不认识的语言（如 cypher）和没写语言的块按纯文本处理，避免自动识别乱上色
+        if (lang === 'c++') lang = 'cpp';
+        if (!hljs.getLanguage(lang)) lang = 'plaintext';
+        code.className = 'language-' + lang;
+    });
+
+    hljs.highlightAll();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>

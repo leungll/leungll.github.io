@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="default">
     <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
@@ -38,13 +38,15 @@
         <title>快速幂 &amp;&amp; 快速乘原理讲解（模板） | Lili Liang</title>
     
   
+    
+
     <!-- Open graph -->
-    <meta name="description" content="1 问题描述 2 原因分析 3 解决方法 4 快速幂讲解 5 快速乘讲解 6 完整代码 7 References   1 问题描述  我们发现，在 $int$ 型下使用 $pow$ 函数求 $5^{3}$，结果为 $124$ 。   2 原因分析  $pow$ 函数的返回值为 double 型 ，因浮点数长度问题，存在截断误差。   3 解决方法  将变量定义为 double 型   有没有更">
+    <meta name="description" content="指数的二进制表示决定哪些幂次需要参与结果，反复平方则生成这些候选幂次。沿着这一关系理解快速幂，再将乘法累积换成加法累积得到倍增乘法；结合位运算、循环示例和取模模板，看清两种算法为什么具有相似结构，避免只记住代码。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="快速幂 &amp;&amp; 快速乘原理讲解（模板）">
 <meta property="og:url" content="https://leungll.site/2021/05/24/ksm-permalink/index.html">
 <meta property="og:site_name" content="Lili Liang">
-<meta property="og:description" content="1 问题描述 2 原因分析 3 解决方法 4 快速幂讲解 5 快速乘讲解 6 完整代码 7 References   1 问题描述  我们发现，在 $int$ 型下使用 $pow$ 函数求 $5^{3}$，结果为 $124$ 。   2 原因分析  $pow$ 函数的返回值为 double 型 ，因浮点数长度问题，存在截断误差。   3 解决方法  将变量定义为 double 型   有没有更">
+<meta property="og:description" content="指数的二进制表示决定哪些幂次需要参与结果，反复平方则生成这些候选幂次。沿着这一关系理解快速幂，再将乘法累积换成加法累积得到倍增乘法；结合位运算、循环示例和取模模板，看清两种算法为什么具有相似结构，避免只记住代码。">
 <meta property="og:locale">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-1.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-2.png">
@@ -52,7 +54,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-4.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-5.png">
 <meta property="article:published_time" content="2021-05-24T13:49:46.000Z">
-<meta property="article:modified_time" content="2025-01-05T07:21:22.012Z">
+<meta property="article:modified_time" content="2026-10-20T06:26:42.701Z">
 <meta property="article:author" content="Lili Liang 梁莉莉">
 <meta property="article:tag" content="C&#x2F;C++">
 <meta property="article:tag" content="快速幂">
@@ -77,8 +79,16 @@
 <link rel="stylesheet" href="/css/style.css">
 
     
+<link rel="stylesheet" href="/css/atom-one-light.css">
+
+    
 <link rel="stylesheet" href="/css/markdown.css">
 
+    
+        
+<link rel="stylesheet" href="/css/post-toc.css">
+
+    
     
 <link rel="stylesheet" href="/css/fonts.css">
 
@@ -102,7 +112,7 @@
 <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Lili Liang" type="application/atom+xml">
 </head>
 
-    <body>
+    <body class="post-page">
         <div class="paper">
             <div class="paper-main">
                 
@@ -122,12 +132,17 @@
 </div>
 
                 
-                <div class="post-main">
+                
+<div class="post-layout" data-post-layout>
+
+<div class="post-main">
     
         <!-- Post Title -->
         <div class="post-main-title">
             快速幂 &amp;&amp; 快速乘原理讲解（模板）
         </div>
+
+        
 
         <!-- Post Meta Information -->
         <div class="post-meta">
@@ -136,7 +151,7 @@
 
             <!-- Show Last Updated Date -->
             
-                Last updated: Jan 5, 2025 ｜ 
+                Last updated: Oct 20, 2026 ｜ 
             
 
             <!-- Show Post Categories -->
@@ -145,20 +160,20 @@
             
         </div>
 
+        
+
+        
+    
+    <aside class="post-summary" aria-label="摘要">
+        <span class="post-summary-label">摘要</span>
+        <p>指数的二进制表示决定哪些幂次需要参与结果，反复平方则生成这些候选幂次。沿着这一关系理解快速幂，再将乘法累积换成加法累积得到倍增乘法；结合位运算、循环示例和取模模板，看清两种算法为什么具有相似结构，避免只记住代码。</p>
+    </aside>
+
+
+
         <!-- Post Content -->
         <div class="post-md">
-            <!-- toc -->
-<ul>
-<li><a href="#1-%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0">1 问题描述</a></li>
-<li><a href="#2-%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%90">2 原因分析</a></li>
-<li><a href="#3-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95">3 解决方法</a></li>
-<li><a href="#4-%E5%BF%AB%E9%80%9F%E5%B9%82%E8%AE%B2%E8%A7%A3">4 快速幂讲解</a></li>
-<li><a href="#5-%E5%BF%AB%E9%80%9F%E4%B9%98%E8%AE%B2%E8%A7%A3">5 快速乘讲解</a></li>
-<li><a href="#6-%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81">6 完整代码</a></li>
-<li><a href="#7-references">7 References</a></li>
-</ul>
-<!-- tocstop -->
-<h2><span id="1-问题描述">1 问题描述</span></h2>
+            <h2><span id="1-问题描述">1 问题描述</span></h2>
 <blockquote>
 <p>我们发现，在 <span class="markdown-them-math-inline">$int$</span> 型下使用 <span class="markdown-them-math-inline">$pow$</span> 函数求 <span class="markdown-them-math-inline">$5^{3}$</span>，结果为 <span class="markdown-them-math-inline">$124$</span> 。</p>
 </blockquote>
@@ -182,18 +197,18 @@
 <img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-4.png" alt="ksm-4"></p>
 <p>对于二进制的位运算，我们需要用到 <code>&amp;</code> 与 <code>&gt;&gt;</code> 运算符，详见 <a target="_blank" rel="noopener" href="https://blog.csdn.net/liangllhahaha/article/details/79382094">位运算符的应用</a></p>
 <p><strong>先上实现快速幂运算的具体代码：</strong></p>
-<div class="highlight"><pre class="code"><code><span class="hljs-function"><span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> <span class="hljs-title">ksm</span><span class="hljs-params">(<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> a, <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> b)</span> </span>&#123;
-    <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ans = <span class="hljs-number">1</span>, base = a;
-    <span class="hljs-keyword">while</span>(b != <span class="hljs-number">0</span>) &#123;
-	<span class="hljs-keyword">if</span>(b &amp; <span class="hljs-number">1</span> != <span class="hljs-number">0</span>) &#123;
+<pre><code class="language-cpp">long long ksm(long long a, long long b) &#123;
+    long long ans = 1, base = a;
+    while(b != 0) &#123;
+	if(b &amp; 1 != 0) &#123;
 	    ans *= base;
 	&#125;
 	base *= base;
-	b &gt;&gt;= <span class="hljs-number">1</span>;
+	b &gt;&gt;= 1;
     &#125;
-    <span class="hljs-keyword">return</span> ans;
+    return ans;
 &#125;
-</code></pre></div>
+</code></pre>
 <p>其中 <code>b &amp; 1</code> 指取 b 的二进制数的最末位，如 <code>11</code> 的二进制数为 <code>1011</code> ，第一次循环，取的是最右边的 <code>1</code> ，以此类推。</p>
 <p>而 <code>b &gt;&gt;= 1</code> 等效于 <code>b = b &gt;&gt; 1</code>，即右移 <code>1</code> 位，删去最低位。</p>
 <p><strong>以 <span class="markdown-them-math-inline">$a ^ {11}$</span> 为例：</strong></p>
@@ -209,61 +224,61 @@
 <p>快速乘与快速幂原理相似，也是将运算转换为二进制处理.</p>
 <p>以 <span class="markdown-them-math-inline">$a * 11$</span> 为例:  <code>11</code> 的二进制数为 <code>1011</code>，则有 <span class="markdown-them-math-inline">$a * 11 = a * 2^{0}\,+\,a * 2^{1}\,+\,a * 2^{3}$</span></p>
 <p>就是把快速幂中的 <code>*</code> 号改为 <code>＋</code> 号</p>
-<div class="highlight"><pre class="code"><code><span class="hljs-function"><span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> <span class="hljs-title">ksc</span><span class="hljs-params">(<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> a, <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> b)</span> </span>&#123;
-    <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ans = <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">while</span>(b != <span class="hljs-number">0</span>) &#123;
-	<span class="hljs-keyword">if</span>(b &amp; <span class="hljs-number">1</span> != <span class="hljs-number">0</span>) &#123;
+<pre><code class="language-cpp">long long ksc(long long a, long long b) &#123;
+    long long ans = 0;
+    while(b != 0) &#123;
+	if(b &amp; 1 != 0) &#123;
 	    ans += a;
 	&#125;
 	a += a;
-	b &gt;&gt;= <span class="hljs-number">1</span>;
+	b &gt;&gt;= 1;
     &#125;
-    <span class="hljs-keyword">return</span> ans;
+    return ans;
 &#125;
-</code></pre></div>
+</code></pre>
 <p>此版本的复杂度和快速幂一样，也是 <span class="markdown-them-math-inline">$O(logn)$</span> 。如果需要特别卡常数，可以去了解 <span class="markdown-them-math-inline">$O(1)$</span> 版本的快速乘。</p>
 <h2><span id="6-完整代码">6 完整代码</span></h2>
 <blockquote>
 <p>为了防止溢出，一般快速幂和快速乘的算法会在 <span class="markdown-them-math-inline">$mod$</span> 下运用，下面给出取模运算代码。</p>
 </blockquote>
-<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
-<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<pre><code class="language-c++">#include &lt;bits/stdc++.h&gt;
+using namespace std;
  
-<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ll;
-<span class="hljs-keyword">const</span> ll mod = <span class="hljs-number">1e7</span>;
+typedef long long ll;
+const ll mod = 1e7;
  
-<span class="hljs-comment">//a ^ b</span>
-<span class="hljs-function">ll <span class="hljs-title">ksm</span><span class="hljs-params">(ll a, ll b, ll mod)</span> </span>&#123;
-    ll ans = <span class="hljs-number">1</span>, base = a;
-    <span class="hljs-keyword">while</span>(b != <span class="hljs-number">0</span>) &#123;
-	<span class="hljs-keyword">if</span>(b &amp; <span class="hljs-number">1</span> != <span class="hljs-number">0</span>) &#123;
+//a ^ b
+ll ksm(ll a, ll b, ll mod) &#123;
+    ll ans = 1, base = a;
+    while(b != 0) &#123;
+	if(b &amp; 1 != 0) &#123;
 	    ans = (ans * base) % mod;
 	&#125;
 	base = (base * base) % mod;
-	b &gt;&gt;= <span class="hljs-number">1</span>;
+	b &gt;&gt;= 1;
     &#125;
-    <span class="hljs-keyword">return</span> ans;
+    return ans;
 &#125;
  
-<span class="hljs-comment">//a * b</span>
-<span class="hljs-function">ll <span class="hljs-title">ksc</span><span class="hljs-params">(ll a, ll b, ll mod)</span> </span>&#123;
-    ll ans = <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">while</span>(b != <span class="hljs-number">0</span>) &#123;
-	<span class="hljs-keyword">if</span>(b &amp; <span class="hljs-number">1</span> != <span class="hljs-number">0</span>) &#123;
+//a * b
+ll ksc(ll a, ll b, ll mod) &#123;
+    ll ans = 0;
+    while(b != 0) &#123;
+	if(b &amp; 1 != 0) &#123;
 	    ans = (ans + a) % mod;
 	&#125;
 	a = (a + a) % mod;
-	b &gt;&gt;= <span class="hljs-number">1</span>;
+	b &gt;&gt;= 1;
     &#125;
-    <span class="hljs-keyword">return</span> ans;
+    return ans;
 &#125;
  
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
-    cout &lt;&lt; <span class="hljs-string">&quot;5 ^ 3 = &quot;</span> &lt;&lt; <span class="hljs-built_in">ksm</span>(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>, mod) &lt;&lt; endl;
-    cout &lt;&lt; <span class="hljs-string">&quot;345352 * 11 = &quot;</span> &lt;&lt; <span class="hljs-built_in">ksc</span>(<span class="hljs-number">345352</span>, <span class="hljs-number">11</span>, mod) &lt;&lt; endl;
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+int main() &#123;
+    cout &lt;&lt; &quot;5 ^ 3 = &quot; &lt;&lt; ksm(5, 3, mod) &lt;&lt; endl;
+    cout &lt;&lt; &quot;345352 * 11 = &quot; &lt;&lt; ksc(345352, 11, mod) &lt;&lt; endl;
+    return 0;
 &#125;
-</code></pre></div>
+</code></pre>
 <p><strong>运算结果：</strong></p>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/ksm-5.png" alt="ksm-5"></p>
 <h2><span id="7-references">7 References</span></h2>
@@ -289,6 +304,27 @@
         </div>
     
 </div>
+
+    <aside class="post-toc" data-post-toc aria-label="Article contents" hidden>
+    <details class="post-toc-panel" open>
+        <summary class="post-toc-summary">
+            <span class="post-toc-title">On this page</span>
+            <span class="post-toc-current" aria-hidden="true"></span>
+            <svg class="post-toc-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </summary>
+        <nav class="post-toc-nav" aria-label="Table of contents" tabindex="0">
+            <ol class="post-toc-list"></ol>
+        </nav>
+    </details>
+</aside>
+
+</div>
+<script src="/js/post-toc.js" defer></script>
+<script src="/js/post-images.js" defer></script>
+
+
                 <div class="footer">
     <span>Copyright © 2026 Lili Liang</span>
     <span>Build with <a target="_blank" rel="noopener" href="https://github.com/LenChou95/hexo-theme-ZenMind">ZenMind</a></span>
@@ -304,9 +340,10 @@
 
             button.addEventListener('click', () => {
             const codeLines = pre.querySelectorAll('.hljs-ln-code');
-            const codeContent = Array.from(codeLines)
-                .map(line => line.textContent)
-                .join('\n');
+            // 单行代码块不会生成行号表格，此时直接取 <code> 的文本
+            const codeContent = codeLines.length
+                ? Array.from(codeLines).map(line => line.textContent).join('\n')
+                : (pre.querySelector('code') || pre).textContent;
 
             navigator.clipboard.writeText(codeContent).then(() => {
                 button.innerText = '√ Copied!';
@@ -319,16 +356,20 @@
             });
             });
 
-            pre.appendChild(button);
+            // 右上角工具栏：复制按钮（悬停显示）+ 语言标签
+            const tools = document.createElement('div');
+            tools.className = 'code-tools';
+            tools.appendChild(button);
+            if (pre.dataset.lang) {
+                const tag = document.createElement('span');
+                tag.className = 'code-lang';
+                tag.innerText = pre.dataset.lang;
+                tools.appendChild(tag);
+            }
+            pre.appendChild(tools);
         });
     });
 </script>
-
-<!-- Change Code Style -->
-
-<link rel="stylesheet" href="/css/a11y-dark.min.css">
-
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"> -->
 
 
 <script src="/js/highlight.min.js"></script>
@@ -338,7 +379,28 @@
 
 
 <script>
-    hljs.initHighlightingOnLoad();
+    // 代码块右上角显示的语言名，没列出的直接显示大写
+    const LANG_NAMES = {
+        cpp: 'C++', 'c++': 'C++', c: 'C', java: 'Java', python: 'Python',
+        javascript: 'JavaScript', js: 'JavaScript', typescript: 'TypeScript', ts: 'TypeScript',
+        bash: 'Bash', shell: 'Shell', sh: 'Shell', powershell: 'PowerShell', cmd: 'CMD', bat: 'CMD',
+        sql: 'SQL', cypher: 'Cypher', yaml: 'YAML', yml: 'YAML', json: 'JSON', ini: 'INI',
+        html: 'HTML', xml: 'XML', css: 'CSS', markdown: 'Markdown', md: 'Markdown',
+        text: 'Text', txt: 'Text', plaintext: 'Text'
+    };
+
+    document.querySelectorAll('pre > code').forEach((code) => {
+        const match = code.className.match(/\blanguage-(\S+)/);
+        let lang = match ? match[1].toLowerCase() : 'text';
+        code.parentElement.dataset.lang = LANG_NAMES[lang] || lang.toUpperCase();
+
+        // highlight.js 从 "language-c++" 只能解析出 "c"；不认识的语言（如 cypher）和没写语言的块按纯文本处理，避免自动识别乱上色
+        if (lang === 'c++') lang = 'cpp';
+        if (!hljs.getLanguage(lang)) lang = 'plaintext';
+        code.className = 'language-' + lang;
+    });
+
+    hljs.highlightAll();
     hljs.initLineNumbersOnLoad();
 </script>
 

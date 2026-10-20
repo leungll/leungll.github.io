@@ -142,48 +142,78 @@
 }
 .post-md>table th
 {
-    padding: 12px 0;
+    padding: 12px 16px;
     border-bottom: 2px solid var(--line-1);
 }
 .post-md>table tr:nth-child(odd) td
 {
-    padding: 12px 0;
+    padding: 12px 16px;
     border-bottom: 1px solid var(--line-1);
     background: #fafafa;
 }
 .post-md>table tr:nth-child(even) td
 {
-    padding: 12px 0;
+    padding: 12px 16px;
     border-bottom: 1px solid var(--line-1);
     background: #fff;
 }
 
+/* 行内代码 */
 .post-md code
 {
+    font-family: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 0.85em;
+    padding: 2px 5px;
     border-radius: 4px;
-    background: #fffaec73;
-    padding: 2px 4px;
-    color: #b21c1c;
-    font-size: 1rem;
+    background: #f0f0f1;
+    color: #a626a4;
+    letter-spacing: 0;
+}
+
+/* 代码块：配色来自 atom-one-light.css，这里只管排版 */
+.post-md pre
+{
+    margin: 16px 0;
+    border: 1px solid #e5e5e6;
+    border-radius: 8px;
+    background: #fafafa;
+    overflow: hidden;
+}
+
+.post-md pre code,
+.post-md pre code.hljs
+{
+    display: block;
+    overflow-x: auto;
+    padding: 14px 16px;
+    border-radius: 0;
+    background: #fafafa;
+    color: #383a42;
+    font-size: 14px;
+    line-height: 1.6;
+    white-space: pre;
+}
+
+/* highlightjs-line-numbers 生成的行号表格 */
+.post-md .hljs-ln
+{
+    border-collapse: collapse;
+}
+
+.post-md .hljs-ln td
+{
+    padding: 0;
+    border: none;
+    background: transparent;
 }
 
 .post-md .hljs-ln-numbers
 {
-    opacity: .5;
-    padding-right: 12px;
-}
-
-.hljs-ln-n {
-    color: #888888; 
-}
-  
-.hljs-ln-n::before {
-    content: attr(data-line-number);
-    display: inline-block;
-    width: 2rem;
+    user-select: none;
+    vertical-align: top;
     text-align: right;
-    margin-right: 1rem;
-    color: #020202;
+    padding-right: 16px !important;
+    color: #a0a1a7;
 }
 
 .profile-text {

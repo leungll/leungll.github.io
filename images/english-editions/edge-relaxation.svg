@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="234" viewBox="0 0 760 234" role="img" aria-labelledby="title desc">
+<title id="title">Relaxing an edge with a negative weight</title>
+<desc id="desc">The distance to u is 5. Following an edge of weight negative 2 gives a candidate distance of 3 to v, improving its previous distance of 9.</desc>
+<defs><pattern id="dots" width="16" height="16" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".7" fill="#dce4ea"/></pattern><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="none" stroke="#367387" stroke-width="1.5"/></marker></defs>
+<rect x="1" y="1" width="758" height="232" rx="12" fill="#fbfcfd" stroke="#dce4ea"/>
+<rect x="10" y="10" width="740" height="214" rx="8" fill="url(#dots)"/>
+<g font-family="ui-monospace, SFMono-Regular, Consolas, monospace" text-anchor="middle">
+<rect x="56" y="57" width="208" height="96" rx="8" fill="#edf6f9" stroke="#367387" stroke-width="1.5"/>
+<text x="160" y="91" font-size="20" font-weight="600" fill="#203a46">u</text>
+<text x="160" y="127" font-size="17" fill="#355662">distance = 5</text>
+<path d="M264 105H487" stroke="#367387" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="306" y="72" width="143" height="24" rx="4" fill="#fbfcfd"/>
+<text x="377" y="89" font-size="15" fill="#355662">weight = −2</text>
+<rect x="496" y="57" width="208" height="96" rx="8" fill="#eff7f1" stroke="#4d8262" stroke-width="1.5"/>
+<text x="600" y="91" font-size="20" font-weight="600" fill="#244d34">v</text>
+<text x="600" y="127" font-size="17" fill="#365c43">9 → 3</text>
+<text x="380" y="193" font-size="16" fill="#465966">5 + (−2) = 3 &lt; 9</text>
+</g></svg>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
     <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
@@ -38,14 +38,20 @@
         <title>Python + Neo4j（安装）可视化分析漫威十年人物关系图谱 | Lili Liang</title>
     
   
+    
+        <link rel="alternate" hreflang="en" href="https://leungll.site/2019/05/02/modeling-relationships-with-neo4j/">
+    
+        <link rel="alternate" hreflang="zh-CN" href="https://leungll.site/2019/05/02/python-neo4j-marvel/">
+    
+
     <!-- Open graph -->
-    <meta name="description" content="1 数据爬取  1.1 漫威人物关系图谱网站 1.2 爬取人物关系数据   2 Neo4j的安装及服务启动  2.1 Neo4j下载安装 2.2 开启Neo4j服务   3 数据准备  3.1 加入列名 3.2 放入本地Neo4j的import文件   4 数据可视化  4.1 加载names_message.csv文件 4.2 加载relation_message.csv文件 4.3 查看人">
-<meta property="og:type" content="article">
+    <meta name="description" content="漫威人物之间的朋友、家人和同事关系，可以变成一张能够浏览和查询的图。从网页中的 JSON 数据出发，用 Python 整理人物与关系 CSV，再完成 Neo4j 安装、数据导入和 Cypher 查询，把分散的人物信息组织成可探索的关系图谱。">
+<meta property="og:type" content="website">
 <meta property="og:title" content="Python + Neo4j（安装）可视化分析漫威十年人物关系图谱">
 <meta property="og:url" content="https://leungll.site/2019/05/02/python-neo4j-marvel/index.html">
 <meta property="og:site_name" content="Lili Liang">
-<meta property="og:description" content="1 数据爬取  1.1 漫威人物关系图谱网站 1.2 爬取人物关系数据   2 Neo4j的安装及服务启动  2.1 Neo4j下载安装 2.2 开启Neo4j服务   3 数据准备  3.1 加入列名 3.2 放入本地Neo4j的import文件   4 数据可视化  4.1 加载names_message.csv文件 4.2 加载relation_message.csv文件 4.3 查看人">
-<meta property="og:locale">
+<meta property="og:description" content="漫威人物之间的朋友、家人和同事关系，可以变成一张能够浏览和查询的图。从网页中的 JSON 数据出发，用 Python 整理人物与关系 CSV，再完成 Neo4j 安装、数据导入和 Cypher 查询，把分散的人物信息组织成可探索的关系图谱。">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-1.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-2.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-3.png">
@@ -76,7 +82,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-28.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-29.png">
 <meta property="article:published_time" content="2019-05-03T06:52:59.000Z">
-<meta property="article:modified_time" content="2025-01-05T07:06:15.535Z">
+<meta property="article:modified_time" content="2026-10-20T06:26:42.702Z">
 <meta property="article:author" content="Lili Liang 梁莉莉">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Neo4j">
@@ -101,8 +107,16 @@
 <link rel="stylesheet" href="/css/style.css">
 
     
+<link rel="stylesheet" href="/css/atom-one-light.css">
+
+    
 <link rel="stylesheet" href="/css/markdown.css">
 
+    
+        
+<link rel="stylesheet" href="/css/post-toc.css">
+
+    
     
 <link rel="stylesheet" href="/css/fonts.css">
 
@@ -126,7 +140,7 @@
 <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Lili Liang" type="application/atom+xml">
 </head>
 
-    <body>
+    <body class="post-page">
         <div class="paper">
             <div class="paper-main">
                 
@@ -146,62 +160,53 @@
 </div>
 
                 
-                <div class="post-main">
+                
+<div class="post-layout" data-post-layout>
+
+<div class="post-main has-translations">
     
         <!-- Post Title -->
         <div class="post-main-title">
             Python + Neo4j（安装）可视化分析漫威十年人物关系图谱
         </div>
 
+        
+
         <!-- Post Meta Information -->
         <div class="post-meta">
             <!-- Show Creation Date -->
-            Created: May 3, 2019 ｜ 
+            Created: 5月 3, 2019 ｜ 
 
             <!-- Show Last Updated Date -->
             
-                Last updated: Jan 5, 2025 ｜ 
+                Last updated: 10月 20, 2026 ｜ 
             
 
             <!-- Show Post Categories -->
             
-                <a href="/categories/%E5%8F%AF%E8%A7%86%E5%8C%96/"># 可视化</a>
-            
         </div>
+
+        
+    <nav class="post-language-switch" aria-label="文章语言">
+        <span>其他语言：</span>
+        
+            <a href="/2019/05/02/modeling-relationships-with-neo4j/" lang="en" hreflang="en">English</a>
+        
+    </nav>
+
+
+        
+    
+    <aside class="post-summary" aria-label="摘要">
+        <span class="post-summary-label">摘要</span>
+        <p>漫威人物之间的朋友、家人和同事关系，可以变成一张能够浏览和查询的图。从网页中的 JSON 数据出发，用 Python 整理人物与关系 CSV，再完成 Neo4j 安装、数据导入和 Cypher 查询，把分散的人物信息组织成可探索的关系图谱。</p>
+    </aside>
+
+
 
         <!-- Post Content -->
         <div class="post-md">
-            <!-- toc -->
-<ul>
-<li><a href="#1-%E6%95%B0%E6%8D%AE%E7%88%AC%E5%8F%96">1 数据爬取</a>
-<ul>
-<li><a href="#11-%E6%BC%AB%E5%A8%81%E4%BA%BA%E7%89%A9%E5%85%B3%E7%B3%BB%E5%9B%BE%E8%B0%B1%E7%BD%91%E7%AB%99">1.1 漫威人物关系图谱网站</a></li>
-<li><a href="#12-%E7%88%AC%E5%8F%96%E4%BA%BA%E7%89%A9%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE">1.2 爬取人物关系数据</a></li>
-</ul>
-</li>
-<li><a href="#2-neo4j%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E6%9C%8D%E5%8A%A1%E5%90%AF%E5%8A%A8">2 Neo4j的安装及服务启动</a>
-<ul>
-<li><a href="#21-neo4j%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85">2.1 Neo4j下载安装</a></li>
-<li><a href="#22-%E5%BC%80%E5%90%AFneo4j%E6%9C%8D%E5%8A%A1">2.2 开启Neo4j服务</a></li>
-</ul>
-</li>
-<li><a href="#3-%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87">3 数据准备</a>
-<ul>
-<li><a href="#31-%E5%8A%A0%E5%85%A5%E5%88%97%E5%90%8D">3.1 加入列名</a></li>
-<li><a href="#32-%E6%94%BE%E5%85%A5%E6%9C%AC%E5%9C%B0neo4j%E7%9A%84import%E6%96%87%E4%BB%B6">3.2 放入本地Neo4j的import文件</a></li>
-</ul>
-</li>
-<li><a href="#4-%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96">4 数据可视化</a>
-<ul>
-<li><a href="#41-%E5%8A%A0%E8%BD%BDnames_messagecsv%E6%96%87%E4%BB%B6">4.1 加载names_message.csv文件</a></li>
-<li><a href="#42-%E5%8A%A0%E8%BD%BDrelation_messagecsv%E6%96%87%E4%BB%B6">4.2 加载relation_message.csv文件</a></li>
-<li><a href="#43-%E6%9F%A5%E7%9C%8B%E4%BA%BA%E7%89%A9%E5%85%B3%E7%B3%BB%E5%9B%BE%E8%B0%B1">4.3 查看人物关系图谱</a></li>
-<li><a href="#44-%E7%AD%9B%E9%80%89%E4%BA%BA%E7%89%A9%E5%85%B3%E7%B3%BB">4.4 筛选人物关系</a></li>
-</ul>
-</li>
-</ul>
-<!-- tocstop -->
-<h2><span id="1-数据爬取">1 数据爬取</span></h2>
+            <h2><span id="1-数据爬取">1 数据爬取</span></h2>
 <h3><span id="11-漫威人物关系图谱网站">1.1 漫威人物关系图谱网站</span></h3>
 <ol>
 <li>
@@ -250,47 +255,47 @@
 <p>跑代码之前需要先配置 python 环境，在这里我使用的 IDE 是 PyCharm，PyCharm 的安装见此处：<a target="_blank" rel="noopener" href="https://blog.csdn.net/liangllhahaha/article/details/86710022">Win10环境Python+Tensorflow+Jupyter入门安装详解</a></p>
 </blockquote>
 <p>代码中的 <code>url</code> 即刚才在网站上复制的 <code>json</code> 接口</p>
-<div class="highlight"><pre class="code"><code><span class="hljs-keyword">import</span> json
-<span class="hljs-keyword">import</span> requests
+<pre><code class="language-python">import json
+import requests
  
 headers = &#123;
-    <span class="hljs-string">&#x27;user-agent&#x27;</span>:<span class="hljs-string">&#x27;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36&#x27;</span>
+    'user-agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36'
 &#125;
  
-url = <span class="hljs-string">&#x27;https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/2018/04/marvel-cinematic-universe-whos-who-interactive/data/marvel-data.json&#x27;</span>
+url = 'https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/2018/04/marvel-cinematic-universe-whos-who-interactive/data/marvel-data.json'
 response = requests.get(url=url, headers=headers)
 result = json.loads(response.text)
  
-num = <span class="hljs-number">0</span>
+num = 0
 names = []
-item = &#123;<span class="hljs-number">0</span>: <span class="hljs-string">&#x27;friend&#x27;</span>, <span class="hljs-number">1</span>: <span class="hljs-string">&#x27;enemy&#x27;</span>, <span class="hljs-number">2</span>: <span class="hljs-string">&#x27;creation&#x27;</span>, <span class="hljs-number">3</span>: <span class="hljs-string">&#x27;family&#x27;</span>, <span class="hljs-number">4</span>: <span class="hljs-string">&#x27;work&#x27;</span>, <span class="hljs-number">5</span>: <span class="hljs-string">&#x27;love&#x27;</span>&#125;
+item = &#123;0: 'friend', 1: 'enemy', 2: 'creation', 3: 'family', 4: 'work', 5: 'love'&#125;
  
-<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> result[<span class="hljs-string">&#x27;relationship&#x27;</span>]:
-    subject = result[<span class="hljs-string">&#x27;relationship&#x27;</span>][i][<span class="hljs-string">&#x27;id&#x27;</span>]
-    <span class="hljs-built_in">object</span> = result[<span class="hljs-string">&#x27;relationship&#x27;</span>][i][<span class="hljs-string">&#x27;target_id&#x27;</span>]
+for i in result['relationship']:
+    subject = result['relationship'][i]['id']
+    object = result['relationship'][i]['target_id']
  
-    <span class="hljs-keyword">if</span> subject <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> names:
+    if subject not in names:
         names.append(subject)
-    <span class="hljs-keyword">if</span> <span class="hljs-built_in">object</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> names:
-        names.append(<span class="hljs-built_in">object</span>)
+    if object not in names:
+        names.append(object)
  
-    relation = <span class="hljs-built_in">int</span>(result[<span class="hljs-string">&#x27;relationship&#x27;</span>][i][<span class="hljs-string">&#x27;relationship&#x27;</span>])
-    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;relation_message.csv&#x27;</span>, <span class="hljs-string">&#x27;a+&#x27;</span>) <span class="hljs-keyword">as</span> f:
-        f.write(subject + <span class="hljs-string">&#x27;,&#x27;</span> + <span class="hljs-built_in">object</span> + <span class="hljs-string">&#x27;,&#x27;</span> + item[relation] + <span class="hljs-string">&#x27;\n&#x27;</span>)
+    relation = int(result['relationship'][i]['relationship'])
+    with open('relation_message.csv', 'a+') as f:
+        f.write(subject + ',' + object + ',' + item[relation] + '\n')
  
-<span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> names:
-    num += <span class="hljs-number">1</span>
-    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;names_message.csv&#x27;</span>, <span class="hljs-string">&#x27;a+&#x27;</span>) <span class="hljs-keyword">as</span> f:
-        f.write(j + <span class="hljs-string">&#x27;,&#x27;</span> + <span class="hljs-built_in">str</span>(num) + <span class="hljs-string">&#x27;\n&#x27;</span>)
+for j in names:
+    num += 1
+    with open('names_message.csv', 'a+') as f:
+        f.write(j + ',' + str(num) + '\n')
  
-<span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> result[<span class="hljs-string">&#x27;characters&#x27;</span>]:
-    <span class="hljs-built_in">id</span> = result[<span class="hljs-string">&#x27;characters&#x27;</span>][k][<span class="hljs-string">&#x27;id&#x27;</span>]
-    name = result[<span class="hljs-string">&#x27;characters&#x27;</span>][k][<span class="hljs-string">&#x27;name&#x27;</span>]
-    status = result[<span class="hljs-string">&#x27;characters&#x27;</span>][k][<span class="hljs-string">&#x27;status&#x27;</span>]
-    species = result[<span class="hljs-string">&#x27;characters&#x27;</span>][k][<span class="hljs-string">&#x27;species&#x27;</span>]
-    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;message.csv&#x27;</span>, <span class="hljs-string">&#x27;a+&#x27;</span>) <span class="hljs-keyword">as</span> f:
-        f.write(<span class="hljs-built_in">id</span> + <span class="hljs-string">&#x27;,&#x27;</span> + name + <span class="hljs-string">&#x27;,&#x27;</span> + status + <span class="hljs-string">&#x27;,&#x27;</span> + species + <span class="hljs-string">&#x27;\n&#x27;</span>)
-</code></pre></div>
+for k in result['characters']:
+    id = result['characters'][k]['id']
+    name = result['characters'][k]['name']
+    status = result['characters'][k]['status']
+    species = result['characters'][k]['species']
+    with open('message.csv', 'a+') as f:
+        f.write(id + ',' + name + ',' + status + ',' + species + '\n')
+</code></pre>
 <ol start="5">
 <li>运行完毕后会产生三个 <code>csv</code> 文件</li>
 </ol>
@@ -322,16 +327,16 @@ item = &#123;<span class="hljs-number">0</span>: <span class="hljs-string">&#x27
 <ol start="2">
 <li>启动</li>
 </ol>
-<div class="highlight"><pre class="code"><code><span class="hljs-keyword">Set</span>-ExecutionPolicy <span class="hljs-comment">-ExecutionPolicy RemoteSigned</span>
-Import-Module <span class="hljs-comment">&#x27;（neo4j文件目录）\bin\Neo4j-Management.psd1&#x27;</span>
-Invoke-Neo4j <span class="hljs-comment">console</span>
-</code></pre></div>
+<pre><code class="language-powershell">Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+Import-Module '（neo4j文件目录）\bin\Neo4j-Management.psd1'
+Invoke-Neo4j console
+</code></pre>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-14.png" alt="python-neo4j-marvel-14"></p>
 <ol start="3">
 <li>访问服务器</li>
 </ol>
-<div class="highlight"><pre class="code"><code><span class="hljs-attribute">localhost</span>:<span class="hljs-number">7474</span>
-</code></pre></div>
+<pre><code class="language-text">localhost:7474
+</code></pre>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-15.png" alt="python-neo4j-marvel-15"></p>
 <ol start="4">
 <li>输入密码</li>
@@ -361,15 +366,15 @@ Invoke-Neo4j <span class="hljs-comment">console</span>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-20.png" alt="python-neo4j-marvel-20"></p>
 <h2><span id="4-数据可视化">4 数据可视化</span></h2>
 <h3><span id="41-加载names_messagecsv文件">4.1 加载names_message.csv文件</span></h3>
-<div class="highlight"><pre class="code"><code><span class="hljs-keyword">LOAD</span> CSV  <span class="hljs-keyword">WITH</span> HEADERS <span class="hljs-keyword">FROM</span> <span class="hljs-string">&#x27;file:///names_message.csv&#x27;</span> <span class="hljs-keyword">AS</span> data <span class="hljs-keyword">CREATE</span> (:people&#123;<span class="hljs-type">name</span>:data.name, id:data.id&#125;);
-</code></pre></div>
+<pre><code class="language-cypher">LOAD CSV  WITH HEADERS FROM 'file:///names_message.csv' AS data CREATE (:people&#123;name:data.name, id:data.id&#125;);
+</code></pre>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-21.png" alt="python-neo4j-marvel-21"></p>
 <p>182 个人物节点已生成</p>
 <h3><span id="42-加载relation_messagecsv文件">4.2 加载relation_message.csv文件</span></h3>
-<div class="highlight"><pre class="code"><code><span class="hljs-keyword">LOAD</span> CSV  <span class="hljs-keyword">WITH</span> HEADERS <span class="hljs-keyword">FROM</span> &quot;file:///relation_message.csv&quot; <span class="hljs-keyword">AS</span> relations
-MATCH (entity1:people&#123;<span class="hljs-type">name</span>:relations.subject&#125;) , (entity2:people&#123;<span class="hljs-type">name</span>:relations.<span class="hljs-keyword">object</span>&#125;)
-<span class="hljs-keyword">CREATE</span> (entity1)-[:rel&#123;relation: relations.relation&#125;]-&gt;(entity2)
-</code></pre></div>
+<pre><code class="language-cypher">LOAD CSV  WITH HEADERS FROM &quot;file:///relation_message.csv&quot; AS relations
+MATCH (entity1:people&#123;name:relations.subject&#125;) , (entity2:people&#123;name:relations.object&#125;)
+CREATE (entity1)-[:rel&#123;relation: relations.relation&#125;]-&gt;(entity2)
+</code></pre>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-22.png" alt="python-neo4j-marvel-22"></p>
 <p>1144 对人物关系已建立完毕</p>
 <h3><span id="43-查看人物关系图谱">4.3 查看人物关系图谱</span></h3>
@@ -392,15 +397,15 @@ MATCH (entity1:people&#123;<span class="hljs-type">name</span>:relations.subject
 <ol>
 <li>托尼·斯达克的朋友</li>
 </ol>
-<div class="highlight"><pre class="code"><code><span class="hljs-keyword">match</span> p=(n:people&#123;name:<span class="hljs-string">&quot;tonys&quot;</span>&#125;)-[:rel&#123;relation:<span class="hljs-string">&quot;friend&quot;</span>&#125;]-&gt;() <span class="hljs-keyword">return</span> p;
-</code></pre></div>
+<pre><code class="language-cypher">match p=(n:people&#123;name:&quot;tonys&quot;&#125;)-[:rel&#123;relation:&quot;friend&quot;&#125;]-&gt;() return p;
+</code></pre>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-28.png" alt="python-neo4j-marvel-28"></p>
 <p>其中「thor」为「雷神」，「stever」为「美队」，「blackw」为「黑寡妇」，「vision」为「幻视」，「peterp」为「蜘蛛侠」，「bruceb」为「绿巨人」</p>
 <ol start="2">
 <li>美队的女友</li>
 </ol>
-<div class="highlight"><pre class="code"><code><span class="hljs-keyword">match</span> p=(n:people&#123;name:<span class="hljs-string">&quot;stever&quot;</span>&#125;)-[:rel&#123;relation:<span class="hljs-string">&quot;love&quot;</span>&#125;]-&gt;() <span class="hljs-keyword">return</span> p;
-</code></pre></div>
+<pre><code class="language-cypher">match p=(n:people&#123;name:&quot;stever&quot;&#125;)-[:rel&#123;relation:&quot;love&quot;&#125;]-&gt;() return p;
+</code></pre>
 <p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-29.png" alt="python-neo4j-marvel-29"></p>
 <p>其余的查询类似我们熟知的 SQL 语句，大家可以多多尝试。</p>
 
@@ -409,18 +414,28 @@ MATCH (entity1:people&#123;<span class="hljs-type">name</span>:relations.subject
 
     <!-- Post Tags -->
     
-        <div class="post-meta">
-            Tags:
-            
-                <a href="/tags/Python/"> / Python</a>
-            
-                <a href="/tags/Neo4j/"> / Neo4j</a>
-            
-                <a href="/tags/Marvel/"> / Marvel</a>
-            
-        </div>
-    
 </div>
+
+    <aside class="post-toc" data-post-toc aria-label="Article contents" hidden>
+    <details class="post-toc-panel" open>
+        <summary class="post-toc-summary">
+            <span class="post-toc-title">On this page</span>
+            <span class="post-toc-current" aria-hidden="true"></span>
+            <svg class="post-toc-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </summary>
+        <nav class="post-toc-nav" aria-label="Table of contents" tabindex="0">
+            <ol class="post-toc-list"></ol>
+        </nav>
+    </details>
+</aside>
+
+</div>
+<script src="/js/post-toc.js" defer></script>
+<script src="/js/post-images.js" defer></script>
+
+
                 <div class="footer">
     <span>Copyright © 2026 Lili Liang</span>
     <span>Build with <a target="_blank" rel="noopener" href="https://github.com/LenChou95/hexo-theme-ZenMind">ZenMind</a></span>
@@ -436,9 +451,10 @@ MATCH (entity1:people&#123;<span class="hljs-type">name</span>:relations.subject
 
             button.addEventListener('click', () => {
             const codeLines = pre.querySelectorAll('.hljs-ln-code');
-            const codeContent = Array.from(codeLines)
-                .map(line => line.textContent)
-                .join('\n');
+            // 单行代码块不会生成行号表格，此时直接取 <code> 的文本
+            const codeContent = codeLines.length
+                ? Array.from(codeLines).map(line => line.textContent).join('\n')
+                : (pre.querySelector('code') || pre).textContent;
 
             navigator.clipboard.writeText(codeContent).then(() => {
                 button.innerText = '√ Copied!';
@@ -451,16 +467,20 @@ MATCH (entity1:people&#123;<span class="hljs-type">name</span>:relations.subject
             });
             });
 
-            pre.appendChild(button);
+            // 右上角工具栏：复制按钮（悬停显示）+ 语言标签
+            const tools = document.createElement('div');
+            tools.className = 'code-tools';
+            tools.appendChild(button);
+            if (pre.dataset.lang) {
+                const tag = document.createElement('span');
+                tag.className = 'code-lang';
+                tag.innerText = pre.dataset.lang;
+                tools.appendChild(tag);
+            }
+            pre.appendChild(tools);
         });
     });
 </script>
-
-<!-- Change Code Style -->
-
-<link rel="stylesheet" href="/css/a11y-dark.min.css">
-
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"> -->
 
 
 <script src="/js/highlight.min.js"></script>
@@ -470,7 +490,28 @@ MATCH (entity1:people&#123;<span class="hljs-type">name</span>:relations.subject
 
 
 <script>
-    hljs.initHighlightingOnLoad();
+    // 代码块右上角显示的语言名，没列出的直接显示大写
+    const LANG_NAMES = {
+        cpp: 'C++', 'c++': 'C++', c: 'C', java: 'Java', python: 'Python',
+        javascript: 'JavaScript', js: 'JavaScript', typescript: 'TypeScript', ts: 'TypeScript',
+        bash: 'Bash', shell: 'Shell', sh: 'Shell', powershell: 'PowerShell', cmd: 'CMD', bat: 'CMD',
+        sql: 'SQL', cypher: 'Cypher', yaml: 'YAML', yml: 'YAML', json: 'JSON', ini: 'INI',
+        html: 'HTML', xml: 'XML', css: 'CSS', markdown: 'Markdown', md: 'Markdown',
+        text: 'Text', txt: 'Text', plaintext: 'Text'
+    };
+
+    document.querySelectorAll('pre > code').forEach((code) => {
+        const match = code.className.match(/\blanguage-(\S+)/);
+        let lang = match ? match[1].toLowerCase() : 'text';
+        code.parentElement.dataset.lang = LANG_NAMES[lang] || lang.toUpperCase();
+
+        // highlight.js 从 "language-c++" 只能解析出 "c"；不认识的语言（如 cypher）和没写语言的块按纯文本处理，避免自动识别乱上色
+        if (lang === 'c++') lang = 'cpp';
+        if (!hljs.getLanguage(lang)) lang = 'plaintext';
+        code.className = 'language-' + lang;
+    });
+
+    hljs.highlightAll();
     hljs.initLineNumbersOnLoad();
 </script>
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="default">
     <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
@@ -38,16 +38,18 @@
         <title>【PAT甲级】1002 A+B for Polynomials &amp;&amp; 1009 Product of Polynomials | Lili Liang</title>
     
   
+    
+
     <!-- Open graph -->
-    <meta name="description" content="1 A+B for Polynomials 题目链接：1002 A+B for Polynomials  This time, you are supposed to find A+B where A and B are two polynomials.  Input Specification  Each input file contains one test case. Each case">
+    <meta name="description" content="多项式加法与乘法都可以按指数归并系数，差别在于结果项如何产生：加法累加同次项，乘法组合两项的指数与系数。结合 PAT 1002 和 1009 的 C++ 实现，把同类项合并、零系数过滤与小数输出放在同一套表示方法下理解。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【PAT甲级】1002 A+B for Polynomials &amp;&amp; 1009 Product of Polynomials">
 <meta property="og:url" content="https://leungll.site/2020/05/30/pat-1002-1009/index.html">
 <meta property="og:site_name" content="Lili Liang">
-<meta property="og:description" content="1 A+B for Polynomials 题目链接：1002 A+B for Polynomials  This time, you are supposed to find A+B where A and B are two polynomials.  Input Specification  Each input file contains one test case. Each case">
+<meta property="og:description" content="多项式加法与乘法都可以按指数归并系数，差别在于结果项如何产生：加法累加同次项，乘法组合两项的指数与系数。结合 PAT 1002 和 1009 的 C++ 实现，把同类项合并、零系数过滤与小数输出放在同一套表示方法下理解。">
 <meta property="og:locale">
 <meta property="article:published_time" content="2020-05-30T14:13:56.000Z">
-<meta property="article:modified_time" content="2024-05-24T08:29:39.649Z">
+<meta property="article:modified_time" content="2026-10-20T06:26:42.699Z">
 <meta property="article:author" content="Lili Liang 梁莉莉">
 <meta property="article:tag" content="C&#x2F;C++">
 <meta property="article:tag" content="PAT">
@@ -71,8 +73,16 @@
 <link rel="stylesheet" href="/css/style.css">
 
     
+<link rel="stylesheet" href="/css/atom-one-light.css">
+
+    
 <link rel="stylesheet" href="/css/markdown.css">
 
+    
+        
+<link rel="stylesheet" href="/css/post-toc.css">
+
+    
     
 <link rel="stylesheet" href="/css/fonts.css">
 
@@ -96,7 +106,7 @@
 <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Lili Liang" type="application/atom+xml">
 </head>
 
-    <body>
+    <body class="post-page">
         <div class="paper">
             <div class="paper-main">
                 
@@ -116,12 +126,17 @@
 </div>
 
                 
-                <div class="post-main">
+                
+<div class="post-layout" data-post-layout>
+
+<div class="post-main">
     
         <!-- Post Title -->
         <div class="post-main-title">
             【PAT甲级】1002 A+B for Polynomials &amp;&amp; 1009 Product of Polynomials
         </div>
+
+        
 
         <!-- Post Meta Information -->
         <div class="post-meta">
@@ -130,7 +145,7 @@
 
             <!-- Show Last Updated Date -->
             
-                Last updated: May 24, 2024 ｜ 
+                Last updated: Oct 20, 2026 ｜ 
             
 
             <!-- Show Post Categories -->
@@ -138,6 +153,17 @@
                 <a href="/categories/%E7%AE%97%E6%B3%95/"># 算法</a>
             
         </div>
+
+        
+
+        
+    
+    <aside class="post-summary" aria-label="摘要">
+        <span class="post-summary-label">摘要</span>
+        <p>多项式加法与乘法都可以按指数归并系数，差别在于结果项如何产生：加法累加同次项，乘法组合两项的指数与系数。结合 PAT 1002 和 1009 的 C++ 实现，把同类项合并、零系数过滤与小数输出放在同一套表示方法下理解。</p>
+    </aside>
+
+
 
         <!-- Post Content -->
         <div class="post-md">
@@ -175,52 +201,52 @@ where <span class="markdown-them-math-inline">$K$</span> is the number of nonzer
 <li>最后<strong>没有空格</strong></li>
 </ul>
 <h3><span id="题解">题解</span></h3>
-<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
-<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+using namespace std;
 
-<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn = <span class="hljs-number">1e3</span> + <span class="hljs-number">5</span>;
-<span class="hljs-keyword">double</span> a[maxn] = &#123;<span class="hljs-number">0</span>&#125;;
+const int maxn = 1e3 + 5;
+double a[maxn] = &#123;0&#125;;
 
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
-    <span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> ONLINE_JUDGE</span>
-    <span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span>
-        <span class="hljs-built_in">freopen</span>(<span class="hljs-string">&quot;input.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, stdin);
-    <span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span> <span class="hljs-comment">// ONLINE_JUDGE</span></span>
-    <span class="hljs-keyword">int</span> k;
+int main()&#123;
+    #ifdef ONLINE_JUDGE
+    #else
+        freopen(&quot;input.txt&quot;, &quot;r&quot;, stdin);
+    #endif // ONLINE_JUDGE
+    int k;
     cin &gt;&gt; k;
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; k;i++)&#123;
-        <span class="hljs-keyword">int</span> exp;
-        <span class="hljs-keyword">double</span> coe;
+    for(int i = 0;i &lt; k;i++)&#123;
+        int exp;
+        double coe;
         cin &gt;&gt; exp &gt;&gt; coe;
         a[exp] = coe;
     &#125;
     cin &gt;&gt; k;
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; k;i++)&#123;
-        <span class="hljs-keyword">int</span> exp;
-        <span class="hljs-keyword">double</span> coe;
+    for(int i = 0;i &lt; k;i++)&#123;
+        int exp;
+        double coe;
         cin &gt;&gt; exp &gt;&gt; coe;
         a[exp] += coe;
     &#125;
-    <span class="hljs-keyword">int</span> cnt = <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; maxn;i++)&#123;
-        <span class="hljs-keyword">if</span>(a[i])&#123;
+    int cnt = 0;
+    for(int i = 0;i &lt; maxn;i++)&#123;
+        if(a[i])&#123;
             cnt++;
         &#125;
     &#125;
-    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, cnt);
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = maxn;i &gt;= <span class="hljs-number">0</span>;i--)&#123;
-        <span class="hljs-comment">//负数也需要输出</span>
-        <span class="hljs-keyword">if</span>(a[i] != <span class="hljs-number">0</span>)&#123;
-			<span class="hljs-comment">//cout &lt;&lt; &quot; &quot; &lt;&lt; i &lt;&lt; &quot; &quot; &lt;&lt; a[i];</span>
-            <span class="hljs-comment">//coe精确到小数点后一位</span>
-            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; %d %.1f&quot;</span>, i, a[i]);
+    printf(&quot;%d&quot;, cnt);
+    for(int i = maxn;i &gt;= 0;i--)&#123;
+        //负数也需要输出
+        if(a[i] != 0)&#123;
+			//cout &lt;&lt; &quot; &quot; &lt;&lt; i &lt;&lt; &quot; &quot; &lt;&lt; a[i];
+            //coe精确到小数点后一位
+            printf(&quot; %d %.1f&quot;, i, a[i]);
         &#125;
     &#125;
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    return 0;
 &#125;
 
-</code></pre></div>
+</code></pre>
 <h2><span id="2-product-of-polynomials">2 Product of Polynomials</span></h2>
 <p><strong>题目链接：<a target="_blank" rel="noopener" href="https://pintia.cn/problem-sets/994805342720868352/problems/994805509540921344">1009 Product of Polynomials</a></strong></p>
 <blockquote>
@@ -249,49 +275,49 @@ where <span class="markdown-them-math-inline">$K$</span> is the number of nonzer
 <h3><span id="解题思路">解题思路</span></h3>
 <p>注意一个坑：作为输出结果的 <span class="markdown-them-math-inline">$C[maxn2]$</span> 数组，范围需要开到 <span class="markdown-them-math-inline">$2000$</span> 以上才可。</p>
 <h3><span id="题解">题解</span></h3>
-<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
-<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+using namespace std;
 
-<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn = <span class="hljs-number">1005</span>, maxn2 = <span class="hljs-number">2010</span>;
-<span class="hljs-keyword">double</span> a[maxn] = &#123;<span class="hljs-number">0</span>&#125;, b[maxn] = &#123;<span class="hljs-number">0</span>&#125;, c[maxn2] = &#123;<span class="hljs-number">0</span>&#125;;
+const int maxn = 1005, maxn2 = 2010;
+double a[maxn] = &#123;0&#125;, b[maxn] = &#123;0&#125;, c[maxn2] = &#123;0&#125;;
 
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
-    <span class="hljs-keyword">int</span> k;
+int main()&#123;
+    int k;
     cin &gt;&gt; k;
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; k;i++)&#123;
-        <span class="hljs-keyword">int</span> exp;
-        <span class="hljs-keyword">double</span> coe;
+    for(int i = 0;i &lt; k;i++)&#123;
+        int exp;
+        double coe;
         cin &gt;&gt; exp &gt;&gt; coe;
         a[exp] = coe;
     &#125;
     cin &gt;&gt; k;
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; k;i++)&#123;
-        <span class="hljs-keyword">int</span> exp;
-        <span class="hljs-keyword">double</span> coe;
+    for(int i = 0;i &lt; k;i++)&#123;
+        int exp;
+        double coe;
         cin &gt;&gt; exp &gt;&gt; coe;
         b[exp] = coe;
     &#125;
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; maxn;i++)&#123;
-        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>;j &lt; maxn;j++)&#123;
+    for(int i = 0;i &lt; maxn;i++)&#123;
+        for(int j = 0;j &lt; maxn;j++)&#123;
             c[i + j] += a[i] * b[j];
         &#125;
     &#125;
-    <span class="hljs-keyword">int</span> cnt = <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; maxn2;i++)&#123;
-        <span class="hljs-keyword">if</span>(c[i])&#123;
+    int cnt = 0;
+    for(int i = 0;i &lt; maxn2;i++)&#123;
+        if(c[i])&#123;
             cnt++;
         &#125;
     &#125;
     cout &lt;&lt; cnt;
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = maxn2;i &gt;= <span class="hljs-number">0</span>;i--)&#123;
-        <span class="hljs-keyword">if</span>(c[i] != <span class="hljs-number">0</span>)&#123;
-            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; %d %.1f&quot;</span>, i, c[i]);
+    for(int i = maxn2;i &gt;= 0;i--)&#123;
+        if(c[i] != 0)&#123;
+            printf(&quot; %d %.1f&quot;, i, c[i]);
         &#125;
     &#125;
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    return 0;
 &#125;
-</code></pre></div>
+</code></pre>
 
         </div>
     
@@ -310,6 +336,27 @@ where <span class="markdown-them-math-inline">$K$</span> is the number of nonzer
         </div>
     
 </div>
+
+    <aside class="post-toc" data-post-toc aria-label="Article contents" hidden>
+    <details class="post-toc-panel" open>
+        <summary class="post-toc-summary">
+            <span class="post-toc-title">On this page</span>
+            <span class="post-toc-current" aria-hidden="true"></span>
+            <svg class="post-toc-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </summary>
+        <nav class="post-toc-nav" aria-label="Table of contents" tabindex="0">
+            <ol class="post-toc-list"></ol>
+        </nav>
+    </details>
+</aside>
+
+</div>
+<script src="/js/post-toc.js" defer></script>
+<script src="/js/post-images.js" defer></script>
+
+
                 <div class="footer">
     <span>Copyright © 2026 Lili Liang</span>
     <span>Build with <a target="_blank" rel="noopener" href="https://github.com/LenChou95/hexo-theme-ZenMind">ZenMind</a></span>
@@ -325,9 +372,10 @@ where <span class="markdown-them-math-inline">$K$</span> is the number of nonzer
 
             button.addEventListener('click', () => {
             const codeLines = pre.querySelectorAll('.hljs-ln-code');
-            const codeContent = Array.from(codeLines)
-                .map(line => line.textContent)
-                .join('\n');
+            // 单行代码块不会生成行号表格，此时直接取 <code> 的文本
+            const codeContent = codeLines.length
+                ? Array.from(codeLines).map(line => line.textContent).join('\n')
+                : (pre.querySelector('code') || pre).textContent;
 
             navigator.clipboard.writeText(codeContent).then(() => {
                 button.innerText = '√ Copied!';
@@ -340,16 +388,20 @@ where <span class="markdown-them-math-inline">$K$</span> is the number of nonzer
             });
             });
 
-            pre.appendChild(button);
+            // 右上角工具栏：复制按钮（悬停显示）+ 语言标签
+            const tools = document.createElement('div');
+            tools.className = 'code-tools';
+            tools.appendChild(button);
+            if (pre.dataset.lang) {
+                const tag = document.createElement('span');
+                tag.className = 'code-lang';
+                tag.innerText = pre.dataset.lang;
+                tools.appendChild(tag);
+            }
+            pre.appendChild(tools);
         });
     });
 </script>
-
-<!-- Change Code Style -->
-
-<link rel="stylesheet" href="/css/a11y-dark.min.css">
-
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"> -->
 
 
 <script src="/js/highlight.min.js"></script>
@@ -359,7 +411,28 @@ where <span class="markdown-them-math-inline">$K$</span> is the number of nonzer
 
 
 <script>
-    hljs.initHighlightingOnLoad();
+    // 代码块右上角显示的语言名，没列出的直接显示大写
+    const LANG_NAMES = {
+        cpp: 'C++', 'c++': 'C++', c: 'C', java: 'Java', python: 'Python',
+        javascript: 'JavaScript', js: 'JavaScript', typescript: 'TypeScript', ts: 'TypeScript',
+        bash: 'Bash', shell: 'Shell', sh: 'Shell', powershell: 'PowerShell', cmd: 'CMD', bat: 'CMD',
+        sql: 'SQL', cypher: 'Cypher', yaml: 'YAML', yml: 'YAML', json: 'JSON', ini: 'INI',
+        html: 'HTML', xml: 'XML', css: 'CSS', markdown: 'Markdown', md: 'Markdown',
+        text: 'Text', txt: 'Text', plaintext: 'Text'
+    };
+
+    document.querySelectorAll('pre > code').forEach((code) => {
+        const match = code.className.match(/\blanguage-(\S+)/);
+        let lang = match ? match[1].toLowerCase() : 'text';
+        code.parentElement.dataset.lang = LANG_NAMES[lang] || lang.toUpperCase();
+
+        // highlight.js 从 "language-c++" 只能解析出 "c"；不认识的语言（如 cypher）和没写语言的块按纯文本处理，避免自动识别乱上色
+        if (lang === 'c++') lang = 'cpp';
+        if (!hljs.getLanguage(lang)) lang = 'plaintext';
+        code.className = 'language-' + lang;
+    });
+
+    hljs.highlightAll();
     hljs.initLineNumbersOnLoad();
 </script>
 

@@ -1,0 +1,20 @@
+/* Loaded only by the Building for Agents article. */
+.post-md table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.post-md table th,
+.post-md table td {
+  min-width: 150px;
+}
+.post-md img[src*="/images/building-for-agents/"] {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  height: auto;
+  margin: 1.5rem auto;
+  border-radius: 8px;
+}

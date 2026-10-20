@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="robots" content="index, follow">
+
+    <!-- Baidu Site SEO -->
+    <meta name="baidu-site-verification" content="codeva-Fn6WoXLOMw" />
+    <!-- <meta name="baidu-site-verification" content="codeva-mdLm33TTHY" /> -->
+
+    <!-- Baidu analytics -->
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?1a364896f028f8093396007dc78eb0a0";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WF4EY3839B"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-WF4EY3839B');
+    </script>
+
+    <!-- Bing Site SEO -->
+    <meta name="msvalidate.01" content="85648BC2E966622B7CC9FF6BCB04E326" />
+
+    <!-- title -->
+    
+        <title>Python and Neo4j: Visualizing Relationships in the Marvel Cinematic Universe | Lili Liang</title>
+    
+  
+    
+        <link rel="alternate" hreflang="en" href="https://leungll.site/2019/05/02/modeling-relationships-with-neo4j/">
+    
+        <link rel="alternate" hreflang="zh-CN" href="https://leungll.site/2019/05/02/python-neo4j-marvel/">
+    
+
+    <!-- Open graph -->
+    <meta name="description" content="Who is connected to Tony Stark, and which connections represent friendship, family, or work? A Marvel character graph turns those questions into queries over nodes and relationships. Starting with JSO">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python and Neo4j: Visualizing Relationships in the Marvel Cinematic Universe">
+<meta property="og:url" content="https://leungll.site/2019/05/02/modeling-relationships-with-neo4j/index.html">
+<meta property="og:site_name" content="Lili Liang">
+<meta property="og:description" content="Who is connected to Tony Stark, and which connections represent friendship, family, or work? A Marvel character graph turns those questions into queries over nodes and relationships. Starting with JSO">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-1.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-2.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-3.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-4.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-5.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-6.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-7.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-8.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-9.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-10.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-11.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-12.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-13.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-14.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-15.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-16.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-17.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-18.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-19.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-20.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-21.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-22.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-23.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-24.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-25.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-26.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-27.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-28.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-29.png">
+<meta property="article:published_time" content="2019-05-03T06:52:59.000Z">
+<meta property="article:modified_time" content="2026-10-19T04:00:00.000Z">
+<meta property="article:author" content="Lili Liang 梁莉莉">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Neo4j">
+<meta property="article:tag" content="Data Modeling">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-1.png">
+
+    <!-- Canonical -->
+    
+        <link rel="canonical" href="https://leungll.site/2019/05/02/modeling-relationships-with-neo4j/">
+    
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/logo.png">
+
+    <!-- CSS -->
+    
+<link rel="stylesheet" href="/css/reset.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/atom-one-light.css">
+
+    
+<link rel="stylesheet" href="/css/markdown.css">
+
+    
+        
+<link rel="stylesheet" href="/css/post-toc.css">
+
+    
+    
+<link rel="stylesheet" href="/css/fonts.css">
+
+
+    <script>
+        MathJax = {
+          tex: {
+            packages: ['base', 'ams'],
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true
+          },
+          options: {
+            ignoreHtmlClass: "tex2jax_ignore",
+            processHtmlClass: "tex2jax_process"
+          }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Lili Liang" type="application/atom+xml">
+</head>
+
+    <body class="post-page">
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">Lili Liang 梁莉莉</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Blogs</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+            <li><a href="/about">About</a></li>
+            
+        </ul>
+    </a>
+</div>
+
+                
+                
+<div class="post-layout" data-post-layout>
+
+<div class="post-main has-translations">
+    
+        <!-- Post Title -->
+        <div class="post-main-title">
+            Python and Neo4j: Visualizing Relationships in the Marvel Cinematic Universe
+        </div>
+
+        
+
+        <!-- Post Meta Information -->
+        <div class="post-meta">
+            <!-- Show Creation Date -->
+            Created: May 3, 2019 ｜ 
+
+            <!-- Show Last Updated Date -->
+            
+                Last updated: Oct 19, 2026 ｜ 
+            
+
+            <!-- Show Post Categories -->
+            
+                <a href="/categories/Database/"># Database</a>
+            
+        </div>
+
+        
+    <nav class="post-language-switch" aria-label="Article language">
+        <span>Also available in</span>
+        
+            <a href="/2019/05/02/python-neo4j-marvel/" lang="zh-CN" hreflang="zh-CN">中文原文</a>
+        
+    </nav>
+
+
+        
+    
+    <aside class="post-summary" aria-label="Summary">
+        <span class="post-summary-label">Summary</span>
+        <p>Who is connected to Tony Stark, and which connections represent friendship, family, or work? A Marvel character graph turns those questions into queries over nodes and relationships. Starting with JSON data, the workflow uses Python to prepare CSV files and Neo4j to import, visualize, and query the graph with Cypher, showing how source identifiers connect character records to their relationships.</p>
+    </aside>
+
+
+
+        <!-- Post Content -->
+        <div class="post-md">
+            <p>A character relationship graph gives us a way to explore the Marvel Cinematic Universe through its people: who is connected to Tony Stark, which relationships represent friendship or family, and how characters link different films together.</p>
+<p>The process has four parts: retrieve the relationship data with Python, install and start Neo4j, prepare the CSV files, and import them into a graph that we can visualize and query.</p>
+<span id="more"></span>
+<h2><span id="1-retrieve-the-character-and-relationship-data">1. Retrieve the character and relationship data</span></h2>
+<h3><span id="11-explore-the-marvel-interactive">1.1 Explore the Marvel interactive</span></h3>
+<p>The data comes from <a target="_blank" rel="noopener" href="https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/2018/04/marvel-cinematic-universe-whos-who-interactive/index.html">The Straits Times’ Marvel interactive</a>. It presents characters, their connections, and the films in which they appear.</p>
+<p>The landing page provides an overview of the graph:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-1.png" alt="Marvel interactive landing page"></p>
+<p>Selecting a character reveals their relationships:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-2.png" alt="Marvel character relationship view"></p>
+<p>A character’s portrait opens more details. Here is Iron Man:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-3.png" alt="Iron Man character details"></p>
+<p>The interactive also includes a view of the Marvel films:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-4.png" alt="Marvel film overview"></p>
+<p>The <a target="_blank" rel="noopener" href="https://github.com/leungll/Marvel-File">CSV dataset on GitHub</a> is an alternative when the interactive or its data endpoint is unavailable. Those files can be used directly in the import steps below after checking their headers.</p>
+<h3><span id="12-find-the-json-request">1.2 Find the JSON request</span></h3>
+<p>Open the interactive in Chrome, then open Developer Tools with <code>F12</code>. Select <strong>Network</strong> and reload the landing page so that its data requests appear.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-5.png" alt="Network requests in Chrome Developer Tools"></p>
+<p>Search the requests for <code>marvel-data.json</code>:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-6.png" alt="Searching for marvel-data.json"></p>
+<p>Open that request and copy its request URL:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-7.png" alt="Copying the JSON request URL"></p>
+<p>The two collections we need are <code>characters</code> and <code>relationship</code>. A relationship record identifies its source character, target character, and relationship category.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-8.png" alt="Character and relationship collections in the JSON"></p>
+<h3><span id="13-export-the-data-with-python">1.3 Export the data with Python</span></h3>
+<p>Use Python 3. The script below accepts either the copied URL or a locally saved JSON file. It writes the same three kinds of CSV needed for the graph:</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Header</th>
+<th>Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>names_message.csv</code></td>
+<td><code>name,id</code></td>
+<td>Character keys referenced by relationships, with local numeric IDs</td>
+</tr>
+<tr>
+<td><code>relation_message.csv</code></td>
+<td><code>subject,object,relation</code></td>
+<td>Source key, target key, and relationship category</td>
+</tr>
+<tr>
+<td><code>message.csv</code></td>
+<td><code>id,name,status,species</code></td>
+<td>Character metadata, including display names</td>
+</tr>
+</tbody>
+</table>
+<p>In <code>names_message.csv</code>, <code>name</code> is the source key, such as <code>tonys</code>, rather than a full display name. The import queries use that key to join relationship endpoints. The numeric <code>id</code> is a local identifier for this dataset.</p>
+<p>The relationship codes map to <code>friend</code>, <code>enemy</code>, <code>creation</code>, <code>family</code>, <code>work</code>, and <code>love</code>. CSV output uses Python’s <code>csv</code> module so that punctuation in names is escaped correctly. Opening the output files in write mode prevents a second export from appending another copy of every record.</p>
+<pre><code class="language-python">&quot;&quot;&quot;Fetch or read Marvel JSON and export the three CSV files used by Neo4j.&quot;&quot;&quot;
+import argparse
+import csv
+import json
+from pathlib import Path
+from urllib.request import Request, urlopen
+
+KINDS = &#123;0: &quot;friend&quot;, 1: &quot;enemy&quot;, 2: &quot;creation&quot;, 3: &quot;family&quot;, 4: &quot;work&quot;, 5: &quot;love&quot;&#125;
+
+
+def records(value):
+    if isinstance(value, dict):
+        return value.values()
+    if isinstance(value, list):
+        return value
+    raise ValueError(&quot;Expected a record collection&quot;)
+
+
+def character_key(value):
+    if not isinstance(value, str) or not value.strip():
+        raise ValueError(&quot;A character key must be a nonempty string&quot;)
+    return value.strip()
+
+
+def prepare_rows(data):
+    characters = &#123;&#125;
+    for item in records(data[&quot;characters&quot;]):
+        key = character_key(item[&quot;id&quot;])
+        if key in characters:
+            raise ValueError(f&quot;Duplicate character key: &#123;key&#125;&quot;)
+        characters[key] = item
+
+    relationships, used = [], set()
+    for item in records(data[&quot;relationship&quot;]):
+        source = character_key(item[&quot;id&quot;])
+        target = character_key(item[&quot;target_id&quot;])
+        if source not in characters or target not in characters:
+            raise ValueError(f&quot;Unknown endpoint: &#123;source&#125; -&gt; &#123;target&#125;&quot;)
+        raw_kind = str(item[&quot;relationship&quot;])
+        if raw_kind not in &#123;str(key) for key in KINDS&#125;:
+            raise ValueError(f&quot;Unsupported relationship code: &#123;raw_kind&#125;&quot;)
+        relationships.append((source, target, KINDS[int(raw_kind)]))
+        used.update((source, target))
+
+    names = [(key, index) for index, key in enumerate(sorted(used), start=1)]
+    messages = [
+        (key, item.get(&quot;name&quot;) or &quot;&quot;, item.get(&quot;status&quot;) or &quot;&quot;, item.get(&quot;species&quot;) or &quot;&quot;)
+        for key, item in sorted(characters.items())
+    ]
+    return names, relationships, messages
+
+
+def write_csv(path, header, rows):
+    with path.open(&quot;w&quot;, encoding=&quot;utf-8&quot;, newline=&quot;&quot;) as stream:
+        writer = csv.writer(stream)
+        writer.writerow(header)
+        writer.writerows(rows)
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    source = parser.add_mutually_exclusive_group(required=True)
+    source.add_argument(&quot;--url&quot;)
+    source.add_argument(&quot;--input&quot;, type=Path)
+    parser.add_argument(&quot;--output&quot;, type=Path, default=Path(&quot;prepared&quot;))
+    args = parser.parse_args()
+    if args.url:
+        request = Request(args.url, headers=&#123;&quot;User-Agent&quot;: &quot;MarvelGraphTutorial/1.0&quot;&#125;)
+        with urlopen(request, timeout=30) as response:
+            raw = response.read().decode(&quot;utf-8-sig&quot;)
+    else:
+        raw = args.input.read_text(encoding=&quot;utf-8-sig&quot;)
+    names, relations, messages = prepare_rows(json.loads(raw))
+    args.output.mkdir(parents=True, exist_ok=True)
+    (args.output / &quot;marvel-data.json&quot;).write_text(raw, encoding=&quot;utf-8&quot;)
+    write_csv(args.output / &quot;names_message.csv&quot;, [&quot;name&quot;, &quot;id&quot;], names)
+    write_csv(args.output / &quot;relation_message.csv&quot;, [&quot;subject&quot;, &quot;object&quot;, &quot;relation&quot;], relations)
+    write_csv(args.output / &quot;message.csv&quot;, [&quot;id&quot;, &quot;name&quot;, &quot;status&quot;, &quot;species&quot;], messages)
+    print(f&quot;Exported &#123;len(names)&#125; referenced characters and &#123;len(relations)&#125; relationships&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+<p>Save this as <code>export_marvel_csv.py</code>, or <a href="/downloads/english-editions/export_marvel_csv.py">download the complete script</a>. To fetch the JSON, pass the URL copied from Network:</p>
+<pre><code class="language-bash">python3 export_marvel_csv.py --url &quot;https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/2018/04/marvel-cinematic-universe-whos-who-interactive/data/marvel-data.json&quot; --output prepared
+</code></pre>
+<p>If the JSON is already saved locally, run:</p>
+<pre><code class="language-bash">python3 export_marvel_csv.py --input marvel-data.json --output prepared
+</code></pre>
+<p>An HTTP error means the remote request failed; it is not a successful empty dataset. Use the archived CSV files if the endpoint no longer serves the JSON. The exporter checks relationship endpoints before writing the files and keeps the fetched JSON alongside them for inspection.</p>
+<p>The three CSV outputs appear in the destination directory:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-9.png" alt="The three exported CSV files"></p>
+<h2><span id="2-install-neo4j-and-start-the-database">2. Install Neo4j and start the database</span></h2>
+<h3><span id="21-download-and-extract-neo4j">2.1 Download and extract Neo4j</span></h3>
+<p>Download the Windows ZIP distribution from the <a target="_blank" rel="noopener" href="https://neo4j.com/deployment-center/">Neo4j Deployment Center</a>. Check the Java requirements for the release you select before starting the database. The <a target="_blank" rel="noopener" href="https://neo4j.com/docs/operations-manual/current/installation/windows/">Windows installation guide</a> covers the supported setup.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-10.png" alt="Neo4j Windows download page"></p>
+<p>If the download does not start automatically, follow the download link on the release page:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-11.png" alt="Neo4j download link"></p>
+<p>Extract the archive to a permanent directory. A simple path such as <code>C:\neo4j\neo4j-&lt;version&gt;</code> makes shell commands easier to work with. Quote paths when necessary; spaces or non-ASCII characters are not, by themselves, a universal restriction on Neo4j installations.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-12.png" alt="Extracted Neo4j installation directory"></p>
+<h3><span id="22-start-neo4j-on-windows">2.2 Start Neo4j on Windows</span></h3>
+<p>Open PowerShell and change to the extracted Neo4j directory. Use an elevated prompt when installing a Windows service or when the distribution’s instructions require it.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-13.png" alt="Starting PowerShell for Neo4j"></p>
+<p>For a ZIP distribution with the Neo4j command-line launcher, start the database in the foreground:</p>
+<pre><code class="language-powershell">cd 'C:\neo4j\neo4j-&lt;version&gt;'
+.\bin\neo4j console
+</code></pre>
+<p>Distributions that provide <code>Neo4j-Management.psd1</code> can also use the PowerShell management module:</p>
+<pre><code class="language-powershell">Import-Module 'C:\neo4j\neo4j-&lt;version&gt;\bin\Neo4j-Management.psd1'
+Invoke-Neo4j console
+</code></pre>
+<p>If PowerShell blocks the module under the machine’s execution policy, the following command allows signed or locally created scripts for the current process, where permitted by organizational policy:</p>
+<pre><code class="language-powershell">Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned
+</code></pre>
+<p>Use the startup method supported by the installed release. Keep the console open while the database is running.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-14.png" alt="Neo4j running in the console"></p>
+<p>Open Neo4j Browser at:</p>
+<pre><code class="language-text">http://localhost:7474
+</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-15.png" alt="Neo4j Browser login page"></p>
+<p>For a fresh local installation using the default credentials, sign in as <code>neo4j</code> with password <code>neo4j</code>:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-16.png" alt="Initial local database login"></p>
+<p>Set a new password when prompted. An installation with credentials configured in advance uses those credentials instead.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-17.png" alt="Setting the database password"></p>
+<h2><span id="3-prepare-the-csv-files-for-import">3. Prepare the CSV files for import</span></h2>
+<h3><span id="31-check-the-headers">3.1 Check the headers</span></h3>
+<p><code>LOAD CSV WITH HEADERS</code> uses the first row to name each column. The exported files already include their headers. If using previously downloaded files, check the first row before importing; do not add a second header to a file that already has one.</p>
+<p>For <code>names_message.csv</code>, the columns must be <code>name,id</code>:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-18.png" alt="Header row in names_message.csv"></p>
+<p>For <code>relation_message.csv</code>, they must be <code>subject,object,relation</code>:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-19.png" alt="Header row in relation_message.csv"></p>
+<p>Make sure the relationship keys exist in the character file and that the files are saved as UTF-8. <code>message.csv</code> contains descriptive metadata; the basic graph below only needs the first two files.</p>
+<h3><span id="32-copy-the-files-into-neo4js-import-directory">3.2 Copy the files into Neo4j’s import directory</span></h3>
+<p>Copy the CSV files into the local database’s configured <code>import</code> directory:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-20.png" alt="CSV files in the import directory"></p>
+<p>A Cypher URL such as <code>file:///names_message.csv</code> is resolved by the database server relative to that import directory, not relative to the browser or the Python working directory. Local file loading must be enabled for the installation; it is not available on Aura. See the <a target="_blank" rel="noopener" href="https://neo4j.com/docs/cypher-manual/current/clauses/load-csv/">LOAD CSV documentation</a> for the relevant file-access rules.</p>
+<h2><span id="4-import-and-visualize-the-graph">4. Import and visualize the graph</span></h2>
+<h3><span id="41-create-the-character-nodes">4.1 Create the character nodes</span></h3>
+<p>Run the following query in Neo4j Browser, using an empty project database:</p>
+<pre><code class="language-cypher">LOAD CSV WITH HEADERS FROM 'file:///names_message.csv' AS data
+CREATE (:people &#123;name: data.name, id: toInteger(data.id)&#125;);
+</code></pre>
+<p>Each row creates a <code>people</code> node. Its <code>name</code> property holds the character key used by the relationship file.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-21.png" alt="Character node import result"></p>
+<p>The dataset shown in these screenshots created <strong>182 character nodes</strong>. A different dataset should be checked against its own CSV row count.</p>
+<h3><span id="42-create-the-relationships">4.2 Create the relationships</span></h3>
+<p>Match each endpoint by its character key, then create a directed relationship:</p>
+<pre><code class="language-cypher">LOAD CSV WITH HEADERS FROM 'file:///relation_message.csv' AS relations
+MATCH (source:people &#123;name: relations.subject&#125;)
+MATCH (target:people &#123;name: relations.object&#125;)
+CREATE (source)-[:rel &#123;relation: relations.relation&#125;]-&gt;(target);
+</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-22.png" alt="Relationship import result"></p>
+<p>The screenshot dataset produced <strong>1,144 relationships</strong>. If a source or target key is missing, <code>MATCH</code> will find no endpoint and that row will create no relationship. Comparing imported counts with the input files helps reveal missing rows.</p>
+<p>These <code>CREATE</code> queries are intended for a one-time import into an empty project database. Repeating them creates duplicates. For a repeatable import, use a stable character key, an appropriate uniqueness constraint, and <code>MERGE</code> with a defined relationship identity. The <a target="_blank" rel="noopener" href="https://neo4j.com/docs/cypher-manual/current/clauses/merge/">MERGE documentation</a> explains those semantics.</p>
+<h3><span id="43-display-characters-and-relationships">4.3 Display characters and relationships</span></h3>
+<p>Query the imported graph:</p>
+<pre><code class="language-cypher">MATCH p=(:people)-[:rel]-&gt;(:people)
+RETURN p;
+</code></pre>
+<p>Neo4j Browser may insert a query limit or apply a visualization result limit. Remove a query’s <code>LIMIT 25</code> when you want all matching paths from this small dataset, and check Browser’s display settings if the visualization still shows fewer results.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-23.png" alt="Graph query with a result limit"></p>
+<p>Run the query to display the graph:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-24.png" alt="Marvel character relationship graph"></p>
+<p>Expand the result to full screen when exploring the connections:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-25.png" alt="Graph visualization expanded to full screen"></p>
+<p>In the graph styling controls, select <code>people</code> and use the <code>name</code> property as the node caption:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-26.png" alt="Choosing the character caption property"></p>
+<p>Select the <code>rel</code> relationship type and use its <code>relation</code> property as the relationship caption. This makes friendship, family, work, and other categories visible on the edges. The location of the styling controls depends on the Browser version.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-27.png" alt="Choosing the relationship caption property"></p>
+<h3><span id="44-filter-the-relationships">4.4 Filter the relationships</span></h3>
+<p>Find Tony Stark’s outgoing friendships:</p>
+<pre><code class="language-cypher">MATCH p=(n:people &#123;name: 'tonys'&#125;)-[:rel &#123;relation: 'friend'&#125;]-&gt;()
+RETURN p;
+</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-28.png" alt="Tony Stark friendship query result"></p>
+<p>The character keys include <code>thor</code> for Thor, <code>stever</code> for Captain America, <code>blackw</code> for Black Widow, <code>vision</code> for Vision, <code>peterp</code> for Spider-Man, and <code>bruceb</code> for the Hulk.</p>
+<p>Find relationships recorded as <code>love</code> from Captain America:</p>
+<pre><code class="language-cypher">MATCH p=(n:people &#123;name: 'stever'&#125;)-[:rel &#123;relation: 'love'&#125;]-&gt;()
+RETURN p;
+</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/leungll/ImgHosting/img/python-neo4j-marvel-29.png" alt="Captain America love relationship query result"></p>
+<p>Both queries follow the stored direction of the edges. Replacing <code>-&gt;</code> with <code>-</code> searches either direction when that better matches the question. Changing the starting character or the <code>relation</code> property gives a straightforward way to explore the rest of the graph.</p>
+
+        </div>
+    
+
+    <!-- Post Tags -->
+    
+        <div class="post-meta">
+            Tags:
+            
+                <a href="/tags/Python/"> / Python</a>
+            
+                <a href="/tags/Neo4j/"> / Neo4j</a>
+            
+                <a href="/tags/Data-Modeling/"> / Data Modeling</a>
+            
+        </div>
+    
+</div>
+
+    <aside class="post-toc" data-post-toc aria-label="Article contents" hidden>
+    <details class="post-toc-panel" open>
+        <summary class="post-toc-summary">
+            <span class="post-toc-title">On this page</span>
+            <span class="post-toc-current" aria-hidden="true"></span>
+            <svg class="post-toc-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </summary>
+        <nav class="post-toc-nav" aria-label="Table of contents" tabindex="0">
+            <ol class="post-toc-list"></ol>
+        </nav>
+    </details>
+</aside>
+
+</div>
+<script src="/js/post-toc.js" defer></script>
+<script src="/js/post-images.js" defer></script>
+
+
+                <div class="footer">
+    <span>Copyright © 2026 Lili Liang</span>
+    <span>Build with <a target="_blank" rel="noopener" href="https://github.com/LenChou95/hexo-theme-ZenMind">ZenMind</a></span>
+</div>
+
+<!-- Copy Code Funciton -->
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('pre').forEach((pre) => {
+            const button = document.createElement('button');
+            button.innerText = 'Copy';
+            button.className = 'copy-button';
+
+            button.addEventListener('click', () => {
+            const codeLines = pre.querySelectorAll('.hljs-ln-code');
+            // 单行代码块不会生成行号表格，此时直接取 <code> 的文本
+            const codeContent = codeLines.length
+                ? Array.from(codeLines).map(line => line.textContent).join('\n')
+                : (pre.querySelector('code') || pre).textContent;
+
+            navigator.clipboard.writeText(codeContent).then(() => {
+                button.innerText = '√ Copied!';
+                setTimeout(() => {
+                button.innerText = 'Copy';
+                }, 3000);
+            }).catch(err => {
+                console.error('Copy failed: ', err);
+                alert('Unable to copy code, please check browser permissions!');
+            });
+            });
+
+            // 右上角工具栏：复制按钮（悬停显示）+ 语言标签
+            const tools = document.createElement('div');
+            tools.className = 'code-tools';
+            tools.appendChild(button);
+            if (pre.dataset.lang) {
+                const tag = document.createElement('span');
+                tag.className = 'code-lang';
+                tag.innerText = pre.dataset.lang;
+                tools.appendChild(tag);
+            }
+            pre.appendChild(tools);
+        });
+    });
+</script>
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+<script>
+    // 代码块右上角显示的语言名，没列出的直接显示大写
+    const LANG_NAMES = {
+        cpp: 'C++', 'c++': 'C++', c: 'C', java: 'Java', python: 'Python',
+        javascript: 'JavaScript', js: 'JavaScript', typescript: 'TypeScript', ts: 'TypeScript',
+        bash: 'Bash', shell: 'Shell', sh: 'Shell', powershell: 'PowerShell', cmd: 'CMD', bat: 'CMD',
+        sql: 'SQL', cypher: 'Cypher', yaml: 'YAML', yml: 'YAML', json: 'JSON', ini: 'INI',
+        html: 'HTML', xml: 'XML', css: 'CSS', markdown: 'Markdown', md: 'Markdown',
+        text: 'Text', txt: 'Text', plaintext: 'Text'
+    };
+
+    document.querySelectorAll('pre > code').forEach((code) => {
+        const match = code.className.match(/\blanguage-(\S+)/);
+        let lang = match ? match[1].toLowerCase() : 'text';
+        code.parentElement.dataset.lang = LANG_NAMES[lang] || lang.toUpperCase();
+
+        // highlight.js 从 "language-c++" 只能解析出 "c"；不认识的语言（如 cypher）和没写语言的块按纯文本处理，避免自动识别乱上色
+        if (lang === 'c++') lang = 'cpp';
+        if (!hljs.getLanguage(lang)) lang = 'plaintext';
+        code.className = 'language-' + lang;
+    });
+
+    hljs.highlightAll();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>

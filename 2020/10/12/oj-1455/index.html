@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="default">
     <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
@@ -38,16 +38,18 @@
         <title>【蓝桥杯 2019初赛 C/C++大学A组】迷宫（bfs模板） | Lili Liang</title>
     
   
+    
+
     <!-- Open graph -->
-    <meta name="description" content="题目链接：http:&#x2F;&#x2F;oj.ecustacm.cn&#x2F;problem.php?id&#x3D;1455 1 题目 题目描述  下图给出了一个迷宫的平面图，其中标记为 1 的为障碍，标记为 0 的为可以通行的地方。 010000 000100 001001 110000  迷宫的入口为左上角，出口为右下角，在迷宫中，只能从一个位置走到这个它的上、下、左、右四个方向之一。 对于上面的迷宫，从入口开始，可以按 D">
+    <meta name="description" content="迷宫存在多条最短路线时，怎样保证输出字典序最小的一条？BFS 按步数逐层扩展，再按 D、L、R、U 的顺序尝试方向，配合入队标记与路径记录确定先后次序。把最少步数与同长度路线的排序要求结合起来，得到符合双重条件的行走方案。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【蓝桥杯 2019初赛 C&#x2F;C++大学A组】迷宫（bfs模板）">
 <meta property="og:url" content="https://leungll.site/2020/10/12/oj-1455/index.html">
 <meta property="og:site_name" content="Lili Liang">
-<meta property="og:description" content="题目链接：http:&#x2F;&#x2F;oj.ecustacm.cn&#x2F;problem.php?id&#x3D;1455 1 题目 题目描述  下图给出了一个迷宫的平面图，其中标记为 1 的为障碍，标记为 0 的为可以通行的地方。 010000 000100 001001 110000  迷宫的入口为左上角，出口为右下角，在迷宫中，只能从一个位置走到这个它的上、下、左、右四个方向之一。 对于上面的迷宫，从入口开始，可以按 D">
+<meta property="og:description" content="迷宫存在多条最短路线时，怎样保证输出字典序最小的一条？BFS 按步数逐层扩展，再按 D、L、R、U 的顺序尝试方向，配合入队标记与路径记录确定先后次序。把最少步数与同长度路线的排序要求结合起来，得到符合双重条件的行走方案。">
 <meta property="og:locale">
 <meta property="article:published_time" content="2020-10-12T11:29:14.000Z">
-<meta property="article:modified_time" content="2024-05-03T13:41:02.011Z">
+<meta property="article:modified_time" content="2026-10-20T06:26:42.697Z">
 <meta property="article:author" content="Lili Liang 梁莉莉">
 <meta property="article:tag" content="C&#x2F;C++">
 <meta property="article:tag" content="蓝桥杯">
@@ -72,8 +74,16 @@
 <link rel="stylesheet" href="/css/style.css">
 
     
+<link rel="stylesheet" href="/css/atom-one-light.css">
+
+    
 <link rel="stylesheet" href="/css/markdown.css">
 
+    
+        
+<link rel="stylesheet" href="/css/post-toc.css">
+
+    
     
 <link rel="stylesheet" href="/css/fonts.css">
 
@@ -97,7 +107,7 @@
 <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Lili Liang" type="application/atom+xml">
 </head>
 
-    <body>
+    <body class="post-page">
         <div class="paper">
             <div class="paper-main">
                 
@@ -117,12 +127,17 @@
 </div>
 
                 
-                <div class="post-main">
+                
+<div class="post-layout" data-post-layout>
+
+<div class="post-main">
     
         <!-- Post Title -->
         <div class="post-main-title">
             【蓝桥杯 2019初赛 C/C++大学A组】迷宫（bfs模板）
         </div>
+
+        
 
         <!-- Post Meta Information -->
         <div class="post-meta">
@@ -131,7 +146,7 @@
 
             <!-- Show Last Updated Date -->
             
-                Last updated: May 3, 2024 ｜ 
+                Last updated: Oct 20, 2026 ｜ 
             
 
             <!-- Show Post Categories -->
@@ -140,6 +155,17 @@
             
         </div>
 
+        
+
+        
+    
+    <aside class="post-summary" aria-label="摘要">
+        <span class="post-summary-label">摘要</span>
+        <p>迷宫存在多条最短路线时，怎样保证输出字典序最小的一条？BFS 按步数逐层扩展，再按 D、L、R、U 的顺序尝试方向，配合入队标记与路径记录确定先后次序。把最少步数与同长度路线的排序要求结合起来，得到符合双重条件的行走方案。</p>
+    </aside>
+
+
+
         <!-- Post Content -->
         <div class="post-md">
             <p><strong>题目链接</strong>：<a target="_blank" rel="noopener" href="http://oj.ecustacm.cn/problem.php?id=1455">http://oj.ecustacm.cn/problem.php?id=1455</a></p>
@@ -147,11 +173,11 @@
 <h3><span id="题目描述">题目描述</span></h3>
 <blockquote>
 <p>下图给出了一个迷宫的平面图，其中标记为 1 的为障碍，标记为 0 的为可以通行的地方。</p>
-<div class="highlight"><pre class="code"><code>010000
+<pre><code>010000
 000100
 001001
 110000
-</code></pre></div>
+</code></pre>
 <p>迷宫的入口为左上角，出口为右下角，在迷宫中，只能从一个位置走到这个它的上、下、左、右四个方向之一。<br>
 对于上面的迷宫，从入口开始，可以按 DRRURRDDDR 的顺序通过迷宫，一共 10 步。其中 D、U、L、R 分别表示向下、向上、向左、向右走。<br>
 对于下面这个更复杂的迷宫（ 30 行 50 列），请找出一种通过迷宫的方式，其使用的步数最少，在步数最少的前提下，请找出字典序最小的一个作为案。<br>
@@ -162,24 +188,24 @@
 <p>见文件：<a target="_blank" rel="noopener" href="http://oj.ecustacm.cn/upload/file/20200122/20200122134020_61830.txt">http://oj.ecustacm.cn/upload/file/20200122/20200122134020_61830.txt</a></p>
 </blockquote>
 <h2><span id="2-题解">2 题解</span></h2>
-<div class="highlight"><pre class="code"><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;queue&gt;</span></span>
-<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;queue&gt;
+using namespace std;
 
-<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn = <span class="hljs-number">60</span>;
-<span class="hljs-keyword">char</span> mp[maxn][maxn];
-<span class="hljs-keyword">int</span> vis[maxn][maxn] = &#123;<span class="hljs-number">0</span>&#125;;
-<span class="hljs-keyword">int</span> dir[<span class="hljs-number">4</span>][<span class="hljs-number">2</span>] = &#123;
-    &#123;<span class="hljs-number">1</span>,<span class="hljs-number">0</span>&#125;, &#123;<span class="hljs-number">0</span>, <span class="hljs-number">-1</span>&#125;, &#123;<span class="hljs-number">0</span>,<span class="hljs-number">1</span>&#125;, &#123;<span class="hljs-number">-1</span>,<span class="hljs-number">0</span>&#125;&#125;;
-<span class="hljs-keyword">char</span> dirc[<span class="hljs-number">4</span>] = &#123;<span class="hljs-string">&#x27;D&#x27;</span>, <span class="hljs-string">&#x27;L&#x27;</span>, <span class="hljs-string">&#x27;R&#x27;</span>, <span class="hljs-string">&#x27;U&#x27;</span>&#125;;
-<span class="hljs-keyword">int</span> n, m;
+const int maxn = 60;
+char mp[maxn][maxn];
+int vis[maxn][maxn] = &#123;0&#125;;
+int dir[4][2] = &#123;
+    &#123;1,0&#125;, &#123;0, -1&#125;, &#123;0,1&#125;, &#123;-1,0&#125;&#125;;
+char dirc[4] = &#123;'D', 'L', 'R', 'U'&#125;;
+int n, m;
 
-<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">node</span>&#123;</span>
-    <span class="hljs-keyword">int</span> x, y, step;
+struct node&#123;
+    int x, y, step;
     string s;
-    <span class="hljs-built_in">node</span>(<span class="hljs-keyword">int</span> xx, <span class="hljs-keyword">int</span> yy, <span class="hljs-keyword">int</span> sstep, string ss)&#123;
+    node(int xx, int yy, int sstep, string ss)&#123;
         x = xx;
         y = yy;
         step = sstep;
@@ -189,49 +215,49 @@
 
 queue&lt;node&gt; q;
 
-<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">check</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span></span>&#123;
-    <span class="hljs-keyword">if</span>(x &lt; <span class="hljs-number">0</span> || x &gt;= n || y &lt; <span class="hljs-number">0</span> || y &gt;= m || vis[x][y] == <span class="hljs-number">1</span> || mp[x][y] == <span class="hljs-string">&#x27;1&#x27;</span>)&#123;
-        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+bool check(int x, int y)&#123;
+    if(x &lt; 0 || x &gt;= n || y &lt; 0 || y &gt;= m || vis[x][y] == 1 || mp[x][y] == '1')&#123;
+        return false;
     &#125;
-    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    return true;
 &#125;
 
-<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">bfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span></span>&#123;
-    q.<span class="hljs-built_in">push</span>(<span class="hljs-built_in">node</span>(x, y, <span class="hljs-number">0</span>, <span class="hljs-string">&quot;&quot;</span>));
-    vis[x][y] = <span class="hljs-number">1</span>;
-    <span class="hljs-keyword">while</span>(!q.<span class="hljs-built_in">empty</span>())&#123;
-        node now = q.<span class="hljs-built_in">front</span>();
-        <span class="hljs-keyword">if</span>(now.x == n - <span class="hljs-number">1</span> &amp;&amp; now.y == m - <span class="hljs-number">1</span>)&#123;
+void bfs(int x, int y)&#123;
+    q.push(node(x, y, 0, &quot;&quot;));
+    vis[x][y] = 1;
+    while(!q.empty())&#123;
+        node now = q.front();
+        if(now.x == n - 1 &amp;&amp; now.y == m - 1)&#123;
             cout &lt;&lt; now.s &lt;&lt; endl;
             cout &lt;&lt; now.step &lt;&lt; endl;
-            <span class="hljs-keyword">break</span>;
+            break;
         &#125;
-        q.<span class="hljs-built_in">pop</span>();
-        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; <span class="hljs-number">4</span>;i++)&#123;
-            <span class="hljs-keyword">int</span> nx = now.x + dir[i][<span class="hljs-number">0</span>];
-            <span class="hljs-keyword">int</span> ny = now.y + dir[i][<span class="hljs-number">1</span>];
-            <span class="hljs-keyword">if</span>(<span class="hljs-built_in">check</span>(nx, ny))&#123;
-                q.<span class="hljs-built_in">push</span>(<span class="hljs-built_in">node</span>(nx, ny, now.step + <span class="hljs-number">1</span>, now.s + dirc[i]));
-                vis[nx][ny] = <span class="hljs-number">1</span>;
+        q.pop();
+        for(int i = 0;i &lt; 4;i++)&#123;
+            int nx = now.x + dir[i][0];
+            int ny = now.y + dir[i][1];
+            if(check(nx, ny))&#123;
+                q.push(node(nx, ny, now.step + 1, now.s + dirc[i]));
+                vis[nx][ny] = 1;
             &#125;
         &#125;
     &#125;
 &#125;
 
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
-    <span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> ONLINE_JUDGE</span>
-    <span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span>
-    <span class="hljs-built_in">freopen</span>(<span class="hljs-string">&quot;input.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, stdin);
-    <span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span> <span class="hljs-comment">//ONLINE_JUDGE</span></span>
+int main()&#123;
+    #ifdef ONLINE_JUDGE
+    #else
+    freopen(&quot;input.txt&quot;, &quot;r&quot;, stdin);
+    #endif //ONLINE_JUDGE
 
     cin &gt;&gt; n &gt;&gt; m;
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; n;i++)&#123;
+    for(int i = 0;i &lt; n;i++)&#123;
         cin &gt;&gt; mp[i];
     &#125;
-    <span class="hljs-built_in">bfs</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    bfs(0, 0);
+    return 0;
 &#125;
-</code></pre></div>
+</code></pre>
 
         </div>
     
@@ -252,6 +278,27 @@ queue&lt;node&gt; q;
         </div>
     
 </div>
+
+    <aside class="post-toc" data-post-toc aria-label="Article contents" hidden>
+    <details class="post-toc-panel" open>
+        <summary class="post-toc-summary">
+            <span class="post-toc-title">On this page</span>
+            <span class="post-toc-current" aria-hidden="true"></span>
+            <svg class="post-toc-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </summary>
+        <nav class="post-toc-nav" aria-label="Table of contents" tabindex="0">
+            <ol class="post-toc-list"></ol>
+        </nav>
+    </details>
+</aside>
+
+</div>
+<script src="/js/post-toc.js" defer></script>
+<script src="/js/post-images.js" defer></script>
+
+
                 <div class="footer">
     <span>Copyright © 2026 Lili Liang</span>
     <span>Build with <a target="_blank" rel="noopener" href="https://github.com/LenChou95/hexo-theme-ZenMind">ZenMind</a></span>
@@ -267,9 +314,10 @@ queue&lt;node&gt; q;
 
             button.addEventListener('click', () => {
             const codeLines = pre.querySelectorAll('.hljs-ln-code');
-            const codeContent = Array.from(codeLines)
-                .map(line => line.textContent)
-                .join('\n');
+            // 单行代码块不会生成行号表格，此时直接取 <code> 的文本
+            const codeContent = codeLines.length
+                ? Array.from(codeLines).map(line => line.textContent).join('\n')
+                : (pre.querySelector('code') || pre).textContent;
 
             navigator.clipboard.writeText(codeContent).then(() => {
                 button.innerText = '√ Copied!';
@@ -282,16 +330,20 @@ queue&lt;node&gt; q;
             });
             });
 
-            pre.appendChild(button);
+            // 右上角工具栏：复制按钮（悬停显示）+ 语言标签
+            const tools = document.createElement('div');
+            tools.className = 'code-tools';
+            tools.appendChild(button);
+            if (pre.dataset.lang) {
+                const tag = document.createElement('span');
+                tag.className = 'code-lang';
+                tag.innerText = pre.dataset.lang;
+                tools.appendChild(tag);
+            }
+            pre.appendChild(tools);
         });
     });
 </script>
-
-<!-- Change Code Style -->
-
-<link rel="stylesheet" href="/css/a11y-dark.min.css">
-
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"> -->
 
 
 <script src="/js/highlight.min.js"></script>
@@ -301,7 +353,28 @@ queue&lt;node&gt; q;
 
 
 <script>
-    hljs.initHighlightingOnLoad();
+    // 代码块右上角显示的语言名，没列出的直接显示大写
+    const LANG_NAMES = {
+        cpp: 'C++', 'c++': 'C++', c: 'C', java: 'Java', python: 'Python',
+        javascript: 'JavaScript', js: 'JavaScript', typescript: 'TypeScript', ts: 'TypeScript',
+        bash: 'Bash', shell: 'Shell', sh: 'Shell', powershell: 'PowerShell', cmd: 'CMD', bat: 'CMD',
+        sql: 'SQL', cypher: 'Cypher', yaml: 'YAML', yml: 'YAML', json: 'JSON', ini: 'INI',
+        html: 'HTML', xml: 'XML', css: 'CSS', markdown: 'Markdown', md: 'Markdown',
+        text: 'Text', txt: 'Text', plaintext: 'Text'
+    };
+
+    document.querySelectorAll('pre > code').forEach((code) => {
+        const match = code.className.match(/\blanguage-(\S+)/);
+        let lang = match ? match[1].toLowerCase() : 'text';
+        code.parentElement.dataset.lang = LANG_NAMES[lang] || lang.toUpperCase();
+
+        // highlight.js 从 "language-c++" 只能解析出 "c"；不认识的语言（如 cypher）和没写语言的块按纯文本处理，避免自动识别乱上色
+        if (lang === 'c++') lang = 'cpp';
+        if (!hljs.getLanguage(lang)) lang = 'plaintext';
+        code.className = 'language-' + lang;
+    });
+
+    hljs.highlightAll();
     hljs.initLineNumbersOnLoad();
 </script>
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="default">
     <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
@@ -38,6 +38,8 @@
         <title>Blogs | Lili Liang</title>
     
   
+    
+
     <!-- Open graph -->
     <meta name="description" content="Lili Liang 梁莉莉">
 <meta property="og:type" content="website">
@@ -66,8 +68,12 @@
 <link rel="stylesheet" href="/css/style.css">
 
     
+<link rel="stylesheet" href="/css/atom-one-light.css">
+
+    
 <link rel="stylesheet" href="/css/markdown.css">
 
+    
     
 <link rel="stylesheet" href="/css/fonts.css">
 
@@ -113,139 +119,58 @@
                 <div class="post-list">
     
     <div class="post">
+        <a class="post-title" href="/2020/04/02/mersenne-number-permalink/">【洛谷 1045 &amp;&amp; 蓝桥杯 算法训练 ALGO - 26】麦森数（二分 + 高精度）</a>
+        
+            <p class="post-except">求 2 的巨大次幂减一，并不一定需要存下整个整数：题目只要求总位数和末尾 500 位。用对数计算位数，用数组高精度乘法配合二分快速幂保留低位结果，将两个输出要求分别求解，避免为了少 <a class="read-more" href="/2020/04/02/mersenne-number-permalink/" aria-label="Read more: 【洛谷 1045 &amp;&amp; 蓝桥杯 算法训练 ALGO - 26】麦森数（二分 + 高精度）"> ... </a></p>
+        
+        <div class="post-date">Apr 2, 2020</div>
+    </div>
+    
+    <div class="post">
         <a class="post-title" href="/2020/04/02/hexo-github-gitee-permalink/">基于Hexo + Github &amp;&amp; Gitee 搭建个人 Blog</a>
-        <div class="post-except">
-            
-
-1 关于GitHub Pages
-2 关于Hexo
-3 Hexo环境搭建
-4 Hexo主题更换
-5 Hexo常用命令
-6 解决Github博客访问过慢问题的方案
-7 关于Gitee
-
-
-
-
-一年前使用 Hexo + Github 搭过一个博客，但是当时事情
-            <a class="read-more" href="/2020/04/02/hexo-github-gitee-permalink/"> ... </a>
-        </div>
+        
+            <p class="post-except">个人博客可以用 Markdown 维护内容，由 Hexo 生成静态网页，再交给托管平台发布。这份搭建记录串起环境准备、SSH 连接、主题更换和文章部署，并记录 GitHub 与 G <a class="read-more" href="/2020/04/02/hexo-github-gitee-permalink/" aria-label="Read more: 基于Hexo + Github &amp;&amp; Gitee 搭建个人 Blog"> ... </a></p>
+        
         <div class="post-date">Apr 2, 2020</div>
     </div>
     
     <div class="post">
         <a class="post-title" href="/2020/03/11/ksm-ksc-permalink/">快速幂 &amp;&amp; 快速乘取模（模拟大数模幂运算，解决乘法爆long long问题）</a>
-        <div class="post-except">
-            引言
-
-在 RSA 密码中，当收到密文 C 时，可使用私钥解开，计算公式为
-$$ X\ =\ C^{e}\ mod\ n $$
-如果想让你计算
-$$      20190324^{823816093931522017}\ mod\ 10017339930631
-            <a class="read-more" href="/2020/03/11/ksm-ksc-permalink/"> ... </a>
-        </div>
+        
+            <p class="post-except">模幂运算的最终结果能放进 long long，中间乘积仍可能先溢出，之后取模也无法补救。以大指数计算为例，在快速幂中调用倍增累加的模乘来替换直接相乘，展示如何在示例的数值范围内控制 <a class="read-more" href="/2020/03/11/ksm-ksc-permalink/" aria-label="Read more: 快速幂 &amp;&amp; 快速乘取模（模拟大数模幂运算，解决乘法爆long long问题）"> ... </a></p>
+        
         <div class="post-date">Mar 12, 2020</div>
     </div>
     
     <div class="post">
         <a class="post-title" href="/2020/03/11/ex-gcd-permalink/">数论之扩展欧几里得，费马小定理，欧拉定理 + 求最小乘法逆元</a>
-        <div class="post-except">
-            
-
-1 逆元定义
-2 欧几里得算法（求最大公约数）
-3 扩展欧几里得算法
-
-3.1 预备知识
-3.2 关于扩展欧几里得算法
-3.3 模板
-3.4 算法推导过程
-3.5 利用拓展欧几里得算法求逆元
-
-
-4 费马小定理
-
-4.1 定义
-4.2 模板
-
-
-5 欧拉定
-            <a class="read-more" href="/2020/03/11/ex-gcd-permalink/"> ... </a>
-        </div>
+        
+            <p class="post-except">模运算中的除法需要借助乘法逆元，而逆元是否存在、用什么方法求，取决于互质关系与模数条件。从裴蜀定理推导扩展欧几里得，再联系费马小定理、欧拉定理和快速幂，最后串起 RSA 例题中的逆 <a class="read-more" href="/2020/03/11/ex-gcd-permalink/" aria-label="Read more: 数论之扩展欧几里得，费马小定理，欧拉定理 + 求最小乘法逆元"> ... </a></p>
+        
         <div class="post-date">Mar 11, 2020</div>
     </div>
     
     <div class="post">
         <a class="post-title" href="/2019/11/15/vscode-configuration/">VScode 配置 C/C++ 环境(MinGW) &amp;&amp; 编写运行 C/C++ 程序</a>
-        <div class="post-except">
-            
-
-1 关于VScode
-2 配置MinGW环境变量
-
-2.1 MinGW下载
-2.2 配置环境变量
-2.3 测试是否配置成功
-
-
-3 VScode相关插件配置
-
-3.1 安装C/C++插件
-3.2 配置.vscode相关文件
-
-3.2.1 创建.vscode
-            <a class="read-more" href="/2019/11/15/vscode-configuration/"> ... </a>
-        </div>
+        
+            <p class="post-except">装好 VS Code 和 C/C++ 插件，并不代表已经具备编译与调试环境。沿着 MinGW 安装、环境变量验证和工作区配置，把编辑器、编译器与调试器连接起来；结合 launch. <a class="read-more" href="/2019/11/15/vscode-configuration/" aria-label="Read more: VScode 配置 C/C++ 环境(MinGW) &amp;&amp; 编写运行 C/C++ 程序"> ... </a></p>
+        
         <div class="post-date">Nov 16, 2019</div>
     </div>
     
     <div class="post">
-        <a class="post-title" href="/2019/05/02/python-neo4j-marvel/">Python + Neo4j（安装）可视化分析漫威十年人物关系图谱</a>
-        <div class="post-except">
-            
-
-1 数据爬取
-
-1.1 漫威人物关系图谱网站
-1.2 爬取人物关系数据
-
-
-2 Neo4j的安装及服务启动
-
-2.1 Neo4j下载安装
-2.2 开启Neo4j服务
-
-
-3 数据准备
-
-3.1 加入列名
-3.2 放入本地Neo4j的import文件
-
-
-4
-            <a class="read-more" href="/2019/05/02/python-neo4j-marvel/"> ... </a>
-        </div>
+        <a class="post-title" href="/2019/05/02/modeling-relationships-with-neo4j/">Python and Neo4j: Visualizing Relationships in the Marvel Cinematic Universe</a>
+        
+            <p class="post-except">Who is connected to Tony Stark, and which connections represent friendship, family, or work? A Marvel character graph turns those <a class="read-more" href="/2019/05/02/modeling-relationships-with-neo4j/" aria-label="Read more: Python and Neo4j: Visualizing Relationships in the Marvel Cinematic Universe"> ... </a></p>
+        
         <div class="post-date">May 3, 2019</div>
     </div>
     
     <div class="post">
         <a class="post-title" href="/2019/04/10/jetBrains-ide-certification/">JetBrains IDE（e.g. IntelliJ IDEA )旗舰版认证安装方法（针对在校学生）</a>
-        <div class="post-except">
-            
-
-前言
-1 注意事项
-2 Edu学生邮箱申请
-3 IntelliJ-IDEA安装
-4 使用一年后继续申请旗舰版
-
-
-前言
-
-IntelliJ IDEA 是 java 开发的利器，共有两个版本：社区版、旗舰版。JetBrains 的计划（Academic Li
-            <a class="read-more" href="/2019/04/10/jetBrains-ide-certification/"> ... </a>
-        </div>
+        
+            <p class="post-except">安装 IntelliJ IDEA 与获得教育授权是两个环节，账号、学生邮箱和激活邮件需要对应起来。这份安装记录串起学生资格申请、邮箱确认、IDE 登录和到期续订，帮助在校学生理解授 <a class="read-more" href="/2019/04/10/jetBrains-ide-certification/" aria-label="Read more: JetBrains IDE（e.g. IntelliJ IDEA )旗舰版认证安装方法（针对在校学生）"> ... </a></p>
+        
         <div class="post-date">Apr 10, 2019</div>
     </div>
     
@@ -254,6 +179,7 @@ IntelliJ IDEA 是 java 开发的利器，共有两个版本：社区版、旗舰
 <div class="paginator">
     <a class="extend prev" rel="prev" href="/page/2/">Previous</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
 </div>
+
 
                 <div class="footer">
     <span>Copyright © 2026 Lili Liang</span>
@@ -270,9 +196,10 @@ IntelliJ IDEA 是 java 开发的利器，共有两个版本：社区版、旗舰
 
             button.addEventListener('click', () => {
             const codeLines = pre.querySelectorAll('.hljs-ln-code');
-            const codeContent = Array.from(codeLines)
-                .map(line => line.textContent)
-                .join('\n');
+            // 单行代码块不会生成行号表格，此时直接取 <code> 的文本
+            const codeContent = codeLines.length
+                ? Array.from(codeLines).map(line => line.textContent).join('\n')
+                : (pre.querySelector('code') || pre).textContent;
 
             navigator.clipboard.writeText(codeContent).then(() => {
                 button.innerText = '√ Copied!';
@@ -285,16 +212,20 @@ IntelliJ IDEA 是 java 开发的利器，共有两个版本：社区版、旗舰
             });
             });
 
-            pre.appendChild(button);
+            // 右上角工具栏：复制按钮（悬停显示）+ 语言标签
+            const tools = document.createElement('div');
+            tools.className = 'code-tools';
+            tools.appendChild(button);
+            if (pre.dataset.lang) {
+                const tag = document.createElement('span');
+                tag.className = 'code-lang';
+                tag.innerText = pre.dataset.lang;
+                tools.appendChild(tag);
+            }
+            pre.appendChild(tools);
         });
     });
 </script>
-
-<!-- Change Code Style -->
-
-<link rel="stylesheet" href="/css/a11y-dark.min.css">
-
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"> -->
 
 
 <script src="/js/highlight.min.js"></script>
@@ -304,7 +235,28 @@ IntelliJ IDEA 是 java 开发的利器，共有两个版本：社区版、旗舰
 
 
 <script>
-    hljs.initHighlightingOnLoad();
+    // 代码块右上角显示的语言名，没列出的直接显示大写
+    const LANG_NAMES = {
+        cpp: 'C++', 'c++': 'C++', c: 'C', java: 'Java', python: 'Python',
+        javascript: 'JavaScript', js: 'JavaScript', typescript: 'TypeScript', ts: 'TypeScript',
+        bash: 'Bash', shell: 'Shell', sh: 'Shell', powershell: 'PowerShell', cmd: 'CMD', bat: 'CMD',
+        sql: 'SQL', cypher: 'Cypher', yaml: 'YAML', yml: 'YAML', json: 'JSON', ini: 'INI',
+        html: 'HTML', xml: 'XML', css: 'CSS', markdown: 'Markdown', md: 'Markdown',
+        text: 'Text', txt: 'Text', plaintext: 'Text'
+    };
+
+    document.querySelectorAll('pre > code').forEach((code) => {
+        const match = code.className.match(/\blanguage-(\S+)/);
+        let lang = match ? match[1].toLowerCase() : 'text';
+        code.parentElement.dataset.lang = LANG_NAMES[lang] || lang.toUpperCase();
+
+        // highlight.js 从 "language-c++" 只能解析出 "c"；不认识的语言（如 cypher）和没写语言的块按纯文本处理，避免自动识别乱上色
+        if (lang === 'c++') lang = 'cpp';
+        if (!hljs.getLanguage(lang)) lang = 'plaintext';
+        code.className = 'language-' + lang;
+    });
+
+    hljs.highlightAll();
     hljs.initLineNumbersOnLoad();
 </script>
 

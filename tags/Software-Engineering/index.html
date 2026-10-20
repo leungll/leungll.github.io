@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="default">
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="robots" content="index, follow">
+
+    <!-- Baidu Site SEO -->
+    <meta name="baidu-site-verification" content="codeva-Fn6WoXLOMw" />
+    <!-- <meta name="baidu-site-verification" content="codeva-mdLm33TTHY" /> -->
+
+    <!-- Baidu analytics -->
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?1a364896f028f8093396007dc78eb0a0";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WF4EY3839B"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-WF4EY3839B');
+    </script>
+
+    <!-- Bing Site SEO -->
+    <meta name="msvalidate.01" content="85648BC2E966622B7CC9FF6BCB04E326" />
+
+    <!-- title -->
+    
+        <title>Software Engineering | Lili Liang</title>
+    
+  
+    
+
+    <!-- Open graph -->
+    <meta name="description" content="Lili Liang 梁莉莉">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lili Liang">
+<meta property="og:url" content="https://leungll.site/tags/Software-Engineering/index.html">
+<meta property="og:site_name" content="Lili Liang">
+<meta property="og:description" content="Lili Liang 梁莉莉">
+<meta property="og:locale">
+<meta property="article:author" content="Lili Liang 梁莉莉">
+<meta name="twitter:card" content="summary">
+
+    <!-- Canonical -->
+    
+        <link rel="canonical" href="https://leungll.site/tags/Software-Engineering/">
+    
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/logo.png">
+
+    <!-- CSS -->
+    
+<link rel="stylesheet" href="/css/reset.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/atom-one-light.css">
+
+    
+<link rel="stylesheet" href="/css/markdown.css">
+
+    
+    
+<link rel="stylesheet" href="/css/fonts.css">
+
+
+    <script>
+        MathJax = {
+          tex: {
+            packages: ['base', 'ams'],
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true
+          },
+          options: {
+            ignoreHtmlClass: "tex2jax_ignore",
+            processHtmlClass: "tex2jax_process"
+          }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Lili Liang" type="application/atom+xml">
+</head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="header">
+    <a class="logo" href="/">Lili Liang 梁莉莉</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+    <ul class="nav">
+        
+        <li><a href="/">Blogs</a></li>
+        
+        <li><a href="/archives">Archives</a></li>
+        
+        <li><a href="/about">About</a></li>
+        
+    </ul>
+</div>
+
+                
+                <div class="archive-list">
+    <ul class="archive">
+        
+        <li>
+            <span class="archive-date">Oct 18, 2026</span>
+            <div class="archive-main">
+                &emsp;<a class="archive-title" href="/2026/10/17/building-for-agents/">The Next Era of Software Engineering</a>
+                <!-- <a class="read-more" href="/2026/10/17/building-for-agents/"> ... </a>  -->
+            </div>
+        </li>
+        
+    </ul>
+</div>
+
+                <div class="footer">
+    <span>Copyright © 2026 Lili Liang</span>
+    <span>Build with <a target="_blank" rel="noopener" href="https://github.com/LenChou95/hexo-theme-ZenMind">ZenMind</a></span>
+</div>
+
+<!-- Copy Code Funciton -->
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('pre').forEach((pre) => {
+            const button = document.createElement('button');
+            button.innerText = 'Copy';
+            button.className = 'copy-button';
+
+            button.addEventListener('click', () => {
+            const codeLines = pre.querySelectorAll('.hljs-ln-code');
+            // 单行代码块不会生成行号表格，此时直接取 <code> 的文本
+            const codeContent = codeLines.length
+                ? Array.from(codeLines).map(line => line.textContent).join('\n')
+                : (pre.querySelector('code') || pre).textContent;
+
+            navigator.clipboard.writeText(codeContent).then(() => {
+                button.innerText = '√ Copied!';
+                setTimeout(() => {
+                button.innerText = 'Copy';
+                }, 3000);
+            }).catch(err => {
+                console.error('Copy failed: ', err);
+                alert('Unable to copy code, please check browser permissions!');
+            });
+            });
+
+            // 右上角工具栏：复制按钮（悬停显示）+ 语言标签
+            const tools = document.createElement('div');
+            tools.className = 'code-tools';
+            tools.appendChild(button);
+            if (pre.dataset.lang) {
+                const tag = document.createElement('span');
+                tag.className = 'code-lang';
+                tag.innerText = pre.dataset.lang;
+                tools.appendChild(tag);
+            }
+            pre.appendChild(tools);
+        });
+    });
+</script>
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+<script>
+    // 代码块右上角显示的语言名，没列出的直接显示大写
+    const LANG_NAMES = {
+        cpp: 'C++', 'c++': 'C++', c: 'C', java: 'Java', python: 'Python',
+        javascript: 'JavaScript', js: 'JavaScript', typescript: 'TypeScript', ts: 'TypeScript',
+        bash: 'Bash', shell: 'Shell', sh: 'Shell', powershell: 'PowerShell', cmd: 'CMD', bat: 'CMD',
+        sql: 'SQL', cypher: 'Cypher', yaml: 'YAML', yml: 'YAML', json: 'JSON', ini: 'INI',
+        html: 'HTML', xml: 'XML', css: 'CSS', markdown: 'Markdown', md: 'Markdown',
+        text: 'Text', txt: 'Text', plaintext: 'Text'
+    };
+
+    document.querySelectorAll('pre > code').forEach((code) => {
+        const match = code.className.match(/\blanguage-(\S+)/);
+        let lang = match ? match[1].toLowerCase() : 'text';
+        code.parentElement.dataset.lang = LANG_NAMES[lang] || lang.toUpperCase();
+
+        // highlight.js 从 "language-c++" 只能解析出 "c"；不认识的语言（如 cypher）和没写语言的块按纯文本处理，避免自动识别乱上色
+        if (lang === 'c++') lang = 'cpp';
+        if (!hljs.getLanguage(lang)) lang = 'plaintext';
+        code.className = 'language-' + lang;
+    });
+
+    hljs.highlightAll();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>
